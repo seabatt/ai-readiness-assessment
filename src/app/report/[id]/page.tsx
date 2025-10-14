@@ -140,13 +140,13 @@ export default function ReportPage() {
                     key={worker.id}
                     worker={worker}
                     rank={idx + 1}
-                    isTopWorkflow={
+                    isTopWorkflow={Boolean(
                       idx === 0 &&
                       assessmentData.topWorkflows[0] &&
                       worker.relatedWorkflows?.includes(
                         assessmentData.topWorkflows[0],
                       )
-                    }
+                    )}
                   />
                 ))}
               </div>

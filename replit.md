@@ -9,6 +9,13 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 14, 2025 - Report Page Enhancements
+- Enhanced report page with updated component props:
+  - Added `isTopWorkflow` prop to AIWorkerCard for highlighting top workflow matches
+  - Added `techStackScore` and `deflectionPotential` props to ComparisonTable
+  - Fixed TypeScript boolean type coercion using Boolean() wrapper
+- Production build successful with all type checks passing
+
 ### October 14, 2025 - Assessment Flow Fixes
 - Fixed landing page "Start Assessment" button to properly navigate to /assessment route
 - Corrected assessment page to use modular components instead of inline implementation:
