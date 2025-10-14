@@ -40,12 +40,16 @@ export default function AssessmentPage() {
   ];
 
   const handleNext = () => {
-    if (step < 5) {
+    if (step < 4) {
       setStep(step + 1);
-    } else {
-      // Save to sessionStorage and redirect to report
-      sessionStorage.setItem('assessmentData', JSON.stringify(data));
-      router.push('/report/new');
+    } else if (step === 4) {
+      // Show loading screen
+      setStep(5);
+      // Save to sessionStorage and redirect to report after brief delay
+      setTimeout(() => {
+        sessionStorage.setItem('assessmentData', JSON.stringify(data));
+        router.push('/report/new');
+      }, 1500);
     }
   };
 
