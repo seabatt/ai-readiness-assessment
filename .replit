@@ -8,7 +8,8 @@ channel = "stable-23_11"
 
 [deployment]
 run = ["npm", "run", "start"]
-deploymentTarget = "cloudrun"
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
 
 [[ports]]
 localPort = 3000
@@ -17,6 +18,10 @@ externalPort = 80
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 41411
+externalPort = 3000
 
 [agent]
 expertMode = true

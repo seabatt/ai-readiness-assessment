@@ -35,6 +35,9 @@ const config: Config = {
         'status-success': '#00D97E',
         'status-active': '#4A9EFF',
         'status-warning': '#FF6B35',
+        
+        // Border color
+        'border': '#2F2F2F',
       },
       borderRadius: {
         'card': '16px',
