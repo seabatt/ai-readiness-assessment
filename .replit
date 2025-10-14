@@ -1,6 +1,7 @@
 run = "npm run dev"
 language = "nodejs"
 entrypoint = "src/app/page.tsx"
+modules = ["nodejs-20"]
 
 [nix]
 channel = "stable-23_11"
@@ -12,3 +13,6 @@ deploymentTarget = "cloudrun"
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[agent]
+expertMode = true
