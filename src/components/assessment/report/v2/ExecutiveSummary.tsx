@@ -21,37 +21,59 @@ export default function ExecutiveSummary({
     <div className="mb-16">
       <h2 className="text-4xl font-bold text-white mb-12">Executive Summary</h2>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        {/* Overall Score */}
-        <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-8">
+      {/* Centered Score */}
+      <div className="flex justify-center mb-12">
+        <div className="text-center">
           <h3 className="text-xl font-bold text-white mb-6">Overall Readiness</h3>
-          <div className="flex justify-center">
-            <ScoreCircle score={score.total} rating={score.rating} />
-          </div>
+          <ScoreCircle score={score.total} rating={score.rating} />
         </div>
+      </div>
 
-        {/* Key Metrics */}
-        <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-8">
-          <h3 className="text-xl font-bold text-white mb-6">Estimated Impact</h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400">Ticket Deflection</span>
-              <span className="text-2xl font-bold text-white">
-                <CountUp end={estimatedDeflection} duration={2} />%
-              </span>
+      {/* Narrative Section */}
+      <div className="max-w-4xl mx-auto mb-12 space-y-6">
+        <p className="text-lg text-gray-300 leading-relaxed">
+          Your IT team faces a familiar challenge: tickets pile up faster than you can handle them, 
+          your skilled engineers spend hours on repetitive tasks, and leadership asks for "more efficiency 
+          with fewer resources." The question isn't whether AI can help—it's <span className="text-white font-semibold">how to start</span>.
+        </p>
+
+        <p className="text-lg text-gray-300 leading-relaxed">
+          Your readiness score of <span className="text-white font-bold">{score.total}/100</span> reflects 
+          three critical factors: your tech stack's compatibility with autonomous teammates, your team's 
+          current process maturity, and the volume of repetitive work ready for intelligent handling. This 
+          isn't just a number—it's a <span className="text-white font-semibold">validated pathway from reactive 
+          firefighting to autonomous, intelligent service delivery</span>.
+        </p>
+
+        <p className="text-lg text-gray-300 leading-relaxed">
+          Organizations at your readiness level typically deploy their first autonomous teammate within 
+          30-60 days, starting with high-volume, low-complexity workflows. The impact metrics below aren't 
+          projections—they're <span className="text-white font-semibold">conservative estimates based on teams 
+          with similar tech stacks who've already made the transition</span>.
+        </p>
+      </div>
+
+      {/* Full Width Impact Metrics */}
+      <div className="bg-gradient-to-br from-blue-900/20 to-green-900/20 border border-blue-800/30 rounded-lg p-8 mb-12">
+        <h3 className="text-2xl font-bold text-white mb-8 text-center">Estimated Impact</h3>
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="text-5xl font-bold text-white mb-2">
+              <CountUp end={estimatedDeflection} duration={2} />%
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400">Hours Saved (Annual)</span>
-              <span className="text-2xl font-bold text-white">
-                <CountUp end={hoursSaved} duration={2} separator="," />
-              </span>
+            <div className="text-sm text-gray-400 uppercase tracking-wider">Ticket Deflection</div>
+          </div>
+          <div className="text-center">
+            <div className="text-5xl font-bold text-white mb-2">
+              <CountUp end={hoursSaved} duration={2} separator="," />
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400">FTE Impact</span>
-              <span className="text-2xl font-bold text-white">
-                ~<CountUp end={fteImpact} duration={2} decimals={1} />
-              </span>
+            <div className="text-sm text-gray-400 uppercase tracking-wider">Hours Saved (Annual)</div>
+          </div>
+          <div className="text-center">
+            <div className="text-5xl font-bold text-white mb-2">
+              ~<CountUp end={fteImpact} duration={2} decimals={1} />
             </div>
+            <div className="text-sm text-gray-400 uppercase tracking-wider">FTE Impact</div>
           </div>
         </div>
       </div>
