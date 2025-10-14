@@ -58,7 +58,7 @@ export default function ReportPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-accent-blue border-t-transparent mb-8" />
           <h2 className="text-2xl font-bold text-text-primary mb-2">
@@ -88,7 +88,7 @@ export default function ReportPage() {
   const hoursSavedYearly = impact.phase2.timeSaved * 12;
 
   return (
-    <main className="min-h-screen py-12">
+    <main className="min-h-screen bg-black py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-12">
