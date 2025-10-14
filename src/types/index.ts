@@ -112,3 +112,28 @@ export interface LeadFormData {
   interestedInDiscovery: boolean;
   preferredMeetingTime: string;
 }
+
+// V2 Report Types
+export interface AutomationOpportunity {
+  tool: string;
+  category: string;
+  processName: string;
+  description: string;
+  supportedActions: string[];
+  projectedDeflection: string;
+  medianTTRBefore: string;
+  medianTTRAfter: string;
+  confidence: 'high' | 'medium' | 'low';
+  exampleUseCase: string;
+  workstream: string;
+  skills: string[];
+  agents: string[];
+}
+
+export interface PilotProjection {
+  weeklyDeflection: string;
+  fteImpact: string;
+  appAccessTTR: string;
+  inAppActionsTTR: string;
+  approvalDependency: string;
+}
