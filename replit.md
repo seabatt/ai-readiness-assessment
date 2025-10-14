@@ -9,6 +9,14 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 14, 2025 - V2 Report Now Default Experience
+- Made V2 report the primary report experience:
+  - Assessment flow now redirects to /report/v2/new after completion
+  - Removed "View V2 Report" button from V1 report (V1 kept for reference at /report/[id])
+  - Aligned navigation buttons with content width (max-w-4xl for steps 1-2, max-w-2xl for steps 3-4)
+  - Centered "Request Custom Discovery Report" CTA button in V2 report
+  - Removed borders from Select dropdowns throughout assessment
+
 ### October 14, 2025 - Assessment Page Styling Updates
 - Updated assessment page styling for cleaner, minimal design:
   - Changed body background to pure black (#000000)
@@ -60,12 +68,16 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 src/
 ├── app/                    # Next.js App Router pages
 │   ├── assessment/        # Assessment flow page
-│   ├── report/[id]/       # Dynamic report page
+│   ├── report/
+│   │   ├── [id]/         # V1 report (legacy, for reference)
+│   │   └── v2/[id]/      # V2 report (primary experience)
 │   ├── globals.css        # Global styles and Tailwind setup
 │   ├── layout.tsx         # Root layout
 │   └── page.tsx           # Landing page
 ├── components/
-│   ├── assessment/        # Assessment-specific components
+│   ├── assessment/        
+│   │   ├── report/       # V1 report components
+│   │   └── report/v2/    # V2 report components
 │   ├── cta/              # Call-to-action components
 │   ├── landing/          # Landing page components
 │   └── ui/               # Reusable UI components

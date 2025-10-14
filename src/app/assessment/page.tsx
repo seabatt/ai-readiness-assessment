@@ -33,10 +33,10 @@ export default function AssessmentPage() {
     } else if (step === 4) {
       // Show loading screen
       setStep(5);
-      // Save to sessionStorage and redirect to report after brief delay
+      // Save to sessionStorage and redirect to V2 report after brief delay
       setTimeout(() => {
         sessionStorage.setItem('assessmentData', JSON.stringify(data));
-        router.push('/report/new');
+        router.push('/report/v2/new');
       }, 3000);
     }
   };
@@ -118,7 +118,7 @@ export default function AssessmentPage() {
       {/* Navigation */}
       {step <= 4 && (
         <div className="bg-black">
-          <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className={`mx-auto px-6 py-6 ${step <= 2 ? 'max-w-4xl' : 'max-w-2xl'}`}>
             <div className="flex justify-between items-center">
               <Button
                 variant="secondary"

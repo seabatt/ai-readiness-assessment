@@ -85,9 +85,11 @@ export default function DiscoveryCTA({ onRequestDiscovery }: DiscoveryCTAProps) 
             </div>
           </div>
 
-          <Button onClick={onRequestDiscovery} className="text-lg px-10 py-5">
-            Request Custom Discovery Report
-          </Button>
+          <div className="flex justify-center">
+            <Button onClick={onRequestDiscovery} className="text-lg px-10 py-5">
+              Request Custom Discovery Report
+            </Button>
+          </div>
 
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center items-center gap-8 mt-8 text-sm text-gray-400">
