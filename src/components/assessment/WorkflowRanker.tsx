@@ -27,7 +27,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
         Select your top 5 most time-consuming activities
       </p>
 
-      <Card className="!bg-black">
+      <Card className="!bg-black !border-0">
         <div className="space-y-3">
           {workflows.map((workflow, index) => {
             const isSelected = selectedWorkflows.includes(workflow.id);
@@ -42,7 +42,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                   w-full text-left p-4 rounded-lg border transition-all
                   ${isSelected 
                     ? 'border-accent-blue bg-accent-blue/10' 
-                    : 'border-brand-secondary/20 bg-[#141414] hover:border-brand-secondary/40 hover:bg-[#1a1a1a]'
+                    : 'border-brand-secondary/20 bg-[rgb(30,30,29)] hover:border-brand-secondary/40 hover:bg-[rgb(40,40,39)]'
                   }
                   ${!isSelected && selectedWorkflows.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
