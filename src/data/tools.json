@@ -1,0 +1,252 @@
+{
+  "tools": [
+    {
+      "id": "okta",
+      "name": "Okta",
+      "category": "identity",
+      "logo": "https://logo.clearbit.com/okta.com",
+      "description": "Identity and access management platform"
+    },
+    {
+      "id": "microsoft-entra",
+      "name": "Microsoft Entra",
+      "category": "identity",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "description": "Microsoft Azure Active Directory"
+    },
+    {
+      "id": "jumpcloud",
+      "name": "JumpCloud",
+      "category": "identity",
+      "logo": "https://logo.clearbit.com/jumpcloud.com",
+      "description": "Directory-as-a-Service platform"
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Google's productivity and collaboration suite"
+    },
+    {
+      "id": "servicenow",
+      "name": "ServiceNow",
+      "category": "itsm",
+      "logo": "https://logo.clearbit.com/servicenow.com",
+      "description": "IT service management platform"
+    },
+    {
+      "id": "jira",
+      "name": "Jira Service Management",
+      "category": "itsm",
+      "logo": "https://logo.clearbit.com/atlassian.com",
+      "description": "Atlassian's ITSM and ticketing platform"
+    },
+    {
+      "id": "freshservice",
+      "name": "Freshservice",
+      "category": "itsm",
+      "logo": "https://logo.clearbit.com/freshworks.com",
+      "description": "Cloud-based ITSM solution"
+    },
+    {
+      "id": "ivanti",
+      "name": "Ivanti",
+      "category": "itsm",
+      "logo": "https://logo.clearbit.com/ivanti.com",
+      "description": "IT service management and security"
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "category": "communication",
+      "logo": "https://logo.clearbit.com/slack.com",
+      "description": "Team communication platform"
+    },
+    {
+      "id": "microsoft-teams",
+      "name": "Microsoft Teams",
+      "category": "communication",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "description": "Microsoft's collaboration platform"
+    },
+    {
+      "id": "zoom",
+      "name": "Zoom",
+      "category": "communication",
+      "logo": "https://logo.clearbit.com/zoom.us",
+      "description": "Video conferencing platform"
+    },
+    {
+      "id": "microsoft-365",
+      "name": "Microsoft 365",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "description": "Microsoft's productivity suite"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/notion.so",
+      "description": "All-in-one workspace"
+    },
+    {
+      "id": "confluence",
+      "name": "Confluence",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/atlassian.com",
+      "description": "Team collaboration and documentation"
+    },
+    {
+      "id": "monday",
+      "name": "Monday.com",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/monday.com",
+      "description": "Work operating system"
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "category": "business",
+      "logo": "https://logo.clearbit.com/salesforce.com",
+      "description": "CRM platform"
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "category": "business",
+      "logo": "https://logo.clearbit.com/hubspot.com",
+      "description": "CRM and marketing platform"
+    },
+    {
+      "id": "sap-successfactors",
+      "name": "SAP SuccessFactors",
+      "category": "business",
+      "logo": "https://logo.clearbit.com/sap.com",
+      "description": "HR management system"
+    },
+    {
+      "id": "hibob",
+      "name": "HiBob",
+      "category": "business",
+      "logo": "https://logo.clearbit.com/hibob.com",
+      "description": "HR platform"
+    },
+    {
+      "id": "docusign",
+      "name": "DocuSign",
+      "category": "business",
+      "logo": "https://logo.clearbit.com/docusign.com",
+      "description": "Electronic signature platform"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "category": "development",
+      "logo": "https://logo.clearbit.com/linear.app",
+      "description": "Issue tracking for software teams"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "development",
+      "logo": "https://logo.clearbit.com/github.com",
+      "description": "Code hosting and collaboration"
+    },
+    {
+      "id": "sharepoint",
+      "name": "SharePoint",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "description": "Microsoft's document management platform"
+    },
+    {
+      "id": "google-drive",
+      "name": "Google Drive",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Cloud storage and file sharing"
+    },
+    {
+      "id": "google-docs",
+      "name": "Google Docs",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Online document editor"
+    },
+    {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Online spreadsheet tool"
+    },
+    {
+      "id": "google-calendar",
+      "name": "Google Calendar",
+      "category": "productivity",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Calendar and scheduling"
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "category": "communication",
+      "logo": "https://logo.clearbit.com/google.com",
+      "description": "Email platform"
+    }
+  ],
+  "workflows": [
+    {
+      "id": "application-access",
+      "name": "Application access requests (new user onboarding, app provisioning)",
+      "icon": "key"
+    },
+    {
+      "id": "password-resets",
+      "name": "Password resets and account lockouts",
+      "icon": "lock"
+    },
+    {
+      "id": "permission-changes",
+      "name": "Permission/group changes (adding to Slack channels, Google groups, etc.)",
+      "icon": "users"
+    },
+    {
+      "id": "software-troubleshooting",
+      "name": "Software troubleshooting (Okta errors, app login issues)",
+      "icon": "alert-circle"
+    },
+    {
+      "id": "hardware-requests",
+      "name": "Hardware requests and replacements",
+      "icon": "monitor"
+    },
+    {
+      "id": "license-management",
+      "name": "License management (assigning, upgrading, removing)",
+      "icon": "credit-card"
+    },
+    {
+      "id": "distribution-lists",
+      "name": "Distribution list/email group updates",
+      "icon": "mail"
+    },
+    {
+      "id": "onboarding-offboarding",
+      "name": "Onboarding/offboarding tasks",
+      "icon": "user-plus"
+    },
+    {
+      "id": "ticket-routing",
+      "name": "Ticket routing and triage",
+      "icon": "git-branch"
+    },
+    {
+      "id": "reporting",
+      "name": "Creating reports for leadership",
+      "icon": "bar-chart"
+    }
+  ]
+}
