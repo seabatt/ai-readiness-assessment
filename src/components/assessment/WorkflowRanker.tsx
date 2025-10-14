@@ -42,7 +42,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                   w-full text-left p-4 rounded-lg border transition-all
                   ${isSelected 
                     ? 'border-accent-blue bg-accent-blue/10' 
-                    : 'border-brand-secondary/20 hover:border-brand-secondary/40 hover:bg-bg-elevated'
+                    : 'border-brand-secondary/20 bg-[#141414] hover:border-brand-secondary/40 hover:bg-[#1a1a1a]'
                   }
                   ${!isSelected && selectedWorkflows.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}

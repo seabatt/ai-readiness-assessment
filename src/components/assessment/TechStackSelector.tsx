@@ -37,7 +37,7 @@ export default function TechStackSelector({ selectedTools, onToolsChange }: Tech
 
       <div className="space-y-6">
         {Object.entries(groupedTools).map(([category, toolIds]) => (
-          <Card key={category} className="!bg-black">
+          <Card key={category} className="!bg-[#141414]">
             <h3 className="text-lg font-semibold text-text-primary mb-4">{category}</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {toolIds.map(toolId => {
