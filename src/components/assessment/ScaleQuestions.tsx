@@ -31,7 +31,7 @@ export default function ScaleQuestions({
         This helps us calculate your potential impact
       </p>
 
-      <Card>
+      <Card className="!bg-black">
         <div className="space-y-6">
           <Select
             label="Monthly IT ticket volume"

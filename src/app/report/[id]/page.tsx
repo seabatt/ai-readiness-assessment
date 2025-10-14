@@ -98,12 +98,22 @@ export default function ReportPage() {
           >
             ← Back to Assessment
           </button>
-          <h1 className="text-4xl font-bold text-text-primary mb-2">
-            Your Readiness Report
-          </h1>
-          <p className="text-text-secondary">
-            Here's how ready your organization is for autonomous AI workers
-          </p>
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-text-primary mb-2">
+                Your Readiness Report
+              </h1>
+              <p className="text-text-secondary">
+                Here's how ready your organization is for autonomous AI workers
+              </p>
+            </div>
+            <button
+              onClick={() => router.push("/report/v2/new")}
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-green-700 transition-all"
+            >
+              View V2 Report →
+            </button>
+          </div>
         </div>
 
         {/* Hero Section - Overall Readiness Score + Breakdown */}

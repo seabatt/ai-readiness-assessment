@@ -27,7 +27,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
         Select your top 5 most time-consuming activities
       </p>
 
-      <Card>
+      <Card className="!bg-black">
         <div className="space-y-3">
           {workflows.map((workflow, index) => {
             const isSelected = selectedWorkflows.includes(workflow.id);

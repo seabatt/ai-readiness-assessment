@@ -17,7 +17,7 @@ const config: Config = {
         'brand-surface-solid': '#262626',
         
         // Background variations
-        'bg-primary': '#262626',
+        'bg-primary': '#000000',
         'bg-card': '#1A1A1A',
         'bg-elevated': '#2F2F2F',
         
