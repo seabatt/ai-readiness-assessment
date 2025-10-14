@@ -199,12 +199,14 @@ export default function ReportPage() {
                 </div>
               </div>
 
-              <Button
-                onClick={() => setShowModal(true)}
-                className="text-lg px-8 py-4"
-              >
-                Get My Custom Discovery Report
-              </Button>
+              <div className="flex justify-center">
+                <Button
+                  onClick={() => setShowModal(true)}
+                  className="text-lg px-8 py-4"
+                >
+                  Get My Custom Discovery Report
+                </Button>
+              </div>
 
               {/* Trust badges */}
               <div className="flex flex-wrap justify-center items-center gap-6 mt-8 text-sm text-text-tertiary">
