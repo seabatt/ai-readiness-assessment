@@ -117,7 +117,7 @@ export default function AssessmentPage() {
 
       {/* Navigation */}
       {step <= 4 && (
-        <div className="border-t border-border bg-black">
+        <div className="bg-black">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex justify-between items-center">
               <Button
