@@ -1,0 +1,1588 @@
+{
+  "aiWorkers": [
+    {
+      "id": "add-user-okta",
+      "name": "Add User to Okta",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "week-1",
+      "priority": 1,
+      "requiredTools": ["okta", "jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["application-access", "onboarding-offboarding"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.18,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 1.42
+      },
+      "description": "Autonomously provisions new employee access to Okta groups on Day 1, ensuring immediate productivity without IT bottlenecks.",
+      "howItWorks": [
+        "Employee requests access via Slack/Teams/Jira",
+        "AI Worker validates request against policies",
+        "Provisions groups in Okta automatically",
+        "Creates audit trail in Jira",
+        "Confirms completion to requester"
+      ],
+      "valueRationale": "Critical Day-1 workflow that directly eliminates manual triage and follow-ups. This AI Worker handles the complete flow autonomously—from intake to execution to confirmation—cutting time by 65% and freeing IT from repetitive provisioning work.",
+      "beforeAfter": {
+        "before": "User request → Manual review → IT checks policy → Manual provisioning → Email confirmation (1.5 hrs)",
+        "after": "User request → AI validates policy → Auto-provisions → Instant confirmation (5 min) OR routes for approval (15 min)"
+      }
+    },
+    {
+      "id": "grant-software-access-okta",
+      "name": "Grant Software Access via Okta",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "week-1",
+      "priority": 2,
+      "requiredTools": ["okta", "jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["application-access"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.08,
+        "automationRate": 0.88,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.95
+      },
+      "description": "Automatically grants users access to specific applications through Okta without IT intervention.",
+      "howItWorks": [
+        "User requests app access in Slack",
+        "AI Worker verifies app availability in Okta",
+        "Provisions access automatically",
+        "Notifies manager if approval required",
+        "Tracks in Jira for audit"
+      ],
+      "valueRationale": "High-frequency access request that clogs IT service desks. This AI Worker autonomously handles the entire workflow with policy-aware app assignment, creating audit trails in Jira. Shows immediate ROI by reducing IT overhead on one of the most common ticket types.",
+      "beforeAfter": {
+        "before": "User request → Manual verification → Check access policy → Manual provisioning → Confirmation (1 hr)",
+        "after": "User request → AI validates → Auto-provisions → Instant confirmation (3 min)"
+      }
+    },
+    {
+      "id": "bulk-add-users-okta",
+      "name": "Bulk Add Users to Okta Group",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 5,
+      "requiredTools": ["okta", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["permission-changes", "onboarding-offboarding"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.02,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 1.9
+      },
+      "description": "Processes bulk group membership changes for multiple users simultaneously, saving hours of manual work.",
+      "howItWorks": [
+        "Receive list of user emails and target group",
+        "AI Worker validates each user in Okta",
+        "Adds all users to group in batch",
+        "Creates tracking ticket in Jira",
+        "Confirms completion with summary"
+      ],
+      "valueRationale": "Addresses core scaling problem: manual bulk operations become impossible to manage as organizations grow. This AI Worker handles batch entitlement changes autonomously—critical for departmental changes, project team setups, or compliance updates. Cuts time by 65% on bulk operations.",
+      "beforeAfter": {
+        "before": "Spreadsheet → Manual lookup → One-by-one addition → Verification (2 hrs per 20 users)",
+        "after": "Upload list → AI validates → Batch provision → Summary report (6 min for 20 users)"
+      }
+    },
+    {
+      "id": "audit-user-okta-access",
+      "name": "Audit a User's Okta Access",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 8,
+      "requiredTools": ["okta"],
+      "optionalTools": ["jira"],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "1-2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.95,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 1.45
+      },
+      "description": "Generates comprehensive access reports for any user showing all group memberships and application access instantly.",
+      "howItWorks": [
+        "Receive user email to audit",
+        "AI Worker queries Okta for groups",
+        "Lists all application access",
+        "Generates formatted report",
+        "Returns complete access inventory"
+      ],
+      "valueRationale": "Essential for compliance and security reviews that IT teams manually compile. Access audits are required for SOX, SOC2, and internal reviews—this AI Worker autonomously gathers complete access inventory in seconds versus hours of manual work. Critical for quarterly access reviews.",
+      "beforeAfter": {
+        "before": "Manual Okta queries → Spreadsheet compilation → App-by-app checking (1.5 hrs)",
+        "after": "Request audit → AI gathers all data → Formatted report (3 min)"
+      }
+    },
+    {
+      "id": "jumpcloud-password-reset",
+      "name": "JumpCloud Password Reset",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "week-1",
+      "priority": 4,
+      "requiredTools": ["jumpcloud"],
+      "optionalTools": ["jira", "slack"],
+      "relatedWorkflows": ["password-resets"],
+      "setupTime": "1 day",
+      "configComplexity": "low",
+      "learningPeriod": "1 week",
+      "metrics": {
+        "percentOfVolume": 0.05,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.03,
+        "timeSavingsPerTicket": 0.47
+      },
+      "description": "Autonomously resets user passwords in JumpCloud, eliminating common helpdesk tickets and wait times.",
+      "howItWorks": [
+        "User requests password reset",
+        "AI Worker searches user in JumpCloud",
+        "Resets password securely",
+        "Logs action in Jira if configured",
+        "Confirms reset to user"
+      ],
+      "valueRationale": "Classic IT helpdesk toil that drains productivity. Password resets are one of the highest-volume ticket types—this AI Worker handles them autonomously from request to resolution with zero human intervention. Immediate 50% cost reduction on password-related tickets.",
+      "beforeAfter": {
+        "before": "User calls/emails → IT verifies identity → Manual reset → Temp password (30 min)",
+        "after": "User self-service request → AI validates → Reset complete (2 min)"
+      }
+    },
+    {
+      "id": "add-user-jumpcloud-group",
+      "name": "Add User to JumpCloud Group",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 7,
+      "requiredTools": ["jumpcloud", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["application-access", "permission-changes"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.03,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 0.75,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.70
+      },
+      "description": "Grants users access to server and device groups in JumpCloud for infrastructure access management.",
+      "howItWorks": [
+        "Receive user email and group name",
+        "AI Worker searches user in JumpCloud",
+        "Adds user to specified group",
+        "Creates audit trail in Jira",
+        "Confirms access granted"
+      ],
+      "valueRationale": "Critical infrastructure access management requiring speed and accuracy. Server/device access requests need immediate provisioning for developer productivity but require security oversight. This AI Worker autonomously handles the workflow while maintaining policy-aware access controls.",
+      "beforeAfter": {
+        "before": "Request → Manual verification → JumpCloud console → Add to group → Confirm (45 min)",
+        "after": "Request → AI validates → Auto-provision → Confirm (3 min)"
+      }
+    },
+    {
+      "id": "entra-license-assignment",
+      "name": "Microsoft Entra License Assignment",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 9,
+      "requiredTools": ["microsoft-entra", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["license-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.04,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 0.92
+      },
+      "description": "Automatically assigns Microsoft 365 licenses to users, eliminating licensing delays and manual tracking.",
+      "howItWorks": [
+        "Receive user email and license SKU",
+        "AI Worker searches user in Entra",
+        "Assigns specified license",
+        "Creates tracking in Jira",
+        "Confirms license activated"
+      ],
+      "valueRationale": "License management is expensive manual overhead that directly impacts user productivity. Every E3/E5 assignment requires verification, cost approval, and provisioning—this AI Worker handles it autonomously with native Microsoft 365 integration. Reduces time by 65% on licensing workflows.",
+      "beforeAfter": {
+        "before": "Request → Check availability → Cost approval → Manual assignment → Verify (1 hr)",
+        "after": "Request → AI checks policy → Auto-assign → Confirm (5 min)"
+      }
+    },
+    {
+      "id": "create-security-group-entra",
+      "name": "Create Security Group in Entra",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 12,
+      "requiredTools": ["microsoft-entra", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["permission-changes"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.02,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 1.4
+      },
+      "description": "Creates new security groups in Microsoft Entra ID and adds initial members for consistent RBAC setup.",
+      "howItWorks": [
+        "Receive group name, description, and initial members",
+        "AI Worker creates group in Entra",
+        "Adds specified members",
+        "Creates documentation in Jira",
+        "Confirms group ready"
+      ],
+      "valueRationale": "Foundation for access management requiring coordination across IT and security. Group creation involves naming standards, permission planning, and initial membership—this AI Worker orchestrates the complete setup autonomously. Eliminates back-and-forth tickets.",
+      "beforeAfter": {
+        "before": "Request → Naming approval → Manual creation → Add members → Document (1.5 hrs)",
+        "after": "Request → AI creates with standards → Add members → Document (6 min)"
+      }
+    },
+    {
+      "id": "google-workspace-group-management",
+      "name": "Group Management in Google Workspace",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "week-1",
+      "priority": 3,
+      "requiredTools": ["google-workspace", "jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["permission-changes", "distribution-lists"],
+      "setupTime": "1 day",
+      "configComplexity": "low",
+      "learningPeriod": "1-2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.03,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 0.75,
+        "avgResolutionAfter": 0.03,
+        "timeSavingsPerTicket": 0.72
+      },
+      "description": "Creates Google Workspace distribution lists and groups with initial members automatically.",
+      "howItWorks": [
+        "Receive group email and member list",
+        "AI Worker creates group in Google",
+        "Adds all specified members",
+        "Sets group permissions",
+        "Confirms group access ready"
+      ],
+      "valueRationale": "High-frequency operational workflow for communication and collaboration. DL/group creation involves multiple steps and coordination—this AI Worker handles it autonomously with native Google Workspace integration. Eliminates manual group administration overhead.",
+      "beforeAfter": {
+        "before": "Request → Create group → Add members one-by-one → Set permissions (45 min)",
+        "after": "Request → AI creates → Batch add members → Set permissions (2 min)"
+      }
+    },
+    {
+      "id": "offboarding-employee",
+      "name": "Offboarding Employee",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 4,
+      "requiredTools": ["okta", "google-workspace", "slack", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["onboarding-offboarding"],
+      "setupTime": "5-7 days",
+      "configComplexity": "high",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.035,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 4.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 3.5
+      },
+      "description": "Executes comprehensive employee offboarding across multiple systems, revoking access and notifying stakeholders.",
+      "howItWorks": [
+        "Receive employee email and departure date",
+        "AI Worker revokes Okta groups and apps",
+        "Removes from Google Workspace groups",
+        "Notifies admin channel in Slack",
+        "Creates complete audit trail in Jira"
+      ],
+      "valueRationale": "Critical security and compliance workflow that's complex and error-prone when manual. Offboarding requires coordinating across 5+ systems with zero mistakes—this AI Worker orchestrates the complete checklist autonomously. Reduces security risk and ensures compliant departures.",
+      "beforeAfter": {
+        "before": "Manual checklist → 5+ systems → Verify each step → Document (4 hrs)",
+        "after": "Trigger offboarding → AI orchestrates all systems → Complete audit log (30 min)"
+      }
+    },
+    {
+      "id": "m365-license-assignment",
+      "name": "Microsoft 365/Teams License Assignment",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 10,
+      "requiredTools": ["microsoft-365", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["license-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.03,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 0.75,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.70
+      },
+      "description": "Assigns Microsoft Teams licenses to users for collaboration tool access.",
+      "howItWorks": [
+        "Receive user email and license SKU",
+        "AI Worker searches user in M365",
+        "Assigns Teams license",
+        "Creates tracking ticket",
+        "Confirms license activated"
+      ],
+      "valueRationale": "Common licensing workflow that causes user productivity delays. Teams license assignment requires verification and tracking—this AI Worker handles it autonomously with Microsoft 365 integration. Eliminates licensing friction that blocks collaboration.",
+      "beforeAfter": {
+        "before": "Request → Verify user → Check licenses → Manual assign → Confirm (45 min)",
+        "after": "Request → AI validates → Auto-assign → Confirm (3 min)"
+      }
+    },
+    {
+      "id": "employee-departure-cleanup",
+      "name": "Employee Departure Cleanup (Lite)",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-2",
+      "priority": 6,
+      "requiredTools": ["okta", "google-workspace", "slack", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["onboarding-offboarding"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.02,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.25,
+        "timeSavingsPerTicket": 1.75
+      },
+      "description": "Lighter version of offboarding that revokes access across key systems when employees depart.",
+      "howItWorks": [
+        "Receive employee email",
+        "AI Worker revokes Okta app access",
+        "Removes from Google Workspace groups",
+        "Notifies Slack admin channel",
+        "Creates tracking in Jira"
+      ],
+      "valueRationale": "Security-focused departure workflow for contractors or immediate access revocation. This AI Worker autonomously removes access across multiple platforms without full offboarding—critical for security incidents or contractor end dates.",
+      "beforeAfter": {
+        "before": "Security alert → Manual revocation across systems → Verification (2 hrs)",
+        "after": "Trigger cleanup → AI revokes all access → Notification sent (15 min)"
+      }
+    },
+    {
+      "id": "temporary-access-grant",
+      "name": "Temporary Access Grant",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 13,
+      "requiredTools": ["okta", "slack"],
+      "optionalTools": ["google-calendar"],
+      "relatedWorkflows": ["application-access", "permission-changes"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.015,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 0.9
+      },
+      "description": "Grants time-limited access to groups with automatic expiry reminders and stakeholder notifications.",
+      "howItWorks": [
+        "Receive user, group, and expiry date",
+        "AI Worker grants access in Okta",
+        "Sends notification to stakeholders",
+        "Creates calendar reminder for expiry",
+        "Confirms temporary access granted"
+      ],
+      "valueRationale": "Common security pattern requiring manual tracking and revocation. Temporary access for on-call engineers or contractor projects needs precise control—this AI Worker handles grant, notification, and expiry tracking autonomously. Prevents over-provisioned access.",
+      "beforeAfter": {
+        "before": "Request → Manual grant → Calendar reminder → Manual revoke later (1 hr)",
+        "after": "Request → AI grants with expiry → Auto-reminder created (6 min)"
+      }
+    },
+    {
+      "id": "setup-role-based-access",
+      "name": "Setup Role-Based Access",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 14,
+      "requiredTools": ["okta", "jira"],
+      "optionalTools": ["microsoft-entra", "google-workspace"],
+      "relatedWorkflows": ["application-access", "onboarding-offboarding"],
+      "setupTime": "5-7 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.025,
+        "automationRate": 0.70,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.2,
+        "timeSavingsPerTicket": 1.8
+      },
+      "description": "Applies role-based access by mapping user roles to appropriate groups across identity providers.",
+      "howItWorks": [
+        "Receive user email and role label",
+        "AI Worker looks up role mapping",
+        "Adds user to all role-defined groups",
+        "Creates tracking in Jira",
+        "Confirms role access applied"
+      ],
+      "valueRationale": "Standardized RBAC implementation ensuring consistent access policies. Role changes require mapping to multiple groups—this AI Worker autonomously applies the complete role template. Eliminates inconsistent manual group assignments.",
+      "beforeAfter": {
+        "before": "Request → Look up role → Add to 5-10 groups manually → Verify (2 hrs)",
+        "after": "Request → AI applies role template → All groups assigned (12 min)"
+      }
+    },
+    {
+      "id": "privileged-access-request",
+      "name": "Privileged Access Request",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 11,
+      "requiredTools": ["okta", "jira", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["application-access"],
+      "setupTime": "7-10 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.014,
+        "automationRate": 0.70,
+        "avgResolutionBefore": 3.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 2.5
+      },
+      "description": "Manages privileged access requests with approval workflow and complete audit trail for compliance.",
+      "howItWorks": [
+        "Receive access request with justification",
+        "AI Worker creates approval ticket in Jira",
+        "Routes to appropriate approver via Slack",
+        "On approval, grants privileged access",
+        "Logs complete audit trail"
+      ],
+      "valueRationale": "High-stakes access requiring approval but needs speed. Privileged access requests create bottlenecks when manual—this AI Worker orchestrates approval routing, tracks decisions, and provisions access autonomously with human-aligned escalation. Maintains security while accelerating critical access.",
+      "beforeAfter": {
+        "before": "Request → Email approver → Wait → Manual grant → Document (3 hrs over 2 days)",
+        "after": "Request → AI routes approval → Auto-grant on approval → Full audit (30 min same day)"
+      }
+    },
+    {
+      "id": "access-certification-check",
+      "name": "Access Certification Check",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 15,
+      "requiredTools": ["okta", "slack"],
+      "optionalTools": ["gmail"],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.005,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 8.0,
+        "avgResolutionAfter": 1.0,
+        "timeSavingsPerTicket": 7.0
+      },
+      "description": "Automates access certification by generating manager attestation reports for compliance reviews.",
+      "howItWorks": [
+        "Receive manager email or team scope",
+        "AI Worker compiles user access reports",
+        "Generates certification packet",
+        "Sends to manager for review",
+        "Confirms packet distributed"
+      ],
+      "valueRationale": "Quarterly compliance requirement consuming days of manual effort. Access certifications require gathering user permissions and distributing to managers—this AI Worker autonomously compiles and distributes certification packets. Reduces quarterly certification overhead by 65%.",
+      "beforeAfter": {
+        "before": "Manual data gathering → Spreadsheet creation → Email distribution (8 hrs per quarter)",
+        "after": "Trigger certification → AI compiles reports → Auto-distribute (1 hr per quarter)"
+      }
+    },
+    {
+      "id": "system-access-review",
+      "name": "System Access Review",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 18,
+      "requiredTools": ["okta", "google-workspace"],
+      "optionalTools": [],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 3.0,
+        "avgResolutionAfter": 0.3,
+        "timeSavingsPerTicket": 2.7
+      },
+      "description": "Performs comprehensive access reviews across multiple identity providers, identifying excessive permissions.",
+      "howItWorks": [
+        "Receive user email to review",
+        "AI Worker queries Okta for groups and apps",
+        "Queries Google Workspace for groups",
+        "Identifies excessive or orphaned access",
+        "Returns recommendations"
+      ],
+      "valueRationale": "Security hygiene requiring coordination across platforms. Multi-IDP access reviews are manual and incomplete—this AI Worker autonomously inventories access across all systems and flags violations. Enables continuous access reviews versus annual audits.",
+      "beforeAfter": {
+        "before": "Manual queries across systems → Spreadsheet compilation → Analysis (3 hrs)",
+        "after": "Request review → AI gathers all access → Analysis with recommendations (18 min)"
+      }
+    },
+    {
+      "id": "check-access-compliance",
+      "name": "Check Access Compliance",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 19,
+      "requiredTools": ["okta", "google-workspace", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "7-10 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.008,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 4.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 3.5
+      },
+      "description": "Validates user access against compliance policies and flags deviations for remediation.",
+      "howItWorks": [
+        "Receive compliance profile and user scope",
+        "AI Worker evaluates access in Okta and Google",
+        "Compares against defined policies",
+        "Identifies policy violations",
+        "Sends alert with deviations"
+      ],
+      "valueRationale": "Policy enforcement requiring constant vigilance. Compliance checks are manual spot-checks—this AI Worker autonomously validates access against defined policies and identifies violations. Prevents audit findings through proactive governance.",
+      "beforeAfter": {
+        "before": "Manual policy review → Check each user → Flag violations → Report (4 hrs)",
+        "after": "Run compliance check → AI validates all users → Violation report (30 min)"
+      }
+    },
+    {
+      "id": "privileged-account-audit",
+      "name": "Privileged Account Audit",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 20,
+      "requiredTools": ["okta", "microsoft-entra"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.005,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 5.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 4.5
+      },
+      "description": "Audits privileged accounts across identity systems to identify and reduce excessive admin rights.",
+      "howItWorks": [
+        "Receive admin group names to check",
+        "AI Worker queries Entra for admin members",
+        "Checks Okta admin group memberships",
+        "Identifies over-privileged users",
+        "Sends audit results"
+      ],
+      "valueRationale": "Security-critical audit requiring manual investigation. Privileged account sprawl creates risk—this AI Worker autonomously audits admin rights across platforms and identifies over-privileged users. Enables regular privilege reviews versus annual audits.",
+      "beforeAfter": {
+        "before": "Manual admin group checks → Cross-reference users → Analysis (5 hrs)",
+        "after": "Run audit → AI checks all admin groups → Over-privilege report (30 min)"
+      }
+    },
+    {
+      "id": "intake-legal-hold-request",
+      "name": "Intake Legal Hold Request",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 21,
+      "requiredTools": ["jira", "slack"],
+      "optionalTools": ["servicenow"],
+      "relatedWorkflows": ["compliance-auditing"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.003,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 1.4
+      },
+      "description": "Manages legal hold requests by tracking custodians and notifying legal/compliance teams.",
+      "howItWorks": [
+        "Receive custodian emails and matter name",
+        "AI Worker creates tracking ticket",
+        "Notifies legal and compliance teams",
+        "Documents hold request details",
+        "Confirms intake complete"
+      ],
+      "valueRationale": "Legal-required workflow with strict compliance needs. Legal holds need immediate tracking and notification—this AI Worker handles intake, tracking, and stakeholder notification autonomously. Ensures compliant legal hold processes with audit trails.",
+      "beforeAfter": {
+        "before": "Email received → Manual ticket creation → Email notifications (1.5 hrs)",
+        "after": "Request received → AI creates ticket → Auto-notify stakeholders (6 min)"
+      }
+    },
+    {
+      "id": "partner-portal-access-request",
+      "name": "Partner Portal Access Request & CRM",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 22,
+      "requiredTools": ["salesforce", "jira", "slack"],
+      "optionalTools": ["okta"],
+      "relatedWorkflows": ["application-access"],
+      "setupTime": "7-10 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.70,
+        "avgResolutionBefore": 3.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 2.5
+      },
+      "description": "Creates partner portal accounts coordinating between CRM and identity systems for external access.",
+      "howItWorks": [
+        "Receive partner company and contact details",
+        "AI Worker creates contact in Salesforce",
+        "Creates access request in Jira",
+        "Notifies stakeholders via Slack",
+        "Confirms partner record created"
+      ],
+      "valueRationale": "Cross-functional workflow requiring coordination between sales and IT. Partner access involves CRM updates and identity provisioning—this AI Worker orchestrates across Salesforce and Okta autonomously. Accelerates partner onboarding that typically requires multiple handoffs.",
+      "beforeAfter": {
+        "before": "Sales creates contact → Email IT → Manual provisioning → Update CRM (3 hrs over 2 days)",
+        "after": "Request received → AI creates in CRM → Auto-provision → Notifications (30 min same day)"
+      }
+    },
+    {
+      "id": "multi-system-user-provision",
+      "name": "Multi-System User Provision (Group Memberships)",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-4",
+      "priority": 16,
+      "requiredTools": ["okta", "microsoft-entra", "google-workspace", "jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["onboarding-offboarding"],
+      "setupTime": "10-14 days",
+      "configComplexity": "high",
+      "learningPeriod": "6-8 weeks",
+      "metrics": {
+        "percentOfVolume": 0.025,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 4.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 3.5
+      },
+      "description": "Provisions new users across all identity platforms with baseline access in one coordinated workflow.",
+      "howItWorks": [
+        "Receive new user profile and role",
+        "AI Worker adds to Okta groups",
+        "Adds to Entra groups",
+        "Adds to Google Workspace groups",
+        "Sends summary to stakeholders"
+      ],
+      "valueRationale": "Complete onboarding orchestration across entire identity infrastructure. Multi-system provisioning requires coordination across 3+ platforms—this AI Worker handles the complete baseline setup autonomously. Cuts Day-1 onboarding time by 65%.",
+      "beforeAfter": {
+        "before": "Manual provisioning across 3+ systems → Verification → Documentation (4 hrs)",
+        "after": "Trigger provisioning → AI orchestrates all systems → Complete setup (30 min)"
+      }
+    },
+    {
+      "id": "grant-emergency-access",
+      "name": "Grant Emergency Access",
+      "category": "identity-access-compliance",
+      "deploymentPhase": "month-6",
+      "priority": 23,
+      "requiredTools": ["okta", "slack"],
+      "optionalTools": ["google-calendar"],
+      "relatedWorkflows": ["application-access"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.008,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.15,
+        "timeSavingsPerTicket": 1.85
+      },
+      "description": "Handles emergency access requests with break-glass provisioning and automatic expiry tracking.",
+      "howItWorks": [
+        "Receive emergency access request with justification",
+        "AI Worker grants access immediately",
+        "Notifies stakeholders via Slack",
+        "Creates auto-revoke calendar reminder",
+        "Confirms emergency access granted"
+      ],
+      "valueRationale": "Critical incident response requiring immediate access with governance. Emergency access needs speed but also tracking—this AI Worker provisions immediately while creating audit trails and expiry reminders. Enables rapid incident response with security compliance.",
+      "beforeAfter": {
+        "before": "Emergency call → Manual grant → Notify team → Set reminder (2 hrs)",
+        "after": "Emergency request → AI grants instantly → Auto-notifications → Expiry set (9 min)"
+      }
+    },
+    {
+      "id": "create-jira-it-request",
+      "name": "Create Jira IT Request",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-2",
+      "priority": 5,
+      "requiredTools": ["jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["ticket-creation"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 0.25,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.20
+      },
+      "description": "Enables conversational self-service IT ticket creation with proper categorization and tracking.",
+      "howItWorks": [
+        "User describes issue in natural language",
+        "AI Worker extracts key details",
+        "Creates properly categorized ticket",
+        "Adds context and attachments",
+        "Confirms ticket number to user"
+      ],
+      "valueRationale": "Basic intake workflow that users currently navigate through portals. Self-service ticket creation eliminates form friction—this AI Worker handles conversational intake and proper categorization autonomously. Reduces ticket creation friction and improves data quality.",
+      "beforeAfter": {
+        "before": "Navigate portal → Fill forms → Submit → Wait for number (15 min)",
+        "after": "Describe issue naturally → AI creates ticket → Instant confirmation (3 min)"
+      }
+    },
+    {
+      "id": "escalate-jira-ticket",
+      "name": "Escalate Jira Ticket",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-4",
+      "priority": 28,
+      "requiredTools": ["jira"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["ticket-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.015,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.45
+      },
+      "description": "Automatically escalates tickets based on SLA risk or severity with proper documentation.",
+      "howItWorks": [
+        "Receive ticket ID and escalation reason",
+        "AI Worker updates priority and assignee",
+        "Transitions ticket to Escalated status",
+        "Adds comment with escalation details",
+        "Confirms escalation complete"
+      ],
+      "valueRationale": "Manual escalation process causing SLA breaches. Ticket escalation requires judgment and action—this AI Worker autonomously escalates with proper state transitions and documentation. Prevents SLA violations through proactive escalation.",
+      "beforeAfter": {
+        "before": "Identify issue → Manual priority change → Update status → Add notes (30 min)",
+        "after": "Trigger escalation → AI updates all fields → Documentation added (3 min)"
+      }
+    },
+    {
+      "id": "bulk-close-resolved-tickets",
+      "name": "Bulk Close Resolved Tickets",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-4",
+      "priority": 29,
+      "requiredTools": ["jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["ticket-management"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "1-2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 0.92
+      },
+      "description": "Automatically closes stale resolved tickets to maintain clean ticket queues and accurate metrics.",
+      "howItWorks": [
+        "Receive age threshold (e.g., 7 days)",
+        "AI Worker queries resolved tickets",
+        "Transitions each to Closed status",
+        "Logs bulk closure action",
+        "Confirms tickets closed"
+      ],
+      "valueRationale": "Ticket hygiene that teams manually batch process. Stale resolved tickets skew metrics and create clutter—this AI Worker autonomously closes aged tickets based on policy. Ensures accurate ITSM metrics and reduces visual noise.",
+      "beforeAfter": {
+        "before": "Manual query → Select tickets → Bulk close → Verify (1 hr weekly)",
+        "after": "Schedule auto-close → AI closes aged tickets → Report (5 min weekly)"
+      }
+    },
+    {
+      "id": "create-servicenow-request",
+      "name": "Create ServiceNow Request from Catalog",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-2",
+      "priority": 24,
+      "requiredTools": ["servicenow"],
+      "optionalTools": [],
+      "relatedWorkflows": ["ticket-creation", "hardware-requests"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.04,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 0.9
+      },
+      "description": "Creates ServiceNow catalog requests for standardized hardware and software provisioning.",
+      "howItWorks": [
+        "Receive catalog item and requirements",
+        "AI Worker creates request from catalog",
+        "Adds specific requirements to task",
+        "Tracks request number",
+        "Confirms request created"
+      ],
+      "valueRationale": "Common procurement workflow through ServiceNow catalogs. Catalog requests need proper item selection and specifications—this AI Worker handles conversational intake and ServiceNow submission autonomously. Simplifies catalog navigation for users.",
+      "beforeAfter": {
+        "before": "Navigate catalog → Find item → Fill forms → Submit (1 hr)",
+        "after": "Describe need → AI finds catalog item → Auto-submit with specs (6 min)"
+      }
+    },
+    {
+      "id": "create-freshservice-ticket",
+      "name": "Create Freshservice IT Ticket",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-2",
+      "priority": 25,
+      "requiredTools": ["freshservice"],
+      "optionalTools": [],
+      "relatedWorkflows": ["ticket-creation"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 0.25,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.20
+      },
+      "description": "Creates tickets in Freshservice ITSM platform with proper categorization.",
+      "howItWorks": [
+        "Receive issue description and urgency",
+        "AI Worker creates ticket in Freshservice",
+        "Adds notes if needed",
+        "Returns ticket ID",
+        "Confirms ticket created"
+      ],
+      "valueRationale": "Alternative ITSM platform support showing platform-agnostic approach. Freshservice ticket creation for orgs not on Jira/ServiceNow—this AI Worker provides same autonomous intake. Ensures consistent experience across ITSM tools.",
+      "beforeAfter": {
+        "before": "Navigate portal → Fill forms → Submit (15 min)",
+        "after": "Describe issue → AI creates ticket → Instant confirmation (3 min)"
+      }
+    },
+    {
+      "id": "generate-sla-breach-alert",
+      "name": "Generate SLA Breach Alert",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-4",
+      "priority": 26,
+      "requiredTools": ["jira", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["ticket-management"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.45
+      },
+      "description": "Proactively alerts teams about tickets at risk of SLA breach before violations occur.",
+      "howItWorks": [
+        "Receive alert window (e.g., 2 hours before SLA)",
+        "AI Worker queries tickets approaching SLA",
+        "Sends Slack message with ticket links",
+        "Notifies assigned owners",
+        "Confirms alerts sent"
+      ],
+      "valueRationale": "SLA management requiring constant monitoring. SLA breaches happen because teams don't see warnings—this AI Worker autonomously monitors SLA timers and alerts proactively. Reduces SLA violations and improves service quality.",
+      "beforeAfter": {
+        "before": "Manual SLA monitoring → Spot-check tickets → React to breaches (30 min periodic)",
+        "after": "Auto-monitor SLAs → AI alerts at-risk tickets → Proactive action (3 min)"
+      }
+    },
+    {
+      "id": "weekly-ticket-summary",
+      "name": "Weekly Ticket Summary",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-4",
+      "priority": 27,
+      "requiredTools": ["jira"],
+      "optionalTools": ["linear", "slack"],
+      "relatedWorkflows": ["reporting"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 1.42
+      },
+      "description": "Generates weekly IT operations summaries with ticket metrics for management visibility.",
+      "howItWorks": [
+        "Receive week range and recipients",
+        "AI Worker queries Jira for ticket stats",
+        "Calculates new/closed/backlog deltas",
+        "Generates formatted summary",
+        "Sends via email or Slack"
+      ],
+      "valueRationale": "Regular reporting consuming IT manager time. Weekly summaries require gathering and analyzing ticket data—this AI Worker autonomously compiles and distributes operational reports. Provides consistent management visibility without manual effort.",
+      "beforeAfter": {
+        "before": "Manual queries → Spreadsheet → Format report → Email (1.5 hrs weekly)",
+        "after": "Scheduled report → AI generates summary → Auto-distribute (5 min weekly)"
+      }
+    },
+    {
+      "id": "incident-creation-escalation",
+      "name": "Incident Creation with Escalation",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-4",
+      "priority": 30,
+      "requiredTools": ["servicenow", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["incident-management"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 1.4
+      },
+      "description": "Creates high-severity incidents in ServiceNow with immediate escalation to response teams.",
+      "howItWorks": [
+        "Receive incident summary and severity",
+        "AI Worker creates incident in ServiceNow",
+        "Sends Slack alert to response team",
+        "Shares incident link",
+        "Confirms incident created and escalated"
+      ],
+      "valueRationale": "Critical incident response requiring speed. P1 incidents need immediate creation and escalation—this AI Worker autonomously creates incident record and alerts response teams in seconds. Accelerates incident response by eliminating manual intake delays.",
+      "beforeAfter": {
+        "before": "Identify incident → Create in ServiceNow → Find contacts → Email/call team (1.5 hrs)",
+        "after": "Report incident → AI creates + escalates → Team alerted instantly (6 min)"
+      }
+    },
+    {
+      "id": "bulk-ticket-edit",
+      "name": "Perform Bulk Ticket Edit",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-6",
+      "priority": 31,
+      "requiredTools": ["jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["ticket-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 1.0,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.15,
+        "timeSavingsPerTicket": 1.85
+      },
+      "description": "Performs bulk updates to ticket fields for mass triage or corrections.",
+      "howItWorks": [
+        "Receive JQL filter and field updates",
+        "AI Worker queries matching tickets",
+        "Updates specified field for each",
+        "Logs bulk update action",
+        "Confirms tickets updated"
+      ],
+      "valueRationale": "Bulk operations that are tedious and error-prone manually. Mass ticket updates for triage or data cleanup—this AI Worker handles bulk operations autonomously with accuracy. Eliminates hours of manual ticket updates.",
+      "beforeAfter": {
+        "before": "Query tickets → Select all → Update one by one → Verify (2 hrs)",
+        "after": "Specify criteria → AI bulk updates all → Verification report (9 min)"
+      }
+    },
+    {
+      "id": "generate-incident-postmortem",
+      "name": "Generate Incident Post-Mortem in Google Docs",
+      "category": "itsm-ticket-hygiene",
+      "deploymentPhase": "month-6",
+      "priority": 32,
+      "requiredTools": ["google-docs", "slack"],
+      "optionalTools": ["jira"],
+      "relatedWorkflows": ["incident-management", "reporting"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.005,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 3.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 2.5
+      },
+      "description": "Automates incident post-mortem documentation with template-driven reports.",
+      "howItWorks": [
+        "Receive incident ID and summary",
+        "AI Worker creates Google Doc from template",
+        "Populates sections with incident details",
+        "Gets shareable link",
+        "Distributes to stakeholders"
+      ],
+      "valueRationale": "Post-incident documentation that teams delay or skip. Post-mortems require structure and follow-through—this AI Worker autonomously creates templated documentation and distributes. Improves incident learning through consistent documentation.",
+      "beforeAfter": {
+        "before": "Create doc → Fill template → Write details → Share with team (3 hrs)",
+        "after": "Trigger post-mortem → AI creates + populates doc → Auto-share (30 min)"
+      }
+    },
+    {
+      "id": "slack-channel-cleanup",
+      "name": "Slack Channel Cleanup (Advisory)",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-6",
+      "priority": 33,
+      "requiredTools": ["slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["workspace-management"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.0,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.2,
+        "timeSavingsPerTicket": 1.8
+      },
+      "description": "Identifies inactive Slack channels and recommends archival to reduce workspace clutter.",
+      "howItWorks": [
+        "Receive inactivity threshold (e.g., 90 days)",
+        "AI Worker lists all Slack channels",
+        "Identifies channels with no recent activity",
+        "Sends proposed archive list to admins",
+        "Awaits admin approval"
+      ],
+      "valueRationale": "Workspace hygiene requiring manual audits. Slack sprawl creates noise and confusion—this AI Worker autonomously identifies inactive channels and proposes cleanup. Maintains clean communication environments without manual audits.",
+      "beforeAfter": {
+        "before": "Manual channel review → Check activity → Create list → Propose (2 hrs monthly)",
+        "after": "Run cleanup analysis → AI identifies inactive → Auto-propose list (12 min monthly)"
+      }
+    },
+    {
+      "id": "knowledge-base-search-confluence",
+      "name": "Knowledge Base Search (Confluence)",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-2",
+      "priority": 6,
+      "requiredTools": ["confluence", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["knowledge-management"],
+      "setupTime": "3-4 days",
+      "configComplexity": "medium",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.08,
+        "automationRate": 0.60,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.1,
+        "timeSavingsPerTicket": 1.9
+      },
+      "description": "Searches knowledge bases and provides answers with sources for common questions, deflecting tickets.",
+      "howItWorks": [
+        "User asks question in Slack",
+        "AI Worker searches Confluence",
+        "Retrieves relevant page content",
+        "Provides answer with source links",
+        "Offers to create ticket if insufficient"
+      ],
+      "valueRationale": "Knowledge retrieval that users struggle with. KB search requires knowing where to look—this AI Worker autonomously searches across Confluence and provides answers with sources. Unlike knowledge bases that go stale, AI Workers learn new error patterns and solutions from every ticket, improving resolution accuracy over time. Deflects tickets through better knowledge discovery.",
+      "beforeAfter": {
+        "before": "User searches → Can't find → Creates ticket → IT responds with KB link (2 hrs)",
+        "after": "User asks in Slack → AI finds answer → Provides KB link instantly (6 min)"
+      }
+    },
+    {
+      "id": "policy-document-distribution",
+      "name": "Policy Document Distribution (Google Docs)",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-6",
+      "priority": 34,
+      "requiredTools": ["google-docs", "slack"],
+      "optionalTools": ["gmail"],
+      "relatedWorkflows": ["policy-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.005,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 1.0,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 0.92
+      },
+      "description": "Distributes policy documents to stakeholders with proper tracking and acknowledgment.",
+      "howItWorks": [
+        "Receive document name and recipients",
+        "AI Worker finds document in Google Drive",
+        "Gets shareable link",
+        "Sends via email and/or Slack",
+        "Confirms distribution complete"
+      ],
+      "valueRationale": "Policy distribution requiring coordination. Policy updates need controlled distribution—this AI Worker handles document retrieval and multi-channel distribution autonomously. Ensures policy awareness without manual distribution lists.",
+      "beforeAfter": {
+        "before": "Find doc → Create dist list → Send emails → Track opens (1 hr)",
+        "after": "Request distribution → AI finds + shares doc → Auto-notify (5 min)"
+      }
+    },
+    {
+      "id": "security-alert-distribution",
+      "name": "Security Alert Distribution",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-4",
+      "priority": 35,
+      "requiredTools": ["slack"],
+      "optionalTools": ["gmail", "microsoft-teams"],
+      "relatedWorkflows": ["security-communications"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "1 week",
+      "metrics": {
+        "percentOfVolume": 0.003,
+        "automationRate": 0.95,
+        "avgResolutionBefore": 0.75,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.70
+      },
+      "description": "Distributes urgent security alerts across multiple communication channels simultaneously.",
+      "howItWorks": [
+        "Receive severity level and message",
+        "AI Worker sends to Slack channels",
+        "Sends via email to distribution lists",
+        "Optionally posts to Teams",
+        "Confirms multi-channel distribution"
+      ],
+      "valueRationale": "Critical communications requiring immediate reach. Security alerts need multi-channel distribution for visibility—this AI Worker broadcasts autonomously across Slack, email, and Teams. Accelerates security response through instant notification.",
+      "beforeAfter": {
+        "before": "Draft message → Post to Slack → Send emails → Post to Teams (45 min)",
+        "after": "Create alert → AI broadcasts all channels instantly (3 min)"
+      }
+    },
+    {
+      "id": "automated-reminders-calendar",
+      "name": "Automated Reminders (via Calendar)",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-6",
+      "priority": 36,
+      "requiredTools": ["google-calendar"],
+      "optionalTools": ["slack", "gmail"],
+      "relatedWorkflows": ["task-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.45
+      },
+      "description": "Creates calendar reminders for recurring tasks like approvals and renewals.",
+      "howItWorks": [
+        "Receive reminder message and date/time",
+        "AI Worker creates calendar event",
+        "Adds invitees if specified",
+        "Optionally sends immediate heads-up",
+        "Confirms reminder scheduled"
+      ],
+      "valueRationale": "Reminder management preventing missed deadlines. Recurring reminders for approvals and renewals—this AI Worker autonomously schedules and sends notifications. Ensures timely action on recurring responsibilities.",
+      "beforeAfter": {
+        "before": "Manual calendar entry → Add invites → Set reminders (30 min)",
+        "after": "Request reminder → AI creates calendar event → Notifications set (3 min)"
+      }
+    },
+    {
+      "id": "route-approval-requests",
+      "name": "Route Approval Requests",
+      "category": "communication-knowledge",
+      "deploymentPhase": "month-4",
+      "priority": 37,
+      "requiredTools": ["jira", "slack"],
+      "optionalTools": ["gmail"],
+      "relatedWorkflows": ["approval-workflows"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.02,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.15,
+        "timeSavingsPerTicket": 1.35
+      },
+      "description": "Routes approval requests to appropriate approvers with tracking and follow-up.",
+      "howItWorks": [
+        "Receive approval type and details",
+        "AI Worker creates tracking ticket in Jira",
+        "Routes to appropriate approver via Slack",
+        "Tracks approval decision",
+        "Confirms routing complete"
+      ],
+      "valueRationale": "Approval routing creating bottlenecks. Approval workflows require tracking and follow-up—this AI Worker autonomously routes requests and tracks decisions. Accelerates approvals through intelligent routing and tracking.",
+      "beforeAfter": {
+        "before": "Create ticket → Find approver → Send email → Wait for response → Update ticket (1.5 hrs)",
+        "after": "Request approval → AI routes to right person → Track decision (9 min)"
+      }
+    },
+    {
+      "id": "google-drive-file-search",
+      "name": "Google Drive File Search",
+      "category": "files-data-access",
+      "deploymentPhase": "month-4",
+      "priority": 38,
+      "requiredTools": ["google-drive"],
+      "optionalTools": ["slack"],
+      "relatedWorkflows": ["file-management"],
+      "setupTime": "1-2 days",
+      "configComplexity": "low",
+      "learningPeriod": "1-2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.02,
+        "automationRate": 0.95,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.45
+      },
+      "description": "Searches Google Drive and returns relevant files instantly, eliminating manual searching.",
+      "howItWorks": [
+        "Receive search query",
+        "AI Worker searches across Google Drive",
+        "Returns top matching files with links",
+        "Offers to share or open files",
+        "Confirms search complete"
+      ],
+      "valueRationale": "File discovery that users struggle with. Drive search requires knowing file names—this AI Worker provides intelligent search with instant results. Reduces time wasted hunting for files.",
+      "beforeAfter": {
+        "before": "Manual search → Try different keywords → Browse folders (30 min)",
+        "after": "Ask AI Worker → Instant relevant results with links (3 min)"
+      }
+    },
+    {
+      "id": "search-sharepoint-files",
+      "name": "Search SharePoint Files",
+      "category": "files-data-access",
+      "deploymentPhase": "month-4",
+      "priority": 39,
+      "requiredTools": ["sharepoint"],
+      "optionalTools": [],
+      "relatedWorkflows": ["file-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.015,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 0.75,
+        "avgResolutionAfter": 0.08,
+        "timeSavingsPerTicket": 0.67
+      },
+      "description": "Searches SharePoint document libraries for Microsoft 365 organizations.",
+      "howItWorks": [
+        "Receive search terms and optional file type",
+        "AI Worker searches SharePoint",
+        "Returns matching files with metadata",
+        "Provides file links",
+        "Confirms search complete"
+      ],
+      "valueRationale": "Microsoft 365 file discovery for enterprise orgs. SharePoint search for M365 shops—this AI Worker provides intelligent search across SharePoint. Improves document discovery in SharePoint environments.",
+      "beforeAfter": {
+        "before": "Navigate SharePoint structure → Search → Refine → Browse results (45 min)",
+        "after": "Request search → AI finds relevant docs → Links provided (5 min)"
+      }
+    },
+    {
+      "id": "manage-data-access-requests",
+      "name": "Manage Data Access Requests",
+      "category": "files-data-access",
+      "deploymentPhase": "month-6",
+      "priority": 40,
+      "requiredTools": ["google-drive", "jira", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["file-management", "approval-workflows"],
+      "setupTime": "5-7 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 2.5,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 2.0
+      },
+      "description": "Manages data access requests with approval workflow and controlled sharing.",
+      "howItWorks": [
+        "Receive file link, requester, and justification",
+        "AI Worker identifies file owner",
+        "Creates approval ticket in Jira",
+        "Routes to owner via Slack/email",
+        "On approval, grants access and notifies"
+      ],
+      "valueRationale": "Data access requiring approval but causing delays. File sharing requests need owner approval and tracking—this AI Worker orchestrates approval and sharing autonomously. Accelerates data access while maintaining security controls.",
+      "beforeAfter": {
+        "before": "Request → Find owner → Email approval → Wait → Manual share → Notify (2.5 hrs over days)",
+        "after": "Request → AI routes to owner → Auto-share on approval → Notify (30 min same day)"
+      }
+    },
+    {
+      "id": "update-zoom-license",
+      "name": "Update Zoom User License",
+      "category": "meetings-collaboration",
+      "deploymentPhase": "month-4",
+      "priority": 41,
+      "requiredTools": ["zoom", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["license-management"],
+      "setupTime": "2-3 days",
+      "configComplexity": "low",
+      "learningPeriod": "2 weeks",
+      "metrics": {
+        "percentOfVolume": 0.01,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 0.5,
+        "avgResolutionAfter": 0.05,
+        "timeSavingsPerTicket": 0.45
+      },
+      "description": "Manages Zoom license assignments, optimizing license costs and user access.",
+      "howItWorks": [
+        "Receive user email and license type",
+        "AI Worker updates license in Zoom",
+        "Creates tracking ticket if configured",
+        "Confirms license updated",
+        "Notifies user if needed"
+      ],
+      "valueRationale": "License management for collaboration tools. Zoom licensing requires verification and updates—this AI Worker handles license changes autonomously. Optimizes collaboration tool costs through automated license management.",
+      "beforeAfter": {
+        "before": "Request → Verify need → Update in Zoom → Notify user (30 min)",
+        "after": "Request → AI updates license → Auto-notify (3 min)"
+      }
+    },
+    {
+      "id": "software-license-audit",
+      "name": "Software License Audit (Okta Apps)",
+      "category": "meetings-collaboration",
+      "deploymentPhase": "month-6",
+      "priority": 42,
+      "requiredTools": ["okta"],
+      "optionalTools": ["google-sheets", "slack"],
+      "relatedWorkflows": ["license-management", "compliance-auditing"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.005,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 6.0,
+        "avgResolutionAfter": 0.75,
+        "timeSavingsPerTicket": 5.25
+      },
+      "description": "Audits software licenses across Okta apps, identifying unused licenses and sprawl.",
+      "howItWorks": [
+        "Receive optional app filter and delivery method",
+        "AI Worker lists all Okta apps",
+        "Queries user assignments per app",
+        "Generates license utilization report",
+        "Delivers via Google Sheets or email"
+      ],
+      "valueRationale": "License optimization requiring manual audits. Software license audits uncover waste—this AI Worker autonomously inventories app usage and identifies optimization opportunities. Enables continuous license optimization versus annual audits.",
+      "beforeAfter": {
+        "before": "Manual app review → Check assignments → Spreadsheet compilation (6 hrs quarterly)",
+        "after": "Request audit → AI generates full report → Optimization insights (45 min quarterly)"
+      }
+    },
+    {
+      "id": "batch-password-reset",
+      "name": "Batch Password Reset",
+      "category": "it-ops-capacity",
+      "deploymentPhase": "month-6",
+      "priority": 43,
+      "requiredTools": ["jumpcloud", "jira"],
+      "optionalTools": ["microsoft-365"],
+      "relatedWorkflows": ["password-resets", "security-incident"],
+      "setupTime": "3-5 days",
+      "configComplexity": "medium",
+      "learningPeriod": "2-3 weeks",
+      "metrics": {
+        "percentOfVolume": 0.002,
+        "automationRate": 0.80,
+        "avgResolutionBefore": 3.0,
+        "avgResolutionAfter": 0.5,
+        "timeSavingsPerTicket": 2.5
+      },
+      "description": "Performs bulk password resets during security incidents or mass changes.",
+      "howItWorks": [
+        "Receive target system and user list",
+        "AI Worker resets password for each user",
+        "Creates tracking ticket",
+        "Logs all resets for audit",
+        "Confirms batch reset complete"
+      ],
+      "valueRationale": "Emergency response requiring immediate bulk action. Security incidents need rapid password resets across users—this AI Worker handles mass resets autonomously. Accelerates security response during compromises.",
+      "beforeAfter": {
+        "before": "Manual reset for each user → Track in spreadsheet → Notify (3 hrs)",
+        "after": "Trigger batch reset → AI resets all → Audit log generated (30 min)"
+      }
+    },
+    {
+      "id": "verify-backup-completion",
+      "name": "Verify Backup Completion",
+      "category": "it-ops-capacity",
+      "deploymentPhase": "month-6",
+      "priority": 44,
+      "requiredTools": ["google-drive", "sharepoint", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["backup-monitoring"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.003,
+        "automationRate": 0.85,
+        "avgResolutionBefore": 1.5,
+        "avgResolutionAfter": 0.15,
+        "timeSavingsPerTicket": 1.35
+      },
+      "description": "Verifies backup completion and integrity across cloud storage platforms.",
+      "howItWorks": [
+        "Receive schedule name and locations to verify",
+        "AI Worker checks Google Drive for backup artifacts",
+        "Checks SharePoint for backup artifacts",
+        "Verifies latest backup presence and integrity",
+        "Sends status report to stakeholders"
+      ],
+      "valueRationale": "Backup monitoring preventing data loss. Backup verification is manual spot-checks—this AI Worker autonomously verifies backup presence and integrity. Prevents backup failures through continuous verification.",
+      "beforeAfter": {
+        "before": "Manual check each location → Verify timestamps → Document status (1.5 hrs daily)",
+        "after": "Scheduled verification → AI checks all locations → Status report (9 min daily)"
+      }
+    },
+    {
+      "id": "process-server-access-request",
+      "name": "Process Server Access Request (JumpCloud)",
+      "category": "it-ops-capacity",
+      "deploymentPhase": "month-4",
+      "priority": 45,
+      "requiredTools": ["jumpcloud", "jira"],
+      "optionalTools": [],
+      "relatedWorkflows": ["application-access", "approval-workflows"],
+      "setupTime": "5-7 days",
+      "configComplexity": "high",
+      "learningPeriod": "4-6 weeks",
+      "metrics": {
+        "percentOfVolume": 0.015,
+        "automationRate": 0.75,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.3,
+        "timeSavingsPerTicket": 1.7
+      },
+      "description": "Manages server access requests with approval workflow for infrastructure security.",
+      "howItWorks": [
+        "Receive user, server group, and justification",
+        "AI Worker creates approval ticket in Jira",
+        "On approval, adds user to JumpCloud group",
+        "Updates ticket with completion",
+        "Confirms server access granted"
+      ],
+      "valueRationale": "Infrastructure access requiring security approval. Server access needs governance but causes developer delays—this AI Worker orchestrates approval and provisioning autonomously. Accelerates infrastructure access with proper controls.",
+      "beforeAfter": {
+        "before": "Request → Security approval → Manual group add → Update ticket (2 hrs over days)",
+        "after": "Request → AI routes approval → Auto-provision → Ticket updated (18 min same day)"
+      }
+    },
+    {
+      "id": "track-ssl-certificates",
+      "name": "Track SSL Certificates",
+      "category": "it-ops-capacity",
+      "deploymentPhase": "month-6",
+      "priority": 46,
+      "requiredTools": ["google-sheets", "google-calendar", "slack"],
+      "optionalTools": [],
+      "relatedWorkflows": ["certificate-management"],
+      "setupTime": "5-7 days",
+      "configComplexity": "medium",
+      "learningPeriod": "3-4 weeks",
+      "metrics": {
+        "percentOfVolume": 0.002,
+        "automationRate": 0.90,
+        "avgResolutionBefore": 2.0,
+        "avgResolutionAfter": 0.2,
+        "timeSavingsPerTicket": 1.8
+      },
+      "description": "Tracks SSL certificate expiration dates and alerts before certificates expire, preventing outages.",
+      "howItWorks": [
+        "Receive certificate inventory details",
+        "AI Worker tracks expiration dates in Google Sheets",
+        "Creates calendar reminders for pre-expiry",
+        "Sends Slack notifications before expiry",
+        "Confirms tracking active"
+      ],
+      "valueRationale": "Certificate expiration causing production outages. SSL certificate tracking prevents outages—this AI Worker autonomously monitors certificates and alerts pre-expiry. Critical for maintaining service availability.",
+      "beforeAfter": {
+        "before": "Manual spreadsheet → Set reminders → Hope you don't forget (2 hrs setup, then hope)",
+        "after": "Load certificate inventory → AI tracks + auto-alerts → Never miss expiry (12 min setup)"
+      }
+    }
+  ]
+}
