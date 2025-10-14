@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
@@ -25,12 +27,12 @@ export default function Home() {
             improve over time. Find out if your IT stack can support a digital
             teammate that gets smarter with every request.
           </p>
-          <button className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-3">
+          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-3">
             <span>Start Assessment →</span>
             <span className="text-sm font-normal">
               5 minutes • Instant results
             </span>
-          </button>
+          </Link>
         </section>
 
         {/* Problem Statement */}
@@ -226,9 +228,9 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <button className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4">
+          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-block">
             Start Your Assessment →
-          </button>
+          </Link>
           <p className="text-gray-500 text-sm">
             Join IT leaders discovering their automation opportunities
           </p>
