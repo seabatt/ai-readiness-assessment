@@ -38,7 +38,7 @@ export default function Home() {
         </section>
 
         {/* Problem Statement */}
-        <div className="border border-gray-800 rounded-xl p-8 mb-16 max-w-4xl mx-auto">
+        <div className="border border-gray-800 rounded-xl p-8 mb-16">
           <p className="text-gray-300 mb-4 text-center">
             Under pressure to do more with less? Boss thinks the queue is slow?
             Hard to know where AI helps?
