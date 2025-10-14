@@ -39,10 +39,10 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                 onClick={() => toggleWorkflow(workflow.id)}
                 disabled={!isSelected && selectedWorkflows.length >= 5}
                 className={`
-                  w-full text-left p-4 rounded-lg border transition-all
+                  w-full text-left p-4 rounded-lg transition-all
                   ${isSelected 
-                    ? 'border-accent-blue bg-accent-blue/10' 
-                    : 'border-brand-secondary/20 bg-[rgb(30,30,29)] hover:border-brand-secondary/40 hover:bg-[rgb(40,40,39)]'
+                    ? 'bg-accent-blue/10' 
+                    : 'bg-[rgb(30,30,29)] hover:bg-[rgb(40,40,39)]'
                   }
                   ${!isSelected && selectedWorkflows.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}

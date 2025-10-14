@@ -9,6 +9,15 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 14, 2025 - Assessment Page Styling Updates
+- Updated assessment page styling for cleaner, minimal design:
+  - Changed body background to pure black (#000000)
+  - Changed tech stack category cards background to rgb(30, 30, 29)
+  - Changed workflow ranking items background to rgb(30, 30, 29)
+  - Removed all borders from cards and workflow items
+  - Updated category heading text color to #fbfaf9
+  - Removed navigation top border for seamless appearance
+
 ### October 14, 2025 - Report Page Enhancements
 - Enhanced report page with updated component props:
   - Added `isTopWorkflow` prop to AIWorkerCard for highlighting top workflow matches
@@ -67,10 +76,11 @@ src/
 
 ### Design System
 The app uses a custom dark theme with AI.work brand colors:
-- **Primary Background**: #262626
+- **Primary Background**: #000000 (pure black)
+- **Card Backgrounds**: rgb(30, 30, 29) for assessment cards
 - **Brand Colors**: #FBFAF9 (primary), #CDCCCB (secondary), #8A8784 (tertiary)
 - **Accent Colors**: Green (#00D97E), Blue (#4A9EFF), Orange (#FF6B35)
-- **Border Color**: #2F2F2F
+- **Border Color**: #2F2F2F (minimal use - borders removed from assessment cards)
 
 ### Key Features
 1. **Landing Page**: Hero section with value propositions and pain points
