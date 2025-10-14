@@ -9,6 +9,16 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 14, 2025 - Assessment Flow Fixes
+- Fixed landing page "Start Assessment" button to properly navigate to /assessment route
+- Corrected assessment page to use modular components instead of inline implementation:
+  - TechStackSelector for step 1 (tech stack selection with categorized tools)
+  - WorkflowRanker for step 2 (top 5 workflow selection)
+  - ScaleQuestions for step 3 (ticket volume, team size, etc.)
+  - CurrentStateQuestions for step 4 (approval workflows, pain points)
+  - LoadingScreen for step 5 (loading animation before report)
+- Resolved Next.js build cache corruption issues by clearing .next folder
+
 ### October 14, 2025 - Vercel to Replit Migration
 - Configured Next.js to run on Replit (port 5000, bound to 0.0.0.0)
 - Fixed Tailwind CSS configuration by adding missing `border` color token
