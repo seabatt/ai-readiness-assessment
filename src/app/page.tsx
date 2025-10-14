@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-white"></div>
             <span className="text-sm text-gray-400">
