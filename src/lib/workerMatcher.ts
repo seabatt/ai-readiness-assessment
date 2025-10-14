@@ -2,7 +2,7 @@ import { AssessmentData, AIWorker, MatchedWorker } from '@/types';
 import aiWorkersData from '@/data/aiWorkers.json';
 
 export function matchAIWorkers(data: AssessmentData): MatchedWorker[] {
-  const allWorkers: AIWorker[] = aiWorkersData.aiWorkers;
+  const allWorkers = aiWorkersData.aiWorkers as AIWorker[];
   const matched: MatchedWorker[] = [];
 
   // Parse ticket volume (get midpoint of range)
