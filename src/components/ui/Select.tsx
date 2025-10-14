@@ -19,17 +19,14 @@ export default function Select({ label, error, options, className = '', ...props
         className={`
           w-full
           bg-bg-card
-          border border-brand-tertiary/30
           text-text-primary
           px-4 py-3
           rounded-lg
-          focus:border-accent-blue
           focus:outline-none
           focus:ring-2
           focus:ring-accent-blue/20
           transition-all
           cursor-pointer
-          ${error ? 'border-accent-orange' : ''}
           ${className}
         `}
         {...props}
