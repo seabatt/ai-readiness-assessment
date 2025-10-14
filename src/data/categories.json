@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "identity-access-compliance",
+      "name": "Identity Access & Compliance",
+      "description": "User provisioning, access management, and compliance workflows",
+      "icon": "shield-check",
+      "color": "#4A9EFF"
+    },
+    {
+      "id": "itsm-ticket-hygiene",
+      "name": "ITSM & Ticket Hygiene",
+      "description": "Ticket management, routing, and queue optimization",
+      "icon": "ticket",
+      "color": "#00D97E"
+    },
+    {
+      "id": "communication-knowledge",
+      "name": "Communication & Knowledge",
+      "description": "Workspace management, knowledge base, and policy distribution",
+      "icon": "message-square",
+      "color": "#FF6B35"
+    },
+    {
+      "id": "files-data-access",
+      "name": "Files & Data Access",
+      "description": "File search, sharing, and data access management",
+      "icon": "folder",
+      "color": "#9333EA"
+    },
+    {
+      "id": "meetings-collaboration",
+      "name": "Meetings & Collaboration",
+      "description": "Video conferencing and collaboration tool management",
+      "icon": "video",
+      "color": "#06B6D4"
+    },
+    {
+      "id": "it-ops-capacity",
+      "name": "IT Ops & Infrastructure",
+      "description": "Server access, backups, and infrastructure management",
+      "icon": "server",
+      "color": "#8A8784"
+    }
+  ]
+}
