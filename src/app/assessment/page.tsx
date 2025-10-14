@@ -15,15 +15,16 @@ export default function AssessmentPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [data, setData] = useState<Partial<AssessmentData>>({
-    techStack: [],
-    topWorkflows: [],
-    ticketVolume: '',
-    teamSize: '',
-    avgResolutionTime: '',
-    employeeCount: '',
-    approvalWorkflows: '',
-    repetitivePercentage: '',
-    primaryPainPoint: '',
+    // Pre-filled for quick testing
+    techStack: ['Okta', 'ServiceNow', 'Slack', 'Jira'],
+    topWorkflows: ['Password Reset', 'Access Provisioning', 'Incident Triage', 'Software Installation', 'VPN Access'],
+    ticketVolume: '500-1000',
+    teamSize: '11-25',
+    avgResolutionTime: '4-8 hours',
+    employeeCount: '500-1000',
+    approvalWorkflows: 'sometimes',
+    repetitivePercentage: '50-75%',
+    primaryPainPoint: 'ticket-volume',
   });
 
   const handleNext = () => {
