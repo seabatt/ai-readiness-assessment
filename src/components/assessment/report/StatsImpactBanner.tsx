@@ -25,7 +25,7 @@ export default function StatsImpactBanner({
       <div className="grid grid-cols-4 gap-0 bg-black">
         {/* Ticket Deflection */}
         <div className="border-r border-gray-800 px-8 py-10">
-          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-6 leading-tight">
+          <div className="text-xs uppercase tracking-wide text-gray-500 mb-6 leading-tight">
             Automate Service<br />Resolutions By
           </div>
           <div className="text-6xl font-bold text-white">
@@ -35,7 +35,7 @@ export default function StatsImpactBanner({
 
         {/* Hours Saved */}
         <div className="border-r border-gray-800 px-8 py-10">
-          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-6">
+          <div className="text-xs uppercase tracking-wide text-gray-500 mb-6">
             Hours Saved
           </div>
           <div className="text-6xl font-bold text-white">
@@ -46,7 +46,7 @@ export default function StatsImpactBanner({
 
         {/* Cost Savings */}
         <div className="border-r border-gray-800 px-8 py-10">
-          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-6 leading-tight">
+          <div className="text-xs uppercase tracking-wide text-gray-500 mb-6 leading-tight">
             Reduce Operational<br />Cost By
           </div>
           <div className="text-6xl font-bold text-white">
@@ -60,7 +60,7 @@ export default function StatsImpactBanner({
 
         {/* FTE Equivalent */}
         <div className="px-8 py-10">
-          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-6">
+          <div className="text-xs uppercase tracking-wide text-gray-500 mb-6">
             FTE Equivalent
           </div>
           <div className="text-6xl font-bold text-white">
