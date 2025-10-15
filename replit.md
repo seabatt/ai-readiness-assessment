@@ -9,6 +9,12 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 15, 2025 - V3 Report Button Styling Update
+- Updated "Request Custom Discovery Report" button styling to match home page:
+  - Changed from blue gradient button to clean white background with black text
+  - Matches "Start Assessment" button styling for visual consistency
+  - Updated hover state to gray background instead of blue gradient
+
 ### October 15, 2025 - V3 Report: Compelling Narrative Structure
 - Created V3 report with new narrative flow that "hits harder" for IT leaders under pressure:
   - **Executive Summary**: "Here's what we found" - opens directly with algorithm analysis, concrete metrics, and immediate opportunity payoff
