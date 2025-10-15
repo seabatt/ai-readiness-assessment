@@ -1,0 +1,54 @@
+Ai.Work Tone of Voice
+Core Voice Principles
+1. Confident, Not Overblown
+We speak with authority and precision.
+Avoid hype or exaggerated claims - our credibility comes from clarity and operational depth.
+Example:
+Yes: "AI Workers cut time spent on service tasks by up to 65%."
+No: "Our revolutionary AI is changing everything you know about work."
+2. Operationally Fluent
+Use the language of enterprise departments—HR, IT, Procurement, Legal—without jargon overload.
+Frame AI as part of workflows, systems, and measurable outcomes.
+Example:
+Yes: "The IT Worker automates access requests from ticket intake to approval, fully within enterprise guardrails."
+No: "AI magically handles your IT needs."
+3. Empowering, Not Replacing
+Position AI Workers as enablers, not threats.
+The goal is to unlock human capacity, not suggest human obsolescence.
+Example:
+Yes: "AI Workers free your teams from repetitive tasks so they can focus on higher-value work."
+No: "AI Workers replace the need for human service teams."
+Tone in Practice
+Attributes of Our Voice
+Clear → Plain, functional language over buzzwords.
+Grounded → Speak to real workflows, not abstract promises.
+Direct → Short, sharp sentences over fluffy paragraphs.
+Credible → Outcomes supported by metrics and enterprise readiness.
+Future-facing → Optimistic about AI's role in work, without slipping into sci-fi.
+Sentence Style
+Prefer active voice ("AI Workers handle…")
+Avoid unnecessary modifiers ("extremely," "truly," "incredibly")
+Use numbers and outcomes wherever possible (time, cost, efficiency)
+Do's and Don'ts
+✅ Do
+Say "AI Workers" (never "chatbots" or "assistants")
+Connect features to business outcomes (time saved, cost reduced)
+Emphasize enterprise-grade capabilities (security, guardrails, integration)
+Write with simplicity and brevity
+❌ Don't
+Use hype language: "revolutionary," "world-changing," "magical"
+Reduce AI Workers to generic automation or "tools"
+Focus only on technology instead of outcomes
+Create fear-based messaging about job loss
+Example Applications
+Website Headline:
+"Autonomous AI Workers for Enterprise Workflows"
+Case Study Lead:
+"Procurement teams cut contract processing time by 50% with AI Workers handling intake and approvals end-to-end."
+Social Post:
+"HR teams spend up to 65% less time on employee requests. AI Workers handle the busywork so your team can focus on people, not paperwork."
+Final Word
+The tone of voice isn't just about words—it's about trust. Enterprise leaders need to believe that ai.work is secure, reliable, and outcome-driven. Every piece of content should make them feel:
+Confident in our capability.
+Clear on the value.
+Excited about the future of work.
