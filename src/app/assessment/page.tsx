@@ -29,11 +29,11 @@ export default function AssessmentPage() {
   });
 
   const handleNext = () => {
-    if (step < 4) {
+    if (step < 3) {
       setStep(step + 1);
-    } else if (step === 4) {
+    } else if (step === 3) {
       // Show loading screen
-      setStep(5);
+      setStep(4);
       // Save to sessionStorage and redirect to V3 report after brief delay
       setTimeout(() => {
         sessionStorage.setItem('assessmentData', JSON.stringify(data));
@@ -63,19 +63,17 @@ export default function AssessmentPage() {
       case 3:
         // Additional context is optional, so always valid
         return true;
-      case 4:
-        return !!(data.approvalWorkflows && data.repetitivePercentage && data.primaryPainPoint);
       default:
         return false;
     }
   };
 
-  const totalSteps = 4;
+  const totalSteps = 3;
 
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
       {/* Progress Bar */}
-      {step <= 4 && (
+      {step <= 3 && (
         <div className="border-b border-bg-card-alt/20">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <ProgressBar current={step} total={totalSteps} />
@@ -117,20 +115,11 @@ export default function AssessmentPage() {
           />
         )}
 
-        {step === 4 && (
-          <CurrentStateQuestions
-            approvalWorkflows={data.approvalWorkflows || ''}
-            repetitivePercentage={data.repetitivePercentage || ''}
-            primaryPainPoint={data.primaryPainPoint || ''}
-            onChange={handleFieldChange}
-          />
-        )}
-
-        {step === 5 && <LoadingScreen />}
+        {step === 4 && <LoadingScreen />}
       </div>
 
       {/* Navigation */}
-      {step <= 4 && (
+      {step <= 3 && (
         <div className="bg-bg-primary border-t border-bg-card-alt/20">
           <div className={`mx-auto px-6 py-6 ${step <= 2 ? 'max-w-4xl' : 'max-w-2xl'}`}>
             <div className="flex justify-between items-center">
@@ -146,7 +135,7 @@ export default function AssessmentPage() {
                 onClick={handleNext}
                 disabled={!isStepComplete()}
               >
-                {step === 4 ? 'Generate Report' : 'Next'}
+                {step === 3 ? 'Generate Report' : 'Next'}
               </Button>
             </div>
           </div>
