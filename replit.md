@@ -18,6 +18,10 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Landing page headline update**:
   - Changed from "Is Your IT Team Ready for an AI Worker?" to "Find out if your IT stack can support a digital team mate."
   - More conversational, user-focused messaging
+- **Landing page subtitle update**:
+  - Updated to explain enterprise pressure on IT teams and the executive/frontline disconnect
+  - New messaging emphasizes legacy tools/policies as barriers and positions tool as data-driven, reality-based assessment
+  - More authentic, less marketing-speak approach
 - **WorkflowRanker visibility improvements**:
   - Enhanced contrast for unselected workflow items (transparent bg with visible borders)
   - Improved hover states with green highlight border

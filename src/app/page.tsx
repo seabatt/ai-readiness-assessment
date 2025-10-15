@@ -25,7 +25,7 @@ export default function Home() {
             Find out if your IT stack can support a digital team mate.
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            AI Workers learn from your tickets, adapt to your processes, and improve over time.
+            Every Enterprise is putting pressure on IT Teams to do more with AI. The disconnect between Executives reading headlines about AI and frontline IT is: legacy tools, policies and procedures. AI isn't an easy button. Use this tool to get a <strong className="font-bold">data-driven, reality-based</strong> assessment of what your organization could reasonably do with AI in the next year.
           </p>
           <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-3 mb-6">
             <span>Start Assessment →</span>
