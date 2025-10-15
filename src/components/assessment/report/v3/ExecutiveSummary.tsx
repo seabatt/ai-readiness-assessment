@@ -19,28 +19,6 @@ export default function ExecutiveSummary({
 }: ExecutiveSummaryProps) {
   return (
     <div className="mb-16">
-      {/* Pain Point Hook */}
-      <div className="bg-gradient-to-br from-red-900/10 to-orange-900/10 border border-red-900/20 rounded-lg p-8 mb-12">
-        <h2 className="text-3xl font-bold text-white mb-6">
-          Under pressure to do more with less?
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6 text-lg text-gray-300">
-          <div className="space-y-3">
-            <p>• Your boss thinks the queue is slow</p>
-            <p>• Top-down pressure to implement AI Workers</p>
-          </div>
-          <div className="space-y-3">
-            <p>• Hard to know where AI actually helps</p>
-            <p>• Not sure how to get started</p>
-          </div>
-        </div>
-        <div className="mt-6 pt-6 border-t border-gray-700">
-          <p className="text-xl text-white font-semibold">
-            This is your assessment <span className="text-blue-400">and</span> your get-started plan.
-          </p>
-        </div>
-      </div>
-
       <h2 className="text-4xl font-bold text-white mb-8">Here's What We Found</h2>
 
       {/* Centered Score */}
