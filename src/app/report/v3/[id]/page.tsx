@@ -127,14 +127,12 @@ export default function ReportV3Page() {
   const estimatedDeflection = calculateTotalDeflection(topOpportunities);
 
   // Calculate impact metrics
-  const totalTickets = parseInt(assessmentData.ticketVolume.split("-")[0]) || 1000;
+  const totalTickets = assessmentData.monthlyTickets || 1000;
   const hoursSaved = Math.round((totalTickets * 12 * estimatedDeflection * 0.75) / 100);
   const fteImpact = parseFloat((hoursSaved / 2080).toFixed(1));
 
-  // Check if they have approval workflows
-  const hasApprovalWorkflows =
-    assessmentData.approvalWorkflows === "automated" ||
-    assessmentData.approvalWorkflows === "manual";
+  // Legacy workflows check removed (field doesn't exist in simplified assessment)
+  const hasApprovalWorkflows = false;
 
   return (
     <main className="min-h-screen bg-bg-primary py-12">

@@ -5,11 +5,32 @@ export function matchAIWorkers(data: AssessmentData): MatchedWorker[] {
   const allWorkers = aiWorkersData.aiWorkers as AIWorker[];
   const matched: MatchedWorker[] = [];
 
-  // Parse ticket volume (get midpoint of range)
-  const volumeRange = data.ticketVolume.split('-').map(v => parseInt(v.replace(/[^0-9]/g, '')));
-  const monthlyTickets = volumeRange.length === 2 
-    ? (volumeRange[0] + volumeRange[1]) / 2 
-    : volumeRange[0];
+  // Get monthly tickets from simplified assessment
+  const monthlyTickets = data.monthlyTickets || 1000;
+
+  // Derive top workflows from ticket distribution (categories with highest percentages)
+  const derivedTopWorkflows: string[] = [];
+  if (data.ticketDistribution) {
+    const sortedCategories = Object.entries(data.ticketDistribution)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3)
+      .map(([category]) => category);
+    
+    // Map categories to workflow names (simplified mapping)
+    const categoryToWorkflow: Record<string, string> = {
+      'applications': 'application-access',
+      'security': 'permission-changes',
+      'onboarding': 'onboarding-offboarding',
+      'hardware': 'hardware-provisioning',
+      'network': 'network-access',
+      'distributionLists': 'distribution-list-management',
+    };
+    
+    sortedCategories.forEach(category => {
+      const workflow = categoryToWorkflow[category];
+      if (workflow) derivedTopWorkflows.push(workflow);
+    });
+  }
 
   // For each worker, check if user's stack supports it
   allWorkers.forEach(worker => {
@@ -22,7 +43,7 @@ export function matchAIWorkers(data: AssessmentData): MatchedWorker[] {
 
     // Check if worker's workflows match user's top workflows
     const workflowMatch = worker.relatedWorkflows.some(workflow =>
-      data.topWorkflows.includes(workflow)
+      derivedTopWorkflows.includes(workflow)
     );
 
     // Calculate estimated impact
