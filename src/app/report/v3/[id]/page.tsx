@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { AssessmentData, ReadinessScore } from "@/types";
 import { calculateReadinessScore } from "@/lib/scoringAlgorithm";
 import { generateOpportunities, getTop5Opportunities, calculateTotalDeflection } from "@/lib/opportunityEngine";
-import FeatureHighlights from "@/components/assessment/report/v3/FeatureHighlights";
 import ExecutiveSummary from "@/components/assessment/report/v3/ExecutiveSummary";
 import OpportunityAnalysis from "@/components/assessment/report/v3/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v3/BestFitUseCases";
@@ -100,9 +99,6 @@ export default function ReportV3Page() {
             </div>
           </div>
         </div>
-
-        {/* Feature Highlights */}
-        <FeatureHighlights />
 
         {/* New V3 Narrative Flow */}
         <ExecutiveSummary
