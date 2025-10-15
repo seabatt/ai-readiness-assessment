@@ -12,7 +12,7 @@ export default function AdditionalContext({
   onChange,
 }: AdditionalContextProps) {
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-2xl mx-auto">
       <h2 className="text-3xl font-bold text-text-primary mb-4">
         Additional Context
       </h2>
