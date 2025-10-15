@@ -9,23 +9,31 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
-### October 15, 2025 - Assessment Flow Redesign: Volume & Context ✅
-- **Step 2 replaced with Volume & Service Profile**:
+### October 15, 2025 - Assessment Flow Simplified to 3 Steps ✅
+- **Reduced from 4 steps to 3 steps**:
+  - Step 1: Tech Stack Selection
+  - Step 2: Volume & Service Profile (monthly tickets + 6 category distribution sliders)
+  - Step 3: Additional Context (optional textarea for organizational details)
+  - Removed: Step 4 (CurrentStateQuestions - approval workflows, repetitive percentage, pain points)
+- **Volume & Service Profile (Step 2)**:
   - Number input for average monthly tickets (default: 1000)
   - 6 category sliders with data-driven baseline distribution (Security 25%, Applications 24%, Hardware 18%, Distribution Lists 12%, Network 11%, Onboarding 10%)
   - Smart slider redistribution logic that preserves user-selected values and maintains 100% total
   - Visual total indicator showing current percentage
-- **Step 3 replaced with Additional Context**:
+- **Additional Context (Step 3)**:
   - Large textarea for open-ended organizational context
   - Example placeholder about international teams, GDPR, regional tool variations
   - Optional field (users can skip or provide rich context for AI analysis)
+  - "Generate Report" button appears on this final step
 - **Type system updates**:
   - AssessmentData extended with monthlyTickets, ticketDistribution, additionalContext
-  - Validation logic updated: Step 2 requires monthlyTickets > 0 and distribution = 100%, Step 3 is optional
+  - Removed: approvalWorkflows, repetitivePercentage, primaryPainPoint fields
+  - Validation logic: Step 1 requires tools, Step 2 requires monthlyTickets > 0 and distribution = 100%, Step 3 is always valid
 - **Bug fixes**:
   - Fixed case mismatch in pre-filled test data (tool IDs now lowercase)
   - Slider redistribution no longer overrides user selections
   - Tech stack counter now accurately reflects selected tools
+  - Width alignment: Additional Context container now uses max-w-2xl to match navigation buttons
 
 ### October 15, 2025 - UX Improvements & Landing Page Copy Update ✅
 - **LoadingScreen component redesign**:
