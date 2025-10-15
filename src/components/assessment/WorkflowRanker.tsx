@@ -41,8 +41,8 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                 className={`
                   w-full text-left p-4 rounded-lg transition-all duration-200
                   ${isSelected 
-                    ? 'bg-bg-card-alt border border-bg-card-alt/20 shadow-glow-highlight' 
-                    : 'bg-bg-card-alt border border-bg-card-alt/20 hover:border-bg-card-alt/40'
+                    ? 'bg-bg-card-alt border border-highlight/40 shadow-glow-highlight' 
+                    : 'bg-transparent border border-bg-card-alt/40 hover:border-highlight/30 hover:bg-bg-card-alt/30'
                   }
                   ${!isSelected && selectedWorkflows.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
@@ -53,7 +53,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                       {rank}
                     </span>
                   )}
-                  <span className={isSelected ? 'text-text-primary font-medium' : 'text-text-tertiary'}>
+                  <span className={isSelected ? 'text-text-primary font-medium' : 'text-text-primary'}>
                     {workflow.name}
                   </span>
                 </div>
