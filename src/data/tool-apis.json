@@ -1,0 +1,494 @@
+{
+  "tools": {
+    "okta": {
+      "name": "Okta",
+      "category": "identity",
+      "apis": {
+        "user_lifecycle": {
+          "name": "User Lifecycle Management",
+          "base_url": "https://{yourOktaDomain}",
+          "endpoints": [
+            {
+              "path": "/api/v1/users",
+              "methods": ["GET", "POST"],
+              "description": "List and create users"
+            },
+            {
+              "path": "/api/v1/users/{id}",
+              "methods": ["GET", "PUT", "DELETE"],
+              "description": "Get, update, or delete a specific user"
+            },
+            {
+              "path": "/api/v1/users/{id}/lifecycle/activate",
+              "methods": ["POST"],
+              "description": "Activate a user"
+            },
+            {
+              "path": "/api/v1/users/{id}/lifecycle/deactivate",
+              "methods": ["POST"],
+              "description": "Deactivate a user"
+            }
+          ],
+          "capabilities": [
+            "create_user",
+            "activate_user",
+            "deactivate_user",
+            "update_user",
+            "list_users"
+          ],
+          "scopes_required": ["okta.users.manage"],
+          "documentation": "https://developer.okta.com/docs/reference/api/users/"
+        },
+        "group_management": {
+          "name": "Group Management",
+          "base_url": "https://{yourOktaDomain}",
+          "endpoints": [
+            {
+              "path": "/api/v1/groups",
+              "methods": ["GET", "POST"],
+              "description": "List and create groups"
+            },
+            {
+              "path": "/api/v1/groups/{id}/users",
+              "methods": ["PUT", "DELETE"],
+              "description": "Add or remove users from groups"
+            },
+            {
+              "path": "/api/v1/users/{id}/groups",
+              "methods": ["GET"],
+              "description": "List user's group memberships"
+            }
+          ],
+          "capabilities": [
+            "create_group",
+            "add_user_to_group",
+            "remove_user_from_group",
+            "list_user_groups"
+          ],
+          "scopes_required": ["okta.groups.manage"],
+          "documentation": "https://developer.okta.com/docs/reference/api/groups/"
+        },
+        "app_assignments": {
+          "name": "Application Assignments",
+          "base_url": "https://{yourOktaDomain}",
+          "endpoints": [
+            {
+              "path": "/api/v1/apps",
+              "methods": ["GET"],
+              "description": "List all applications"
+            },
+            {
+              "path": "/api/v1/apps/{appId}/users",
+              "methods": ["POST", "DELETE"],
+              "description": "Assign or unassign users to applications"
+            },
+            {
+              "path": "/api/v1/users/{id}/appLinks",
+              "methods": ["GET"],
+              "description": "List user's assigned applications"
+            }
+          ],
+          "capabilities": [
+            "list_apps",
+            "assign_user_to_app",
+            "revoke_app_access",
+            "list_user_apps"
+          ],
+          "scopes_required": ["okta.apps.manage", "okta.apps.read"],
+          "documentation": "https://developer.okta.com/docs/reference/api/apps/"
+        },
+        "audit_logs": {
+          "name": "System Logs",
+          "base_url": "https://{yourOktaDomain}",
+          "endpoints": [
+            {
+              "path": "/api/v1/logs",
+              "methods": ["GET"],
+              "description": "Query system logs"
+            }
+          ],
+          "capabilities": ["audit_access_changes", "compliance_reporting"],
+          "scopes_required": ["okta.logs.read"],
+          "documentation": "https://developer.okta.com/docs/reference/api/system-log/"
+        }
+      },
+      "license_tiers": {
+        "workforce_identity": ["user_lifecycle", "group_management"],
+        "enterprise": [
+          "user_lifecycle",
+          "group_management",
+          "app_assignments",
+          "audit_logs"
+        ]
+      },
+      "prerequisites": "API token with appropriate scopes"
+    },
+    "servicenow": {
+      "name": "ServiceNow",
+      "category": "itsm",
+      "apis": {
+        "table_api": {
+          "name": "Table API",
+          "base_url": "https://{instance}.service-now.com/api/now/table",
+          "endpoints": [
+            {
+              "path": "/incident",
+              "methods": ["GET", "POST", "PUT", "PATCH"],
+              "description": "Manage incident records"
+            },
+            {
+              "path": "/sc_request",
+              "methods": ["GET", "POST"],
+              "description": "Service catalog requests"
+            },
+            {
+              "path": "/sc_req_item",
+              "methods": ["GET", "POST", "PUT"],
+              "description": "Request items (catalog tasks)"
+            },
+            {
+              "path": "/sys_user",
+              "methods": ["GET"],
+              "description": "Query user records"
+            },
+            {
+              "path": "/sys_user_group",
+              "methods": ["GET"],
+              "description": "Query user groups"
+            }
+          ],
+          "capabilities": [
+            "create_ticket",
+            "update_ticket",
+            "create_catalog_request",
+            "add_work_notes",
+            "query_users"
+          ],
+          "scopes_required": ["Table API access"],
+          "documentation": "https://www.servicenow.com/docs/bundle/vancouver-api-reference/page/integrate/inbound-rest/concept/c_TableAPI.html"
+        }
+      },
+      "license_tiers": {
+        "standard": ["table_api"],
+        "professional": ["table_api"],
+        "enterprise": ["table_api"]
+      },
+      "prerequisites": "OAuth credentials or Basic Auth with appropriate ACLs"
+    },
+    "slack": {
+      "name": "Slack",
+      "category": "communication",
+      "apis": {
+        "web_api": {
+          "name": "Web API",
+          "base_url": "https://slack.com/api",
+          "endpoints": [
+            {
+              "path": "chat.postMessage",
+              "methods": ["POST"],
+              "description": "Send a message to a channel"
+            },
+            {
+              "path": "conversations.list",
+              "methods": ["GET"],
+              "description": "List channels"
+            },
+            {
+              "path": "conversations.members",
+              "methods": ["GET"],
+              "description": "List channel members"
+            },
+            {
+              "path": "users.lookupByEmail",
+              "methods": ["GET"],
+              "description": "Find user by email"
+            }
+          ],
+          "capabilities": [
+            "send_message",
+            "reply_in_thread",
+            "list_channels",
+            "get_user_by_email"
+          ],
+          "scopes_required": [
+            "chat:write",
+            "channels:read",
+            "users:read.email"
+          ],
+          "documentation": "https://api.slack.com/methods"
+        },
+        "scim_api": {
+          "name": "SCIM API",
+          "base_url": "https://api.slack.com/scim/v2",
+          "endpoints": [
+            {
+              "path": "/Users",
+              "methods": ["GET", "POST", "PATCH", "DELETE"],
+              "description": "Provision and manage users"
+            },
+            {
+              "path": "/Groups",
+              "methods": ["GET", "POST", "PATCH", "DELETE"],
+              "description": "Manage user groups"
+            }
+          ],
+          "capabilities": [
+            "provision_user",
+            "deactivate_user",
+            "add_user_to_group",
+            "manage_user_groups"
+          ],
+          "scopes_required": ["SCIM token"],
+          "documentation": "https://api.slack.com/scim"
+        }
+      },
+      "license_tiers": {
+        "free": ["web_api"],
+        "pro": ["web_api"],
+        "business_plus": ["web_api", "scim_api"],
+        "enterprise": ["web_api", "scim_api"]
+      },
+      "prerequisites": "Slack app with appropriate OAuth scopes. SCIM requires Business+ or Enterprise."
+    },
+    "google_workspace": {
+      "name": "Google Workspace",
+      "category": "productivity",
+      "apis": {
+        "directory_api": {
+          "name": "Directory API",
+          "base_url": "https://admin.googleapis.com/admin/directory/v1",
+          "endpoints": [
+            {
+              "path": "/users",
+              "methods": ["GET", "POST", "PUT", "DELETE"],
+              "description": "Manage users"
+            },
+            {
+              "path": "/groups",
+              "methods": ["GET", "POST", "DELETE"],
+              "description": "Manage groups"
+            },
+            {
+              "path": "/groups/{groupKey}/members",
+              "methods": ["GET", "POST", "DELETE"],
+              "description": "Manage group memberships"
+            }
+          ],
+          "capabilities": [
+            "create_user",
+            "create_group",
+            "add_user_to_group",
+            "remove_user_from_group",
+            "list_groups"
+          ],
+          "scopes_required": [
+            "https://www.googleapis.com/auth/admin.directory.user",
+            "https://www.googleapis.com/auth/admin.directory.group"
+          ],
+          "documentation": "https://developers.google.com/admin-sdk/directory/reference/rest"
+        },
+        "license_api": {
+          "name": "License Manager API",
+          "base_url": "https://www.googleapis.com/apps/licensing/v1",
+          "endpoints": [
+            {
+              "path": "/licenseAssignments/{productId}/{skuId}",
+              "methods": ["GET", "POST", "DELETE"],
+              "description": "Assign and revoke licenses"
+            }
+          ],
+          "capabilities": ["assign_license", "revoke_license"],
+          "scopes_required": ["https://www.googleapis.com/auth/apps.licensing"],
+          "documentation": "https://developers.google.com/admin-sdk/licensing/reference/rest"
+        }
+      },
+      "license_tiers": {
+        "business_starter": ["directory_api", "license_api"],
+        "business_standard": ["directory_api", "license_api"],
+        "business_plus": ["directory_api", "license_api"],
+        "enterprise": ["directory_api", "license_api"]
+      },
+      "prerequisites": "Service account with domain-wide delegation"
+    },
+    "microsoft_entra": {
+      "name": "Microsoft Entra ID",
+      "category": "identity",
+      "apis": {
+        "graph_users": {
+          "name": "Microsoft Graph - Users",
+          "base_url": "https://graph.microsoft.com/v1.0",
+          "endpoints": [
+            {
+              "path": "/users",
+              "methods": ["GET", "POST"],
+              "description": "List and create users"
+            },
+            {
+              "path": "/users/{id}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Manage specific user"
+            },
+            {
+              "path": "/users/{id}/assignLicense",
+              "methods": ["POST"],
+              "description": "Assign licenses to user"
+            }
+          ],
+          "capabilities": [
+            "create_user",
+            "update_user",
+            "assign_license",
+            "revoke_license"
+          ],
+          "scopes_required": ["User.ReadWrite.All", "Directory.ReadWrite.All"],
+          "documentation": "https://learn.microsoft.com/en-us/graph/api/resources/user"
+        },
+        "graph_groups": {
+          "name": "Microsoft Graph - Groups",
+          "base_url": "https://graph.microsoft.com/v1.0",
+          "endpoints": [
+            {
+              "path": "/groups",
+              "methods": ["GET", "POST"],
+              "description": "List and create groups"
+            },
+            {
+              "path": "/groups/{id}/members",
+              "methods": ["GET", "POST", "DELETE"],
+              "description": "Manage group members"
+            }
+          ],
+          "capabilities": [
+            "create_group",
+            "add_user_to_group",
+            "remove_user_from_group"
+          ],
+          "scopes_required": ["Group.ReadWrite.All"],
+          "documentation": "https://learn.microsoft.com/en-us/graph/api/resources/group"
+        }
+      },
+      "license_tiers": {
+        "free": ["graph_users", "graph_groups"],
+        "p1": ["graph_users", "graph_groups"],
+        "p2": ["graph_users", "graph_groups"]
+      },
+      "prerequisites": "Azure AD app registration with appropriate API permissions"
+    },
+    "jira": {
+      "name": "Jira Service Management",
+      "category": "itsm",
+      "apis": {
+        "issues_api": {
+          "name": "Issues API",
+          "base_url": "https://{site}.atlassian.net/rest/api/3",
+          "endpoints": [
+            {
+              "path": "/search",
+              "methods": ["GET", "POST"],
+              "description": "Search for issues using JQL"
+            },
+            {
+              "path": "/issue",
+              "methods": ["POST"],
+              "description": "Create an issue"
+            },
+            {
+              "path": "/issue/{issueIdOrKey}",
+              "methods": ["GET", "PUT"],
+              "description": "Get or update an issue"
+            },
+            {
+              "path": "/issue/{issueIdOrKey}/comment",
+              "methods": ["POST"],
+              "description": "Add a comment to an issue"
+            },
+            {
+              "path": "/issue/{issueIdOrKey}/transitions",
+              "methods": ["GET", "POST"],
+              "description": "Transition an issue"
+            }
+          ],
+          "capabilities": [
+            "list_issues",
+            "create_issue",
+            "update_issue",
+            "add_comment",
+            "transition_issue"
+          ],
+          "scopes_required": ["write:jira-work", "read:jira-work"],
+          "documentation": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/"
+        },
+        "service_desk_api": {
+          "name": "Service Desk API",
+          "base_url": "https://{site}.atlassian.net/rest/servicedeskapi",
+          "endpoints": [
+            {
+              "path": "/request",
+              "methods": ["POST"],
+              "description": "Create a customer request"
+            },
+            {
+              "path": "/servicedesk",
+              "methods": ["GET"],
+              "description": "List service desks"
+            }
+          ],
+          "capabilities": ["create_request", "list_queues"],
+          "scopes_required": ["write:servicedesk-request"],
+          "documentation": "https://developer.atlassian.com/cloud/jira/service-desk/rest/"
+        }
+      },
+      "license_tiers": {
+        "standard": ["issues_api", "service_desk_api"],
+        "premium": ["issues_api", "service_desk_api"],
+        "enterprise": ["issues_api", "service_desk_api"]
+      },
+      "prerequisites": "Atlassian API token or OAuth 2.0 app"
+    },
+    "zoom": {
+      "name": "Zoom",
+      "category": "communication",
+      "apis": {
+        "users_api": {
+          "name": "Users API",
+          "base_url": "https://api.zoom.us/v2",
+          "endpoints": [
+            {
+              "path": "/users",
+              "methods": ["GET", "POST", "DELETE"],
+              "description": "Manage Zoom users"
+            },
+            {
+              "path": "/users/{userId}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Manage specific user"
+            }
+          ],
+          "capabilities": ["create_user", "update_user", "delete_user"],
+          "scopes_required": ["user:write:admin", "user:read:admin"],
+          "documentation": "https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#tag/Users"
+        },
+        "licenses_api": {
+          "name": "License Management",
+          "base_url": "https://api.zoom.us/v2",
+          "endpoints": [
+            {
+              "path": "/users/{userId}",
+              "methods": ["PATCH"],
+              "description": "Update user license type"
+            }
+          ],
+          "capabilities": ["assign_license", "update_license"],
+          "scopes_required": ["user:write:admin"],
+          "documentation": "https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#operation/userUpdate"
+        }
+      },
+      "license_tiers": {
+        "pro": ["users_api", "licenses_api"],
+        "business": ["users_api", "licenses_api"],
+        "enterprise": ["users_api", "licenses_api"]
+      },
+      "prerequisites": "Server-to-Server OAuth app with appropriate scopes"
+    }
+  }
+}

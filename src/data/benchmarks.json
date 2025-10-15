@@ -1,0 +1,61 @@
+{
+  "ticket_categories": {
+    "applications": {
+      "typical_pct": 0.58,
+      "sub_categories": {
+        "app_access": {
+          "typical_pct_of_parent": 0.29,
+          "median_ttr_hours": 1.71,
+          "automation_potential": 0.85
+        },
+        "within_app_actions": {
+          "typical_pct_of_parent": 0.034,
+          "median_ttr_hours": 1.97,
+          "automation_potential": 0.75
+        }
+      }
+    },
+    "hardware": {
+      "typical_pct": 0.268,
+      "median_ttr_hours": 2.5,
+      "automation_potential": 0.2
+    },
+    "onboarding_offboarding": {
+      "typical_pct": 0.09,
+      "median_ttr_hours": 4.0,
+      "automation_potential": 0.7
+    },
+    "distribution_lists": {
+      "typical_pct": 0.027,
+      "median_ttr_hours": 0.75,
+      "automation_potential": 0.9
+    },
+    "network": {
+      "typical_pct": 0.023,
+      "median_ttr_hours": 1.5,
+      "automation_potential": 0.3
+    },
+    "security": {
+      "typical_pct": 0.002,
+      "median_ttr_hours": 3.0,
+      "automation_potential": 0.5
+    }
+  },
+  "phase_1_results": {
+    "description": "Immediate impact scenario with IdP + ITSM + Slack",
+    "timeline_weeks": 4,
+    "total_deflection_pct": 0.215,
+    "breakdown": {
+      "app_access": 0.168,
+      "dl_changes": 0.027,
+      "in_app_actions": 0.02
+    },
+    "fte_impact": 3.0,
+    "confidence": 0.85
+  },
+  "assumptions": {
+    "hours_per_fte_year": 2000,
+    "approval_latency_hours": 4,
+    "automated_execution_minutes": 5
+  }
+}

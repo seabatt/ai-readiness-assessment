@@ -1,0 +1,298 @@
+{
+  "use_cases": [
+    {
+      "id": "add_user_to_okta",
+      "name": "Add User to Okta",
+      "category": "Identity Access & Compliance",
+      "description": "Autonomously provisions new employee access to Okta groups on Day 1 ensuring immediate productivity without IT bottlenecks.",
+      "value_proposition": "Critical Day-1 workflow that directly addresses high-volume provisioning requests. Cuts time by 65% and frees IT from repetitive work.",
+      "workflow_steps": [
+        "Get new user's email and baseline groups",
+        "Use [Get Okta User ID By Email]",
+        "Use [Add User to Group] for each group",
+        "Optional: Create Jira ticket for tracking",
+        "Confirm to user"
+      ],
+      "required_tools": ["okta"],
+      "optional_tools": ["jira", "slack"],
+      "required_apis": {
+        "okta": ["user_lifecycle", "group_management"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "okta.get_user_by_email",
+        "okta.add_user_to_group"
+      ],
+      "ticket_categories": ["app_access", "onboarding"],
+      "typical_volume_pct": 0.168,
+      "typical_ttr_hours": 1.5,
+      "automation_rate": 0.9,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Okta API token with okta.users.read and okta.groups.manage scopes",
+        "Defined baseline groups for new hires",
+        "Optional: Jira project for tracking"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 7
+    },
+    {
+      "id": "grant_software_access_okta",
+      "name": "Grant Software Access via Okta",
+      "category": "Identity Access & Compliance",
+      "description": "Automatically grants users access to specific applications through Okta without IT intervention.",
+      "value_proposition": "High-frequency access request that clogs IT service desks. Shows immediate ROI by reducing IT overhead by 50% on one of the most common ticket types.",
+      "workflow_steps": [
+        "Get user email and application name",
+        "Use [Get Okta User ID By Email]",
+        "Use [Grant User Access] to app",
+        "Optional: Create Jira ticket for audit",
+        "Confirm to user via Slack"
+      ],
+      "required_tools": ["okta"],
+      "optional_tools": ["jira", "slack", "servicenow"],
+      "required_apis": {
+        "okta": ["user_lifecycle", "app_assignments"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "okta.get_user_by_email",
+        "okta.assign_user_to_app"
+      ],
+      "ticket_categories": ["app_access"],
+      "typical_volume_pct": 0.123,
+      "typical_ttr_hours": 1.7,
+      "automation_rate": 0.85,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Okta API token with okta.users.read and okta.apps.manage scopes",
+        "Apps configured in Okta with provisioning enabled",
+        "Approval workflow (if required)"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 10
+    },
+    {
+      "id": "bulk_add_users_okta_group",
+      "name": "Bulk Add Users to Okta Group",
+      "category": "Identity Access & Compliance",
+      "description": "Processes bulk group membership changes for multiple users simultaneously saving hours of manual work.",
+      "value_proposition": "As organizations scale, manual bulk operations become impossible. Cuts time by 65% on bulk operations that previously required spreadsheets and manual verification.",
+      "workflow_steps": [
+        "Get user emails (comma-separated) and target group",
+        "For each email, use [Get Okta User ID By Email]",
+        "For each user, use [Add User to Group]",
+        "Optional: Create Jira ticket for tracking",
+        "Return summary of successful additions"
+      ],
+      "required_tools": ["okta"],
+      "optional_tools": ["jira"],
+      "required_apis": {
+        "okta": ["user_lifecycle", "group_management"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": [
+        "okta.get_user_by_email",
+        "okta.add_user_to_group"
+      ],
+      "ticket_categories": ["app_access", "group_management"],
+      "typical_volume_pct": 0.035,
+      "typical_ttr_hours": 3.5,
+      "automation_rate": 0.95,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Okta API token with appropriate scopes",
+        "Batch operation limits understood"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 7
+    },
+    {
+      "id": "google_workspace_group_management",
+      "name": "Group Management in Google Workspace",
+      "category": "Identity Access & Compliance",
+      "description": "Creates Google Workspace distribution lists and groups with initial members automatically.",
+      "value_proposition": "High-frequency operational workflow. Eliminates manual group administration overhead across Google environments.",
+      "workflow_steps": [
+        "Get new group email address and members to add",
+        "Use [Create Group] (Google Workspace)",
+        "For each member, use [Add User to Group]",
+        "Optional: Create Jira ticket",
+        "Confirm group creation"
+      ],
+      "required_tools": ["google_workspace"],
+      "optional_tools": ["jira", "slack"],
+      "required_apis": {
+        "google_workspace": ["directory_api"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "google_workspace.create_group",
+        "google_workspace.add_user_to_group"
+      ],
+      "ticket_categories": ["distribution_lists", "group_management"],
+      "typical_volume_pct": 0.027,
+      "typical_ttr_hours": 0.75,
+      "automation_rate": 0.9,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Google Workspace service account with domain-wide delegation",
+        "Admin SDK API enabled",
+        "Group creation permissions"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "offboarding_employee",
+      "name": "Offboarding Employee",
+      "category": "Identity Access & Compliance",
+      "description": "Executes comprehensive employee offboarding across multiple systems revoking access and notifying stakeholders.",
+      "value_proposition": "Critical security workflow that's complex and error-prone when manual. Orchestrates complete checklist autonomously across 5+ systems with zero mistakes.",
+      "workflow_steps": [
+        "Get departing employee email, last day, notification list",
+        "Okta: List and remove user from all groups",
+        "Okta: Revoke all app access",
+        "Google Workspace: Remove from all groups",
+        "Slack: Send notification to admin channel",
+        "Create Jira ticket for audit trail",
+        "Confirm offboarding completion"
+      ],
+      "required_tools": ["okta"],
+      "optional_tools": [
+        "google_workspace",
+        "microsoft_entra",
+        "slack",
+        "jira"
+      ],
+      "required_apis": {
+        "okta": ["user_lifecycle", "group_management", "app_assignments"],
+        "google_workspace": ["directory_api"],
+        "slack": ["web_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": [
+        "okta.list_user_groups",
+        "okta.remove_user_from_group",
+        "okta.list_user_apps",
+        "okta.revoke_app_access",
+        "google_workspace.remove_user_from_group",
+        "slack.send_message"
+      ],
+      "ticket_categories": ["offboarding"],
+      "typical_volume_pct": 0.045,
+      "typical_ttr_hours": 4.5,
+      "automation_rate": 0.8,
+      "confidence": 0.85,
+      "prerequisites": [
+        "API access to all connected identity systems",
+        "Offboarding checklist defined",
+        "Stakeholder notification channels configured"
+      ],
+      "implementation_effort": "high",
+      "time_to_value_days": 21
+    },
+    {
+      "id": "create_jira_it_request",
+      "name": "Create Jira IT Request",
+      "category": "ITSM Incidents & Ticket Hygiene",
+      "description": "Enables self-service IT ticket creation with proper categorization and tracking.",
+      "value_proposition": "Self-service ticket creation eliminates form friction. Reduces ticket creation friction and improves data quality through conversational intake.",
+      "workflow_steps": [
+        "Get ticket summary, description, priority",
+        "Use [Create Issue]",
+        "Use [Add Comment] for extra context",
+        "Return ticket link"
+      ],
+      "required_tools": ["jira"],
+      "optional_tools": ["slack"],
+      "required_apis": {
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": ["jira.create_issue", "jira.add_comment"],
+      "ticket_categories": ["general_it_request"],
+      "typical_volume_pct": 0.15,
+      "typical_ttr_hours": 0.25,
+      "automation_rate": 0.95,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Jira API access",
+        "Project and issue type configuration",
+        "Field mapping defined"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 3
+    },
+    {
+      "id": "servicenow_catalog_request",
+      "name": "Create ServiceNow Request from Catalog",
+      "category": "ITSM Incidents & Ticket Hygiene",
+      "description": "Creates ServiceNow catalog requests for standardized hardware and software provisioning.",
+      "value_proposition": "Simplifies catalog navigation for users through conversational intake and ServiceNow submission.",
+      "workflow_steps": [
+        "Get catalog item and special requirements",
+        "Use [Create Request From Catalog Item]",
+        "Use [Update Task] to add specifics if needed",
+        "Return request number"
+      ],
+      "required_tools": ["servicenow"],
+      "optional_tools": ["slack"],
+      "required_apis": {
+        "servicenow": ["table_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "servicenow.create_catalog_request",
+        "servicenow.update_task"
+      ],
+      "ticket_categories": ["hardware", "software_requests"],
+      "typical_volume_pct": 0.12,
+      "typical_ttr_hours": 0.5,
+      "automation_rate": 0.9,
+      "confidence": 0.9,
+      "prerequisites": [
+        "ServiceNow API access",
+        "Catalog items configured",
+        "Variable sets mapped"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 10
+    },
+    {
+      "id": "zoom_license_update",
+      "name": "Update Zoom User License",
+      "category": "Meetings & Collaboration Licenses",
+      "description": "Manages Zoom license assignments optimizing license costs and user access.",
+      "value_proposition": "Optimizes collaboration tool costs through automated license management with verification.",
+      "workflow_steps": [
+        "Get user email and license type",
+        "Use [Update User License] (Zoom)",
+        "Optional: Create Jira ticket for tracking",
+        "Confirm license update"
+      ],
+      "required_tools": ["zoom"],
+      "optional_tools": ["jira"],
+      "required_apis": {
+        "zoom": ["users_api", "licenses_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": ["zoom.update_user_license"],
+      "ticket_categories": ["license_management"],
+      "typical_volume_pct": 0.035,
+      "typical_ttr_hours": 0.5,
+      "automation_rate": 0.95,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Zoom Server-to-Server OAuth app",
+        "user:write:admin scope",
+        "License pool management process"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 7
+    }
+  ]
+}
