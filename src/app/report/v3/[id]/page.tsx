@@ -9,8 +9,11 @@ import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
 import ExecutiveSummary from "@/components/assessment/report/v3/ExecutiveSummary";
+import StackAnalysis from "@/components/assessment/report/v3/StackAnalysis";
+import GapAnalysis from "@/components/assessment/report/v3/GapAnalysis";
 import OpportunityAnalysis from "@/components/assessment/report/v3/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v3/BestFitUseCases";
+import ROIBreakdown from "@/components/assessment/report/v3/ROIBreakdown";
 import GetStartedRoadmap from "@/components/assessment/report/v3/GetStartedRoadmap";
 import ExpectedOutcomes from "@/components/assessment/report/v3/ExpectedOutcomes";
 import CustomReportCTA from "@/components/assessment/report/v3/CustomReportCTA";
@@ -165,6 +168,20 @@ export default function ReportV3Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
+        {/* New: Stack Analysis with real API data */}
+        {feasibilityResults.length > 0 && (
+          <>
+            <StackAnalysis 
+              feasibilityResults={feasibilityResults}
+              matchedUseCases={matchedUseCases}
+            />
+            <div className="border-t border-bg-card-alt/20 mb-20"></div>
+          </>
+        )}
+
+        {/* New: Gap Analysis */}
+        <GapAnalysis feasibilityResults={feasibilityResults} />
+
         <OpportunityAnalysis
           topOpportunities={topOpportunities}
           estimatedDeflection={estimatedDeflection}
@@ -179,6 +196,14 @@ export default function ReportV3Page() {
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
+
+        {/* New: ROI Breakdown */}
+        {roiResult && (
+          <>
+            <ROIBreakdown roiResult={roiResult} />
+            <div className="border-t border-bg-card-alt/20 mb-20"></div>
+          </>
+        )}
 
         <GetStartedRoadmap
           topOpportunities={topOpportunities}

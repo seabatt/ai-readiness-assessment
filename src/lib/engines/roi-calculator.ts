@@ -50,7 +50,7 @@ export class ROICalculator {
     const annualValueUsd = fteEquivalent * fullyLoadedCost;
 
     // Calculate weighted confidence
-    const weightedConfidence = matchedUseCases.length > 0
+    const weightedConfidence = matchedUseCases.length > 0 && totalHoursSaved > 0
       ? matchedUseCases.reduce((sum, uc) => 
           sum + (uc.confidence * uc.estimated_hours_saved), 0
         ) / totalHoursSaved
