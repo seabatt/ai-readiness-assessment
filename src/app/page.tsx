@@ -27,7 +27,7 @@ export default function Home() {
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             AI Workers learn from your tickets, adapt to your processes, and improve over time.
           </p>
-          <Link href="/assessment" className="bg-highlight text-bg-primary px-8 py-4 rounded-lg font-semibold hover:bg-highlight/90 transition-all duration-200 inline-flex items-center gap-3 mb-6 shadow-glow-highlight-hover">
+          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-3 mb-6">
             <span>Start Assessment →</span>
             <span className="text-sm font-normal">
               5 minutes • Instant results
@@ -52,7 +52,7 @@ export default function Home() {
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {/* Card 1 */}
-          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-highlight/30 transition-all duration-200">
+          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
             <div className="w-12 h-12 bg-bg-card-alt rounded-full flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-text-tertiary"
@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 */}
-          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-highlight/30 transition-all duration-200">
+          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
             <div className="w-12 h-12 bg-highlight/20 rounded-full flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-highlight"
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 */}
-          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-highlight/30 transition-all duration-200">
+          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
             <div className="w-12 h-12 bg-status-active/20 rounded-full flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-blue-500"
@@ -108,7 +108,7 @@ export default function Home() {
           </div>
 
           {/* Card 4 */}
-          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-highlight/30 transition-all duration-200">
+          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
             <div className="w-12 h-12 bg-status-warning/20 rounded-full flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-status-warning"
@@ -230,7 +230,7 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <Link href="/assessment" className="bg-highlight text-bg-primary px-8 py-4 rounded-lg font-semibold hover:bg-highlight/90 transition-all duration-200 mb-4 inline-block shadow-glow-highlight-hover">
+          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-block">
             Start Your Assessment →
           </Link>
           <p className="text-text-tertiary text-sm">
