@@ -9,6 +9,16 @@ export interface AssessmentData {
   approvalWorkflows: string;
   repetitivePercentage: string;
   primaryPainPoint: string;
+  monthlyTickets?: number;
+  ticketDistribution?: {
+    applications: number;
+    hardware: number;
+    onboarding: number;
+    distributionLists: number;
+    network: number;
+    security: number;
+  };
+  additionalContext?: string;
 }
 
 // AI Worker Types

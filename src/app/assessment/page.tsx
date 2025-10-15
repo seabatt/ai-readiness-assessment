@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import ProgressBar from '@/components/ui/ProgressBar';
 import Button from '@/components/ui/Button';
 import TechStackSelector from '@/components/assessment/TechStackSelector';
-import WorkflowRanker from '@/components/assessment/WorkflowRanker';
-import ScaleQuestions from '@/components/assessment/ScaleQuestions';
+import VolumeServiceProfile from '@/components/assessment/VolumeServiceProfile';
+import AdditionalContext from '@/components/assessment/AdditionalContext';
 import CurrentStateQuestions from '@/components/assessment/CurrentStateQuestions';
 import LoadingScreen from '@/components/assessment/LoadingScreen';
 import { AssessmentData } from '@/types';
@@ -16,7 +16,7 @@ export default function AssessmentPage() {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<Partial<AssessmentData>>({
     // Pre-filled for quick testing
-    techStack: ['Okta', 'ServiceNow', 'Slack', 'Jira'],
+    techStack: ['okta', 'servicenow', 'slack', 'jira'],
     topWorkflows: ['Password Reset', 'Access Provisioning', 'Incident Triage', 'Software Installation', 'VPN Access'],
     ticketVolume: '500-1000',
     teamSize: '11-25',
@@ -25,6 +25,16 @@ export default function AssessmentPage() {
     approvalWorkflows: 'sometimes',
     repetitivePercentage: '50-75%',
     primaryPainPoint: 'ticket-volume',
+    monthlyTickets: 1000,
+    ticketDistribution: {
+      applications: 24,
+      hardware: 18,
+      onboarding: 10,
+      distributionLists: 12,
+      network: 11,
+      security: 25,
+    },
+    additionalContext: '',
   });
 
   const handleNext = () => {
@@ -45,7 +55,7 @@ export default function AssessmentPage() {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleFieldChange = (field: string, value: string) => {
+  const handleFieldChange = (field: string, value: any) => {
     setData({ ...data, [field]: value });
   };
 
@@ -54,9 +64,14 @@ export default function AssessmentPage() {
       case 1:
         return (data.techStack?.length ?? 0) > 0;
       case 2:
-        return (data.topWorkflows?.length ?? 0) === 5;
+        // Check if monthlyTickets is set and distribution totals 100%
+        if (!data.monthlyTickets || data.monthlyTickets <= 0) return false;
+        if (!data.ticketDistribution) return false;
+        const total = Object.values(data.ticketDistribution).reduce((sum, val) => sum + val, 0);
+        return total === 100;
       case 3:
-        return !!(data.ticketVolume && data.teamSize && data.avgResolutionTime && data.employeeCount);
+        // Additional context is optional, so always valid
+        return true;
       case 4:
         return !!(data.approvalWorkflows && data.repetitivePercentage && data.primaryPainPoint);
       default:
@@ -90,18 +105,23 @@ export default function AssessmentPage() {
         )}
 
         {step === 2 && (
-          <WorkflowRanker
-            selectedWorkflows={data.topWorkflows || []}
-            onWorkflowsChange={(workflows) => setData({ ...data, topWorkflows: workflows })}
+          <VolumeServiceProfile
+            monthlyTickets={data.monthlyTickets || 1000}
+            ticketDistribution={data.ticketDistribution || {
+              applications: 24,
+              hardware: 18,
+              onboarding: 10,
+              distributionLists: 12,
+              network: 11,
+              security: 25,
+            }}
+            onChange={handleFieldChange}
           />
         )}
 
         {step === 3 && (
-          <ScaleQuestions
-            ticketVolume={data.ticketVolume || ''}
-            teamSize={data.teamSize || ''}
-            avgResolutionTime={data.avgResolutionTime || ''}
-            employeeCount={data.employeeCount || ''}
+          <AdditionalContext
+            additionalContext={data.additionalContext || ''}
             onChange={handleFieldChange}
           />
         )}
