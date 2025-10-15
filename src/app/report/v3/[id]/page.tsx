@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { AssessmentData, ReadinessScore } from "@/types";
 import { calculateReadinessScore } from "@/lib/scoringAlgorithm";
 import { generateOpportunities, getTop5Opportunities, calculateTotalDeflection } from "@/lib/opportunityEngine";
+import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-engine";
+import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
+import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
 import ExecutiveSummary from "@/components/assessment/report/v3/ExecutiveSummary";
 import OpportunityAnalysis from "@/components/assessment/report/v3/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v3/BestFitUseCases";
@@ -19,6 +22,11 @@ export default function ReportV3Page() {
   const [score, setScore] = useState<ReadinessScore | null>(null);
   const [assessmentData, setAssessmentData] = useState<AssessmentData | null>(null);
   const [showModal, setShowModal] = useState(false);
+  
+  // New engine results
+  const [feasibilityResults, setFeasibilityResults] = useState<FeasibilityResult[]>([]);
+  const [matchedUseCases, setMatchedUseCases] = useState<MatchedUseCase[]>([]);
+  const [roiResult, setRoiResult] = useState<ROIResult | null>(null);
 
   useEffect(() => {
     // Get data from sessionStorage
@@ -31,10 +39,56 @@ export default function ReportV3Page() {
     const data: AssessmentData = JSON.parse(dataStr);
     setAssessmentData(data);
 
-    // Calculate score
+    // Calculate score and run engines
     setTimeout(() => {
       const calcScore = calculateReadinessScore(data);
       setScore(calcScore);
+      
+      // Initialize engines
+      const feasibilityEngine = new FeasibilityEngine();
+      const useCaseMatcher = new UseCaseMatcher();
+      const roiCalculator = new ROICalculator();
+      
+      // Convert tech stack to tools format
+      const tools = data.techStack?.map(toolName => ({
+        name: toolName,
+        license_tier: 'standard' // Default tier, could be enhanced later
+      })) || [];
+      
+      // Convert ticket distribution to activities format
+      const activities = [];
+      if (data.ticketDistribution && data.monthlyTickets) {
+        const categoryMapping: Record<string, {key: string, ttr: number}> = {
+          applications: {key: 'app_access', ttr: 1.7},
+          hardware: {key: 'hardware', ttr: 2.5},
+          onboarding: {key: 'onboarding', ttr: 4.0},
+          distributionLists: {key: 'distribution_lists', ttr: 0.75},
+          network: {key: 'network', ttr: 1.5},
+          security: {key: 'security', ttr: 3.0}
+        };
+        
+        for (const [key, percentage] of Object.entries(data.ticketDistribution)) {
+          const mapping = categoryMapping[key];
+          if (mapping && percentage > 0) {
+            activities.push({
+              category: mapping.key,
+              monthly_volume: Math.round((data.monthlyTickets * percentage) / 100),
+              avg_ttr_hours: mapping.ttr
+            });
+          }
+        }
+      }
+      
+      // Run analysis engines
+      const feasibility = feasibilityEngine.analyzeStack(tools);
+      const matches = useCaseMatcher.matchUseCases(activities, feasibility);
+      const roi = roiCalculator.calculateROI(data.monthlyTickets || 1000, matches);
+      
+      // Store results
+      setFeasibilityResults(feasibility);
+      setMatchedUseCases(matches);
+      setRoiResult(roi);
+      
       setLoading(false);
     }, 3000);
 
