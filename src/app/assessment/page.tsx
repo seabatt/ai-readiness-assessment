@@ -70,9 +70,12 @@ export default function AssessmentPage() {
     <main className="min-h-screen bg-bg-primary text-text-primary">
       {/* Progress Bar */}
       {step <= 4 && (
-        <div className="border-b border-border">
+        <div className="border-b border-bg-card-alt/20">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <ProgressBar current={step} total={totalSteps} />
+            <p className="text-xs text-text-tertiary text-center mt-2">
+              Step {step} of {totalSteps}
+            </p>
           </div>
         </div>
       )}
@@ -117,7 +120,7 @@ export default function AssessmentPage() {
 
       {/* Navigation */}
       {step <= 4 && (
-        <div className="bg-black">
+        <div className="bg-bg-primary border-t border-bg-card-alt/20">
           <div className={`mx-auto px-6 py-6 ${step <= 2 ? 'max-w-4xl' : 'max-w-2xl'}`}>
             <div className="flex justify-between items-center">
               <Button

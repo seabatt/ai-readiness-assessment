@@ -48,13 +48,13 @@ export default function ReportV3Page() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-bg-primary flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-accent-blue border-t-transparent mb-8" />
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-highlight border-t-transparent mb-8" />
           <h2 className="text-2xl font-bold text-text-primary mb-2">
             Analyzing your environment...
           </h2>
-          <p className="text-text-secondary">
+          <p className="text-text-tertiary">
             Running AI Worker readiness analysis
           </p>
         </div>
@@ -80,22 +80,22 @@ export default function ReportV3Page() {
     assessmentData.approvalWorkflows === "manual";
 
   return (
-    <main className="min-h-screen bg-black py-12">
+    <main className="min-h-screen bg-bg-primary py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-20">
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-5xl font-bold text-white mb-3">
+              <h1 className="text-5xl font-bold text-text-primary mb-3">
                 AI Worker Readiness Assessment
               </h1>
-              <p className="text-xl text-gray-400">
+              <p className="text-xl text-text-tertiary">
                 Your assessment and get-started plan
               </p>
             </div>
             <div className="text-right">
-              <div className="text-sm text-gray-500">Report Version</div>
-              <div className="text-2xl font-bold text-white">V3.0</div>
+              <div className="text-sm text-text-tertiary">Report Version</div>
+              <div className="text-2xl font-bold text-text-primary">V3.0</div>
             </div>
           </div>
         </div>
@@ -109,16 +109,22 @@ export default function ReportV3Page() {
           fteImpact={fteImpact}
         />
 
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
+
         <OpportunityAnalysis
           topOpportunities={topOpportunities}
           estimatedDeflection={estimatedDeflection}
           techStack={assessmentData.techStack}
         />
 
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
+
         <BestFitUseCases
           opportunities={allOpportunities}
           techStack={assessmentData.techStack}
         />
+
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
         <GetStartedRoadmap
           topOpportunities={topOpportunities}
@@ -126,11 +132,15 @@ export default function ReportV3Page() {
           techStack={assessmentData.techStack}
         />
 
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
+
         <ExpectedOutcomes
           estimatedDeflection={estimatedDeflection}
           hoursSaved={hoursSaved}
           fteImpact={fteImpact}
         />
+
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
         <CustomReportCTA onRequestDiscovery={() => setShowModal(true)} />
       </div>

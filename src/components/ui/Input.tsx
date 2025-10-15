@@ -18,15 +18,15 @@ export default function Input({ label, error, className = '', ...props }: InputP
         className={`
           w-full
           bg-bg-card
-          border border-brand-tertiary/30
+          border border-bg-card-alt/20
           text-text-primary
           px-4 py-3
           rounded-lg
-          focus:border-accent-blue
+          focus:border-highlight
           focus:outline-none
           focus:ring-2
-          focus:ring-accent-blue/20
-          transition-all
+          focus:ring-highlight/30
+          transition-all duration-200
           placeholder:text-text-tertiary/50
           ${error ? 'border-accent-orange' : ''}
           ${className}

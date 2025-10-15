@@ -4,80 +4,80 @@ interface CustomReportCTAProps {
 
 export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAProps) {
   return (
-    <div className="mb-16">
-      <div className="bg-gradient-to-br from-blue-900/30 to-green-900/30 border border-blue-800/40 rounded-xl p-12">
+    <div className="mb-20">
+      <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Get 100% Accurate Results</h2>
-          <p className="text-xl text-gray-300 mb-4">
-            This assessment provides <span className="text-white font-semibold">~70% accuracy</span> based on self-reported data.
+          <h2 className="text-4xl font-bold text-text-primary mb-6">Get 100% Accurate Results</h2>
+          <p className="text-xl text-text-tertiary mb-4 leading-relaxed">
+            This assessment provides <span className="text-text-primary font-semibold">~70% accuracy</span> based on self-reported data.
           </p>
-          <p className="text-lg text-gray-400 mb-10">
+          <p className="text-lg text-text-tertiary mb-10 leading-relaxed">
             For precise automation opportunities and ROI projections, we analyze your actual ticket data.
           </p>
 
-          <div className="bg-black/50 border border-gray-800 rounded-lg p-8 mb-8 text-left">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">7-Day Ticket Listening Process</h3>
+          <div className="bg-bg-primary border border-bg-card-alt/20 rounded-lg py-8 px-6 mb-8 text-left">
+            <h3 className="text-2xl font-bold text-text-primary mb-6 text-center">7-Day Ticket Listening Process</h3>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div>
-                <div className="text-4xl font-bold text-blue-400 mb-2">1</div>
-                <h4 className="font-semibold text-white mb-2">Quick Call (15 min)</h4>
-                <p className="text-sm text-gray-400">
+                <div className="text-4xl font-bold text-highlight mb-2">1</div>
+                <h4 className="font-semibold text-text-primary mb-2">Quick Call (15 min)</h4>
+                <p className="text-sm text-text-tertiary leading-relaxed">
                   Enable read-only connectors to your ticket sources, collaboration tools, and identity systems
                 </p>
               </div>
               <div>
-                <div className="text-4xl font-bold text-blue-400 mb-2">2</div>
-                <h4 className="font-semibold text-white mb-2">Discovery Agent Runs</h4>
-                <p className="text-sm text-gray-400">
+                <div className="text-4xl font-bold text-highlight mb-2">2</div>
+                <h4 className="font-semibold text-text-primary mb-2">Discovery Agent Runs</h4>
+                <p className="text-sm text-text-tertiary leading-relaxed">
                   Analyzes ticket patterns, classifies into 3-level hierarchy, computes median TTR by category
                 </p>
               </div>
               <div>
-                <div className="text-4xl font-bold text-blue-400 mb-2">3</div>
-                <h4 className="font-semibold text-white mb-2">100% Accurate Report</h4>
-                <p className="text-sm text-gray-400">
+                <div className="text-4xl font-bold text-highlight mb-2">3</div>
+                <h4 className="font-semibold text-text-primary mb-2">100% Accurate Report</h4>
+                <p className="text-sm text-text-tertiary leading-relaxed">
                   Empirically grounded plan with exact categories to automate, precise ROI, and custom roadmap
                 </p>
               </div>
             </div>
 
-            <div className="border-t border-gray-800 pt-6">
-              <h4 className="font-semibold text-white mb-4 text-center">What You'll Get</h4>
+            <div className="border-t border-bg-card-alt/20 pt-6">
+              <h4 className="font-semibold text-text-primary mb-4 text-center">What You'll Get</h4>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Exact ticket categories to automate (down to subcategory level)
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Precise ROI projections for your specific team
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Segmentation: fully automatable vs. human-in-loop
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Custom 90-day roadmap with phased deployment
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Baseline metrics: volume by category, current median TTR
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-highlight mt-1">✓</span>
+                  <span className="text-sm text-text-tertiary leading-relaxed">
                     Confidence intervals for deflection (typically 95%+)
                   </span>
                 </div>
@@ -87,12 +87,12 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
 
           <button
             onClick={onRequestDiscovery}
-            className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="bg-text-primary text-bg-primary px-8 py-4 rounded-lg font-semibold hover:bg-text-secondary transition-all duration-200"
           >
             Request Custom Discovery Report
           </button>
 
-          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-400">
+          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -116,8 +116,8 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
       </div>
 
       {/* Footer Note */}
-      <div className="text-center text-gray-500 text-sm mt-8">
-        <p>
+      <div className="text-center text-text-tertiary text-sm mt-8">
+        <p className="leading-relaxed">
           This assessment is based on anonymized IT automation data. Confidence: ~70% accuracy with self-reported inputs.
         </p>
       </div>

@@ -27,7 +27,7 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
         Select your top 5 most time-consuming activities
       </p>
 
-      <Card className="!bg-black !border-0">
+      <Card className="!bg-bg-card !border !border-bg-card-alt/20">
         <div className="space-y-3">
           {workflows.map((workflow, index) => {
             const isSelected = selectedWorkflows.includes(workflow.id);
@@ -39,21 +39,21 @@ export default function WorkflowRanker({ selectedWorkflows, onWorkflowsChange }:
                 onClick={() => toggleWorkflow(workflow.id)}
                 disabled={!isSelected && selectedWorkflows.length >= 5}
                 className={`
-                  w-full text-left p-4 rounded-lg transition-all
+                  w-full text-left p-4 rounded-lg transition-all duration-200
                   ${isSelected 
-                    ? 'bg-accent-blue/10' 
-                    : 'bg-[rgb(30,30,29)] hover:bg-[rgb(40,40,39)]'
+                    ? 'bg-bg-card-alt border border-bg-card-alt/20 shadow-glow-highlight' 
+                    : 'bg-bg-card-alt border border-bg-card-alt/20 hover:border-bg-card-alt/40'
                   }
                   ${!isSelected && selectedWorkflows.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
               >
                 <div className="flex items-center gap-3">
                   {isSelected && (
-                    <span className="flex-shrink-0 w-8 h-8 bg-accent-blue rounded-full flex items-center justify-center text-bg-primary font-bold">
+                    <span className="flex-shrink-0 w-8 h-8 bg-highlight rounded-full flex items-center justify-center text-bg-primary font-bold">
                       {rank}
                     </span>
                   )}
-                  <span className={isSelected ? 'text-text-primary font-medium' : 'text-text-secondary'}>
+                  <span className={isSelected ? 'text-text-primary font-medium' : 'text-text-tertiary'}>
                     {workflow.name}
                   </span>
                 </div>

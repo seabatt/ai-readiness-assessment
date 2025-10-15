@@ -23,10 +23,10 @@ export default function Checkbox({ label, checked, onChange, disabled = false }:
             w-6 h-6 
             border-2 
             rounded 
-            transition-all
+            transition-all duration-200
             flex items-center justify-center
             ${checked 
-              ? 'bg-accent-blue border-accent-blue' 
+              ? 'bg-highlight border-highlight shadow-glow-highlight' 
               : 'bg-transparent border-brand-tertiary group-hover:border-brand-secondary'
             }
             ${disabled ? 'opacity-50 cursor-not-allowed' : ''}

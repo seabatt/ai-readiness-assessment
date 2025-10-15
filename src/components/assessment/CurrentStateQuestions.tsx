@@ -28,7 +28,7 @@ export default function CurrentStateQuestions({
         This helps us provide the most accurate assessment
       </p>
 
-      <Card className="!bg-black">
+      <Card className="!bg-bg-card !border !border-bg-card-alt/20">
         <div className="space-y-6">
           <Select
             label="Do you have formal approval workflows for access requests?"

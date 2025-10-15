@@ -22,8 +22,8 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
+/* Selection color (ai.work brand system) */
 ::selection {
-  background-color: #4A9EFF;
-  color: #262626;
+  background-color: #82D895;
+  color: #141414;
 }

@@ -24,8 +24,8 @@ export default function Select({ label, error, options, className = '', ...props
           rounded-lg
           focus:outline-none
           focus:ring-2
-          focus:ring-accent-blue/20
-          transition-all
+          focus:ring-highlight/30
+          transition-all duration-200
           cursor-pointer
           ${className}
         `}
