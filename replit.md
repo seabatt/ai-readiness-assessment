@@ -9,6 +9,24 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 15, 2025 - Assessment Flow Redesign: Volume & Context ✅
+- **Step 2 replaced with Volume & Service Profile**:
+  - Number input for average monthly tickets (default: 1000)
+  - 6 category sliders with data-driven baseline distribution (Security 25%, Applications 24%, Hardware 18%, Distribution Lists 12%, Network 11%, Onboarding 10%)
+  - Smart slider redistribution logic that preserves user-selected values and maintains 100% total
+  - Visual total indicator showing current percentage
+- **Step 3 replaced with Additional Context**:
+  - Large textarea for open-ended organizational context
+  - Example placeholder about international teams, GDPR, regional tool variations
+  - Optional field (users can skip or provide rich context for AI analysis)
+- **Type system updates**:
+  - AssessmentData extended with monthlyTickets, ticketDistribution, additionalContext
+  - Validation logic updated: Step 2 requires monthlyTickets > 0 and distribution = 100%, Step 3 is optional
+- **Bug fixes**:
+  - Fixed case mismatch in pre-filled test data (tool IDs now lowercase)
+  - Slider redistribution no longer overrides user selections
+  - Tech stack counter now accurately reflects selected tools
+
 ### October 15, 2025 - UX Improvements & Landing Page Copy Update ✅
 - **LoadingScreen component redesign**:
   - Simplified from complex multi-layer blue/gradient spinner to clean single-ring design
