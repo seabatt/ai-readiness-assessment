@@ -72,21 +72,31 @@ export function calculateReadinessScore(data: AssessmentData): ReadinessScore {
 
   // Operational Readiness (25 points)
   
-  // Team size appropriate for volume
-  const teamSizeNum = parseInt(data.teamSize.split('-')[0]);
-  if (teamSizeNum >= 4 && teamSizeNum <= 25) {
-    operationalScore += 10;
-  } else if (teamSizeNum >= 1 && teamSizeNum <= 10) {
+  // Team size appropriate for volume (if available)
+  if (data.teamSize) {
+    const teamSizeNum = parseInt(data.teamSize.split('-')[0]);
+    if (teamSizeNum >= 4 && teamSizeNum <= 25) {
+      operationalScore += 10;
+    } else if (teamSizeNum >= 1 && teamSizeNum <= 10) {
+      operationalScore += 5;
+    }
+  } else {
+    // Default: assume mid-size team if not specified
     operationalScore += 5;
   }
   
   // Resolution time > 2 hours (more to gain from automation)
-  if (data.avgResolutionTime === '2-8 hours' || 
-      data.avgResolutionTime === '1-3 days' || 
-      data.avgResolutionTime === '3+ days') {
-    operationalScore += 15;
-  } else if (data.avgResolutionTime === '30min-2hrs') {
-    operationalScore += 5;
+  if (data.avgResolutionTime) {
+    if (data.avgResolutionTime === '2-8 hours' || 
+        data.avgResolutionTime === '1-3 days' || 
+        data.avgResolutionTime === '3+ days') {
+      operationalScore += 15;
+    } else if (data.avgResolutionTime === '30min-2hrs') {
+      operationalScore += 5;
+    }
+  } else {
+    // Default: assume some automation opportunity if not specified
+    operationalScore += 10;
   }
 
   const total = techStackScore + workflowScore + operationalScore;
