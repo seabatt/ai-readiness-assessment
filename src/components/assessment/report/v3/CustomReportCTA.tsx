@@ -87,7 +87,7 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
 
           <button
             onClick={onRequestDiscovery}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-12 rounded-lg text-lg transition-all transform hover:scale-105"
+            className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
             Request Custom Discovery Report
           </button>
