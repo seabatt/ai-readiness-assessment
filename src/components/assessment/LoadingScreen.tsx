@@ -20,15 +20,11 @@ export default function LoadingScreen() {
 
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center">
-      <div className="relative w-24 h-24 mb-8">
-        <div className="absolute inset-0 rounded-full border-4 border-brand-secondary/20" />
-        <div className="absolute inset-0 rounded-full border-4 border-accent-blue border-t-transparent animate-spin" />
-        <div className="absolute inset-2 rounded-full bg-gradient-to-br from-accent-blue/20 to-accent-green/20 animate-pulse" />
-      </div>
+      <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-highlight border-t-transparent mb-8" />
       
-      <p className="text-xl text-text-secondary animate-pulse">
+      <h2 className="text-2xl font-bold text-text-primary mb-2">
         {messages[messageIndex]}
-      </p>
+      </h2>
     </div>
   );
 }

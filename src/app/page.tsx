@@ -22,7 +22,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center mb-20">
           <h1 className="text-6xl font-bold mb-6 leading-tight text-text-primary">
-            Is Your IT Team Ready for an AI Worker?
+            Find out if your IT stack can support a digital team mate.
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             AI Workers learn from your tickets, adapt to your processes, and improve over time.
