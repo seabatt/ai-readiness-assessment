@@ -9,6 +9,20 @@ This is a Next.js-based AI Work IT Automation Readiness Assessment tool that hel
 - **Environment**: Replit development environment with Node.js 20
 
 ## Recent Changes
+### October 15, 2025 - UX Improvements & Landing Page Copy Update ✅
+- **LoadingScreen component redesign**:
+  - Simplified from complex multi-layer blue/gradient spinner to clean single-ring design
+  - Now uses #82D895 highlight color matching V3 report loading style
+  - Maintains rotating status messages with cleaner typography
+  - Architect-reviewed and approved for consistency across app
+- **Landing page headline update**:
+  - Changed from "Is Your IT Team Ready for an AI Worker?" to "Find out if your IT stack can support a digital team mate."
+  - More conversational, user-focused messaging
+- **WorkflowRanker visibility improvements**:
+  - Enhanced contrast for unselected workflow items (transparent bg with visible borders)
+  - Improved hover states with green highlight border
+  - Text changed from tertiary to primary color for better readability
+
 ### October 15, 2025 - Ai.Work Brand System Implementation ✅
 - **Complete brand system overhaul** across entire application:
   - Updated global color palette: #141414 background, #82D895 highlight, #FBFAF9/#8A8784 text
