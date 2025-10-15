@@ -1,0 +1,181 @@
+🎯 Primary Goal
+
+Unify the AI Worker Readiness Assessment App with ai.work’s brand system by tightening color consistency, spacing rhythm, and tone of messaging, and standardizing the use of connected-app logos.
+No changes to CTA color or button structure — this sprint focuses purely on refinement and cohesion.
+
+🎨 Color System Implementation Tasks
+1. Neutral Backgrounds
+
+ Global background: #141414 across all pages.
+
+ Card/container backgrounds: #1A1A1A or #41403E (one step lighter than global background).
+
+ Avoid gradients or random color variations. Keep the dark palette minimal and controlled.
+
+2. Highlight & Feedback States
+
+ Replace all selection or focus indicators with #82D895.
+
+Card hover or selected state → soft outer glow (#82D895, 20% opacity, 8px blur).
+
+Progress bar fill and success indicators → #82D895.
+
+“Access Granted” / “Success” → pulse highlight in #82D895.
+
+ Remove legacy greens or teals (e.g., #CAEAC6).
+
+ Buttons remain as is; do not alter color or structure.
+
+3. Text & Contrast
+
+ Use #FBFAF9 for all primary text.
+
+ Use #8A8784 for secondary text, labels, and helper lines.
+
+ Verify all text meets WCAG AA contrast (≥4.5:1).
+
+ Avoid mid-gray text smaller than 14px.
+
+🧭 Layout & Spacing Tasks
+1. Global Rhythm
+
+ Vertical spacing between major sections: 64–80px.
+
+ Internal element spacing within a section: 24–32px.
+
+ Card padding: 32px top/bottom, 24px sides.
+
+ Align all content blocks to a consistent grid.
+
+2. Hero / Intro Screen
+
+ Retain the current structure and CTA styling.
+
+ Add privacy statement below the CTA:
+
+“No sensitive data stored or shared. Responses anonymized for benchmarking.”
+Style: 12px, #8A8784, center aligned.
+
+ Add 20px extra top and bottom padding for breathing room.
+
+3. Assessment Steps
+
+ Keep existing progress bar. Optionally add step label below it, e.g., “Step 2 of 4” (12px, #8A8784).
+
+ Step cards: background #1A1A1A or #41403E.
+
+ Selected card: subtle glow #82D895 (blur 8–10px, opacity 25%).
+
+ Consistent margin between cards: 24–32px.
+
+ Smooth transitions (200 ms fade or slide) between questions.
+
+4. Results / Report Layout
+
+ Divide vertically into clear sections:
+
+Readiness Overview
+
+Immediate Opportunities
+
+Where AI Workers Help First
+
+Crawl → Walk → Run Framework
+
+What to Expect / ROI Metrics
+
+Call to Action
+
+ Add 80px separation between each section.
+
+ Use a 1 px divider line (#41403E, 20% opacity) between sections.
+
+ Maintain consistent line height (1.6) for dense paragraphs.
+
+ Keep metrics and visuals vertically aligned for balance.
+
+🔗 Connected-App Logo System Tasks
+1. Inline Grouping
+
+ When referencing a workflow (e.g., “Access Requests & Provisioning”), include app logos inline beneath or beside the title.
+
+ Use official color logos, unmodified.
+
+ Logo height: 24 px.
+
+ Equal spacing: 12 px between icons.
+
+ Align logos vertically with text baseline.
+
+ Hover tooltip: “Okta Integration Active”, “Slack Connected”, etc.
+
+2. Skill Cards (Worker Panels)
+
+ Display app logos along the bottom edge of each skill card.
+
+ Max 7 logos visible at once; overflow can fade out.
+
+ Consistent size (24 px height), spacing (8–10 px).
+
+ Hover state: slight scale-up (102%) and soft green glow (#82D895, 10% opacity).
+
+ Tooltip reveals integration name on hover.
+
+🧱 Color + Spacing QA Checklist
+Checkpoint	Expected Value	Owner
+Global background	#141414	Dev
+Card surface	#1A1A1A / #41403E	Dev
+Text contrast	≥ 4.5:1 ratio	Design
+Section spacing	64–80 px vertical	Design
+Card padding	24–32 px internal	Dev
+Selected card glow	#82D895, 25% opacity	Dev
+Logo spacing	12 px horizontal	Design
+✍️ Messaging & Microcopy Tasks
+1. Tone Alignment
+
+ Review all text for ai.work voice: confident, clear, operational.
+
+Replace hype language with factual, functional phrasing.
+
+Example:
+
+❌ “See if AI can help you work smarter!”
+
+✅ “Assess your readiness for autonomous work.”
+
+ Each headline or summary should answer: What insight does this give the IT leader?
+
+2. Section Messaging
+
+ Hero Intro Subline:
+
+“AI Workers learn from your tickets, adapt to your processes, and improve over time.”
+
+ Results Summary Line:
+
+“Your team is positioned to automate access and license management workflows with minimal setup.”
+
+ Keep copy short and data-driven. Avoid filler sentences.
+
+📱 Final Pass – Design & Dev Review
+Phase	Task	Description	Owner
+1. Design Audit	Confirm colors (#141414, #82D895, neutrals) match palette.	Design	
+	Check vertical rhythm and spacing consistency.	Design	
+	Ensure logos appear inline or bottom-aligned per spec.	Design	
+2. Development Pass	Implement new green highlight system (#82D895).	Front-End	
+	Add privacy statement to hero.	Front-End	
+	Normalize typography sizing and spacing.	Front-End	
+	Add logo hover tooltips.	Front-End	
+3. QA Review	Cross-browser dark-mode contrast test.	QA	
+	Verify mobile responsiveness and spacing.	QA	
+✅ Success Criteria
+
+All pages share one dark foundation (#141414), one success green (#82D895), and one text color (#FBFAF9).
+
+Cards, spacing, and typography feel consistent and balanced.
+
+Connected-app logos are evenly spaced, functional, and interactive.
+
+Messaging is enterprise-grade: clear, credible, operational.
+
+The app visually and tonally feels like an integrated part of ai.work.
