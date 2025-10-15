@@ -37,48 +37,56 @@ export function calculateReadinessScore(data: AssessmentData): ReadinessScore {
   }
 
   // Workflow Automation Potential (35 points)
-  const highValueWorkflows = ['application-access', 'permission-changes', 'onboarding-offboarding'];
   
-  // Top 3 workflows are automatable
-  const topThreeAutomatable = data.topWorkflows.slice(0, 3).filter(workflow =>
-    highValueWorkflows.includes(workflow)
-  );
-  workflowScore += topThreeAutomatable.length * 5; // Up to 15 points
+  // High-value categories in ticket distribution (Applications, Security, Onboarding)
+  let highValuePercentage = 0;
+  if (data.ticketDistribution) {
+    highValuePercentage += (data.ticketDistribution.applications || 0);
+    highValuePercentage += (data.ticketDistribution.security || 0);
+    highValuePercentage += (data.ticketDistribution.onboarding || 0);
+  }
   
-  // Ticket volume > 1,500/month
-  const volumeValue = parseInt(data.ticketVolume.split('-')[0]);
-  if (volumeValue >= 1500) {
+  // Score based on high-value category concentration
+  if (highValuePercentage >= 60) {
+    workflowScore += 15;
+  } else if (highValuePercentage >= 40) {
     workflowScore += 10;
-  } else if (volumeValue >= 500) {
+  } else if (highValuePercentage >= 20) {
     workflowScore += 5;
   }
   
-  // Repetitive tickets > 60%
-  if (data.repetitivePercentage === '60-80' || data.repetitivePercentage === '80-100') {
+  // Ticket volume scoring
+  const monthlyTickets = data.monthlyTickets || 0;
+  if (monthlyTickets >= 1500) {
     workflowScore += 10;
-  } else if (data.repetitivePercentage === '40-60') {
+  } else if (monthlyTickets >= 500) {
+    workflowScore += 5;
+  }
+  
+  // Additional context provided (shows engagement/complexity)
+  if (data.additionalContext && data.additionalContext.length > 50) {
+    workflowScore += 10;
+  } else if (data.additionalContext && data.additionalContext.length > 0) {
     workflowScore += 5;
   }
 
   // Operational Readiness (25 points)
-  // Formal approval workflows
-  if (data.approvalWorkflows === 'automated') {
-    operationalScore += 10;
-  } else if (data.approvalWorkflows === 'manual') {
-    operationalScore += 5;
-  }
   
   // Team size appropriate for volume
   const teamSizeNum = parseInt(data.teamSize.split('-')[0]);
   if (teamSizeNum >= 4 && teamSizeNum <= 25) {
+    operationalScore += 10;
+  } else if (teamSizeNum >= 1 && teamSizeNum <= 10) {
     operationalScore += 5;
   }
   
-  // Resolution time > 2 hours (more to gain)
+  // Resolution time > 2 hours (more to gain from automation)
   if (data.avgResolutionTime === '2-8 hours' || 
       data.avgResolutionTime === '1-3 days' || 
       data.avgResolutionTime === '3+ days') {
-    operationalScore += 10;
+    operationalScore += 15;
+  } else if (data.avgResolutionTime === '30min-2hrs') {
+    operationalScore += 5;
   }
 
   const total = techStackScore + workflowScore + operationalScore;
