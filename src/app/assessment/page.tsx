@@ -7,7 +7,6 @@ import Button from '@/components/ui/Button';
 import TechStackSelector from '@/components/assessment/TechStackSelector';
 import VolumeServiceProfile from '@/components/assessment/VolumeServiceProfile';
 import AdditionalContext from '@/components/assessment/AdditionalContext';
-import CurrentStateQuestions from '@/components/assessment/CurrentStateQuestions';
 import LoadingScreen from '@/components/assessment/LoadingScreen';
 import { AssessmentData } from '@/types';
 
@@ -17,14 +16,6 @@ export default function AssessmentPage() {
   const [data, setData] = useState<Partial<AssessmentData>>({
     // Pre-filled for quick testing
     techStack: ['okta', 'servicenow', 'slack', 'jira'],
-    topWorkflows: ['Password Reset', 'Access Provisioning', 'Incident Triage', 'Software Installation', 'VPN Access'],
-    ticketVolume: '500-1000',
-    teamSize: '11-25',
-    avgResolutionTime: '4-8 hours',
-    employeeCount: '500-1000',
-    approvalWorkflows: 'sometimes',
-    repetitivePercentage: '50-75%',
-    primaryPainPoint: 'ticket-volume',
     monthlyTickets: 1000,
     ticketDistribution: {
       applications: 24,
