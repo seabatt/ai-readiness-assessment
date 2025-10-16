@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AssessmentData, ReadinessScore } from "@/types";
 import { calculateReadinessScore } from "@/lib/scoringAlgorithm";
-import { generateOpportunities, getTop5Opportunities, calculateTotalDeflection } from "@/lib/opportunityEngine";
 import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-engine";
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
@@ -120,19 +119,6 @@ export default function ReportV3Page() {
   }
 
   if (!score || !assessmentData) return null;
-
-  // Generate automation opportunities
-  const topOpportunities = getTop5Opportunities(assessmentData);
-  const allOpportunities = generateOpportunities(assessmentData);
-  const estimatedDeflection = calculateTotalDeflection(topOpportunities);
-
-  // Calculate impact metrics
-  const totalTickets = assessmentData.monthlyTickets || 1000;
-  const hoursSaved = Math.round((totalTickets * 12 * estimatedDeflection * 0.75) / 100);
-  const fteImpact = parseFloat((hoursSaved / 2080).toFixed(1));
-
-  // Legacy workflows check removed (field doesn't exist in simplified assessment)
-  const hasApprovalWorkflows = false;
 
   return (
     <main className="min-h-screen bg-bg-primary py-12">
