@@ -155,34 +155,25 @@ export default function ExecutiveSummary({
 
       {/* Context Insight (if provided) */}
       {assessmentData.additionalContext && (
-        <Card className="mt-8 bg-accent-blue/5 border-accent-blue/20">
-          <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-10 h-10 bg-accent-blue/20 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-accent-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+        <div className="mt-8">
+          <h3 className="font-semibold text-text-primary mb-4">
+            Key Insights
+          </h3>
+          {isGenerating ? (
+            <div className="flex items-center gap-2 text-text-tertiary">
+              <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-accent-blue border-t-transparent" />
+              Analyzing your context...
             </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-text-primary mb-1">
-                Your Context Considered
-              </h3>
-              {isGenerating ? (
-                <div className="flex items-center gap-2 text-sm text-text-tertiary">
-                  <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-accent-blue border-t-transparent" />
-                  Analyzing your context...
-                </div>
-              ) : generatedInsight ? (
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {generatedInsight}
-                </p>
-              ) : (
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {assessmentData.additionalContext}
-                </p>
-              )}
-            </div>
-          </div>
-        </Card>
+          ) : generatedInsight ? (
+            <p className="leading-relaxed" style={{ fontSize: '24px', color: '#8a8784' }}>
+              {generatedInsight}
+            </p>
+          ) : (
+            <p className="leading-relaxed" style={{ fontSize: '24px', color: '#8a8784' }}>
+              {assessmentData.additionalContext}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );
