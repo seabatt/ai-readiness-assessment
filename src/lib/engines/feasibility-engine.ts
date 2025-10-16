@@ -23,7 +23,7 @@ export class FeasibilityEngine {
    * Analyzes which APIs and capabilities are available for a given tool
    */
   analyzeToolFeasibility(tool: Tool): FeasibilityResult {
-    const toolName = tool.name.toLowerCase().replace(/\s+/g, '_');
+    const toolName = tool.name.toLowerCase().replace(/[\s-]+/g, '_');
     const toolConfig = (toolApis as any).tools[toolName];
     
     if (!toolConfig) {

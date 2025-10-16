@@ -44,7 +44,7 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
               const matchedUseCase = matchedUseCases.find(muc => muc.use_case_id === uc.id);
               
               // Determine if tool is required or optional for this use case
-              const toolNameNormalized = result.tool.toLowerCase().replace(/\s+/g, '_');
+              const toolNameNormalized = result.tool.toLowerCase().replace(/[\s-]+/g, '_');
               const isRequired = uc.required_tools?.includes(toolNameNormalized);
               
               allUseCasesForTool.push({
