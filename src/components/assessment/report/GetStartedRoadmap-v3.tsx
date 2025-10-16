@@ -245,43 +245,45 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
 
       {/* Cumulative Impact Card */}
       {allPriorityUseCases.length > 0 && (
-        <Card className="mt-12 bg-gradient-to-br from-accent-blue/10 to-accent-green/10 border-accent-blue/20">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-text-primary mb-2">
-              Cumulative Impact (First 2 Months)
-            </h3>
-            <p className="text-sm text-text-secondary">
-              By deploying AI workers with these {allPriorityUseCases.length} skills
-            </p>
-          </div>
+        <div className="mt-12" style={{ boxShadow: '0 0 40px rgba(130, 216, 149, 0.3)', borderRadius: '12px' }}>
+          <Card>
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-text-primary mb-2">
+                Cumulative Impact (First 2 Months)
+              </h3>
+              <p className="text-sm text-text-secondary">
+                By deploying AI workers with these {allPriorityUseCases.length} skills
+              </p>
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-green mb-1">
-                {cumulativeTickets.toLocaleString()}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent-green mb-1">
+                  {cumulativeTickets.toLocaleString()}
+                </div>
+                <div className="text-xs text-text-tertiary">Tickets Automated</div>
               </div>
-              <div className="text-xs text-text-tertiary">Tickets Automated</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue mb-1">
-                {Math.round(cumulativeHours).toLocaleString()}
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent-blue mb-1">
+                  {Math.round(cumulativeHours).toLocaleString()}
+                </div>
+                <div className="text-xs text-text-tertiary">Hours Saved/Month</div>
               </div>
-              <div className="text-xs text-text-tertiary">Hours Saved/Month</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-text-primary mb-1">
-                {cumulativeFTE.toFixed(1)}
+              <div className="text-center">
+                <div className="text-3xl font-bold text-text-primary mb-1">
+                  {cumulativeFTE.toFixed(1)}
+                </div>
+                <div className="text-xs text-text-tertiary">FTE Capacity Freed</div>
               </div>
-              <div className="text-xs text-text-tertiary">FTE Capacity Freed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-orange mb-1">
-                ${Math.round(cumulativeValue / 1000).toLocaleString()}K
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent-orange mb-1">
+                  ${Math.round(cumulativeValue / 1000).toLocaleString()}K
+                </div>
+                <div className="text-xs text-text-tertiary">Annual Value</div>
               </div>
-              <div className="text-xs text-text-tertiary">Annual Value</div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
       )}
 
       {/* Next Steps CTA */}
@@ -289,7 +291,8 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
         <p className="text-sm text-text-tertiary mb-4">
           Ready to start your deployment?
         </p>
-        <button className="px-6 py-3 bg-accent-blue text-bg-primary rounded-lg font-semibold hover:bg-accent-blue/90 transition-colors">
+        <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-highlight"></span>
           Schedule Implementation Planning Call
         </button>
       </div>

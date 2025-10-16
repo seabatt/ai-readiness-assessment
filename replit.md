@@ -42,11 +42,17 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
 
 ### Recent Changes (October 16, 2025)
--   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences (24px, #8a8784, 1em line-height, -0.01em letter-spacing).
+-   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences (16px font size, 24px line-height, #8a8784, -0.01em letter-spacing, font-weight 400). Removed "Key Insights" heading to streamline presentation.
 -   **Fixed Critical ROI Calculation Bug**: Resolved ticket double-counting issue where use cases were inflating totals beyond 100%. Implemented capacity tracking in UseCaseMatcher to ensure each ticket is only counted once, plus safety clamp in ROICalculator.
--   **UI Polish - Icons & Formatting**: Replaced all emojis with SVG icons across report sections. Standardized number formatting with commas (5,400 instead of 5400.0), whole numbers for hours/tickets, 1 decimal for FTE/percentages.
+-   **UI Polish - Icons & Formatting**: Replaced all emojis with SVG icons across all report sections including Strategic Benefits (Continuous Learning, Employee Satisfaction, Operational Insights, Compliance & Audit, Scalable Operations, Reduced Context Switching). Standardized number formatting with commas (5,400 instead of 5400.0), whole numbers for hours/tickets, 1 decimal for FTE/percentages.
 -   **Category Filtering**: Filtered out "Meetings & Collaboration Licenses" category from ROI Breakdown and Best Fit Use Cases sections to show only valid ticket categories.
--   **Home Page CTA Update**: Restructured "Start Assessment" button layout - button and "5 minutes • Instant results" text now separate elements (matching design spec).
+-   **Home Page Design Updates**: 
+    - Restructured "Start Assessment" button layout - button and "5 minutes • Instant results" text now separate elements (matching design spec)
+    - Made header checkmark icon green (#82D895)
+-   **Report Section Styling Updates**:
+    - Removed borders from "High-Impact Opportunities" boxes in Stack Analysis
+    - Added green outer glow effect to "Cumulative Impact (First 2 Months)" section (matching "Get 100% Accurate Results" styling)
+    - Updated "Schedule Implementation Planning Call" button to white background with green dot indicator (matching Step 1/Step 2 page design)
 -   **Custom Report CTA Styling**: Added outer glow effect (rgba(130, 216, 149, 0.3)) to "Get 100% Accurate Results" section.
 -   **Removed License Tier Restrictions**: FeasibilityEngine now shows ALL available APIs for every tool regardless of license tier, providing complete visibility into automation capabilities.
 -   **Comprehensive Tool Coverage**: Added API configurations for 18 previously missing tools (Ivanti, GitHub, JumpCloud, Freshservice, Microsoft Teams, Microsoft 365, Confluence, Monday.com, SAP SuccessFactors, HiBob, DocuSign, Linear, SharePoint, Google Drive, Google Docs, Google Sheets, Google Calendar, Gmail).

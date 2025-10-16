@@ -59,6 +59,37 @@ export default function ExpectedOutcomes({
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
+      ),
+      graduation: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        </svg>
+      ),
+      smile: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      chart: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      lock: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      ),
+      trending: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      refresh: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
       )
     };
     return icons[iconType] || null;
@@ -131,32 +162,32 @@ export default function ExpectedOutcomes({
 
   const qualitativeOutcomes = [
     {
-      icon: '🎓',
+      icon: 'graduation',
       title: 'Continuous Learning',
       description: 'AI Workers improve accuracy over time by learning from your unique policies, edge cases, and ticket patterns'
     },
     {
-      icon: '😊',
+      icon: 'smile',
       title: 'Employee Satisfaction',
       description: 'End users get faster responses, IT team focuses on meaningful work instead of repetitive tickets'
     },
     {
-      icon: '📊',
+      icon: 'chart',
       title: 'Operational Insights',
       description: 'Real-time dashboards showing automation rates, ticket patterns, and opportunities for optimization'
     },
     {
-      icon: '🔒',
+      icon: 'lock',
       title: 'Compliance & Audit',
       description: 'Complete audit trails for all automated actions, ensuring compliance and security governance'
     },
     {
-      icon: '📈',
+      icon: 'trending',
       title: 'Scalable Operations',
       description: 'Handle ticket volume growth without proportional headcount increases'
     },
     {
-      icon: '🔄',
+      icon: 'refresh',
       title: 'Reduced Context Switching',
       description: 'IT team interrupted less frequently, can focus on project work and strategic initiatives'
     }
@@ -232,7 +263,11 @@ export default function ExpectedOutcomes({
         <div className="grid md:grid-cols-3 gap-6">
           {qualitativeOutcomes.map((outcome, index) => (
             <Card key={index} className="text-center">
-              <div className="text-4xl mb-3">{outcome.icon}</div>
+              <div className="flex justify-center mb-3">
+                <div className="w-12 h-12 bg-accent-blue/20 rounded-full flex items-center justify-center text-accent-blue">
+                  {getIconSvg(outcome.icon)}
+                </div>
+              </div>
               <h4 className="text-base font-bold text-text-primary mb-2">
                 {outcome.title}
               </h4>

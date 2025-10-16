@@ -157,7 +157,7 @@ export default function ExecutiveSummary({
             Analyzing your data...
           </div>
         ) : generatedInsight ? (
-          <p style={{ fontSize: '24px', color: '#8a8784', lineHeight: '1em', letterSpacing: '-0.01em', fontWeight: 400 }}>
+          <p style={{ fontSize: '16px', color: '#8a8784', lineHeight: '24px', letterSpacing: '-0.01em', fontWeight: 400 }}>
             {generatedInsight}
           </p>
         ) : null}
