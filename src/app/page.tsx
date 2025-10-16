@@ -43,7 +43,7 @@ export default function Home() {
         {/* Problem Statement */}
         <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 mb-20">
           <p className="text-text-secondary mb-4 text-center">
-            AI isn't an easy button. Use this tool to get a data-driven, reality-based assessment of what your organization could reasonably do with AI in the next year.
+            AI isn't an easy button. <br />Use this tool to get a data-driven, reality-based assessment of what your organization could reasonably do with AI in the next year.
           </p>
           <p className="font-semibold text-center text-lg text-text-primary">
             Assess your readiness for autonomous work.
