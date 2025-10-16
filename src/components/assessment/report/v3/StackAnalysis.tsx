@@ -17,6 +17,7 @@ interface UseCaseInfo {
   description: string;
   estimatedImpact?: number;
   isMatched: boolean;
+  isRequired: boolean;
 }
 
 export default function StackAnalysis({ feasibilityResults, matchedUseCases }: StackAnalysisProps) {
@@ -42,13 +43,18 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
               // Check if this use case has a volume match (for impact data)
               const matchedUseCase = matchedUseCases.find(muc => muc.use_case_id === uc.id);
               
+              // Determine if tool is required or optional for this use case
+              const toolNameNormalized = result.tool.toLowerCase().replace(/\s+/g, '_');
+              const isRequired = uc.required_tools?.includes(toolNameNormalized);
+              
               allUseCasesForTool.push({
                 id: uc.id,
                 name: uc.name,
                 category: uc.category,
                 description: uc.description,
                 estimatedImpact: matchedUseCase?.estimated_hours_saved,
-                isMatched: !!matchedUseCase
+                isMatched: !!matchedUseCase,
+                isRequired: isRequired
               });
             }
           });
@@ -100,6 +106,9 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
                       <div key={uc.id} className="text-text-tertiary pl-6">
                         • <span className="font-medium">{uc.name}</span>
                         <span className="text-text-tertiary/60 text-sm ml-2">({uc.category})</span>
+                        {!uc.isRequired && (
+                          <span className="text-text-tertiary/40 text-xs ml-2">enhances</span>
+                        )}
                         {uc.estimatedImpact && (
                           <span className="text-highlight text-sm ml-2">~{Math.round(uc.estimatedImpact)}h/mo</span>
                         )}

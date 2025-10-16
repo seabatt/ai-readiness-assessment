@@ -60,12 +60,15 @@ export class FeasibilityEngine {
     // Find which use cases this tool enables
     const enabledUseCases = (useCaseMappings as any).use_cases
       .filter((useCase: any) => {
-        // Check if tool is required
-        if (!useCase.required_tools.includes(toolName)) {
+        const isRequired = useCase.required_tools.includes(toolName);
+        const isOptional = useCase.optional_tools?.includes(toolName);
+        
+        // Tool must be either required or optional
+        if (!isRequired && !isOptional) {
           return false;
         }
         
-        // Check if required APIs are available
+        // Check if required APIs for this tool are available
         const requiredApis = useCase.required_apis[toolName] || [];
         const hasAllRequiredApis = requiredApis.every((api: string) => 
           availableApiKeys.includes(api)
