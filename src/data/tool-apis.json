@@ -655,6 +655,573 @@
         "enterprise": ["contacts_api", "workflows_api"]
       },
       "prerequisites": "Private app access token or OAuth 2.0 credentials"
+    },
+    "ivanti": {
+      "name": "Ivanti",
+      "category": "itsm",
+      "apis": {
+        "rest_api": {
+          "name": "Ivanti REST API",
+          "base_url": "https://{instance}.ivanticloud.com/api/odata",
+          "endpoints": [
+            {
+              "path": "/businessobject/incidents",
+              "methods": ["GET", "POST", "PATCH"],
+              "description": "Manage incidents"
+            },
+            {
+              "path": "/businessobject/servicereq",
+              "methods": ["GET", "POST", "PATCH"],
+              "description": "Manage service requests"
+            }
+          ],
+          "capabilities": ["create_incident", "update_incident", "query_incidents", "create_service_request"],
+          "scopes_required": ["API key"],
+          "documentation": "https://help.ivanti.com/ht/help/en_US/ISM/2022/admin/Content/Configure/API/REST_API.htm"
+        }
+      },
+      "license_tiers": {
+        "standard": ["rest_api"],
+        "professional": ["rest_api"],
+        "enterprise": ["rest_api"]
+      },
+      "prerequisites": "API key with appropriate permissions"
+    },
+    "github": {
+      "name": "GitHub",
+      "category": "development",
+      "apis": {
+        "rest_api": {
+          "name": "GitHub REST API",
+          "base_url": "https://api.github.com",
+          "endpoints": [
+            {
+              "path": "/repos/{owner}/{repo}/issues",
+              "methods": ["GET", "POST"],
+              "description": "List and create issues"
+            },
+            {
+              "path": "/repos/{owner}/{repo}/pulls",
+              "methods": ["GET", "POST"],
+              "description": "Manage pull requests"
+            },
+            {
+              "path": "/repos/{owner}/{repo}/contents/{path}",
+              "methods": ["GET", "PUT"],
+              "description": "Access repository contents"
+            }
+          ],
+          "capabilities": ["create_issue", "update_issue", "create_pr", "read_repository"],
+          "scopes_required": ["repo"],
+          "documentation": "https://docs.github.com/en/rest"
+        }
+      },
+      "license_tiers": {
+        "free": ["rest_api"],
+        "team": ["rest_api"],
+        "enterprise": ["rest_api"]
+      },
+      "prerequisites": "Personal access token or GitHub App"
+    },
+    "jumpcloud": {
+      "name": "JumpCloud",
+      "category": "identity",
+      "apis": {
+        "directory_api": {
+          "name": "Directory API",
+          "base_url": "https://console.jumpcloud.com/api/v2",
+          "endpoints": [
+            {
+              "path": "/users",
+              "methods": ["GET", "POST", "PUT", "DELETE"],
+              "description": "Manage users"
+            },
+            {
+              "path": "/usergroups",
+              "methods": ["GET", "POST", "PUT", "DELETE"],
+              "description": "Manage user groups"
+            }
+          ],
+          "capabilities": ["create_user", "update_user", "delete_user", "manage_groups"],
+          "scopes_required": ["API key"],
+          "documentation": "https://docs.jumpcloud.com/api/2.0/"
+        }
+      },
+      "license_tiers": {
+        "starter": ["directory_api"],
+        "business": ["directory_api"],
+        "enterprise": ["directory_api"]
+      },
+      "prerequisites": "JumpCloud API key"
+    },
+    "freshservice": {
+      "name": "Freshservice",
+      "category": "itsm",
+      "apis": {
+        "tickets_api": {
+          "name": "Tickets API",
+          "base_url": "https://{domain}.freshservice.com/api/v2",
+          "endpoints": [
+            {
+              "path": "/tickets",
+              "methods": ["GET", "POST", "PUT", "DELETE"],
+              "description": "Manage tickets"
+            },
+            {
+              "path": "/tickets/{id}/notes",
+              "methods": ["POST"],
+              "description": "Add ticket notes"
+            }
+          ],
+          "capabilities": ["create_ticket", "update_ticket", "add_note", "resolve_ticket"],
+          "scopes_required": ["API key"],
+          "documentation": "https://api.freshservice.com/"
+        }
+      },
+      "license_tiers": {
+        "starter": ["tickets_api"],
+        "growth": ["tickets_api"],
+        "enterprise": ["tickets_api"]
+      },
+      "prerequisites": "Freshservice API key"
+    },
+    "microsoft_teams": {
+      "name": "Microsoft Teams",
+      "category": "communication",
+      "apis": {
+        "graph_api": {
+          "name": "Microsoft Graph - Teams",
+          "base_url": "https://graph.microsoft.com/v1.0",
+          "endpoints": [
+            {
+              "path": "/teams/{id}/channels",
+              "methods": ["GET", "POST"],
+              "description": "Manage channels"
+            },
+            {
+              "path": "/teams/{id}/channels/{channelId}/messages",
+              "methods": ["GET", "POST"],
+              "description": "Send and read messages"
+            }
+          ],
+          "capabilities": ["send_message", "create_channel", "read_messages"],
+          "scopes_required": ["Channel.ReadBasic.All", "ChannelMessage.Send"],
+          "documentation": "https://docs.microsoft.com/en-us/graph/api/resources/teams-api-overview"
+        }
+      },
+      "license_tiers": {
+        "business_basic": ["graph_api"],
+        "business_standard": ["graph_api"],
+        "enterprise": ["graph_api"]
+      },
+      "prerequisites": "Azure AD app registration with Microsoft Graph permissions"
+    },
+    "microsoft_365": {
+      "name": "Microsoft 365",
+      "category": "productivity",
+      "apis": {
+        "graph_users": {
+          "name": "Microsoft Graph - Users",
+          "base_url": "https://graph.microsoft.com/v1.0",
+          "endpoints": [
+            {
+              "path": "/users",
+              "methods": ["GET", "POST", "PATCH", "DELETE"],
+              "description": "Manage users"
+            },
+            {
+              "path": "/me/mailFolders/inbox/messages",
+              "methods": ["GET"],
+              "description": "Access email"
+            }
+          ],
+          "capabilities": ["manage_users", "read_email", "send_email"],
+          "scopes_required": ["User.ReadWrite.All", "Mail.Read"],
+          "documentation": "https://docs.microsoft.com/en-us/graph/overview"
+        }
+      },
+      "license_tiers": {
+        "business_basic": ["graph_users"],
+        "business_standard": ["graph_users"],
+        "enterprise": ["graph_users"]
+      },
+      "prerequisites": "Azure AD app registration with appropriate permissions"
+    },
+    "confluence": {
+      "name": "Confluence",
+      "category": "productivity",
+      "apis": {
+        "rest_api": {
+          "name": "Confluence REST API",
+          "base_url": "https://{instance}.atlassian.net/wiki/rest/api",
+          "endpoints": [
+            {
+              "path": "/content",
+              "methods": ["GET", "POST", "PUT", "DELETE"],
+              "description": "Manage pages and content"
+            },
+            {
+              "path": "/content/{id}/child/page",
+              "methods": ["GET"],
+              "description": "Get child pages"
+            }
+          ],
+          "capabilities": ["create_page", "update_page", "search_content", "manage_spaces"],
+          "scopes_required": ["read:confluence-content.all", "write:confluence-content"],
+          "documentation": "https://developer.atlassian.com/cloud/confluence/rest/v2/"
+        }
+      },
+      "license_tiers": {
+        "standard": ["rest_api"],
+        "premium": ["rest_api"],
+        "enterprise": ["rest_api"]
+      },
+      "prerequisites": "Atlassian API token or OAuth 2.0"
+    },
+    "monday": {
+      "name": "Monday.com",
+      "category": "productivity",
+      "apis": {
+        "graphql_api": {
+          "name": "Monday GraphQL API",
+          "base_url": "https://api.monday.com/v2",
+          "endpoints": [
+            {
+              "path": "/",
+              "methods": ["POST"],
+              "description": "GraphQL endpoint for all operations"
+            }
+          ],
+          "capabilities": ["create_item", "update_item", "manage_boards", "create_update"],
+          "scopes_required": ["API token"],
+          "documentation": "https://developer.monday.com/api-reference/docs"
+        }
+      },
+      "license_tiers": {
+        "basic": ["graphql_api"],
+        "standard": ["graphql_api"],
+        "enterprise": ["graphql_api"]
+      },
+      "prerequisites": "Monday.com API token"
+    },
+    "sap_successfactors": {
+      "name": "SAP SuccessFactors",
+      "category": "business",
+      "apis": {
+        "odata_api": {
+          "name": "OData API",
+          "base_url": "https://api.successfactors.com/odata/v2",
+          "endpoints": [
+            {
+              "path": "/User",
+              "methods": ["GET", "POST", "PATCH"],
+              "description": "Manage employee data"
+            },
+            {
+              "path": "/EmpJob",
+              "methods": ["GET", "POST", "PATCH"],
+              "description": "Manage job information"
+            }
+          ],
+          "capabilities": ["manage_employee_data", "update_job_info", "query_hr_data"],
+          "scopes_required": ["OAuth 2.0"],
+          "documentation": "https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/d599f15995d348a1b45ba5603e2aba9b/03e1fc3791684367a6a76a614a2916de.html"
+        }
+      },
+      "license_tiers": {
+        "standard": ["odata_api"],
+        "enterprise": ["odata_api"]
+      },
+      "prerequisites": "SAP SuccessFactors OAuth credentials"
+    },
+    "hibob": {
+      "name": "HiBob",
+      "category": "business",
+      "apis": {
+        "rest_api": {
+          "name": "HiBob REST API",
+          "base_url": "https://api.hibob.com/v1",
+          "endpoints": [
+            {
+              "path": "/people",
+              "methods": ["GET", "POST", "PUT"],
+              "description": "Manage employee records"
+            },
+            {
+              "path": "/people/{id}",
+              "methods": ["GET", "PATCH"],
+              "description": "Update individual employee"
+            }
+          ],
+          "capabilities": ["create_employee", "update_employee", "query_employees"],
+          "scopes_required": ["API token"],
+          "documentation": "https://apidocs.hibob.com/"
+        }
+      },
+      "license_tiers": {
+        "essential": ["rest_api"],
+        "advantage": ["rest_api"],
+        "enterprise": ["rest_api"]
+      },
+      "prerequisites": "HiBob service user API token"
+    },
+    "docusign": {
+      "name": "DocuSign",
+      "category": "business",
+      "apis": {
+        "envelopes_api": {
+          "name": "Envelopes API",
+          "base_url": "https://{server}.docusign.net/restapi/v2.1",
+          "endpoints": [
+            {
+              "path": "/accounts/{accountId}/envelopes",
+              "methods": ["GET", "POST"],
+              "description": "Create and send envelopes"
+            },
+            {
+              "path": "/accounts/{accountId}/envelopes/{envelopeId}",
+              "methods": ["GET", "PUT"],
+              "description": "Manage envelope status"
+            }
+          ],
+          "capabilities": ["send_envelope", "track_status", "void_envelope"],
+          "scopes_required": ["signature"],
+          "documentation": "https://developers.docusign.com/docs/esign-rest-api/"
+        }
+      },
+      "license_tiers": {
+        "personal": ["envelopes_api"],
+        "standard": ["envelopes_api"],
+        "business_pro": ["envelopes_api"]
+      },
+      "prerequisites": "DocuSign integration key and OAuth 2.0"
+    },
+    "linear": {
+      "name": "Linear",
+      "category": "development",
+      "apis": {
+        "graphql_api": {
+          "name": "Linear GraphQL API",
+          "base_url": "https://api.linear.app/graphql",
+          "endpoints": [
+            {
+              "path": "/",
+              "methods": ["POST"],
+              "description": "GraphQL endpoint for all operations"
+            }
+          ],
+          "capabilities": ["create_issue", "update_issue", "assign_issue", "create_comment"],
+          "scopes_required": ["API key"],
+          "documentation": "https://developers.linear.app/docs/graphql/working-with-the-graphql-api"
+        }
+      },
+      "license_tiers": {
+        "free": ["graphql_api"],
+        "standard": ["graphql_api"],
+        "plus": ["graphql_api"]
+      },
+      "prerequisites": "Linear API key or OAuth application"
+    },
+    "sharepoint": {
+      "name": "SharePoint",
+      "category": "productivity",
+      "apis": {
+        "rest_api": {
+          "name": "SharePoint REST API",
+          "base_url": "https://{tenant}.sharepoint.com/_api",
+          "endpoints": [
+            {
+              "path": "/web/lists",
+              "methods": ["GET", "POST"],
+              "description": "Manage lists and libraries"
+            },
+            {
+              "path": "/web/lists/getbytitle('{title}')/items",
+              "methods": ["GET", "POST", "PATCH"],
+              "description": "Manage list items"
+            }
+          ],
+          "capabilities": ["manage_documents", "create_list_item", "update_permissions"],
+          "scopes_required": ["Sites.ReadWrite.All"],
+          "documentation": "https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service"
+        }
+      },
+      "license_tiers": {
+        "plan_1": ["rest_api"],
+        "plan_2": ["rest_api"],
+        "enterprise": ["rest_api"]
+      },
+      "prerequisites": "Azure AD app with SharePoint permissions"
+    },
+    "google_drive": {
+      "name": "Google Drive",
+      "category": "productivity",
+      "apis": {
+        "drive_api": {
+          "name": "Drive API v3",
+          "base_url": "https://www.googleapis.com/drive/v3",
+          "endpoints": [
+            {
+              "path": "/files",
+              "methods": ["GET", "POST"],
+              "description": "List and create files"
+            },
+            {
+              "path": "/files/{fileId}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Manage individual files"
+            },
+            {
+              "path": "/files/{fileId}/permissions",
+              "methods": ["GET", "POST"],
+              "description": "Manage file permissions"
+            }
+          ],
+          "capabilities": ["upload_file", "share_file", "manage_permissions", "search_files"],
+          "scopes_required": ["https://www.googleapis.com/auth/drive"],
+          "documentation": "https://developers.google.com/drive/api/v3/reference"
+        }
+      },
+      "license_tiers": {
+        "personal": ["drive_api"],
+        "business_starter": ["drive_api"],
+        "business_standard": ["drive_api"],
+        "enterprise": ["drive_api"]
+      },
+      "prerequisites": "Service account or OAuth 2.0 credentials"
+    },
+    "google_docs": {
+      "name": "Google Docs",
+      "category": "productivity",
+      "apis": {
+        "docs_api": {
+          "name": "Docs API v1",
+          "base_url": "https://docs.googleapis.com/v1",
+          "endpoints": [
+            {
+              "path": "/documents",
+              "methods": ["POST"],
+              "description": "Create documents"
+            },
+            {
+              "path": "/documents/{documentId}",
+              "methods": ["GET"],
+              "description": "Read document content"
+            },
+            {
+              "path": "/documents/{documentId}:batchUpdate",
+              "methods": ["POST"],
+              "description": "Update document content"
+            }
+          ],
+          "capabilities": ["create_document", "read_document", "update_document"],
+          "scopes_required": ["https://www.googleapis.com/auth/documents"],
+          "documentation": "https://developers.google.com/docs/api/reference/rest"
+        }
+      },
+      "license_tiers": {
+        "personal": ["docs_api"],
+        "business_starter": ["docs_api"],
+        "business_standard": ["docs_api"],
+        "enterprise": ["docs_api"]
+      },
+      "prerequisites": "Service account or OAuth 2.0 credentials"
+    },
+    "google_sheets": {
+      "name": "Google Sheets",
+      "category": "productivity",
+      "apis": {
+        "sheets_api": {
+          "name": "Sheets API v4",
+          "base_url": "https://sheets.googleapis.com/v4",
+          "endpoints": [
+            {
+              "path": "/spreadsheets",
+              "methods": ["POST"],
+              "description": "Create spreadsheets"
+            },
+            {
+              "path": "/spreadsheets/{spreadsheetId}/values/{range}",
+              "methods": ["GET", "PUT"],
+              "description": "Read and write cell data"
+            }
+          ],
+          "capabilities": ["create_spreadsheet", "read_data", "write_data", "format_cells"],
+          "scopes_required": ["https://www.googleapis.com/auth/spreadsheets"],
+          "documentation": "https://developers.google.com/sheets/api/reference/rest"
+        }
+      },
+      "license_tiers": {
+        "personal": ["sheets_api"],
+        "business_starter": ["sheets_api"],
+        "business_standard": ["sheets_api"],
+        "enterprise": ["sheets_api"]
+      },
+      "prerequisites": "Service account or OAuth 2.0 credentials"
+    },
+    "google_calendar": {
+      "name": "Google Calendar",
+      "category": "productivity",
+      "apis": {
+        "calendar_api": {
+          "name": "Calendar API v3",
+          "base_url": "https://www.googleapis.com/calendar/v3",
+          "endpoints": [
+            {
+              "path": "/calendars/{calendarId}/events",
+              "methods": ["GET", "POST"],
+              "description": "List and create events"
+            },
+            {
+              "path": "/calendars/{calendarId}/events/{eventId}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Manage individual events"
+            }
+          ],
+          "capabilities": ["create_event", "update_event", "delete_event", "read_calendar"],
+          "scopes_required": ["https://www.googleapis.com/auth/calendar"],
+          "documentation": "https://developers.google.com/calendar/api/v3/reference"
+        }
+      },
+      "license_tiers": {
+        "personal": ["calendar_api"],
+        "business_starter": ["calendar_api"],
+        "business_standard": ["calendar_api"],
+        "enterprise": ["calendar_api"]
+      },
+      "prerequisites": "Service account or OAuth 2.0 credentials"
+    },
+    "gmail": {
+      "name": "Gmail",
+      "category": "communication",
+      "apis": {
+        "gmail_api": {
+          "name": "Gmail API v1",
+          "base_url": "https://gmail.googleapis.com/gmail/v1",
+          "endpoints": [
+            {
+              "path": "/users/{userId}/messages",
+              "methods": ["GET", "POST"],
+              "description": "List and send messages"
+            },
+            {
+              "path": "/users/{userId}/messages/{id}",
+              "methods": ["GET", "DELETE", "MODIFY"],
+              "description": "Manage individual messages"
+            }
+          ],
+          "capabilities": ["send_email", "read_email", "search_email", "manage_labels"],
+          "scopes_required": ["https://www.googleapis.com/auth/gmail.modify"],
+          "documentation": "https://developers.google.com/gmail/api/reference/rest"
+        }
+      },
+      "license_tiers": {
+        "personal": ["gmail_api"],
+        "business_starter": ["gmail_api"],
+        "business_standard": ["gmail_api"],
+        "enterprise": ["gmail_api"]
+      },
+      "prerequisites": "Service account with domain-wide delegation or OAuth 2.0"
     }
   }
 }
