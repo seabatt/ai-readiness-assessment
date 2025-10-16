@@ -65,7 +65,10 @@ export default function ExecutiveSummary({
 
         if (response.ok) {
           const data = await response.json();
+          console.log('API response data:', data);
           setGeneratedInsight(data.insight);
+        } else {
+          console.error('API response not OK:', response.status);
         }
       } catch (error) {
         console.error('Failed to generate insight:', error);

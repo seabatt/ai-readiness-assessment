@@ -89,6 +89,8 @@ Generate the executive insight (2-3 sentences):`;
 
     const insight = response.choices[0].message.content;
 
+    console.log('Generated insight:', insight);
+
     return NextResponse.json({ insight });
   } catch (error) {
     console.error('Error generating insight:', error);
