@@ -8,14 +8,14 @@ import { generateOpportunities, getTop5Opportunities, calculateTotalDeflection }
 import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-engine";
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
-import ExecutiveSummary from "@/components/assessment/report/v3/ExecutiveSummary";
+import ExecutiveSummary from "@/components/assessment/report/ExecutiveSummary-v3";
 import StackAnalysis from "@/components/assessment/report/v3/StackAnalysis";
 import GapAnalysis from "@/components/assessment/report/v3/GapAnalysis";
-import OpportunityAnalysis from "@/components/assessment/report/v3/OpportunityAnalysis";
-import BestFitUseCases from "@/components/assessment/report/v3/BestFitUseCases";
+import OpportunityAnalysis from "@/components/assessment/report/OpportunityAnalysis-v3";
+import BestFitUseCases from "@/components/assessment/report/BestFitUseCases-v3";
 import ROIBreakdown from "@/components/assessment/report/v3/ROIBreakdown";
-import GetStartedRoadmap from "@/components/assessment/report/v3/GetStartedRoadmap";
-import ExpectedOutcomes from "@/components/assessment/report/v3/ExpectedOutcomes";
+import GetStartedRoadmap from "@/components/assessment/report/GetStartedRoadmap-v3";
+import ExpectedOutcomes from "@/components/assessment/report/ExpectedOutcomes-v3";
 import CustomReportCTA from "@/components/assessment/report/v3/CustomReportCTA";
 import UnlockReportModal from "@/components/cta/UnlockReportModal";
 
