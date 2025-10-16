@@ -1,5 +1,5 @@
 interface CustomReportCTAProps {
-  onRequestDiscovery: () => void;
+  onRequestDiscovery?: () => void;
 }
 
 export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAProps) {
@@ -85,12 +85,15 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
             </div>
           </div>
 
-          <button
-            onClick={onRequestDiscovery}
-            className="bg-text-primary text-bg-primary px-8 py-4 rounded-lg font-semibold hover:bg-text-secondary transition-all duration-200"
+          <a
+            href="https://www.ai.work/book-a-demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2"
           >
+            <span className="w-2 h-2 rounded-full bg-highlight"></span>
             Request Custom Discovery Report
-          </button>
+          </a>
 
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
             <div className="flex items-center gap-2">

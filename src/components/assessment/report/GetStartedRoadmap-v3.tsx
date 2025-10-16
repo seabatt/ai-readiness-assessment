@@ -291,10 +291,15 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
         <p className="text-sm text-text-tertiary mb-4">
           Ready to start your deployment?
         </p>
-        <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+        <a 
+          href="https://www.ai.work/book-a-demo" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+        >
           <span className="w-2 h-2 rounded-full bg-highlight"></span>
           Schedule Implementation Planning Call
-        </button>
+        </a>
       </div>
     </div>
   );

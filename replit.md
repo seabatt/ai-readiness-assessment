@@ -52,7 +52,10 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **Report Section Styling Updates**:
     - Removed borders from "High-Impact Opportunities" boxes in Stack Analysis
     - Added green outer glow effect to "Cumulative Impact (First 2 Months)" section (matching "Get 100% Accurate Results" styling)
-    - Updated "Schedule Implementation Planning Call" button to white background with green dot indicator (matching Step 1/Step 2 page design)
+    - Updated all CTA buttons to white background with green dot indicator and linked to https://www.ai.work/book-a-demo:
+      - "Schedule a Complete Deep Dive" (Executive Summary)
+      - "Schedule Implementation Planning Call" (Get Started Roadmap)
+      - "Request Custom Discovery Report" (Custom Report CTA)
 -   **Custom Report CTA Styling**: Added outer glow effect (rgba(130, 216, 149, 0.3)) to "Get 100% Accurate Results" section.
 -   **Removed License Tier Restrictions**: FeasibilityEngine now shows ALL available APIs for every tool regardless of license tier, providing complete visibility into automation capabilities.
 -   **Comprehensive Tool Coverage**: Added API configurations for 18 previously missing tools (Ivanti, GitHub, JumpCloud, Freshservice, Microsoft Teams, Microsoft 365, Confluence, Monday.com, SAP SuccessFactors, HiBob, DocuSign, Linear, SharePoint, Google Drive, Google Docs, Google Sheets, Google Calendar, Gmail).
