@@ -13,6 +13,11 @@ import StatsImpactBanner from "@/components/assessment/report/StatsImpactBanner"
 import AIWorkerCardCondensed from "@/components/assessment/report/AIWorkerCardCondensed";
 import ImpactMetrics from "@/components/assessment/report/ImpactMetrics";
 import UnlockReportModal from "@/components/cta/UnlockReportModal";
+import ExecutiveSummary from "@/components/assessment/report/ExecutiveSummary-v3";
+import OpportunityAnalysis from "@/components/assessment/report/OpportunityAnalysis-v3";
+import BestFitUseCases from "@/components/assessment/report/BestFitUseCases-v3";
+import GetStartedRoadmap from "@/components/assessment/report/GetStartedRoadmap-v3";
+import ExpectedOutcomes from "@/components/assessment/report/ExpectedOutcomes-v3";
 
 export default function ReportPage() {
   const router = useRouter();

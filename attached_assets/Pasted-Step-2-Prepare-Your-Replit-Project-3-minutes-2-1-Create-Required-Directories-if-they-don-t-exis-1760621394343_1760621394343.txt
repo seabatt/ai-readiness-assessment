@@ -1,0 +1,170 @@
+Step 2: Prepare Your Replit Project (3 minutes)
+2.1: Create Required Directories (if they don't exist)
+In your Replit project, make sure these folders exist:
+src/
+├── components/
+│   └── assessment/
+│       └── report/
+├── types/
+└── lib/
+    └── engines/
+2.2: Verify Your Three Engines Exist
+Check that you have these files (from your V3 architecture):
+
+src/lib/engines/feasibility-engine.ts
+src/lib/engines/use-case-matcher.ts
+src/lib/engines/roi-calculator.ts
+
+If you DON'T have these engines yet:
+
+You need to build them first using your V3 architecture docs
+OR ask Replit AI to build them (see INSTRUCTIONS_FOR_REPLIT.md)
+
+
+📋 Step 3: Copy Files to Replit (2 minutes)
+3.1: Upload React Components
+Copy these 5 files to: src/components/assessment/report/
+
+ExecutiveSummary-v3.tsx
+OpportunityAnalysis-v3.tsx
+BestFitUseCases-v3.tsx
+GetStartedRoadmap-v3.tsx
+ExpectedOutcomes-v3.tsx
+
+In Replit:
+
+Navigate to src/components/assessment/report/
+Click "+ New file" or paste the code
+Name each file exactly as shown above
+
+3.2: Upload TypeScript Types
+Copy types-v3.ts to: src/types/
+In Replit:
+
+Navigate to src/types/
+Create new file types-v3.ts
+Paste the contents
+
+
+📋 Step 4: Update Your Report Page (5 minutes)
+4.1: Find Your Report Page
+Your report page is likely at one of these locations:
+
+src/app/report/[id]/page.tsx
+src/pages/report/[id].tsx
+src/app/report/page.tsx
+
+4.2: Update the Imports
+REPLACE these old imports:
+typescriptimport ExecutiveSummary from '@/components/assessment/report/ExecutiveSummary';
+import OpportunityAnalysis from '@/components/assessment/report/OpportunityAnalysis';
+// ... other old imports
+WITH these new V3 imports:
+typescriptimport ExecutiveSummary from '@/components/assessment/report/ExecutiveSummary-v3';
+import OpportunityAnalysis from '@/components/assessment/report/OpportunityAnalysis-v3';
+import BestFitUseCases from '@/components/assessment/report/BestFitUseCases-v3';
+import GetStartedRoadmap from '@/components/assessment/report/GetStartedRoadmap-v3';
+import ExpectedOutcomes from '@/components/assessment/report/ExpectedOutcomes-v3';
+4.3: Update the Component Usage
+Find where you render components and update them:
+OLD (if you have this):
+typescript<ExecutiveSummary scores={scores} ticketVolume={data.ticketVolume} />
+NEW:
+typescript<ExecutiveSummary 
+  roiResult={reportData.roiResult}
+  totalMonthlyTickets={reportData.assessmentInput.monthlyTickets}
+  assessmentData={{
+    techStack: reportData.assessmentInput.techStack,
+    additionalContext: reportData.assessmentInput.additionalContext
+  }}
+/>
+
+<OpportunityAnalysis 
+  matchedUseCases={reportData.matchedUseCases}
+  topN={5}
+/>
+
+<BestFitUseCases 
+  matchedUseCases={reportData.matchedUseCases}
+/>
+
+<GetStartedRoadmap 
+  matchedUseCases={reportData.matchedUseCases}
+/>
+
+<ExpectedOutcomes 
+  roiResult={reportData.roiResult}
+  totalMonthlyTickets={reportData.assessmentInput.monthlyTickets}
+/>
+
+📋 Step 5: Ensure Data Flow is Correct (5 minutes)
+5.1: Verify You Have a runV3Analysis Function
+Your report page needs to call the three engines. Look for or create this:
+typescript// src/lib/v3-analyzer.ts (or similar)
+export function runV3Analysis(assessmentInput: AssessmentInput): ReportData {
+  // Step 1: Run Feasibility Analysis
+  const feasibilityEngine = new FeasibilityEngine();
+  const feasibilityResults = feasibilityEngine.analyze(assessmentInput.techStack);
+
+  // Step 2: Match Use Cases
+  const useCaseMatcher = new UseCaseMatcher();
+  const matchedUseCases = useCaseMatcher.match(
+    convertToActivities(assessmentInput),
+    feasibilityResults
+  );
+
+  // Step 3: Calculate ROI
+  const roiCalculator = new ROICalculator();
+  const roiResult = roiCalculator.calculate(
+    assessmentInput.monthlyTickets,
+    matchedUseCases
+  );
+
+  return {
+    assessmentInput,
+    feasibilityResults,
+    matchedUseCases,
+    roiResult,
+    generatedAt: new Date().toISOString()
+  };
+}
+If you DON'T have this function:
+
+Ask Replit AI to create it (see INSTRUCTIONS_FOR_REPLIT.md)
+
+5.2: Verify Your Report Page Gets the Data
+In your report page component, you should have:
+typescriptconst [reportData, setReportData] = useState<ReportData | null>(null);
+
+useEffect(() => {
+  const dataStr = sessionStorage.getItem('assessmentData');
+  if (!dataStr) {
+    window.location.href = '/';
+    return;
+  }
+
+  const assessmentInput = JSON.parse(dataStr);
+  
+  // Run V3 analysis
+  const results = runV3Analysis(assessmentInput);
+  setReportData(results);
+}, []);
+
+📋 Step 6: Test the Components (5 minutes)
+6.1: Create Test Data
+In your Replit console or browser console, test with this data:
+typescriptconst testData = {
+  techStack: ['okta', 'servicenow', 'slack'],
+  monthlyTickets: 1000,
+  ticketDistribution: {
+    applications: 24,
+    security: 25,
+    hardware: 18,
+    distribution_lists: 12,
+    network: 11,
+    onboarding: 10
+  },
+  additionalContext: 'We need GDPR compliance'
+};
+
+sessionStorage.setItem('assessmentData', JSON.stringify(testData));
