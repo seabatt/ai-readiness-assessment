@@ -157,9 +157,17 @@ export default function ExecutiveSummary({
             Analyzing your data...
           </div>
         ) : generatedInsight ? (
-          <p className="text-lg text-text-secondary">
-            {generatedInsight}
-          </p>
+          <>
+            <p className="text-lg text-text-secondary mb-6">
+              {generatedInsight}
+            </p>
+            <div className="text-center">
+              <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-highlight"></span>
+                Schedule a Complete Deep Dive
+              </button>
+            </div>
+          </>
         ) : null}
       </div>
     </div>
