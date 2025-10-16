@@ -123,10 +123,10 @@ export default function ExpectedOutcomes({
     <div className="max-w-6xl mx-auto mb-16">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          📊 Expected Outcomes
+          📊 What to Expect
         </h2>
         <p className="text-text-secondary max-w-3xl mx-auto">
-          Based on your {totalMonthlyTickets.toLocaleString()} monthly tickets and {roiResult.automatable_pct.toFixed(1)}% automation potential
+          Projected results from deploying AI Workers with your {totalMonthlyTickets.toLocaleString()} monthly tickets
         </p>
       </div>
 

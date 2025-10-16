@@ -158,10 +158,10 @@ export default function GetStartedRoadmap({ matchedUseCases }: GetStartedRoadmap
     <div className="max-w-4xl mx-auto mb-16">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          🗺️ Your Get-Started Roadmap
+          🚀 How to Get Started
         </h2>
         <p className="text-text-secondary max-w-2xl mx-auto">
-          A phased deployment plan prioritized by impact, implementation effort, and stack readiness.
+          A phased deployment plan showing when to deploy each AI Worker, based on your current capabilities and business impact.
         </p>
       </div>
 
