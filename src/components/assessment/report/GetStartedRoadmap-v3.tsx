@@ -1,5 +1,5 @@
 import Card from '@/components/ui/Card';
-import { MatchedUseCase } from '@/types';
+import { MatchedUseCase } from '@/types/types-v3';
 
 interface GetStartedRoadmapProps {
   matchedUseCases: MatchedUseCase[];

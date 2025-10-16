@@ -1,5 +1,5 @@
 import Card from '@/components/ui/Card';
-import { ROIResult } from '@/types';
+import { ROIResult } from '@/types/types-v3';
 
 interface ExecutiveSummaryProps {
   roiResult: ROIResult;

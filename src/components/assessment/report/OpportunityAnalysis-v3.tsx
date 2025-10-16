@@ -1,6 +1,6 @@
 import Card from '@/components/ui/Card';
 import StatusPill from '@/components/ui/StatusPill';
-import { MatchedUseCase } from '@/types';
+import { MatchedUseCase } from '@/types/types-v3';
 
 interface OpportunityAnalysisProps {
   matchedUseCases: MatchedUseCase[];
