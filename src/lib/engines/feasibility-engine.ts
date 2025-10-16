@@ -39,15 +39,14 @@ export class FeasibilityEngine {
       };
     }
 
-    // Determine which APIs are available based on license tier
-    const licenseTier = tool.license_tier || 'standard';
-    const availableApiKeys = toolConfig.license_tiers[licenseTier] || [];
+    // Show ALL available APIs regardless of license tier
+    const availableApiKeys = Object.keys(toolConfig.apis);
     
     const availableApis: string[] = [];
     const availableCapabilities: string[] = [];
     const prerequisites: string[] = [];
 
-    // Collect available APIs and capabilities
+    // Collect all available APIs and capabilities
     for (const apiKey of availableApiKeys) {
       const apiConfig = toolConfig.apis[apiKey];
       if (apiConfig) {
@@ -92,19 +91,8 @@ export class FeasibilityEngine {
       )
     )) as string[];
 
-    // Check for license gaps
+    // No license gaps - all APIs are shown regardless of tier
     const licenseGaps: string[] = [];
-    const allApiKeys = Object.keys(toolConfig.apis);
-    const unavailableApis = allApiKeys.filter(key => !availableApiKeys.includes(key));
-    
-    if (unavailableApis.length > 0) {
-      // Find which tier would enable these
-      for (const [tier, apis] of Object.entries(toolConfig.license_tiers as Record<string, string[]>)) {
-        if (tier !== licenseTier && apis.some(api => unavailableApis.includes(api))) {
-          licenseGaps.push(`Upgrade to ${tier} to unlock ${unavailableApis.join(', ')}`);
-        }
-      }
-    }
 
     return {
       tool: tool.name,
