@@ -184,16 +184,14 @@ export default function ReportV3Page() {
         <GapAnalysis feasibilityResults={feasibilityResults} />
 
         <OpportunityAnalysis
-          topOpportunities={topOpportunities}
-          estimatedDeflection={estimatedDeflection}
-          techStack={assessmentData.techStack}
+          matchedUseCases={matchedUseCases}
+          topN={5}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
         <BestFitUseCases
-          opportunities={allOpportunities}
-          techStack={assessmentData.techStack}
+          matchedUseCases={matchedUseCases}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
@@ -207,18 +205,17 @@ export default function ReportV3Page() {
         )}
 
         <GetStartedRoadmap
-          topOpportunities={topOpportunities}
-          hasApprovalWorkflows={hasApprovalWorkflows}
-          techStack={assessmentData.techStack}
+          matchedUseCases={matchedUseCases}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
-        <ExpectedOutcomes
-          estimatedDeflection={estimatedDeflection}
-          hoursSaved={hoursSaved}
-          fteImpact={fteImpact}
-        />
+        {roiResult && (
+          <ExpectedOutcomes
+            roiResult={roiResult}
+            totalMonthlyTickets={assessmentData.monthlyTickets || 1000}
+          />
+        )}
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
