@@ -16,15 +16,8 @@ interface InsightRequest {
 export async function POST(req: NextRequest) {
   try {
     const data: InsightRequest = await req.json();
-
-    if (!data.userContext || data.userContext.trim().length === 0) {
-      return NextResponse.json(
-        { insight: null },
-        { status: 200 }
-      );
-    }
     
-    console.log('Generating insight for context:', data.userContext.substring(0, 100));
+    console.log('Generating insight with context:', data.userContext?.substring(0, 100) || 'No additional context');
 
     const systemPrompt = `Role: You are a strategic operations consultant delivering executive-level insights to IT leaders evaluating AI Worker readiness.
 Context: You're analyzing IT service operations data to assess automation opportunities and provide actionable, business-focused insights—not raw data summaries.
@@ -63,9 +56,9 @@ Avoid:
 - Technology-first messaging – always lead with business outcomes`;
 
     const userPrompt = `Input Data:
-
+${data.userContext ? `
 User's Additional Context: "${data.userContext}"
-
+` : ''}
 Key Operational Metrics:
 - Automatable ticket volume: ${data.automatableTickets} tickets/month
 - Potential hours saved: ${data.totalHoursSaved} hours/month

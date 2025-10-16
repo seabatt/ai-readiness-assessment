@@ -26,10 +26,6 @@ export default function ExecutiveSummary({
 
   useEffect(() => {
     async function generateInsight() {
-      if (!assessmentData.additionalContext) {
-        return;
-      }
-
       setIsGenerating(true);
 
       try {
@@ -53,7 +49,7 @@ export default function ExecutiveSummary({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            userContext: assessmentData.additionalContext,
+            userContext: assessmentData.additionalContext || '',
             automatableTickets: roiResult.automatable_tickets,
             totalHoursSaved: roiResult.total_hours_saved,
             fteEquivalent: roiResult.fte_equivalent,
@@ -153,28 +149,22 @@ export default function ExecutiveSummary({
         </div>
       </Card>
 
-      {/* Context Insight (if provided) */}
-      {assessmentData.additionalContext && (
-        <div className="mt-8">
-          <h3 className="font-semibold text-text-primary mb-4">
-            Key Insights
-          </h3>
-          {isGenerating ? (
-            <div className="flex items-center gap-2 text-text-tertiary">
-              <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-accent-blue border-t-transparent" />
-              Analyzing your context...
-            </div>
-          ) : generatedInsight ? (
-            <p className="leading-relaxed" style={{ fontSize: '24px', color: '#8a8784' }}>
-              {generatedInsight}
-            </p>
-          ) : (
-            <p className="leading-relaxed" style={{ fontSize: '24px', color: '#8a8784' }}>
-              {assessmentData.additionalContext}
-            </p>
-          )}
-        </div>
-      )}
+      {/* Key Insights - Always Show */}
+      <div className="mt-8">
+        <h3 className="font-semibold text-text-primary mb-4">
+          Key Insights
+        </h3>
+        {isGenerating ? (
+          <div className="flex items-center gap-2 text-text-tertiary">
+            <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-accent-blue border-t-transparent" />
+            Analyzing your data...
+          </div>
+        ) : generatedInsight ? (
+          <p className="leading-relaxed" style={{ fontSize: '24px', color: '#8a8784' }}>
+            {generatedInsight}
+          </p>
+        ) : null}
+      </div>
     </div>
   );
 }
