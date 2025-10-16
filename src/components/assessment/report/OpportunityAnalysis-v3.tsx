@@ -95,7 +95,7 @@ export default function OpportunityAnalysis({
     <div className="max-w-5xl mx-auto mb-16">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          🎯 What You Can Automate Right Now
+          What You Can Automate Right Now
         </h2>
         <p className="text-text-secondary">
           Common IT use cases that AI Workers can handle using your current tools and APIs. These are ranked by impact, feasibility, and time-to-value.

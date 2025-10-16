@@ -131,7 +131,7 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
             </div>
             <div>
               <h3 className="text-2xl font-bold text-text-primary">
-                🚀 Deploy Immediately (Week 1)
+                Deploy Immediately (Week 1)
               </h3>
               <p className="text-sm text-text-secondary">
                 {immediateUseCases.length} AI Worker{immediateUseCases.length !== 1 ? 's' : ''} ready for immediate deployment
@@ -153,7 +153,7 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
             </div>
             <div>
               <h3 className="text-2xl font-bold text-text-primary">
-                ⚡ Quick Wins (Month 1-2)
+                Quick Wins (Month 1-2)
               </h3>
               <p className="text-sm text-text-secondary">
                 {quickWinUseCases.length} AI Worker{quickWinUseCases.length !== 1 ? 's' : ''} for near-term deployment
@@ -191,7 +191,7 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
         <div className="mt-16">
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-text-primary mb-2">
-              💡 More Available Capabilities
+              More Available Capabilities
             </h3>
             <p className="text-text-secondary">
               {additionalCapabilities.length} additional AI Worker automation{additionalCapabilities.length !== 1 ? 's' : ''} you can deploy
@@ -227,36 +227,6 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
           </div>
         </div>
       )}
-
-      {/* Summary Stats */}
-      <Card className="mt-12 bg-bg-elevated">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div>
-            <div className="text-3xl font-bold text-accent-green mb-1">
-              {immediateUseCases.length}
-            </div>
-            <div className="text-sm text-text-tertiary">Immediate Deploy</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-accent-blue mb-1">
-              {quickWinUseCases.length}
-            </div>
-            <div className="text-sm text-text-tertiary">Quick Wins</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-accent-orange mb-1">
-              {futureUseCases.length}
-            </div>
-            <div className="text-sm text-text-tertiary">Strategic</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-text-primary mb-1">
-              {matchedUseCases.length + additionalCapabilities.length}
-            </div>
-            <div className="text-sm text-text-tertiary">Total Enabled</div>
-          </div>
-        </div>
-      </Card>
     </div>
   );
 }

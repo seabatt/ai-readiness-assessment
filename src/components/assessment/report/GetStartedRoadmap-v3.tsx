@@ -168,7 +168,7 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
     <div className="max-w-4xl mx-auto mb-16">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          🚀 How to Get Started
+          How to Get Started
         </h2>
         <p className="text-text-secondary max-w-2xl mx-auto">
           A phased deployment plan showing when to deploy each AI Worker, based on your current capabilities and business impact.
@@ -248,10 +248,10 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
         <Card className="mt-12 bg-gradient-to-br from-accent-blue/10 to-accent-green/10 border-accent-blue/20">
           <div className="text-center mb-6">
             <h3 className="text-xl font-bold text-text-primary mb-2">
-              📈 Cumulative Impact (First 2 Months)
+              Cumulative Impact (First 2 Months)
             </h3>
             <p className="text-sm text-text-secondary">
-              By deploying these {allPriorityUseCases.length} AI Workers
+              By deploying AI workers with these {allPriorityUseCases.length} skills
             </p>
           </div>
 
