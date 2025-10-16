@@ -27,12 +27,14 @@ export default function Home() {
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Every Enterprise is putting pressure on IT Teams to do more with AI. The disconnect between Executives reading headlines about AI and frontline IT is: legacy tools, policies and procedures.
           </p>
-          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-3 mb-6">
-            <span>Start Assessment →</span>
-            <span className="text-sm font-normal">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Start Assessment →
+            </Link>
+            <span className="text-text-tertiary">
               5 minutes • Instant results
             </span>
-          </Link>
+          </div>
           <p className="text-xs text-text-tertiary mt-6">
             No sensitive data stored or shared. Responses anonymized for benchmarking.
           </p>
