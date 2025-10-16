@@ -162,10 +162,15 @@ export default function ExecutiveSummary({
               {generatedInsight}
             </p>
             <div className="text-center">
-              <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+              <a 
+                href="https://www.ai.work/book-a-demo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+              >
                 <span className="w-2 h-2 rounded-full bg-highlight"></span>
                 Schedule a Complete Deep Dive
-              </button>
+              </a>
             </div>
           </>
         ) : null}
