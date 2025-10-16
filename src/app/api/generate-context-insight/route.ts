@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 interface InsightRequest {
@@ -24,6 +23,8 @@ export async function POST(req: NextRequest) {
         { status: 200 }
       );
     }
+    
+    console.log('Generating insight for context:', data.userContext.substring(0, 100));
 
     const systemPrompt = `Role: You are a strategic operations consultant delivering executive-level insights to IT leaders evaluating AI Worker readiness.
 Context: You're analyzing IT service operations data to assess automation opportunities and provide actionable, business-focused insights—not raw data summaries.
@@ -79,12 +80,13 @@ Current Tech Stack: ${data.techStack.join(', ')}
 Generate the executive insight (2-3 sentences):`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-5",
+      model: "gpt-4o",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
       ],
-      max_completion_tokens: 300,
+      max_tokens: 300,
+      temperature: 0.7,
     });
 
     const insight = response.choices[0].message.content;
