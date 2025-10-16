@@ -73,8 +73,8 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
               <p className="text-sm text-text-tertiary">{timeframe}</p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-accent-blue">{totalTickets} tickets/month</div>
-              <div className="text-sm font-semibold text-text-primary">{totalHours.toFixed(0)} hrs saved/month</div>
+              <div className="text-2xl font-bold text-accent-blue">{totalTickets.toLocaleString()} tickets/month</div>
+              <div className="text-sm font-semibold text-text-primary">{Math.round(totalHours).toLocaleString()} hrs saved/month</div>
             </div>
           </div>
 
@@ -100,13 +100,13 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
                   <div>
                     <div className="text-sm font-bold text-accent-green">
-                      {useCase.estimated_monthly_deflection}
+                      {useCase.estimated_monthly_deflection.toLocaleString()}
                     </div>
                     <div className="text-xs text-text-tertiary">Tickets</div>
                   </div>
                   <div>
                     <div className="text-sm font-bold text-accent-blue">
-                      {useCase.estimated_hours_saved.toFixed(0)}h
+                      {Math.round(useCase.estimated_hours_saved).toLocaleString()}h
                     </div>
                     <div className="text-xs text-text-tertiary">Saved</div>
                   </div>
@@ -258,13 +258,13 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-accent-green mb-1">
-                {cumulativeTickets}
+                {cumulativeTickets.toLocaleString()}
               </div>
               <div className="text-xs text-text-tertiary">Tickets Automated</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-accent-blue mb-1">
-                {cumulativeHours.toFixed(0)}
+                {Math.round(cumulativeHours).toLocaleString()}
               </div>
               <div className="text-xs text-text-tertiary">Hours Saved/Month</div>
             </div>
@@ -276,7 +276,7 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-accent-orange mb-1">
-                ${(cumulativeValue / 1000).toFixed(0)}K
+                ${Math.round(cumulativeValue / 1000).toLocaleString()}K
               </div>
               <div className="text-xs text-text-tertiary">Annual Value</div>
             </div>

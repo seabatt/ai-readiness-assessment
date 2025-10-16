@@ -114,7 +114,7 @@ export default function ExecutiveSummary({
         <div className="grid md:grid-cols-4 gap-6 pt-6 border-t border-brand-secondary/10">
           <div className="text-center">
             <div className="text-3xl font-bold text-accent-green">
-              {roiResult.automatable_tickets}
+              {roiResult.automatable_tickets.toLocaleString()}
             </div>
             <div className="text-sm text-text-tertiary mt-1">
               Tickets Automatable/Month
@@ -123,7 +123,7 @@ export default function ExecutiveSummary({
           
           <div className="text-center">
             <div className="text-3xl font-bold text-accent-blue">
-              {roiResult.total_hours_saved.toFixed(0)} hrs
+              {Math.round(roiResult.total_hours_saved).toLocaleString()} hrs
             </div>
             <div className="text-sm text-text-tertiary mt-1">
               Time Saved/Month
@@ -141,7 +141,7 @@ export default function ExecutiveSummary({
           
           <div className="text-center">
             <div className="text-3xl font-bold text-accent-orange">
-              ${(roiResult.annual_value_usd / 1000).toFixed(0)}K
+              ${Math.round(roiResult.annual_value_usd / 1000).toLocaleString()}K
             </div>
             <div className="text-sm text-text-tertiary mt-1">
               Annual Value

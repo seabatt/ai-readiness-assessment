@@ -34,6 +34,11 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
   const additionalCapabilities: any[] = [];
   
   (useCaseMappings as any).use_cases.forEach((uc: any) => {
+    // Filter out Meetings & Collaboration Licenses category
+    if (uc.category === 'Meetings & Collaboration Licenses') {
+      return;
+    }
+    
     if (enabledUseCaseIds.has(uc.id) && !matchedIds.has(uc.id)) {
       additionalCapabilities.push(uc);
     }
@@ -74,13 +79,13 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div>
                 <div className="text-lg font-bold text-accent-green">
-                  {useCase.estimated_monthly_deflection}
+                  {useCase.estimated_monthly_deflection.toLocaleString()}
                 </div>
                 <div className="text-xs text-text-tertiary">Tickets</div>
               </div>
               <div>
                 <div className="text-lg font-bold text-accent-blue">
-                  {useCase.estimated_hours_saved.toFixed(0)}h
+                  {Math.round(useCase.estimated_hours_saved).toLocaleString()}h
                 </div>
                 <div className="text-xs text-text-tertiary">Saved</div>
               </div>

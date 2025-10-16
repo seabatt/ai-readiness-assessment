@@ -30,6 +30,11 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
   }> = {};
 
   (useCaseMappings as any).use_cases.forEach((uc: any) => {
+    // Filter out Meetings & Collaboration Licenses category
+    if (uc.category === 'Meetings & Collaboration Licenses') {
+      return;
+    }
+    
     if (enabledUseCaseIds.has(uc.id) && !matchedCategories.has(uc.category)) {
       if (!additionalCategories[uc.category]) {
         additionalCategories[uc.category] = {
@@ -61,9 +66,9 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
         <Card className="!bg-bg-card !border !border-bg-card-alt/20">
           <div className="text-sm text-text-tertiary mb-2">Automatable Tickets</div>
           <div className="text-3xl font-bold text-highlight">
-            {roiResult.automatable_tickets}
+            {roiResult.automatable_tickets.toLocaleString()}
             <span className="text-lg text-text-tertiary ml-2">
-              ({roiResult.automatable_pct}%)
+              ({roiResult.automatable_pct.toFixed(1)}%)
             </span>
           </div>
         </Card>
@@ -71,21 +76,21 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
         <Card className="!bg-bg-card !border !border-bg-card-alt/20">
           <div className="text-sm text-text-tertiary mb-2">Hours Saved/Month</div>
           <div className="text-3xl font-bold text-highlight">
-            {roiResult.total_hours_saved}
+            {Math.round(roiResult.total_hours_saved).toLocaleString()}
           </div>
         </Card>
 
         <Card className="!bg-bg-card !border !border-bg-card-alt/20">
           <div className="text-sm text-text-tertiary mb-2">FTE Equivalent</div>
           <div className="text-3xl font-bold text-highlight">
-            {roiResult.fte_equivalent}
+            {roiResult.fte_equivalent.toFixed(1)}
           </div>
         </Card>
 
         <Card className="!bg-bg-card !border !border-bg-card-alt/20">
           <div className="text-sm text-text-tertiary mb-2">Annual Value</div>
           <div className="text-3xl font-bold text-highlight">
-            ${Math.round(roiResult.annual_value_usd / 1000)}K
+            ${Math.round(roiResult.annual_value_usd / 1000).toLocaleString()}K
           </div>
         </Card>
       </div>
@@ -98,7 +103,9 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
 
         {/* Matched Categories with Actual Impact */}
         <div className="space-y-6 mb-8">
-          {roiResult.breakdown_by_category.map((category, idx) => (
+          {roiResult.breakdown_by_category
+            .filter(cat => cat.category !== 'Meetings & Collaboration Licenses')
+            .map((category, idx) => (
             <div key={idx} className="border-b border-bg-card-alt/20 pb-6">
               <div className="flex items-start justify-between mb-3">
                 <div>
@@ -106,7 +113,7 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
                     {category.category}
                   </h4>
                   <p className="text-sm text-text-tertiary">
-                    {category.tickets} tickets/month automated
+                    {category.tickets.toLocaleString()} tickets/month automated
                   </p>
                 </div>
                 <span className="px-3 py-1 rounded-full bg-highlight/20 text-highlight text-sm font-medium">
@@ -117,7 +124,7 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
               <div className="flex items-center gap-4">
                 <div className="flex-1">
                   <div className="text-2xl font-bold text-highlight">
-                    {category.hours_saved} hours/month
+                    {Math.round(category.hours_saved).toLocaleString()} hours/month
                   </div>
                   <div className="text-sm text-text-tertiary">
                     ~{((category.hours_saved * 12) / 2000).toFixed(1)} FTE saved annually

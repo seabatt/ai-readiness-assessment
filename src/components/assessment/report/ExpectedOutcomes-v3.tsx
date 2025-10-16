@@ -38,18 +38,44 @@ export default function ExpectedOutcomes({
   const month6FTE = roiResult.fte_equivalent * actualMultiplier;
   const month6Value = roiResult.annual_value_usd * actualMultiplier;
 
+  const getIconSvg = (iconType: string) => {
+    const icons: Record<string, JSX.Element> = {
+      target: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      clock: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      currency: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      lightning: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      )
+    };
+    return icons[iconType] || null;
+  };
+
   const outcomes = [
     {
-      icon: '🎯',
+      icon: 'target',
       title: 'Ticket Deflection',
       baseline: {
         label: 'Month 1',
-        value: `${roiResult.automatable_tickets}`,
+        value: `${roiResult.automatable_tickets.toLocaleString()}`,
         subtitle: `${ticketDeflectionRate.toFixed(1)}% of total volume`
       },
       improved: {
         label: 'Month 6',
-        value: `${month6Tickets}`,
+        value: `${month6Tickets.toLocaleString()}`,
         subtitle: totalMonthlyTickets > 0 
           ? `${(month6Tickets / totalMonthlyTickets * 100).toFixed(1)}% of total volume`
           : '0.0% of total volume'
@@ -57,22 +83,22 @@ export default function ExpectedOutcomes({
       description: 'Tickets handled autonomously without human intervention'
     },
     {
-      icon: '⏰',
+      icon: 'clock',
       title: 'Time Savings',
       baseline: {
         label: 'Month 1',
-        value: `${roiResult.total_hours_saved.toFixed(0)} hrs`,
+        value: `${Math.round(roiResult.total_hours_saved).toLocaleString()} hrs`,
         subtitle: `${roiResult.fte_equivalent.toFixed(1)} FTE capacity`
       },
       improved: {
         label: 'Month 6',
-        value: `${month6Hours.toFixed(0)} hrs`,
+        value: `${Math.round(month6Hours).toLocaleString()} hrs`,
         subtitle: `${month6FTE.toFixed(1)} FTE capacity`
       },
       description: 'IT team hours redirected from routine work to strategic initiatives'
     },
     {
-      icon: '💰',
+      icon: 'currency',
       title: 'Cost Savings',
       baseline: {
         label: 'Monthly',
@@ -81,17 +107,17 @@ export default function ExpectedOutcomes({
       },
       improved: {
         label: 'Annual',
-        value: `$${(month6Value / 1000).toFixed(0)}K`,
+        value: `$${Math.round(month6Value / 1000).toLocaleString()}K`,
         subtitle: 'With learning curve'
       },
       description: 'Fully-loaded labor cost at $100K per FTE'
     },
     {
-      icon: '⚡',
+      icon: 'lightning',
       title: 'Resolution Speed',
       baseline: {
         label: 'Current Avg',
-        value: `${(avgHoursPerTicket * 60).toFixed(0)} min`,
+        value: `${Math.round(avgHoursPerTicket * 60).toLocaleString()} min`,
         subtitle: 'Manual processing'
       },
       improved: {
@@ -156,8 +182,8 @@ export default function ExpectedOutcomes({
           {outcomes.map((outcome, index) => (
             <Card key={index}>
               <div className="flex items-start gap-4 mb-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-accent-blue/20 rounded-full flex items-center justify-center text-2xl">
-                  {outcome.icon}
+                <div className="flex-shrink-0 w-12 h-12 bg-accent-blue/20 rounded-full flex items-center justify-center text-accent-blue">
+                  {getIconSvg(outcome.icon)}
                 </div>
                 <div className="flex-1">
                   <h4 className="text-lg font-bold text-text-primary mb-1">

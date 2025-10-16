@@ -146,13 +146,13 @@ export default function OpportunityAnalysis({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-bg-primary rounded-lg mb-6">
               <div>
                 <div className="text-2xl font-bold text-accent-green">
-                  {useCase.estimated_monthly_deflection}
+                  {useCase.estimated_monthly_deflection.toLocaleString()}
                 </div>
                 <div className="text-xs text-text-tertiary">Tickets/Month</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-accent-blue">
-                  {useCase.estimated_hours_saved.toFixed(1)} hrs
+                  {Math.round(useCase.estimated_hours_saved).toLocaleString()} hrs
                 </div>
                 <div className="text-xs text-text-tertiary">Time Saved/Month</div>
               </div>

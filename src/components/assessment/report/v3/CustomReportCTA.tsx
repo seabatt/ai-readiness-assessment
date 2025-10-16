@@ -5,7 +5,7 @@ interface CustomReportCTAProps {
 export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAProps) {
   return (
     <div className="mb-20">
-      <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200">
+      <div className="rounded-xl py-8 px-6 transition-all duration-200" style={{ backgroundColor: '#8a8784' }}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-text-primary mb-6">Get 100% Accurate Results</h2>
           <p className="text-xl text-text-tertiary mb-4 leading-relaxed">
@@ -15,7 +15,7 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
             For precise automation opportunities and ROI projections, we analyze your actual ticket data.
           </p>
 
-          <div className="bg-bg-primary border border-bg-card-alt/20 rounded-lg py-8 px-6 mb-8 text-left">
+          <div className="rounded-lg py-8 px-6 mb-8 text-left" style={{ backgroundColor: '#141414' }}>
             <h3 className="text-2xl font-bold text-text-primary mb-6 text-center">7-Day Ticket Listening Process</h3>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
