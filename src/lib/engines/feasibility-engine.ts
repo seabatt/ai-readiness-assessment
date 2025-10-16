@@ -129,7 +129,7 @@ export class FeasibilityEngine {
    * Gets detailed API information for a specific tool and API category
    */
   getApiDetails(toolName: string, apiCategory: string) {
-    const tool = (toolApis as any).tools[toolName.toLowerCase().replace(/\s+/g, '_')];
+    const tool = (toolApis as any).tools[toolName.toLowerCase().replace(/[\s-]+/g, '_')];
     if (!tool || !tool.apis[apiCategory]) {
       return null;
     }
