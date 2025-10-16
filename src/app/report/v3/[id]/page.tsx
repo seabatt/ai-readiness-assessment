@@ -171,13 +171,15 @@ export default function ReportV3Page() {
 
         <OpportunityAnalysis
           matchedUseCases={matchedUseCases}
-          topN={5}
+          feasibilityResults={feasibilityResults}
+          topN={10}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
         <BestFitUseCases
           matchedUseCases={matchedUseCases}
+          feasibilityResults={feasibilityResults}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
@@ -185,13 +187,17 @@ export default function ReportV3Page() {
         {/* New: ROI Breakdown */}
         {roiResult && (
           <>
-            <ROIBreakdown roiResult={roiResult} />
+            <ROIBreakdown 
+              roiResult={roiResult}
+              feasibilityResults={feasibilityResults}
+            />
             <div className="border-t border-bg-card-alt/20 mb-20"></div>
           </>
         )}
 
         <GetStartedRoadmap
           matchedUseCases={matchedUseCases}
+          feasibilityResults={feasibilityResults}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>

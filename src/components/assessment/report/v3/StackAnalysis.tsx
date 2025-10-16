@@ -3,10 +3,20 @@
 import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
 import { MatchedUseCase } from '@/lib/engines/use-case-matcher';
 import Card from '@/components/ui/Card';
+import useCaseMappings from '@/data/use-case-mappings.json';
 
 interface StackAnalysisProps {
   feasibilityResults: FeasibilityResult[];
   matchedUseCases: MatchedUseCase[];
+}
+
+interface UseCaseInfo {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  estimatedImpact?: number;
+  isMatched: boolean;
 }
 
 export default function StackAnalysis({ feasibilityResults, matchedUseCases }: StackAnalysisProps) {
@@ -21,15 +31,38 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
 
       <div className="space-y-8">
         {feasibilityResults.map((result, idx) => {
-          // Find use cases for this tool - try multiple matching strategies
-          const toolKey = result.tool.toLowerCase().replace(/\s+/g, '_');
-          const toolNameLower = result.tool.toLowerCase();
-          const toolUseCases = matchedUseCases.filter(uc => 
-            uc.required_tools.includes(toolKey) ||
-            uc.required_tools.some(t => t.includes(toolNameLower) || toolNameLower.includes(t))
-          );
+          // Get ALL use cases enabled by this tool from FeasibilityEngine
+          const enabledUseCaseIds = new Set(result.enabled_use_cases);
+          
+          // Build comprehensive list of use cases
+          const allUseCasesForTool: UseCaseInfo[] = [];
+          
+          (useCaseMappings as any).use_cases.forEach((uc: any) => {
+            if (enabledUseCaseIds.has(uc.id)) {
+              // Check if this use case has a volume match (for impact data)
+              const matchedUseCase = matchedUseCases.find(muc => muc.use_case_id === uc.id);
+              
+              allUseCasesForTool.push({
+                id: uc.id,
+                name: uc.name,
+                category: uc.category,
+                description: uc.description,
+                estimatedImpact: matchedUseCase?.estimated_hours_saved,
+                isMatched: !!matchedUseCase
+              });
+            }
+          });
 
-          const totalImpact = toolUseCases.reduce((sum, uc) => sum + uc.estimated_hours_saved, 0);
+          // Sort: matched (with impact) first, then alphabetically
+          allUseCasesForTool.sort((a, b) => {
+            if (a.isMatched && !b.isMatched) return -1;
+            if (!a.isMatched && b.isMatched) return 1;
+            return a.name.localeCompare(b.name);
+          });
+
+          const totalImpact = allUseCasesForTool
+            .filter(uc => uc.estimatedImpact)
+            .reduce((sum, uc) => sum + (uc.estimatedImpact || 0), 0);
 
           return (
             <Card key={idx} className="!bg-bg-card !border !border-bg-card-alt/20">
@@ -56,51 +89,37 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
                 </div>
               )}
 
-              {/* Always show AI Worker actions - use toolUseCases if available, fallback to enabled_use_cases */}
-              {(toolUseCases.length > 0 || result.enabled_use_cases.length > 0) && (
+              {/* Show ALL AI Worker actions this tool enables */}
+              {allUseCasesForTool.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <span className="text-highlight">✓</span> AI Worker Actions Available
+                    <span className="text-highlight">✓</span> AI Worker Actions Available ({allUseCasesForTool.length})
                   </h4>
-                  <ul className="space-y-2">
-                    {toolUseCases.length > 0 ? (
-                      // Show matched use cases with impact data
-                      toolUseCases.slice(0, 6).map((useCase, i) => (
-                        <li key={i} className="text-text-tertiary pl-6">
-                          • {useCase.name}
-                          {useCase.estimated_monthly_deflection > 0 && (
-                            <span className="text-text-tertiary/60"> (impacts {useCase.estimated_monthly_deflection} tickets/month)</span>
-                          )}
-                        </li>
-                      ))
-                    ) : (
-                      // Fallback to enabled_use_cases list
-                      result.enabled_use_cases.slice(0, 6).map((useCaseId, i) => {
-                        const useCase = matchedUseCases.find(uc => uc.use_case_id === useCaseId);
-                        const displayName = useCase?.name || useCaseId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                        
-                        return (
-                          <li key={i} className="text-text-tertiary pl-6">
-                            • {displayName}
-                          </li>
-                        );
-                      })
-                    )}
-                  </ul>
+                  <div className="grid md:grid-cols-2 gap-2">
+                    {allUseCasesForTool.map((uc, i) => (
+                      <div key={uc.id} className="text-text-tertiary pl-6">
+                        • <span className="font-medium">{uc.name}</span>
+                        <span className="text-text-tertiary/60 text-sm ml-2">({uc.category})</span>
+                        {uc.estimatedImpact && (
+                          <span className="text-highlight text-sm ml-2">~{Math.round(uc.estimatedImpact)}h/mo</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
-              {/* Show opportunity if we have matched use cases */}
-              {toolUseCases.length > 0 && (
+              {/* Show high-impact opportunity if we have matched use cases */}
+              {totalImpact > 0 && (
                 <div className="mb-6 p-4 bg-bg-card-alt/30 rounded-lg border border-highlight/20">
                   <h4 className="text-lg font-semibold text-text-primary mb-2 flex items-center gap-2">
-                    <span>🎯</span> High-Impact Opportunity
+                    <span>🎯</span> High-Impact Opportunities
                   </h4>
                   <p className="text-text-tertiary mb-2">
-                    {toolUseCases[0].value_proposition}
+                    Based on your ticket volume, {allUseCasesForTool.filter(uc => uc.isMatched).length} AI Worker{allUseCasesForTool.filter(uc => uc.isMatched).length !== 1 ? 's' : ''} can immediately reduce your workload
                   </p>
                   <p className="text-highlight font-medium">
-                    Estimated impact: {Math.round(totalImpact)} hours/month
+                    Estimated impact: ~{Math.round(totalImpact)} hours/month
                   </p>
                 </div>
               )}
@@ -112,7 +131,7 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
                     <span className="text-text-tertiary">⚙️</span> Setup Requirements
                   </h4>
                   <ul className="space-y-2">
-                    {result.prerequisites.slice(0, 3).map((prereq, i) => (
+                    {result.prerequisites.map((prereq, i) => (
                       <li key={i} className="text-text-tertiary pl-6 text-sm">
                         • {prereq}
                       </li>

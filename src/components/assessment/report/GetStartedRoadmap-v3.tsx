@@ -1,24 +1,47 @@
 import Card from '@/components/ui/Card';
 import { MatchedUseCase } from '@/types/types-v3';
+import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
+import useCaseMappings from '@/data/use-case-mappings.json';
 
 interface GetStartedRoadmapProps {
   matchedUseCases: MatchedUseCase[];
+  feasibilityResults: FeasibilityResult[];
 }
 
-export default function GetStartedRoadmap({ matchedUseCases }: GetStartedRoadmapProps) {
+export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults }: GetStartedRoadmapProps) {
   
   // Group and prioritize
   const immediateUseCases = matchedUseCases
     .filter(uc => uc.priority === 'immediate')
-    .sort((a, b) => b.fit_score - a.fit_score)
-    .slice(0, 3);
+    .sort((a, b) => b.fit_score - a.fit_score);
   
   const quickWinUseCases = matchedUseCases
     .filter(uc => uc.priority === 'quick_win')
-    .sort((a, b) => b.fit_score - a.fit_score)
-    .slice(0, 3);
+    .sort((a, b) => b.fit_score - a.fit_score);
 
-  if (matchedUseCases.length === 0) {
+  // Find future/additional capabilities to expand into
+  const enabledUseCaseIds = new Set(
+    (feasibilityResults || []).flatMap(result => result.enabled_use_cases)
+  );
+  const matchedIds = new Set(matchedUseCases.map(uc => uc.use_case_id));
+  
+  const futureCapabilities: any[] = [];
+  (useCaseMappings as any).use_cases.forEach((uc: any) => {
+    if (enabledUseCaseIds.has(uc.id) && !matchedIds.has(uc.id)) {
+      futureCapabilities.push(uc);
+    }
+  });
+  
+  // Sort by implementation effort and time to value
+  futureCapabilities.sort((a, b) => {
+    const effortOrder: Record<string, number> = { low: 0, medium: 1, high: 2 };
+    if (effortOrder[a.implementation_effort] !== effortOrder[b.implementation_effort]) {
+      return effortOrder[a.implementation_effort] - effortOrder[b.implementation_effort];
+    }
+    return a.time_to_value_days - b.time_to_value_days;
+  });
+
+  if (matchedUseCases.length === 0 && futureCapabilities.length === 0) {
     return null;
   }
 
@@ -180,6 +203,56 @@ export default function GetStartedRoadmap({ matchedUseCases }: GetStartedRoadmap
           quickWinUseCases,
           'bg-accent-blue/20',
           '⚡'
+        )}
+
+        {/* Phase 3: Scale & Expand */}
+        {futureCapabilities.length > 0 && (
+          <div className="relative">
+            <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-brand-secondary/20 hidden md:block" />
+
+            <Card>
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0 w-12 h-12 bg-accent-orange/20 rounded-full flex items-center justify-center text-2xl relative z-10">
+                  📈
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-text-primary mb-1">
+                    Month 3+: Scale & Expand
+                  </h3>
+                  <p className="text-sm text-text-tertiary">
+                    Expand automation across more workflows
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-accent-orange">{futureCapabilities.length}</div>
+                  <div className="text-xs text-text-tertiary">more AI Workers</div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {futureCapabilities.map((uc: any) => (
+                  <div key={uc.id} className="p-4 bg-bg-primary rounded-lg border border-brand-secondary/10">
+                    <h4 className="text-sm font-bold text-text-primary mb-1">
+                      {uc.name}
+                    </h4>
+                    <p className="text-xs text-text-secondary line-clamp-2 mb-3">
+                      {uc.description}
+                    </p>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-text-tertiary">{uc.category}</span>
+                      <span className={`font-medium ${
+                        uc.implementation_effort === 'low' ? 'text-accent-green' :
+                        uc.implementation_effort === 'medium' ? 'text-accent-blue' :
+                        'text-accent-orange'
+                      }`}>
+                        {uc.time_to_value_days}d • {uc.implementation_effort} effort
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
         )}
       </div>
 

@@ -1,14 +1,17 @@
 import Card from '@/components/ui/Card';
 import StatusPill from '@/components/ui/StatusPill';
 import { MatchedUseCase } from '@/types/types-v3';
+import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
+import useCaseMappings from '@/data/use-case-mappings.json';
 
 interface BestFitUseCasesProps {
   matchedUseCases: MatchedUseCase[];
+  feasibilityResults: FeasibilityResult[];
 }
 
-export default function BestFitUseCases({ matchedUseCases }: BestFitUseCasesProps) {
+export default function BestFitUseCases({ matchedUseCases, feasibilityResults }: BestFitUseCasesProps) {
   
-  // Group by priority
+  // Group matched use cases by priority
   const immediateUseCases = matchedUseCases
     .filter(uc => uc.priority === 'immediate')
     .sort((a, b) => b.fit_score - a.fit_score);
@@ -21,7 +24,31 @@ export default function BestFitUseCases({ matchedUseCases }: BestFitUseCasesProp
     .filter(uc => uc.priority === 'future')
     .sort((a, b) => b.fit_score - a.fit_score);
 
-  if (matchedUseCases.length === 0) {
+  // Get ALL enabled use cases
+  const enabledUseCaseIds = new Set(
+    (feasibilityResults || []).flatMap(result => result.enabled_use_cases)
+  );
+  
+  // Find additional enabled capabilities not in matched use cases
+  const matchedIds = new Set(matchedUseCases.map(uc => uc.use_case_id));
+  const additionalCapabilities: any[] = [];
+  
+  (useCaseMappings as any).use_cases.forEach((uc: any) => {
+    if (enabledUseCaseIds.has(uc.id) && !matchedIds.has(uc.id)) {
+      additionalCapabilities.push(uc);
+    }
+  });
+  
+  // Group additional capabilities by category
+  const capabilitiesByCategory: Record<string, any[]> = {};
+  additionalCapabilities.forEach(uc => {
+    if (!capabilitiesByCategory[uc.category]) {
+      capabilitiesByCategory[uc.category] = [];
+    }
+    capabilitiesByCategory[uc.category].push(uc);
+  });
+
+  if (matchedUseCases.length === 0 && additionalCapabilities.length === 0) {
     return null;
   }
 
@@ -159,6 +186,48 @@ export default function BestFitUseCases({ matchedUseCases }: BestFitUseCasesProp
         </div>
       )}
 
+      {/* Additional Capabilities */}
+      {additionalCapabilities.length > 0 && (
+        <div className="mt-16">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-text-primary mb-2">
+              💡 More Available Capabilities
+            </h3>
+            <p className="text-text-secondary">
+              {additionalCapabilities.length} additional AI Worker automation{additionalCapabilities.length !== 1 ? 's' : ''} you can deploy
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {Object.entries(capabilitiesByCategory).map(([category, capabilities]) => (
+              <div key={category}>
+                <h4 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <span className="text-highlight">▸</span> {category}
+                </h4>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {capabilities.map((uc: any) => (
+                    <Card key={uc.id} className="!p-4" hover>
+                      <h5 className="font-semibold text-text-primary mb-1">{uc.name}</h5>
+                      <p className="text-xs text-text-tertiary mb-3 line-clamp-2">{uc.description}</p>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-text-tertiary">{uc.time_to_value_days}d setup</span>
+                        <span className={`font-medium ${
+                          uc.implementation_effort === 'low' ? 'text-accent-green' :
+                          uc.implementation_effort === 'medium' ? 'text-accent-blue' :
+                          'text-accent-orange'
+                        }`}>
+                          {uc.implementation_effort} effort
+                        </span>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Summary Stats */}
       <Card className="mt-12 bg-bg-elevated">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -182,9 +251,9 @@ export default function BestFitUseCases({ matchedUseCases }: BestFitUseCasesProp
           </div>
           <div>
             <div className="text-3xl font-bold text-text-primary mb-1">
-              {matchedUseCases.length}
+              {matchedUseCases.length + additionalCapabilities.length}
             </div>
-            <div className="text-sm text-text-tertiary">Total Available</div>
+            <div className="text-sm text-text-tertiary">Total Enabled</div>
           </div>
         </div>
       </Card>

@@ -1,21 +1,65 @@
 import Card from '@/components/ui/Card';
 import StatusPill from '@/components/ui/StatusPill';
 import { MatchedUseCase } from '@/types/types-v3';
+import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
+import useCaseMappings from '@/data/use-case-mappings.json';
 
 interface OpportunityAnalysisProps {
   matchedUseCases: MatchedUseCase[];
+  feasibilityResults: FeasibilityResult[];
   topN?: number;
 }
 
 export default function OpportunityAnalysis({ 
-  matchedUseCases, 
-  topN = 5 
+  matchedUseCases,
+  feasibilityResults,
+  topN = 10
 }: OpportunityAnalysisProps) {
   
-  // Get top N use cases sorted by fit_score
-  const topUseCases = [...matchedUseCases]
-    .sort((a, b) => b.fit_score - a.fit_score)
-    .slice(0, topN);
+  // Get all enabled use case IDs
+  const enabledUseCaseIds = new Set(
+    (feasibilityResults || []).flatMap(result => result.enabled_use_cases)
+  );
+
+  // Build comprehensive list: matched use cases PLUS enabled use cases without volume matches
+  const allOpportunities: MatchedUseCase[] = [];
+  
+  // First, add all matched use cases (these have impact data)
+  allOpportunities.push(...matchedUseCases);
+  
+  // Then, add enabled use cases that weren't matched (no volume data, but still possible)
+  const matchedIds = new Set(matchedUseCases.map(uc => uc.use_case_id));
+  
+  (useCaseMappings as any).use_cases.forEach((uc: any) => {
+    if (enabledUseCaseIds.has(uc.id) && !matchedIds.has(uc.id)) {
+      // Create a pseudo-matched use case with estimated impact based on typical values
+      const estimatedVolume = Math.round((uc.typical_volume_pct || 0.05) * 1000); // Assume 1000 tickets baseline
+      const estimatedHours = estimatedVolume * (uc.typical_ttr_hours || 1) * (uc.automation_rate || 0.8);
+      
+      allOpportunities.push({
+        use_case_id: uc.id,
+        name: uc.name,
+        category: uc.category,
+        description: uc.description,
+        value_proposition: uc.value_proposition,
+        fit_score: 45, // Base score for enabled but unmatched
+        estimated_monthly_deflection: estimatedVolume,
+        estimated_hours_saved: estimatedHours,
+        confidence: uc.confidence * 0.7, // Lower confidence since no volume match
+        implementation_effort: uc.implementation_effort,
+        time_to_value_days: uc.time_to_value_days,
+        prerequisites: uc.prerequisites,
+        workflow_steps: uc.workflow_steps,
+        priority: uc.time_to_value_days <= 7 ? 'immediate' : 
+                  uc.time_to_value_days <= 21 ? 'quick_win' : 'future',
+        required_tools: uc.required_tools
+      });
+    }
+  });
+
+  // Sort by fit score - show ALL opportunities
+  const topUseCases = allOpportunities
+    .sort((a, b) => b.fit_score - a.fit_score);
 
   if (topUseCases.length === 0) {
     return null;
@@ -132,17 +176,12 @@ export default function OpportunityAnalysis({
                 How it works:
               </h4>
               <ul className="space-y-1">
-                {useCase.workflow_steps.slice(0, 3).map((step, i) => (
+                {useCase.workflow_steps.map((step, i) => (
                   <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
                     <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
                     <span>{step}</span>
                   </li>
                 ))}
-                {useCase.workflow_steps.length > 3 && (
-                  <li className="text-sm text-text-tertiary ml-5">
-                    +{useCase.workflow_steps.length - 3} more steps
-                  </li>
-                )}
               </ul>
             </div>
 
@@ -164,17 +203,6 @@ export default function OpportunityAnalysis({
         ))}
       </div>
 
-      {/* Summary Footer */}
-      {matchedUseCases.length > topN && (
-        <div className="mt-8 text-center">
-          <p className="text-text-tertiary mb-4">
-            Showing top {topN} of {matchedUseCases.length} automation opportunities
-          </p>
-          <button className="text-accent-blue hover:underline">
-            View All {matchedUseCases.length} Opportunities
-          </button>
-        </div>
-      )}
     </div>
   );
 }
