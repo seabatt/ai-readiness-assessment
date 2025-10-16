@@ -27,7 +27,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
     2.  Volume & Service Profile (monthly tickets, 6 category distribution sliders with smart redistribution logic).
     3.  Additional Context (optional open-ended text area).
 - **Analysis Engines** (`src/lib/engines/`):
-    -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify available APIs, license tiers, enabled use cases (`use-case-mappings.json`), and missing APIs/upgrade opportunities.
+    -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify ALL available APIs (license tier independent), enabled use cases (`use-case-mappings.json`), and prerequisites. Uses tool name normalization (hyphens/spaces → underscores) to match tool IDs with API configs.
     -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers, calculating fit scores (0-100) based on stack support, volume, TTR, and effort. Estimates deflection percentage and hours saved, prioritizing use cases by time-to-value.
     -   **ROICalculator**: Calculates precise ROI from matched use cases, summing automatable tickets and hours saved, converting to FTE equivalents, and providing category-level breakdowns with confidence scores.
 - **Report Generation**: Generates V3 reports with high accuracy, including:
@@ -40,6 +40,11 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **ConnectedAppLogos component**: Displays 24px logos with hover tooltips and green glow effects, integrated into reports.
 -   **V3 Report**: The primary report experience, offering API-grounded analysis and specific recommendations.
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
+
+### Recent Changes (October 16, 2025)
+-   **Removed License Tier Restrictions**: FeasibilityEngine now shows ALL available APIs for every tool regardless of license tier, providing complete visibility into automation capabilities.
+-   **Comprehensive Tool Coverage**: Added API configurations for 18 previously missing tools (Ivanti, GitHub, JumpCloud, Freshservice, Microsoft Teams, Microsoft 365, Confluence, Monday.com, SAP SuccessFactors, HiBob, DocuSign, Linear, SharePoint, Google Drive, Google Docs, Google Sheets, Google Calendar, Gmail).
+-   **Fixed Tool Name Normalization**: Updated all normalization points to use `/[\s-]+/g` regex pattern, correctly handling both hyphens and spaces in tool names for consistent API configuration matching.
 
 ## External Dependencies
 -   **Image Domains**:
