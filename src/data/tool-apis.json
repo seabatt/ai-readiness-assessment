@@ -489,6 +489,172 @@
         "enterprise": ["users_api", "licenses_api"]
       },
       "prerequisites": "Server-to-Server OAuth app with appropriate scopes"
+    },
+    "notion": {
+      "name": "Notion",
+      "category": "productivity",
+      "apis": {
+        "pages_api": {
+          "name": "Pages API",
+          "base_url": "https://api.notion.com/v1",
+          "endpoints": [
+            {
+              "path": "/pages",
+              "methods": ["POST"],
+              "description": "Create new pages"
+            },
+            {
+              "path": "/pages/{page_id}",
+              "methods": ["GET", "PATCH"],
+              "description": "Retrieve or update page properties"
+            }
+          ],
+          "capabilities": ["create_page", "update_page", "read_page"],
+          "scopes_required": ["pages.write", "pages.read"],
+          "documentation": "https://developers.notion.com/reference/page"
+        },
+        "databases_api": {
+          "name": "Databases API",
+          "base_url": "https://api.notion.com/v1",
+          "endpoints": [
+            {
+              "path": "/databases/{database_id}/query",
+              "methods": ["POST"],
+              "description": "Query database contents with filters"
+            },
+            {
+              "path": "/databases/{database_id}",
+              "methods": ["GET", "PATCH"],
+              "description": "Retrieve or update database schema"
+            }
+          ],
+          "capabilities": ["query_database", "update_database", "create_database_entry"],
+          "scopes_required": ["databases.read", "databases.write"],
+          "documentation": "https://developers.notion.com/reference/database"
+        },
+        "blocks_api": {
+          "name": "Blocks API",
+          "base_url": "https://api.notion.com/v1",
+          "endpoints": [
+            {
+              "path": "/blocks/{block_id}/children",
+              "methods": ["GET", "PATCH"],
+              "description": "List or append child blocks"
+            }
+          ],
+          "capabilities": ["append_content", "read_content"],
+          "scopes_required": ["blocks.read", "blocks.write"],
+          "documentation": "https://developers.notion.com/reference/block"
+        }
+      },
+      "license_tiers": {
+        "free": ["pages_api", "databases_api", "blocks_api"],
+        "plus": ["pages_api", "databases_api", "blocks_api"],
+        "business": ["pages_api", "databases_api", "blocks_api"],
+        "enterprise": ["pages_api", "databases_api", "blocks_api"]
+      },
+      "prerequisites": "Internal integration token with appropriate permissions"
+    },
+    "salesforce": {
+      "name": "Salesforce",
+      "category": "crm",
+      "apis": {
+        "sobjects_api": {
+          "name": "SObjects API",
+          "base_url": "https://{instance}.salesforce.com/services/data/v60.0",
+          "endpoints": [
+            {
+              "path": "/sobjects/{ObjectName}",
+              "methods": ["POST"],
+              "description": "Create records"
+            },
+            {
+              "path": "/sobjects/{ObjectName}/{Id}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Read, update, or delete records"
+            }
+          ],
+          "capabilities": ["create_record", "update_record", "delete_record", "read_record"],
+          "scopes_required": ["api", "full"],
+          "documentation": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/"
+        },
+        "query_api": {
+          "name": "Query & Search API",
+          "base_url": "https://{instance}.salesforce.com/services/data/v60.0",
+          "endpoints": [
+            {
+              "path": "/query/?q={SOQL}",
+              "methods": ["GET"],
+              "description": "Execute SOQL queries"
+            },
+            {
+              "path": "/search/?q={SOSL}",
+              "methods": ["GET"],
+              "description": "Execute SOSL searches"
+            }
+          ],
+          "capabilities": ["query_records", "search_records"],
+          "scopes_required": ["api"],
+          "documentation": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_query.htm"
+        }
+      },
+      "license_tiers": {
+        "essentials": ["sobjects_api", "query_api"],
+        "professional": ["sobjects_api", "query_api"],
+        "enterprise": ["sobjects_api", "query_api"],
+        "unlimited": ["sobjects_api", "query_api"]
+      },
+      "prerequisites": "Connected app with OAuth 2.0 or API token"
+    },
+    "hubspot": {
+      "name": "HubSpot",
+      "category": "crm",
+      "apis": {
+        "contacts_api": {
+          "name": "Contacts API",
+          "base_url": "https://api.hubapi.com",
+          "endpoints": [
+            {
+              "path": "/crm/v3/objects/contacts",
+              "methods": ["GET", "POST"],
+              "description": "List and create contacts"
+            },
+            {
+              "path": "/crm/v3/objects/contacts/{contactId}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Manage individual contacts"
+            }
+          ],
+          "capabilities": ["create_contact", "update_contact", "read_contact", "delete_contact"],
+          "scopes_required": ["crm.objects.contacts.write", "crm.objects.contacts.read"],
+          "documentation": "https://developers.hubspot.com/docs/api/crm/contacts"
+        },
+        "workflows_api": {
+          "name": "Workflows API",
+          "base_url": "https://api.hubapi.com",
+          "endpoints": [
+            {
+              "path": "/automation/v4/flows",
+              "methods": ["GET", "POST"],
+              "description": "Create and manage workflows"
+            },
+            {
+              "path": "/automation/v4/flows/{flowId}",
+              "methods": ["GET", "PATCH", "DELETE"],
+              "description": "Update specific workflows"
+            }
+          ],
+          "capabilities": ["create_workflow", "enroll_in_workflow", "manage_automation"],
+          "scopes_required": ["automation"],
+          "documentation": "https://developers.hubspot.com/docs/api/automation/workflows"
+        }
+      },
+      "license_tiers": {
+        "starter": ["contacts_api"],
+        "professional": ["contacts_api", "workflows_api"],
+        "enterprise": ["contacts_api", "workflows_api"]
+      },
+      "prerequisites": "Private app access token or OAuth 2.0 credentials"
     }
   }
 }

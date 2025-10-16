@@ -293,6 +293,277 @@
       ],
       "implementation_effort": "low",
       "time_to_value_days": 7
+    },
+    {
+      "id": "create_notion_documentation",
+      "name": "Create Documentation in Notion",
+      "category": "Knowledge Management",
+      "description": "Automatically creates and updates technical documentation pages in Notion based on ticket resolutions.",
+      "value_proposition": "Transforms ticket resolutions into searchable knowledge base articles, reducing repeat tickets by 30%.",
+      "workflow_steps": [
+        "Extract solution details from resolved ticket",
+        "Use [Create Page] in designated Notion database",
+        "Use [Append Blocks] to add formatted content",
+        "Optional: Link ticket in tracking system",
+        "Return Notion page URL"
+      ],
+      "required_tools": ["notion"],
+      "optional_tools": ["jira", "servicenow"],
+      "required_apis": {
+        "notion": ["pages_api", "blocks_api", "databases_api"],
+        "jira": ["issues_api"],
+        "servicenow": ["table_api"]
+      },
+      "required_capabilities": ["notion.create_page", "notion.append_content"],
+      "ticket_categories": ["documentation", "knowledge_management"],
+      "typical_volume_pct": 0.045,
+      "typical_ttr_hours": 2.5,
+      "automation_rate": 0.85,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Notion integration token",
+        "Database structure configured",
+        "Content templates defined"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "notion_project_tracking",
+      "name": "Track IT Projects in Notion",
+      "category": "Knowledge Management",
+      "description": "Creates and updates project tracking entries in Notion databases for IT initiatives.",
+      "value_proposition": "Centralizes project visibility across IT teams with automated status updates.",
+      "workflow_steps": [
+        "Get project details and timeline",
+        "Use [Query Database] to check for existing entry",
+        "Use [Create Page] or [Update Page] as needed",
+        "Add milestone tracking content",
+        "Confirm tracking setup"
+      ],
+      "required_tools": ["notion"],
+      "optional_tools": ["jira"],
+      "required_apis": {
+        "notion": ["pages_api", "databases_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": ["notion.query_database", "notion.create_page", "notion.update_page"],
+      "ticket_categories": ["project_management", "tracking"],
+      "typical_volume_pct": 0.025,
+      "typical_ttr_hours": 1.5,
+      "automation_rate": 0.8,
+      "confidence": 0.85,
+      "prerequisites": [
+        "Notion integration configured",
+        "Project database template",
+        "Status workflow defined"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "salesforce_lead_creation",
+      "name": "Create Salesforce Lead from IT Request",
+      "category": "CRM Integration",
+      "description": "Automatically creates Salesforce leads when IT identifies potential sales opportunities from support interactions.",
+      "value_proposition": "Captures revenue opportunities that would otherwise be missed, improving IT-Sales collaboration.",
+      "workflow_steps": [
+        "Extract contact and opportunity details",
+        "Use [Create Record] (Lead object)",
+        "Populate standard and custom fields",
+        "Optional: Create follow-up task",
+        "Return Lead ID and confirmation"
+      ],
+      "required_tools": ["salesforce"],
+      "optional_tools": ["slack", "jira"],
+      "required_apis": {
+        "salesforce": ["sobjects_api"],
+        "slack": ["web_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": ["salesforce.create_record"],
+      "ticket_categories": ["sales_support", "business_development"],
+      "typical_volume_pct": 0.015,
+      "typical_ttr_hours": 1.0,
+      "automation_rate": 0.9,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Salesforce Connected App",
+        "Lead creation permissions",
+        "Field mapping defined"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "salesforce_case_management",
+      "name": "Sync IT Tickets to Salesforce Cases",
+      "category": "CRM Integration",
+      "description": "Creates and updates Salesforce cases for customer-impacting IT issues ensuring visibility across teams.",
+      "value_proposition": "Bridges IT and customer success teams with automated case synchronization.",
+      "workflow_steps": [
+        "Identify customer-impacting ticket",
+        "Use [Create Record] (Case object)",
+        "Use [Update Record] as ticket progresses",
+        "Query for case status via [Query API]",
+        "Return case number and link"
+      ],
+      "required_tools": ["salesforce"],
+      "optional_tools": ["servicenow", "jira"],
+      "required_apis": {
+        "salesforce": ["sobjects_api", "query_api"],
+        "servicenow": ["table_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": ["salesforce.create_record", "salesforce.update_record", "salesforce.query_records"],
+      "ticket_categories": ["customer_support", "incident_management"],
+      "typical_volume_pct": 0.035,
+      "typical_ttr_hours": 1.5,
+      "automation_rate": 0.85,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Salesforce API access",
+        "Case routing rules",
+        "Bidirectional sync logic"
+      ],
+      "implementation_effort": "high",
+      "time_to_value_days": 21
+    },
+    {
+      "id": "hubspot_contact_creation",
+      "name": "Create HubSpot Contact from User Onboarding",
+      "category": "CRM Integration",
+      "description": "Automatically creates HubSpot contacts when new employees are onboarded, syncing IT and marketing data.",
+      "value_proposition": "Ensures marketing has complete employee data for internal communications and campaigns.",
+      "workflow_steps": [
+        "Extract new hire details from onboarding request",
+        "Use [Create Contact] in HubSpot",
+        "Set lifecycle stage and properties",
+        "Optional: Enroll in onboarding workflow",
+        "Return contact ID"
+      ],
+      "required_tools": ["hubspot"],
+      "optional_tools": ["okta", "google_workspace"],
+      "required_apis": {
+        "hubspot": ["contacts_api"],
+        "okta": ["user_lifecycle"],
+        "google_workspace": ["directory_api"]
+      },
+      "required_capabilities": ["hubspot.create_contact"],
+      "ticket_categories": ["onboarding", "user_provisioning"],
+      "typical_volume_pct": 0.028,
+      "typical_ttr_hours": 0.75,
+      "automation_rate": 0.9,
+      "confidence": 0.9,
+      "prerequisites": [
+        "HubSpot private app token",
+        "Contact properties mapped",
+        "Data sync permissions"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 10
+    },
+    {
+      "id": "hubspot_workflow_enrollment",
+      "name": "Enroll in HubSpot Automation Workflow",
+      "category": "CRM Integration",
+      "description": "Enrolls contacts in HubSpot workflows based on IT events like software adoption or training completion.",
+      "value_proposition": "Automates user communication flows based on IT system interactions.",
+      "workflow_steps": [
+        "Identify trigger event (e.g., training completed)",
+        "Query HubSpot for contact via [Contacts API]",
+        "Use [Enroll in Workflow] with workflow ID",
+        "Confirm enrollment status",
+        "Return enrollment confirmation"
+      ],
+      "required_tools": ["hubspot"],
+      "optional_tools": ["slack"],
+      "required_apis": {
+        "hubspot": ["contacts_api", "workflows_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": ["hubspot.enroll_in_workflow", "hubspot.read_contact"],
+      "ticket_categories": ["training", "user_engagement"],
+      "typical_volume_pct": 0.022,
+      "typical_ttr_hours": 0.5,
+      "automation_rate": 0.95,
+      "confidence": 0.9,
+      "prerequisites": [
+        "HubSpot automation scope",
+        "Workflows pre-configured",
+        "Event triggers defined"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "google_workspace_email_alias",
+      "name": "Create Google Workspace Email Alias",
+      "category": "Identity Access & Compliance",
+      "description": "Automatically creates email aliases for users in Google Workspace based on role changes or department transfers.",
+      "value_proposition": "Streamlines email management during org changes, reducing manual admin overhead.",
+      "workflow_steps": [
+        "Get user email and desired alias",
+        "Use [Directory API] to verify user exists",
+        "Use [Create Alias] endpoint",
+        "Verify alias creation",
+        "Confirm to requester"
+      ],
+      "required_tools": ["google_workspace"],
+      "optional_tools": ["jira", "slack"],
+      "required_apis": {
+        "google_workspace": ["directory_api"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": ["google_workspace.create_alias", "google_workspace.get_user"],
+      "ticket_categories": ["email_management", "user_modifications"],
+      "typical_volume_pct": 0.038,
+      "typical_ttr_hours": 0.5,
+      "automation_rate": 0.95,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Google Workspace Admin SDK enabled",
+        "Domain-wide delegation configured",
+        "Alias naming conventions"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 7
+    },
+    {
+      "id": "google_workspace_user_suspension",
+      "name": "Suspend Google Workspace User",
+      "category": "Identity Access & Compliance",
+      "description": "Temporarily suspends Google Workspace accounts for security incidents or leave of absence scenarios.",
+      "value_proposition": "Rapid security response capability for suspicious account activity or policy violations.",
+      "workflow_steps": [
+        "Get user email and suspension reason",
+        "Use [Suspend User] via Directory API",
+        "Optional: Transfer data ownership",
+        "Create audit trail in Jira/ServiceNow",
+        "Notify security team via Slack"
+      ],
+      "required_tools": ["google_workspace"],
+      "optional_tools": ["jira", "servicenow", "slack"],
+      "required_apis": {
+        "google_workspace": ["directory_api"],
+        "jira": ["issues_api"],
+        "servicenow": ["table_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": ["google_workspace.suspend_user"],
+      "ticket_categories": ["security", "compliance", "user_management"],
+      "typical_volume_pct": 0.018,
+      "typical_ttr_hours": 0.75,
+      "automation_rate": 0.9,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Google Workspace admin privileges",
+        "Suspension policy defined",
+        "Data transfer procedures"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 10
     }
   ]
 }
