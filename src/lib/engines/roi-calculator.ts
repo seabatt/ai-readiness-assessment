@@ -31,15 +31,23 @@ export class ROICalculator {
   ): ROIResult {
     
     // Calculate totals
-    const automatableTickets = matchedUseCases.reduce(
+    const rawAutomatableTickets = matchedUseCases.reduce(
       (sum, uc) => sum + uc.estimated_monthly_deflection, 
       0
     );
     
-    const totalHoursSaved = matchedUseCases.reduce(
+    const rawTotalHoursSaved = matchedUseCases.reduce(
       (sum, uc) => sum + uc.estimated_hours_saved,
       0
     );
+
+    // Safety clamp: ensure automatable tickets never exceed total monthly tickets
+    const automatableTickets = Math.min(rawAutomatableTickets, totalMonthlyTickets);
+    
+    // Prorate hours saved if we had to clamp the tickets
+    const totalHoursSaved = rawAutomatableTickets > 0 && automatableTickets < rawAutomatableTickets
+      ? rawTotalHoursSaved * (automatableTickets / rawAutomatableTickets)
+      : rawTotalHoursSaved;
 
     const automatablePct = totalMonthlyTickets > 0 
       ? (automatableTickets / totalMonthlyTickets) * 100

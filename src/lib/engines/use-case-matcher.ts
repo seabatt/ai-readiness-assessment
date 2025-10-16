@@ -41,6 +41,12 @@ export class UseCaseMatcher {
       feasibilityResults.flatMap(result => result.enabled_use_cases)
     );
 
+    // Track remaining capacity per activity to prevent double-counting
+    const remainingCapacity = new Map<string, number>();
+    activities.forEach(activity => {
+      remainingCapacity.set(activity.category, activity.monthly_volume);
+    });
+
     const matches: MatchedUseCase[] = [];
 
     for (const useCase of (useCaseMappings as any).use_cases) {
@@ -61,7 +67,7 @@ export class UseCaseMatcher {
         continue;
       }
 
-      // Calculate fit score (0-100)
+      // Calculate fit score (0-100) using ORIGINAL volumes (not remaining)
       let fitScore = 0;
       
       // Base score: stack support (40 points)
@@ -82,9 +88,20 @@ export class UseCaseMatcher {
                          useCase.implementation_effort === 'medium' ? 6 : 3;
       fitScore += effortScore;
 
-      // Calculate estimated impact
-      const estimatedDeflection = totalVolume * useCase.automation_rate;
-      const estimatedHoursSaved = estimatedDeflection * avgTtr;
+      // Calculate estimated impact using REMAINING capacity (prevents double-counting)
+      let estimatedDeflection = 0;
+      let estimatedHoursSaved = 0;
+
+      for (const activity of matchingActivities) {
+        const remaining = remainingCapacity.get(activity.category) || 0;
+        const deflectable = Math.min(remaining, activity.monthly_volume * useCase.automation_rate);
+        
+        estimatedDeflection += deflectable;
+        estimatedHoursSaved += deflectable * activity.avg_ttr_hours;
+        
+        // Reduce remaining capacity
+        remainingCapacity.set(activity.category, remaining - deflectable);
+      }
 
       // Determine priority
       let priority: 'immediate' | 'quick_win' | 'future';
