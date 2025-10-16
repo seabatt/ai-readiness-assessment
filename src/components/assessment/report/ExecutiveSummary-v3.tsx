@@ -151,16 +151,13 @@ export default function ExecutiveSummary({
 
       {/* Key Insights - Always Show */}
       <div className="mt-8">
-        <h3 className="font-semibold text-text-primary mb-4">
-          Key Insights
-        </h3>
         {isGenerating ? (
           <div className="flex items-center gap-2 text-text-tertiary">
             <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-accent-blue border-t-transparent" />
             Analyzing your data...
           </div>
         ) : generatedInsight ? (
-          <p style={{ fontSize: '24px', color: '#8a8784', lineHeight: '1em', letterSpacing: '-0.01em' }}>
+          <p style={{ fontSize: '24px', color: '#8a8784', lineHeight: '1em', letterSpacing: '-0.01em', fontWeight: 400 }}>
             {generatedInsight}
           </p>
         ) : null}
