@@ -8,7 +8,6 @@ import { generateOpportunities, getTop5Opportunities, calculateTotalDeflection }
 import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-engine";
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
-import ExecutiveSummary from "@/components/assessment/report/v3/ExecutiveSummary";
 import StackAnalysis from "@/components/assessment/report/v3/StackAnalysis";
 import GapAnalysis from "@/components/assessment/report/v3/GapAnalysis";
 import OpportunityAnalysis from "@/components/assessment/report/v3/OpportunityAnalysis";
@@ -155,18 +154,7 @@ export default function ReportV3Page() {
           </div>
         </div>
 
-        {/* New V3 Narrative Flow */}
-        <ExecutiveSummary
-          score={score}
-          assessmentData={assessmentData}
-          estimatedDeflection={estimatedDeflection}
-          hoursSaved={hoursSaved}
-          fteImpact={fteImpact}
-        />
-
-        <div className="border-t border-bg-card-alt/20 mb-20"></div>
-
-        {/* New: Stack Analysis with real API data */}
+        {/* Stack Analysis with real API data */}
         {feasibilityResults.length > 0 && (
           <>
             <StackAnalysis 
