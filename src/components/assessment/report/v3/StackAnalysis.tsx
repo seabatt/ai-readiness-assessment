@@ -118,17 +118,7 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
                 </div>
               )}
 
-              {/* Show high-impact opportunity if we have matched use cases */}
-              {totalImpact > 0 && (
-                <div className="mb-6 p-4 bg-bg-card-alt/30 rounded-lg border border-highlight/20">
-                  <h4 className="text-lg font-semibold text-text-primary mb-2 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-highlight" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    High-Impact Opportunities
-                  </h4>
-                  <p className="text-text-tertiary mb-2">
-                    We've identified {allUseCasesForTool.filter(uc => uc.isMatched).length} action{allUseCasesForTool.filter(uc => uc.isMatched).length !== 1 ? 's' : ''} an AI Worker could perform based on your ticket volume
+.filter(uc => uc.isMatched).length} action{allUseCasesForTool.filter(uc => uc.isMatched).length !== 1 ? 's' : ''} an AI Worker could perform based on your ticket volume
                   </p>
                   <p className="text-highlight font-medium">
                     Estimated impact: ~{Math.round(totalImpact).toLocaleString()} hours/month
