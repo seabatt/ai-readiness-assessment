@@ -118,7 +118,7 @@ export default function BestFitUseCases({ matchedUseCases, feasibilityResults }:
     <div className="max-w-6xl mx-auto mb-16">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          📚 Your AI Worker Deployment Plan
+          Your AI Worker Deployment Plan
         </h2>
         <p className="text-text-secondary">
           Organized by when to deploy, based on setup complexity, time-to-value, and business impact.
