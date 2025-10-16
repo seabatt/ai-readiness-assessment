@@ -156,13 +156,16 @@ export default function ReportV3Page() {
         </div>
 
         {/* Executive Summary */}
-        <ExecutiveSummary
-          score={score}
-          assessmentData={assessmentData}
-          estimatedDeflection={estimatedDeflection}
-          hoursSaved={hoursSaved}
-          fteImpact={fteImpact}
-        />
+        {roiResult && (
+          <ExecutiveSummary
+            roiResult={roiResult}
+            totalMonthlyTickets={assessmentData.monthlyTickets || 1000}
+            assessmentData={{
+              techStack: assessmentData.techStack || [],
+              additionalContext: assessmentData.additionalContext
+            }}
+          />
+        )}
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
