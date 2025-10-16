@@ -1,0 +1,64 @@
+
+
+
+I want the "Your Context Considered" section in the Hero section to be more of a narrative of what we found, rather than stating what the user provided for Context. 
+
+
+Your AI Worker Capabilities section:
+- In the cards, change "🎯 High-Impact Opportunities" - Remove the emoji, use an icon instead.
+
+
+- Change this from: "Based on your ticket volume, 5 AI Workers can immediately reduce your workload"
+To: "Based on your ticket volume,  We've identified 5, actions an Ai Worker could perform, based on your ticker volume, this 
+
+
+Remove the emoji - "🎯 What You Can Automate Right Noww"
+
+Number treatment - Use a comma in numbers do "5,400" hrs instead of "5400.0" hrs
+- round up, do not use decimal points unless you think its much needed.
+
+
+Remove the emoji from: 🚀 Deploy Immediately (Week 1) 
+Remove the emoji from: ⚡ Quick Wins (Month 1-2)
+Remove the emoji from: 💡 More Available Capabilities
+Remove the emoji from: 🚀 How to Get Started
+Remove the emoji from: 📈 Cumulative Impact (First 2 Months)
+Remove the emoji from: 📊 What to Expect
+Remove the emoji from: 
+
+Change "By deploying these 7 AI Workers": to "By deploying AI workers with these 7 skills." 
+
+
+Remove this text and the box it is in: 2 Immediate Deploy 5 Quick Wins 0 Strategic 16 Total Enabled
+
+
+Remove "Meetings & Collaboration Licenses" as its own category. Meetings & Collaboration Licenses is not a category.
+
+
+In the "💡 More Available Capabilities" section - be sure that all of the following "Ticket Distribution Categories" are represented:
+Applications
+Hardware
+Onboarding/Offboarding
+Distribution Lists
+Network
+Security
+
+Omit: Meetings & Collaboration Licenses
+
+
+In the "Impact by Category" section - be sure that all of the following "Ticket Distribution Categories" are represented:
+Applications
+Hardware
+Onboarding/Offboarding
+Distribution Lists
+Network
+Security
+
+Omit: Meetings & Collaboration Licenses
+
+
+In the "Measurable Impact" section, replace the emojis with icons.
+
+
+The "Get 100% Accurate Results" section - make the background #8a8784 
+The "7-Day Ticket Listening Process" section (inside the Get 100% Accurate Results" section) - make the background #141414
