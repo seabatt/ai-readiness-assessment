@@ -133,21 +133,6 @@ export default function StackAnalysis({ feasibilityResults, matchedUseCases }: S
                 </div>
               )}
 
-              {/* Show prerequisites */}
-              {result.prerequisites.length > 0 && (
-                <div>
-                  <h4 className="text-lg font-semibold text-text-primary mb-3 flex items-center gap-2">
-                    <span className="text-text-tertiary">⚙️</span> Setup Requirements
-                  </h4>
-                  <ul className="space-y-2">
-                    {result.prerequisites.map((prereq, i) => (
-                      <li key={i} className="text-text-tertiary pl-6 text-sm">
-                        • {prereq}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </Card>
           );
         })}

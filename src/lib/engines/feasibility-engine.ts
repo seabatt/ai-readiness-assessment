@@ -95,7 +95,7 @@ export class FeasibilityEngine {
     const licenseGaps: string[] = [];
 
     return {
-      tool: tool.name,
+      tool: toolConfig.name,
       available_apis: availableApis,
       available_capabilities: availableCapabilities,
       enabled_use_cases: enabledUseCases,

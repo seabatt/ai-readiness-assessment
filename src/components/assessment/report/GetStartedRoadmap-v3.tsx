@@ -59,21 +59,22 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
 
     return (
       <div className="relative">
-        {/* Timeline Connector */}
-        <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-brand-secondary/20 hidden md:block" />
-
         <Card>
           <div className="flex items-start gap-4 mb-6">
-            <div className={`flex-shrink-0 w-12 h-12 ${phaseColor} rounded-full flex items-center justify-center text-2xl relative z-10`}>
-              {icon}
+            <div className={`flex-shrink-0 w-12 h-12 ${phaseColor} rounded-full flex items-center justify-center relative z-10`}>
+              <svg className="w-6 h-6 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {icon === '🚀' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
+                {icon === '⚡' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
+                {icon === '📈' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
+              </svg>
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-text-primary mb-1">{title}</h3>
               <p className="text-sm text-text-tertiary">{timeframe}</p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-accent-blue">{totalTickets}</div>
-              <div className="text-xs text-text-tertiary">tickets/month</div>
+              <div className="text-2xl font-bold text-accent-blue">{totalTickets} tickets/month</div>
+              <div className="text-sm font-semibold text-text-primary">{totalHours.toFixed(0)} hrs saved/month</div>
             </div>
           </div>
 
@@ -151,20 +152,6 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
               </div>
             ))}
           </div>
-
-          {/* Phase Summary */}
-          <div className="mt-6 pt-6 border-t border-brand-secondary/10">
-            <div className="grid grid-cols-2 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-accent-green">{totalTickets}</div>
-                <div className="text-xs text-text-tertiary">Total Tickets Automated</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-accent-blue">{totalHours.toFixed(0)} hrs</div>
-                <div className="text-xs text-text-tertiary">Total Time Saved/Month</div>
-              </div>
-            </div>
-          </div>
         </Card>
       </div>
     );
@@ -208,12 +195,12 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
         {/* Phase 3: Scale & Expand */}
         {futureCapabilities.length > 0 && (
           <div className="relative">
-            <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-brand-secondary/20 hidden md:block" />
-
             <Card>
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-accent-orange/20 rounded-full flex items-center justify-center text-2xl relative z-10">
-                  📈
+                <div className="flex-shrink-0 w-12 h-12 bg-accent-orange/20 rounded-full flex items-center justify-center relative z-10">
+                  <svg className="w-6 h-6 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-text-primary mb-1">

@@ -12,16 +12,31 @@ export default function ExpectedOutcomes({
 }: ExpectedOutcomesProps) {
   
   // Calculate additional metrics
-  const ticketDeflectionRate = (roiResult.automatable_tickets / totalMonthlyTickets) * 100;
-  const avgHoursPerTicket = roiResult.total_hours_saved / roiResult.automatable_tickets;
+  const ticketDeflectionRate = totalMonthlyTickets > 0 
+    ? (roiResult.automatable_tickets / totalMonthlyTickets) * 100 
+    : 0;
+  const avgHoursPerTicket = roiResult.automatable_tickets > 0 
+    ? roiResult.total_hours_saved / roiResult.automatable_tickets 
+    : 0;
   const monthlyValue = roiResult.annual_value_usd / 12;
 
   // Learning curve projection (conservative 15% improvement over 6 months)
   const month6Multiplier = 1.15;
-  const month6Tickets = Math.round(roiResult.automatable_tickets * month6Multiplier);
-  const month6Hours = roiResult.total_hours_saved * month6Multiplier;
-  const month6FTE = roiResult.fte_equivalent * month6Multiplier;
-  const month6Value = roiResult.annual_value_usd * month6Multiplier;
+  const projectedMonth6Tickets = Math.round(roiResult.automatable_tickets * month6Multiplier);
+  
+  // Cap at total monthly tickets (can't automate more than 100%)
+  const month6Tickets = Math.min(projectedMonth6Tickets, totalMonthlyTickets);
+  
+  // Calculate actual improvement ratio achieved (may be less than 1.15 if capped)
+  // Guard against division by zero
+  const actualMultiplier = roiResult.automatable_tickets > 0 
+    ? month6Tickets / roiResult.automatable_tickets 
+    : 0;
+  
+  // Apply proportional improvements to hours, FTE, and value
+  const month6Hours = roiResult.total_hours_saved * actualMultiplier;
+  const month6FTE = roiResult.fte_equivalent * actualMultiplier;
+  const month6Value = roiResult.annual_value_usd * actualMultiplier;
 
   const outcomes = [
     {
@@ -35,7 +50,9 @@ export default function ExpectedOutcomes({
       improved: {
         label: 'Month 6',
         value: `${month6Tickets}`,
-        subtitle: `${(month6Tickets / totalMonthlyTickets * 100).toFixed(1)}% of total volume`
+        subtitle: totalMonthlyTickets > 0 
+          ? `${(month6Tickets / totalMonthlyTickets * 100).toFixed(1)}% of total volume`
+          : '0.0% of total volume'
       },
       description: 'Tickets handled autonomously without human intervention'
     },
@@ -245,9 +262,6 @@ export default function ExpectedOutcomes({
       <div className="mt-8 text-center">
         <p className="text-sm text-text-tertiary">
           Outcomes based on {roiResult.confidence}% confidence score using your actual tech stack and ticket distribution.
-          <button className="text-accent-blue hover:underline ml-1">
-            View methodology
-          </button>
         </p>
       </div>
     </div>

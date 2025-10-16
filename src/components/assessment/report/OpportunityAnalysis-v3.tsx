@@ -184,21 +184,6 @@ export default function OpportunityAnalysis({
                 ))}
               </ul>
             </div>
-
-            {/* Implementation Details */}
-            <div className="flex items-center justify-between pt-4 border-t border-brand-secondary/10">
-              <div className="flex items-center gap-4 text-sm text-text-tertiary">
-                <span>
-                  ⚙️ {useCase.implementation_effort === 'low' ? 'Easy' : useCase.implementation_effort === 'medium' ? 'Moderate' : 'Complex'} Setup
-                </span>
-                <span>
-                  📋 {useCase.prerequisites.length} Prerequisites
-                </span>
-              </div>
-              <button className="text-sm text-accent-blue hover:underline">
-                View Full Details →
-              </button>
-            </div>
           </Card>
         ))}
       </div>
