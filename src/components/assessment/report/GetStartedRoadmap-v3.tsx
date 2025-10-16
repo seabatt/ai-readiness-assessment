@@ -245,7 +245,7 @@ export default function GetStartedRoadmap({ matchedUseCases, feasibilityResults 
 
       {/* Cumulative Impact Card */}
       {allPriorityUseCases.length > 0 && (
-        <div className="mt-12" style={{ boxShadow: '0 0 40px rgba(130, 216, 149, 0.3)', borderRadius: '12px' }}>
+        <div className="mt-12" style={{ boxShadow: '0 0 20px rgba(130, 216, 149, 0.3)', borderRadius: '12px' }}>
           <Card>
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-text-primary mb-2">

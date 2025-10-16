@@ -56,7 +56,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
       - "Schedule a Complete Deep Dive" (Executive Summary)
       - "Schedule Implementation Planning Call" (Get Started Roadmap)
       - "Request Custom Discovery Report" (Custom Report CTA)
--   **Custom Report CTA Styling**: Added outer glow effect (rgba(130, 216, 149, 0.3)) to "Get 100% Accurate Results" section.
+-   **Custom Report CTA Styling**: Added outer glow effect (0 0 20px rgba(130, 216, 149, 0.3)) to "Get 100% Accurate Results" and "Cumulative Impact" sections.
 -   **Removed License Tier Restrictions**: FeasibilityEngine now shows ALL available APIs for every tool regardless of license tier, providing complete visibility into automation capabilities.
 -   **Comprehensive Tool Coverage**: Added API configurations for 18 previously missing tools (Ivanti, GitHub, JumpCloud, Freshservice, Microsoft Teams, Microsoft 365, Confluence, Monday.com, SAP SuccessFactors, HiBob, DocuSign, Linear, SharePoint, Google Drive, Google Docs, Google Sheets, Google Calendar, Gmail).
 -   **Fixed Tool Name Normalization**: Updated all normalization points to use `/[\s-]+/g` regex pattern, correctly handling both hyphens and spaces in tool names for consistent API configuration matching.

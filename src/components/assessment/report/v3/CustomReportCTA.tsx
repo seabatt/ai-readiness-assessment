@@ -5,7 +5,7 @@ interface CustomReportCTAProps {
 export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAProps) {
   return (
     <div className="mb-20">
-      <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200" style={{ boxShadow: '0 0 40px rgba(130, 216, 149, 0.3)' }}>
+      <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200" style={{ boxShadow: '0 0 20px rgba(130, 216, 149, 0.3)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-text-primary mb-6">Get 100% Accurate Results</h2>
           <p className="text-xl text-text-tertiary mb-4 leading-relaxed">
