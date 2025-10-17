@@ -54,9 +54,10 @@ The application uses the official Ai.Work brand system with a custom dark theme:
     - **Collapsible "How it Works" Section**: Added expand/collapse functionality to workflow steps with clickable header and rotating chevron icon. Steps collapsed by default for cleaner initial view.
     - **Number Styling**: Updated workflow step numbers to "01", "02", "03" format with #8a8784 color, positioned above text with no background circle (matching brand design system).
 -   **V4 Opportunity Analysis Updates**:
-    - **Rank Number Styling**: Changed use case rank numbers from blue circles to "01", "02", "03" format with #8a8784 color, positioned above card content with no background (matching brand design system).
+    - **Rank Number Styling**: Changed use case rank numbers from blue circles to "01", "02", "03" format with #8a8784 color, positioned above card heading with no background (matching brand design system).
     - **Section Heading**: Updated from "What You Can Automate Right Now" to "How AI Can Fit into Your IT Stack".
-    - **Tool Logos**: Added ConnectedAppLogos component to display required tools for each use case with 24px logos, hover tooltips, and green glow effects.
+    - **Tool Logos**: Added ConnectedAppLogos component to display required tools for each use case with 24px logos, hover tooltips, and green glow effects. Tool logos positioned in top right of card, to the left of fit score. Removed "Uses:" label.
+    - **Badge Repositioning**: Moved deploy badge (Deploy Week 1/Deploy Month 1-2/Deploy Month 3+) to top right of card, positioned to the left of tool logos.
     - **Section Removal**: Completely removed "More Available Capabilities" (GapAnalysis) section from V4 report.
 
 ### Recent Changes (October 16, 2025)

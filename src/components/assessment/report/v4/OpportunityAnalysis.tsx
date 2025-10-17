@@ -157,47 +157,46 @@ export default function OpportunityAnalysis({
       <div className="space-y-6">
         {topUseCases.map((useCase, index) => (
           <Card key={useCase.use_case_id} hover>
-            {/* Header with Rank and Priority */}
+            {/* Rank Number */}
+            <div className="text-sm font-medium mb-3" style={{ color: '#8a8784' }}>
+              {String(index + 1).padStart(2, '0')}
+            </div>
+
+            {/* Header with Priority */}
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-start gap-4">
-                <div className="flex flex-col">
-                  <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-text-primary mb-1">
-                    {useCase.name}
-                  </h3>
-                  <div className="flex items-center gap-2 flex-wrap mb-3">
-                    <StatusPill status={getPriorityStatus(useCase.priority)}>
-                      {getPriorityLabel(useCase.priority)}
-                    </StatusPill>
-                    <span className="text-sm text-text-tertiary">
-                      {useCase.category}
-                    </span>
-                  </div>
-                  {/* Tool Logos */}
-                  {useCase.required_tools && useCase.required_tools.length > 0 && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-text-tertiary">Uses:</span>
-                      <ConnectedAppLogos 
-                        apps={useCase.required_tools.map(convertToolName)}
-                        maxVisible={5}
-                        size={24}
-                      />
-                    </div>
-                  )}
-                </div>
+              <div>
+                <h3 className="text-xl font-bold text-text-primary mb-1">
+                  {useCase.name}
+                </h3>
+                <span className="text-sm text-text-tertiary">
+                  {useCase.category}
+                </span>
               </div>
               
-              {/* Fit Score */}
-              <div className="text-right">
-                <div className={`text-3xl font-bold ${getFitScoreColor(useCase.fit_score)}`}>
-                  {useCase.fit_score}
-                </div>
-                <div className="text-xs text-text-tertiary">
-                  {getFitScoreLabel(useCase.fit_score)}
+              {/* Badge, Tool Logos and Fit Score */}
+              <div className="flex items-center gap-4">
+                {/* Deploy Badge */}
+                <StatusPill status={getPriorityStatus(useCase.priority)}>
+                  {getPriorityLabel(useCase.priority)}
+                </StatusPill>
+                
+                {/* Tool Logos */}
+                {useCase.required_tools && useCase.required_tools.length > 0 && (
+                  <ConnectedAppLogos 
+                    apps={useCase.required_tools.map(convertToolName)}
+                    maxVisible={5}
+                    size={24}
+                  />
+                )}
+                
+                {/* Fit Score */}
+                <div className="text-right">
+                  <div className={`text-3xl font-bold ${getFitScoreColor(useCase.fit_score)}`}>
+                    {useCase.fit_score}
+                  </div>
+                  <div className="text-xs text-text-tertiary">
+                    {getFitScoreLabel(useCase.fit_score)}
+                  </div>
                 </div>
               </div>
             </div>
