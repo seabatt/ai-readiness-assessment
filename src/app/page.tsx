@@ -35,7 +35,7 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 py-20">
         {/* Hero Section */}
         <section className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-text-primary">
+          <h1 className="text-4xl md:text-6xl font-normal mb-6 leading-tight text-text-primary">
             Find out if your IT stack can support a digital team mate.
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
