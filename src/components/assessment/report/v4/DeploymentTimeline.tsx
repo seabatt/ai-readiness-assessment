@@ -109,14 +109,6 @@ export default function DeploymentTimeline() {
           </tbody>
         </table>
       </div>
-
-      <div className="flex items-center gap-3 p-4 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-lg">
-        <span className="text-2xl">⏱️</span>
-        <div>
-          <strong className="text-text-primary">Total Duration:</strong>
-          <span className="text-text-secondary ml-2">~4–6 weeks from kickoff to production pilot</span>
-        </div>
-      </div>
     </section>
   );
 }
