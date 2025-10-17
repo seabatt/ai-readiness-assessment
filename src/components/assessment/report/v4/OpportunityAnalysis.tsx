@@ -290,12 +290,12 @@ export default function OpportunityAnalysis({
                 </span>
               </div>
               
-              {/* Badge, Tool Logos and Fit Score */}
+              {/* Category Badge, Tool Logos and Fit Score */}
               <div className="flex items-center gap-4">
-                {/* Deploy Badge */}
-                <StatusPill status={getPriorityStatus(useCase.priority)}>
-                  {getPriorityLabel(useCase.priority)}
-                </StatusPill>
+                {/* Category Badge */}
+                <div className="px-3 py-1 rounded-full bg-accent-blue/20 text-accent-blue text-sm font-medium whitespace-nowrap">
+                  {useCase.category}
+                </div>
                 
                 {/* Tool Logos */}
                 {useCase.required_tools && useCase.required_tools.length > 0 && (
