@@ -17,17 +17,9 @@ export default function GetStartedPlan({ matchedUseCases }: GetStartedPlanProps)
         <h2 className="text-3xl font-bold text-text-primary mb-6">
           Get Started: Your AI Worker Deployment Plan
         </h2>
-        <div className="space-y-4 text-lg text-text-secondary leading-relaxed">
-          <p>
-            A clear, personalized blueprint for moving from readiness to real results.
-          </p>
-          <p>
-            You've identified where your tech stack can support AI Workers. Now it's time to move from <em className="text-text-primary">readiness</em> to <em className="text-text-primary">deployment</em>.
-          </p>
-          <p>
-            This blueprint shows what to expect during implementation — even if you work with other vendors — so your team can align, prepare, and accelerate securely.
-          </p>
-        </div>
+        <p className="text-lg text-text-secondary leading-relaxed">
+          A clear, personalized blueprint for moving from readiness to real results. You've identified where your tech stack can support AI Workers. Now it's time to move from <em className="text-text-primary">readiness</em> to <em className="text-text-primary">deployment</em>. This blueprint shows what to expect during implementation — even if you work with other vendors — so your team can align, prepare, and accelerate securely.
+        </p>
       </section>
 
       {/* Section 2: Internal Alignment */}
