@@ -108,9 +108,10 @@ export default function OpportunityAnalysis({
     }
   });
 
-  // Sort by fit score - show ALL opportunities
+  // Sort by fit score and limit to topN
   const topUseCases = allOpportunities
-    .sort((a, b) => b.fit_score - a.fit_score);
+    .sort((a, b) => b.fit_score - a.fit_score)
+    .slice(0, topN);
 
   if (topUseCases.length === 0) {
     return null;
