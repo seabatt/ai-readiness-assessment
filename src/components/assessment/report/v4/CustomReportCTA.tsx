@@ -98,12 +98,17 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
           </div>
 
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-text-primary mb-4">
-              <strong>Run the Full Discovery Assessment →</strong>
-            </h3>
-            <p className="text-lg text-text-secondary leading-relaxed">
+            <p className="text-lg text-text-secondary mb-6 leading-relaxed">
               Plug in your real system data and receive personalized deployment blueprint, including your top automation opportunities and readiness score.
             </p>
+            <a 
+              href="https://www.ai.work/book-a-demo" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Run the Full Discovery Assessment →
+            </a>
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
