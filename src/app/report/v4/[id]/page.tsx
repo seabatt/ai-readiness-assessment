@@ -10,7 +10,6 @@ import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
 import ExecutiveSummary from "@/components/assessment/report/v4/ExecutiveSummary";
-import StackAnalysis from "@/components/assessment/report/v4/StackAnalysis";
 import GapAnalysis from "@/components/assessment/report/v4/GapAnalysis";
 import OpportunityAnalysis from "@/components/assessment/report/v4/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v4/BestFitUseCases";
@@ -159,7 +158,7 @@ export default function ReportV4Page() {
             </div>
           </div>
 
-        {/* Executive Summary */}
+        {/* Executive Summary - Hero Section */}
         {roiResult && (
           <ExecutiveSummary
             roiResult={roiResult}
@@ -174,20 +173,7 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
-        {/* Stack Analysis with real API data */}
-        {feasibilityResults.length > 0 && (
-          <>
-            <StackAnalysis 
-              feasibilityResults={feasibilityResults}
-              matchedUseCases={matchedUseCases}
-            />
-            <div className="border-t border-bg-card-alt/20 mb-20"></div>
-          </>
-        )}
-
-        {/* New: Gap Analysis */}
-        <GapAnalysis feasibilityResults={feasibilityResults} />
-
+        {/* What You Can Automate Right Now */}
         <OpportunityAnalysis
           matchedUseCases={matchedUseCases}
           feasibilityResults={feasibilityResults}
@@ -196,6 +182,7 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
+        {/* Your AI Worker Deployment Plan */}
         <BestFitUseCases
           matchedUseCases={matchedUseCases}
           feasibilityResults={feasibilityResults}
@@ -203,7 +190,12 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
-        {/* New: ROI Breakdown */}
+        {/* More Available Capabilities */}
+        <GapAnalysis feasibilityResults={feasibilityResults} />
+
+        <div className="border-t border-bg-card-alt/20 mb-20"></div>
+
+        {/* ROI Breakdown */}
         {roiResult && (
           <>
             <ROIBreakdown 
@@ -214,6 +206,7 @@ export default function ReportV4Page() {
           </>
         )}
 
+        {/* How to Get Started */}
         <GetStartedRoadmap
           matchedUseCases={matchedUseCases}
           feasibilityResults={feasibilityResults}
@@ -221,6 +214,7 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
+        {/* What To Expect */}
         {roiResult && (
           <ExpectedOutcomes
             roiResult={roiResult}
@@ -230,6 +224,7 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
+        {/* Call to Action Section */}
         <CustomReportCTA onRequestDiscovery={() => setShowModal(true)} />
         </div>
       </main>
