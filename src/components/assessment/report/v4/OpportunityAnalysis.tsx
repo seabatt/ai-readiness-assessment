@@ -66,6 +66,22 @@ export default function OpportunityAnalysis({
       word.charAt(0).toUpperCase() + word.slice(1)
     ).join(' ');
   };
+
+  // Get category color based on category name
+  const getCategoryColor = (category: string): string => {
+    const categoryColors: Record<string, string> = {
+      'Identity Access & Compliance': 'bg-accent-green/20 text-accent-green',
+      'CRM Integration': 'bg-accent-blue/20 text-accent-blue',
+      'Knowledge Management': 'bg-purple-500/20 text-purple-400',
+      'IT Service Management': 'bg-accent-orange/20 text-accent-orange',
+      'HR & Onboarding': 'bg-pink-500/20 text-pink-400',
+      'Procurement': 'bg-yellow-500/20 text-yellow-400',
+      'Project Management': 'bg-indigo-500/20 text-indigo-400',
+      'Communication & Collaboration': 'bg-teal-500/20 text-teal-400'
+    };
+    
+    return categoryColors[category] || 'bg-accent-green/20 text-accent-green';
+  };
   
   // Get all enabled use case IDs
   const enabledUseCaseIds = new Set(
@@ -290,7 +306,7 @@ export default function OpportunityAnalysis({
               {/* Category Badge and Tool Logos */}
               <div className="flex items-center gap-4">
                 {/* Category Badge */}
-                <div className="px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-sm font-medium whitespace-nowrap">
+                <div className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getCategoryColor(useCase.category)}`}>
                   {useCase.category}
                 </div>
                 
