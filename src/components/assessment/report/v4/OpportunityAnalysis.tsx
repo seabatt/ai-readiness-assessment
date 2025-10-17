@@ -271,7 +271,7 @@ export default function OpportunityAnalysis({
         </p>
       </div>
 
-      <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-6">
         {topUseCases.map((useCase, index) => (
           <Card key={useCase.use_case_id} hover>
             {/* Rank Number */}
