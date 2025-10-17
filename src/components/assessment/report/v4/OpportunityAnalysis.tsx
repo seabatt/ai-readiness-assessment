@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Card from '@/components/ui/Card';
 import StatusPill from '@/components/ui/StatusPill';
 import { MatchedUseCase } from '@/types/types-v3';
@@ -15,6 +18,7 @@ export default function OpportunityAnalysis({
   feasibilityResults,
   topN = 10
 }: OpportunityAnalysisProps) {
+  const [expandedWorkflows, setExpandedWorkflows] = useState<Record<string, boolean>>({});
   
   // Get all enabled use case IDs
   const enabledUseCaseIds = new Set(
@@ -170,19 +174,40 @@ export default function OpportunityAnalysis({
               </div>
             </div>
 
-            {/* How It Works */}
+            {/* How It Works - Collapsible */}
             <div className="mb-4">
-              <h4 className="text-sm font-semibold text-text-primary mb-2">
-                How it works:
-              </h4>
-              <ul className="space-y-1">
-                {useCase.workflow_steps.map((step, i) => (
-                  <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
-                    <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ul>
+              <button
+                onClick={() => setExpandedWorkflows(prev => ({
+                  ...prev,
+                  [useCase.use_case_id]: !prev[useCase.use_case_id]
+                }))}
+                className="flex items-center gap-2 text-sm font-semibold text-text-primary mb-2 hover:text-highlight transition-colors duration-200 w-full text-left"
+              >
+                <span>How it works:</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {expandedWorkflows[useCase.use_case_id] && (
+                <div className="space-y-6 mt-4">
+                  {useCase.workflow_steps.map((step, i) => (
+                    <div key={i} className="flex flex-col gap-2">
+                      <div className="text-sm font-medium" style={{ color: '#8a8784' }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      <div className="text-sm text-text-secondary leading-relaxed">
+                        {step}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </Card>
         ))}
