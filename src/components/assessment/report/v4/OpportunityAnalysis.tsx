@@ -146,9 +146,12 @@ export default function OpportunityAnalysis({
   return (
     <div className="max-w-5xl mx-auto mb-16">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-text-primary mb-4">
-          Where AI Workers Can Deliver Impact First
+        <h2 className="text-3xl font-bold text-text-primary mb-2">
+          What You Can Automate Right Now
         </h2>
+        <h3 className="text-xl font-semibold text-text-secondary mb-4">
+          Where AI Workers Can Deliver Impact First
+        </h3>
         <p className="text-text-secondary">
           Not all IT tasks are good candidates for AI automation. Here's what works best—and what doesn't.
         </p>
