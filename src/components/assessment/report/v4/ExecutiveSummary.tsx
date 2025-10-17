@@ -100,7 +100,7 @@ export default function ExecutiveSummary({
             {roiResult.automatable_pct.toFixed(1)}%
           </div>
           <div className="text-xl text-text-secondary">
-            Your IT Stack is {roiResult.automatable_pct.toFixed(0)}% Ready for AI Workers — Here's What That Means for Your Organization
+            of tickets can be automated immediately
           </div>
         </div>
 
@@ -152,6 +152,9 @@ export default function ExecutiveSummary({
           </div>
         ) : generatedInsight ? (
           <>
+            <h2 className="text-2xl font-bold text-text-primary mb-6">
+              Your IT Stack is {roiResult.automatable_pct.toFixed(0)}% Ready for AI Workers — Here's What That Means for Your Organization
+            </h2>
             <p className="text-lg text-text-secondary mb-6">
               {generatedInsight}
             </p>

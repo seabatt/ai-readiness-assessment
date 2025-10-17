@@ -124,7 +124,7 @@ export default function ReportV4Page() {
     <div className="min-h-screen bg-bg-primary">
       {/* Header */}
       <header className="border-b border-bg-card-alt/20">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/">
             <Image 
               src="/images/aiwork-logo.png" 
@@ -134,6 +134,10 @@ export default function ReportV4Page() {
               className="h-7 w-auto"
             />
           </Link>
+          <div className="text-right">
+            <div className="text-xs text-text-tertiary">Report Version</div>
+            <div className="text-lg font-bold text-text-primary">V4.0</div>
+          </div>
         </div>
       </header>
 
@@ -141,20 +145,12 @@ export default function ReportV4Page() {
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Report Header */}
           <div className="mb-20">
-            <div className="flex items-start justify-between">
-              <div>
-                <h1 className="text-5xl font-normal text-text-primary mb-3">
-                  AI Worker Readiness Assessment
-                </h1>
-                <p className="text-xl text-text-tertiary">
-                  Based on your {assessmentData.techStack?.length || 0} selected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
-                </p>
-              </div>
-              <div className="text-right">
-                <div className="text-sm text-text-tertiary">Report Version</div>
-                <div className="text-2xl font-bold text-text-primary">V4.0</div>
-              </div>
-            </div>
+            <h1 className="text-5xl font-normal text-text-primary mb-3">
+              AI Worker Readiness Assessment
+            </h1>
+            <p className="text-xl text-text-tertiary">
+              Based on your {assessmentData.techStack?.length || 0} selected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
+            </p>
           </div>
 
         {/* Executive Summary - Hero Section */}
