@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Card from '@/components/ui/Card';
 import StatusPill from '@/components/ui/StatusPill';
+import ConnectedAppLogos from '@/components/ui/ConnectedAppLogos';
 import { MatchedUseCase } from '@/types/types-v3';
 import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
 import useCaseMappings from '@/data/use-case-mappings.json';
@@ -19,6 +20,52 @@ export default function OpportunityAnalysis({
   topN = 10
 }: OpportunityAnalysisProps) {
   const [expandedWorkflows, setExpandedWorkflows] = useState<Record<string, boolean>>({});
+
+  // Convert tool names from underscore format to proper names
+  const convertToolName = (tool: string): string => {
+    const toolMap: Record<string, string> = {
+      'okta': 'Okta',
+      'servicenow': 'ServiceNow',
+      'slack': 'Slack',
+      'jira': 'Jira',
+      'jira_service_management': 'Jira Service Management',
+      'zendesk': 'Zendesk',
+      'microsoft_365': 'Microsoft 365',
+      'microsoft_entra': 'Microsoft Entra',
+      'microsoft_teams': 'Microsoft Teams',
+      'google_workspace': 'Google Workspace',
+      'google_drive': 'Google Drive',
+      'google_docs': 'Google Docs',
+      'google_sheets': 'Google Sheets',
+      'google_calendar': 'Google Calendar',
+      'gmail': 'Gmail',
+      'azure_ad': 'Azure AD',
+      'salesforce': 'Salesforce',
+      'github': 'GitHub',
+      'gitlab': 'GitLab',
+      'confluence': 'Confluence',
+      'asana': 'Asana',
+      'monday_com': 'Monday.com',
+      'zoom': 'Zoom',
+      'teams': 'Teams',
+      'workday': 'Workday',
+      'bamboohr': 'BambooHR',
+      'duo_security': 'Duo Security',
+      'cyberark': 'CyberArk',
+      'jumpcloud': 'JumpCloud',
+      'freshservice': 'Freshservice',
+      'ivanti': 'Ivanti',
+      'sap_successfactors': 'SAP SuccessFactors',
+      'hibob': 'HiBob',
+      'docusign': 'DocuSign',
+      'linear': 'Linear',
+      'sharepoint': 'SharePoint'
+    };
+    
+    return toolMap[tool.toLowerCase()] || tool.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  };
   
   // Get all enabled use case IDs
   const enabledUseCaseIds = new Set(
@@ -99,7 +146,7 @@ export default function OpportunityAnalysis({
     <div className="max-w-5xl mx-auto mb-16">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
-          What You Can Automate Right Now
+          How AI Can Fit into Your IT Stack
         </h2>
         <p className="text-text-secondary">
           Common IT use cases that AI Workers can handle using your current tools and APIs. These are ranked by impact, feasibility, and time-to-value.
@@ -111,15 +158,17 @@ export default function OpportunityAnalysis({
           <Card key={useCase.use_case_id} hover>
             {/* Header with Rank and Priority */}
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-10 h-10 bg-accent-blue rounded-full flex items-center justify-center text-bg-primary font-bold text-lg">
-                  {index + 1}
+              <div className="flex items-start gap-4">
+                <div className="flex flex-col">
+                  <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-text-primary mb-1">
                     {useCase.name}
                   </h3>
-                  <div className="flex items-center gap-2 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap mb-3">
                     <StatusPill status={getPriorityStatus(useCase.priority)}>
                       {getPriorityLabel(useCase.priority)}
                     </StatusPill>
@@ -127,6 +176,17 @@ export default function OpportunityAnalysis({
                       {useCase.category}
                     </span>
                   </div>
+                  {/* Tool Logos */}
+                  {useCase.required_tools && useCase.required_tools.length > 0 && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-text-tertiary">Uses:</span>
+                      <ConnectedAppLogos 
+                        apps={useCase.required_tools.map(convertToolName)}
+                        maxVisible={5}
+                        size={24}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
               
@@ -195,18 +255,14 @@ export default function OpportunityAnalysis({
               </button>
               
               {expandedWorkflows[useCase.use_case_id] && (
-                <div className="space-y-6 mt-4">
+                <ul className="space-y-1 mt-4">
                   {useCase.workflow_steps.map((step, i) => (
-                    <div key={i} className="flex flex-col gap-2">
-                      <div className="text-sm font-medium" style={{ color: '#8a8784' }}>
-                        {String(i + 1).padStart(2, '0')}
-                      </div>
-                      <div className="text-sm text-text-secondary leading-relaxed">
-                        {step}
-                      </div>
-                    </div>
+                    <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
+                      <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
+                      <span>{step}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </div>
           </Card>
