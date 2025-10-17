@@ -21,6 +21,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 ### Technical Implementations
 - **Framework**: Next.js 14.2 with TypeScript.
 - **Styling**: Tailwind CSS with a custom design system.
+- **Typography**: NB International Pro (company custom font) with multiple weights (Light 300, Regular 400, Book 450, Medium 500, Bold 700) and italic variants.
 - **UI Libraries**: Framer Motion (animations), Recharts (data visualization), React Hook Form + Zod (form validation), @dnd-kit (drag and drop), Lucide React (icons).
 - **Assessment Flow**: A simplified 3-step process:
     1.  Tech Stack Selection.

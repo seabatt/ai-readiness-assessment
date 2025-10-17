@@ -57,7 +57,7 @@ const config: Config = {
         'glow-highlight-hover': '0 0 10px rgba(130, 216, 149, 0.1)', // Logo hover state
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['var(--font-nb-international)', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },
