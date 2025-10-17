@@ -108,6 +108,16 @@ export default function VolumeServiceProfile({
                 {total}%
               </span>
             </div>
+            {total > 100 && (
+              <p className="text-red-400 text-sm mt-2">
+                Total percentage cannot exceed 100%. Please adjust your distribution.
+              </p>
+            )}
+            {total < 100 && total > 0 && (
+              <p className="text-yellow-500 text-sm mt-2">
+                Total should equal 100% to proceed.
+              </p>
+            )}
           </div>
         </div>
       </Card>

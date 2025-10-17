@@ -24,7 +24,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 - **UI Libraries**: Framer Motion (animations), Recharts (data visualization), React Hook Form + Zod (form validation), @dnd-kit (drag and drop), Lucide React (icons).
 - **Assessment Flow**: A simplified 3-step process:
     1.  Tech Stack Selection.
-    2.  Volume & Service Profile (monthly tickets, 6 category distribution sliders with independent control - each slider adjusts without affecting others).
+    2.  Volume & Service Profile (monthly tickets, 6 category distribution sliders with independent control - each slider adjusts without affecting others, total must equal 100% to proceed with validation error messages).
     3.  Additional Context (optional open-ended text area).
 - **Analysis Engines** (`src/lib/engines/`):
     -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify ALL available APIs (license tier independent), enabled use cases (`use-case-mappings.json`), and prerequisites. Uses tool name normalization (hyphens/spaces → underscores) to match tool IDs with API configs.

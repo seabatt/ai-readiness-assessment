@@ -56,11 +56,11 @@ export default function AssessmentPage() {
       case 1:
         return (data.techStack?.length ?? 0) > 0;
       case 2:
-        // Check if monthlyTickets is set and distribution has values
+        // Check if monthlyTickets is set and distribution equals 100%
         if (!data.monthlyTickets || data.monthlyTickets <= 0) return false;
         if (!data.ticketDistribution) return false;
         const total = Object.values(data.ticketDistribution).reduce((sum, val) => sum + val, 0);
-        return total > 0 && total <= 100;
+        return total === 100;
       case 3:
         // Additional context is optional, so always valid
         return true;
