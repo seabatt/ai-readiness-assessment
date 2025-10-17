@@ -145,9 +145,6 @@ export default function ReportV3Page() {
           <div className="mb-20">
             <div className="flex items-start justify-between">
               <div>
-                <h1 className="text-5xl font-bold text-text-primary mb-3">
-                  AI Worker Readiness Assessment
-                </h1>
                 <p className="text-xl text-text-tertiary">
                   Based on your {assessmentData.techStack?.length || 0} selected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
                 </p>
