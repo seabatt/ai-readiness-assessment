@@ -155,9 +155,13 @@ export default function ExecutiveSummary({
             <h2 className="text-2xl font-bold text-text-primary mb-6">
               Your IT Stack is {roiResult.automatable_pct.toFixed(0)}% Ready for AI Workers — Here's What That Means for Your Organization
             </h2>
-            <p className="text-lg text-text-secondary mb-6">
-              {generatedInsight}
-            </p>
+            <div className="space-y-4 mb-6">
+              {generatedInsight.split('\n\n').map((paragraph, index) => (
+                <p key={index} className="text-lg text-text-secondary">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
             <div className="text-center">
               <a 
                 href="https://www.ai.work/book-a-demo" 
