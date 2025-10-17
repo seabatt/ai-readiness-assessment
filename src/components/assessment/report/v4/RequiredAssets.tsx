@@ -40,8 +40,23 @@ export default function RequiredAssets() {
         To ensure the AI Worker is configured correctly and governed effectively, gather the following before deployment:
       </p>
       
-      <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6 mb-8">
-        <ResponsiveTable columns={columns} data={categories} mobileStackBreakpoint="sm" />
+      <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6 mb-8 overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-bg-card-alt/20">
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/4">Category</th>
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-3/4">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((row, index) => (
+              <tr key={index} className="border-b border-bg-card-alt/10 hover:bg-bg-card-alt/5 transition-colors duration-200">
+                <td className="py-4 px-4 text-sm font-semibold text-text-primary">{row.category}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary">{row.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div className="bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-6">

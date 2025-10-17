@@ -94,8 +94,37 @@ export default function InternalAlignment() {
         To deploy effectively, you'll need participation and approval from these roles:
       </p>
       
-      <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6">
-        <ResponsiveTable columns={columns} data={stakeholders} mobileStackBreakpoint="sm" />
+      <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6 overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-bg-card-alt/20">
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/5">Role</th>
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-2/5">Why They're Involved</th>
+              <th className="text-center py-4 px-4 text-sm font-semibold text-text-primary w-1/6">Include on Calendar Invites</th>
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/5">Approval Needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stakeholders.map((stakeholder, index) => (
+              <tr key={index} className="border-b border-bg-card-alt/10 hover:bg-bg-card-alt/5 transition-colors duration-200">
+                <td className="py-4 px-4 text-sm font-semibold text-text-primary">{stakeholder.role}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary">{stakeholder.whyInvolved}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary text-center">
+                  <div className="flex justify-center">
+                    {stakeholder.includeOnCalls ? (
+                      <svg className="w-5 h-5 text-accent-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <span className="text-text-tertiary">—</span>
+                    )}
+                  </div>
+                </td>
+                <td className="py-4 px-4 text-sm text-text-secondary">{stakeholder.approvalNeeded}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );
