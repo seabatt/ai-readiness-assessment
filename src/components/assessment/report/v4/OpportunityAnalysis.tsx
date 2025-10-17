@@ -161,6 +161,21 @@ export default function OpportunityAnalysis({
 
   return (
     <div className="max-w-5xl mx-auto mb-16">
+      {/* Call to Action Section */}
+      <section className="mb-12 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-8 text-center">
+        <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+          Let our AI listen to your real system data and receive a customized deployment blueprint, including your top automation opportunities and readiness score.
+        </p>
+        <a 
+          href="https://www.ai.work/book-a-demo" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        >
+          Run the Full Discovery Assessment →
+        </a>
+      </section>
+
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-text-primary mb-2">
           How to Identify Valuable Use Cases
@@ -276,21 +291,6 @@ export default function OpportunityAnalysis({
           </div>
         </Card>
       </div>
-
-      {/* Call to Action Section */}
-      <section className="mb-12 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-8 text-center">
-        <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-          Let our AI listen to your real system data and receive a customized deployment blueprint, including your top automation opportunities and readiness score.
-        </p>
-        <a 
-          href="https://www.ai.work/book-a-demo" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-        >
-          Run the Full Discovery Assessment →
-        </a>
-      </section>
 
       {/* Introduction to Use Cases */}
       <div className="mb-8">
