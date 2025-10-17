@@ -10,7 +10,6 @@ import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-
 import { UseCaseMatcher, MatchedUseCase } from "@/lib/engines/use-case-matcher";
 import { ROICalculator, ROIResult } from "@/lib/engines/roi-calculator";
 import ExecutiveSummary from "@/components/assessment/report/v4/ExecutiveSummary";
-import GapAnalysis from "@/components/assessment/report/v4/GapAnalysis";
 import OpportunityAnalysis from "@/components/assessment/report/v4/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v4/BestFitUseCases";
 import ROIBreakdown from "@/components/assessment/report/v4/ROIBreakdown";
@@ -187,11 +186,6 @@ export default function ReportV4Page() {
           matchedUseCases={matchedUseCases}
           feasibilityResults={feasibilityResults}
         />
-
-        <div className="border-t border-bg-card-alt/20 mb-20"></div>
-
-        {/* More Available Capabilities */}
-        <GapAnalysis feasibilityResults={feasibilityResults} />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
