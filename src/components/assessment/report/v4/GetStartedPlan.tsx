@@ -1,7 +1,6 @@
 'use client';
 
 import { MatchedUseCase } from '@/types/types-v3';
-import UseCaseCards from './UseCaseCards';
 import InternalAlignment from './InternalAlignment';
 import DeploymentTimeline from './DeploymentTimeline';
 import RequiredAssets from './RequiredAssets';
@@ -11,9 +10,6 @@ interface GetStartedPlanProps {
 }
 
 export default function GetStartedPlan({ matchedUseCases }: GetStartedPlanProps) {
-  // Get top 3 use cases for the "Identify Valuable Use Cases" section
-  const topThreeUseCases = matchedUseCases.slice(0, 3);
-
   return (
     <div className="max-w-5xl mx-auto mb-16">
       {/* Section 1: Introduction */}
@@ -34,32 +30,13 @@ export default function GetStartedPlan({ matchedUseCases }: GetStartedPlanProps)
         </div>
       </section>
 
-      {/* Section 2: Identify Valuable Use Cases */}
-      <section className="mb-16">
-        <h3 className="text-2xl font-bold text-text-primary mb-4">
-          Identify Valuable Use Cases
-        </h3>
-        <p className="text-text-secondary mb-4">
-          Every organization's AI journey begins with one or two high-impact workflows.
-        </p>
-        <p className="text-text-secondary mb-8">
-          We used your stack data to pinpoint areas where AI Workers will have the most immediate effect:
-        </p>
-        
-        {topThreeUseCases.length > 0 ? (
-          <UseCaseCards useCases={topThreeUseCases} showRank={false} />
-        ) : (
-          <p className="text-text-tertiary italic">No use cases identified yet.</p>
-        )}
-      </section>
-
-      {/* Section 3: Internal Alignment */}
+      {/* Section 2: Internal Alignment */}
       <InternalAlignment />
 
-      {/* Section 4: Deployment Timeline */}
+      {/* Section 3: Deployment Timeline */}
       <DeploymentTimeline />
 
-      {/* Section 5: Required Assets */}
+      {/* Section 4: Required Assets */}
       <RequiredAssets />
 
       {/* Final CTA */}
