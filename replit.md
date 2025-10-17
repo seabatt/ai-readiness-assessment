@@ -47,8 +47,11 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **UI Polish - Icons & Formatting**: Replaced all emojis with SVG icons across all report sections including Strategic Benefits (Continuous Learning, Employee Satisfaction, Operational Insights, Compliance & Audit, Scalable Operations, Reduced Context Switching). Standardized number formatting with commas (5,400 instead of 5400.0), whole numbers for hours/tickets, 1 decimal for FTE/percentages.
 -   **Category Filtering**: Filtered out "Meetings & Collaboration Licenses" category from ROI Breakdown and Best Fit Use Cases sections to show only valid ticket categories.
 -   **Home Page Design Updates**: 
-    - Restructured "Start Assessment" button layout - button and "5 minutes • Instant results" text now separate elements (matching design spec)
+    - Restructured "Start Assessment" button layout - button and "5 minutes • Instant results" text now separate elements, stacking vertically on mobile
     - Made header checkmark icon green (#82D895)
+    - Hero heading responsive: text-4xl on mobile, text-6xl on desktop
+    - Feature cards responsive layout: horizontal (icon left, text right) on mobile, vertical (icon top, text below) on desktop
+    - Bottom CTA button includes green dot indicator
 -   **Report Section Styling Updates**:
     - Removed borders from "High-Impact Opportunities" boxes in Stack Analysis
     - Added green outer glow effect to "Cumulative Impact (First 2 Months)" section (matching "Get 100% Accurate Results" styling)

@@ -54,8 +54,8 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {/* Card 1 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-bg-card-alt rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex md:block items-start gap-4">
+              <div className="w-12 h-12 bg-bg-card-alt rounded-full flex items-center justify-center flex-shrink-0 md:mb-4">
                 <svg
                   className="w-6 h-6 text-text-tertiary"
                   fill="none"
@@ -77,8 +77,8 @@ export default function Home() {
 
           {/* Card 2 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-highlight/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex md:block items-start gap-4">
+              <div className="w-12 h-12 bg-highlight/20 rounded-full flex items-center justify-center flex-shrink-0 md:mb-4">
                 <svg
                   className="w-6 h-6 text-highlight"
                   fill="none"
@@ -99,8 +99,8 @@ export default function Home() {
 
           {/* Card 3 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-status-active/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex md:block items-start gap-4">
+              <div className="w-12 h-12 bg-status-active/20 rounded-full flex items-center justify-center flex-shrink-0 md:mb-4">
                 <svg
                   className="w-6 h-6 text-blue-500"
                   fill="none"
@@ -122,8 +122,8 @@ export default function Home() {
 
           {/* Card 4 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-status-warning/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex md:block items-start gap-4">
+              <div className="w-12 h-12 bg-status-warning/20 rounded-full flex items-center justify-center flex-shrink-0 md:mb-4">
                 <svg
                   className="w-6 h-6 text-status-warning"
                   fill="none"
