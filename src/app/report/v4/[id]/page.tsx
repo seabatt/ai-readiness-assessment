@@ -166,8 +166,6 @@ export default function ReportV4Page() {
           />
         )}
 
-        <div className="border-t border-bg-card-alt/20 mb-20"></div>
-
         {/* What You Can Automate Right Now */}
         <OpportunityAnalysis
           matchedUseCases={matchedUseCases}
