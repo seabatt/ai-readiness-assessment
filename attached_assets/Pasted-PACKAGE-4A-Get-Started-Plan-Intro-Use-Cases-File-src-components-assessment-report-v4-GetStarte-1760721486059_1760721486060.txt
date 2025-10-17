@@ -1,0 +1,144 @@
+PACKAGE 4A: Get Started Plan - Intro & Use Cases
+File: src/components/assessment/report/v4/GetStartedPlan.tsx (replaces GetStartedRoadmap)
+Section 1: Introduction
+tsx<section>
+  <h2>Get Started: Your AI Worker Deployment Plan</h2>
+  <div className="lead-text">
+    <p>A clear, personalized blueprint for moving from readiness to real results.</p>
+    <p>You've identified where your tech stack can support AI Workers. Now it's time to move from <em>readiness</em> to <em>deployment</em>.</p>
+    <p>This blueprint shows what to expect during implementation — even if you work with other vendors — so your team can align, prepare, and accelerate securely.</p>
+  </div>
+</section>
+Section 2: Identify Valuable Use Cases
+tsx<section>
+  <h3>Identify Valuable Use Cases</h3>
+  <p>Every organization's AI journey begins with one or two high-impact workflows.</p>
+  <p>We used your stack data to pinpoint areas where AI Workers will have the most immediate effect:</p>
+  
+  {/* Reuse matched use case cards from OpportunityAnalysis */}
+  <UseCaseCards matchedUseCases={matchedUseCases.slice(0, 3)} />
+</section>
+Deliverables:
+
+ Create new GetStartedPlan.tsx component
+ Add intro section with vendor-agnostic messaging
+ Integrate use case cards (top 3)
+
+
+PACKAGE 4B: Internal Alignment Table
+New File: src/components/assessment/report/v4/InternalAlignment.tsx
+Component:
+tsxexport default function InternalAlignment() {
+  const stakeholders = [
+    {
+      role: "IT Admin / System Owner",
+      whyInvolved: "Provides admin API tokens and validates integrations",
+      includeOnCalls: true,
+      callTypes: "Integration Setup & Testing Calls",
+      approvalNeeded: "Super Admin, Privacy & Security approval"
+    },
+    // ... 6 more roles
+  ];
+
+  return (
+    <section>
+      <h3>Secure Internal Alignment</h3>
+      <p>AI Workers cross multiple systems — and therefore multiple teams.</p>
+      <p>To deploy effectively, you'll need participation and approval from these roles:</p>
+      
+      <ResponsiveTable data={stakeholders} />
+    </section>
+  );
+}
+Design Notes:
+
+Responsive table (stacks on mobile)
+Checkmark icons for "Include on Calendar Invites" column
+Clear visual hierarchy
+
+Deliverables:
+
+ Create InternalAlignment.tsx
+ Build responsive table component
+ Add all 7 stakeholder roles
+ Mobile-friendly design
+
+
+PACKAGE 4C: Deployment Timeline Table
+New File: src/components/assessment/report/v4/DeploymentTimeline.tsx
+Component:
+tsxexport default function DeploymentTimeline() {
+  const timeline = [
+    {
+      phase: "Week 1 — Integration Setup",
+      activity: "Connect systems and validate API access",
+      participants: "IT Admin, Security Lead, ai.work Engineer, CIO",
+      collectionsNeeded: ["Connections (API tokens, permissions)", "Data (sample tickets)", "Budget (initial allocation)"]
+    },
+    // ... 5 more weeks
+  ];
+
+  return (
+    <section>
+      <h3>Timeline to Deploy</h3>
+      <p>A realistic view of what to expect from kickoff to production, typically completed within <strong>4 weeks</strong>.</p>
+      
+      <TimelineTable data={timeline} />
+      
+      <div className="timeline-summary">
+        ⏱️ <strong>Total Duration:</strong> ~4 weeks from kickoff to production pilot
+      </div>
+    </section>
+  );
+}
+Design Notes:
+
+Timeline visual or table format
+Icons for collection types (🔹)
+Highlight "What We Need to Collect" items
+
+Deliverables:
+
+ Create DeploymentTimeline.tsx
+ Build timeline table component
+ Add all 6 week/phase rows
+ Visual timeline design (optional)
+
+
+PACKAGE 4D: Required Assets Table
+New File: src/components/assessment/report/v4/RequiredAssets.tsx
+Component:
+tsxexport default function RequiredAssets() {
+  const categories = [
+    {
+      category: "Rules (Knowledge)",
+      description: "All written policies, exception rules, and approval logic — this becomes the AI Worker's 'source of truth.'"
+    },
+    {
+      category: "Data",
+      description: "Historical requests, tickets, or logs that show how your team currently operates."
+    },
+    // ... 3 more categories
+  ];
+
+  return (
+    <section>
+      <h3>What We Need to Collect</h3>
+      <p>To ensure the AI Worker is configured correctly and governed effectively, gather the following before deployment:</p>
+      
+      <AssetsTable data={categories} />
+      
+      <div className="why-matters">
+        <h4>Why This Matters</h4>
+        <p>This plan gives your team a <strong>realistic roadmap</strong> to deploy AI safely — not a hype cycle.</p>
+        <p>By preparing these assets and stakeholders upfront, you'll ensure your AI Workers are operational, auditable, and scalable within weeks — not quarters.</p>
+      </div>
+    </section>
+  );
+}
+Deliverables:
+
+ Create RequiredAssets.tsx
+ Build 2-column table (Category | Description)
+ Add "Why This Matters" callout
+ Clean, scannable design
