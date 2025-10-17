@@ -105,9 +105,11 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
               href="https://www.ai.work/book-a-demo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              Run the Full Discovery Assessment →
+              <span className="w-2 h-2 rounded-full bg-highlight"></span>
+              <span className="flex-1 text-center">Run the Full Discovery Assessment</span>
+              <span>&gt;</span>
             </a>
           </div>
 
