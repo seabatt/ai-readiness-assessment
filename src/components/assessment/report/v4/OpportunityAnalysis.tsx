@@ -275,7 +275,7 @@ export default function OpportunityAnalysis({
         {topUseCases.map((useCase, index) => (
           <Card key={useCase.use_case_id} hover>
             {/* Rank Number */}
-            <div className="text-sm font-medium mb-3" style={{ color: '#8a8784' }}>
+            <div className="text-sm font-medium mb-1" style={{ color: '#8a8784' }}>
               {String(index + 1).padStart(2, '0')}
             </div>
 
