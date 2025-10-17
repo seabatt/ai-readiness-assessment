@@ -43,7 +43,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
 
 ### Recent Changes (October 17, 2025)
--   **Report Header Simplification**: Removed "AI Worker Readiness Assessment" h1 heading. Header now shows only the dynamic subtitle: "Based on your X selected tools and X,XXX monthly tickets" with Report Version V3.0 on the right.
+-   **Report Header Update**: Changed subtitle from "Your assessment and get-started plan" to dynamic text: "Based on your X selected tools and X,XXX monthly tickets" - displays actual count of selected tools and formatted monthly ticket volume. H1 heading uses font-weight 400.
 
 ### Recent Changes (October 16, 2025)
 -   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences. Styled to match subtitle text (text-lg text-text-secondary). Removed "Key Insights" heading to streamline presentation. Includes "Schedule a Complete Deep Dive" CTA button below insights (white background with green dot indicator).
