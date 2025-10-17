@@ -13,7 +13,7 @@ import ExecutiveSummary from "@/components/assessment/report/v4/ExecutiveSummary
 import OpportunityAnalysis from "@/components/assessment/report/v4/OpportunityAnalysis";
 import BestFitUseCases from "@/components/assessment/report/v4/BestFitUseCases";
 import ROIBreakdown from "@/components/assessment/report/v4/ROIBreakdown";
-import GetStartedRoadmap from "@/components/assessment/report/v4/GetStartedRoadmap";
+import GetStartedPlan from "@/components/assessment/report/v4/GetStartedPlan";
 import ExpectedOutcomes from "@/components/assessment/report/v4/ExpectedOutcomes";
 import CustomReportCTA from "@/components/assessment/report/v4/CustomReportCTA";
 import UnlockReportModal from "@/components/cta/UnlockReportModal";
@@ -197,9 +197,8 @@ export default function ReportV4Page() {
         )}
 
         {/* How to Get Started */}
-        <GetStartedRoadmap
+        <GetStartedPlan
           matchedUseCases={matchedUseCases}
-          feasibilityResults={feasibilityResults}
         />
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
