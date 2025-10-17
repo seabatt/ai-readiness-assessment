@@ -44,7 +44,8 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 
 ### Recent Changes (October 17, 2025)
 -   **Executive Summary V4 Updates**:
-    - **Dynamic Subheading**: Changed from "of tickets can be automated immediately" to "Your IT Stack is {score}% Ready for AI Workers — Here's What That Means for Your Organization" (uses actual readiness percentage)
+    - **Percentage Subheading**: Displays "of tickets can be automated immediately" below the readiness percentage
+    - **Dynamic H2 Heading**: Added H2 heading above AI-generated content: "Your IT Stack is {score}% Ready for AI Workers — Here's What That Means for Your Organization" (uses actual readiness percentage)
     - **Enhanced AI Content Generation**: Rewrote AI prompt to generate 2-3 paragraphs (instead of sentences) with:
       - Mandatory opening: "Based on your inputs, your environment has the core systems and data maturity needed to operationalize AI Workers across IT, HR, and Procurement."
       - Specific quantifiable outcomes: 45-65% resolution time reduction, 30-50% overhead decrease, <90 day ROI
@@ -58,6 +59,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
     - Cloned V3 report to V4 for future modifications. All V4 components copied to `src/components/assessment/report/v4/` and page route created at `src/app/report/v4/[id]/page.tsx`. Report version displays "V4.0".
     - **Section Order**: Reorganized V4 report with new section order: Executive Summary (Hero) → How AI Can Fit into Your IT Stack (OpportunityAnalysis) → Your AI Worker Deployment Plan (BestFitUseCases) → ROI Breakdown → How to Get Started (GetStartedRoadmap) → What To Expect (ExpectedOutcomes) → Call to Action (CustomReportCTA).
     - **Removed Sections**: Eliminated "Your AI Worker Capabilities" (StackAnalysis) and "More Available Capabilities" (GapAnalysis) sections from V4.
+    - **Version Indicator Position**: Moved V4.0 version indicator to page header (right-aligned using flexbox layout) instead of report header section for cleaner layout.
 -   **Workflow Steps Styling & Interaction (V4)**: 
     - **Collapsible "How it Works" Section**: Added expand/collapse functionality to workflow steps with clickable header and rotating chevron icon. Steps collapsed by default for cleaner initial view.
     - **Number Styling**: Updated workflow step numbers to "01", "02", "03" format with #8a8784 color, positioned above text with no background circle (matching brand design system).
