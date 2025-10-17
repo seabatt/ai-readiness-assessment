@@ -16,8 +16,7 @@ export default function AssessmentPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [data, setData] = useState<Partial<AssessmentData>>({
-    // Pre-filled for quick testing
-    techStack: ['okta', 'servicenow', 'slack', 'jira'],
+    techStack: [],
     monthlyTickets: 1000,
     ticketDistribution: {
       applications: 24,
