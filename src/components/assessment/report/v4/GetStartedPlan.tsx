@@ -33,14 +33,14 @@ export default function GetStartedPlan({ matchedUseCases }: GetStartedPlanProps)
 
       {/* Call to Action Section */}
       <section className="mt-12 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-8 text-center">
-        <p className="text-lg text-text-secondary mb-4 leading-relaxed">
+        <p className="text-lg text-text-secondary mb-6 leading-relaxed">
           Let our AI listen to your real system data and receive a customized deployment blueprint, including your top automation opportunities and readiness score.
         </p>
         <a 
           href="https://www.ai.work/book-a-demo" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="inline-block text-xl font-bold text-text-primary hover:text-highlight transition-colors duration-200"
+          className="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
         >
           Run the Full Discovery Assessment →
         </a>
