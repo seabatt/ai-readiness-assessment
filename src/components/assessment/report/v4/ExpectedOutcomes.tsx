@@ -195,11 +195,11 @@ export default function ExpectedOutcomes({
 
   return (
     <div className="max-w-6xl mx-auto mb-16">
-      <div className="text-center mb-12">
+      <div className="mb-12">
         <h2 className="text-3xl font-bold text-text-primary mb-4">
           What to Expect
         </h2>
-        <p className="text-text-secondary max-w-3xl mx-auto">
+        <p className="text-text-secondary max-w-3xl">
           Projected results from deploying AI Workers with your {totalMonthlyTickets.toLocaleString()} monthly tickets
         </p>
       </div>
