@@ -8,49 +8,42 @@ export default function InternalAlignment() {
       role: "IT Admin / System Owner",
       whyInvolved: "Provides admin API tokens and validates integrations",
       includeOnCalls: true,
-      callTypes: "Integration Setup & Testing Calls",
       approvalNeeded: "Super Admin, Privacy & Security approval"
     },
     {
       role: "Security Lead",
       whyInvolved: "Approves OAuth scopes, validates data access controls",
       includeOnCalls: true,
-      callTypes: "Security Review Calls",
       approvalNeeded: "Data access & encryption protocols"
     },
     {
       role: "Legal / Compliance Officer",
       whyInvolved: "Ensures AI Worker aligns with regulatory obligations",
       includeOnCalls: true,
-      callTypes: "Compliance & Audit Planning",
       approvalNeeded: "AI governance & data residency approvals"
     },
     {
       role: "Finance / Procurement",
       whyInvolved: "Manages contract, budget allocation, and ROI tracking",
       includeOnCalls: false,
-      callTypes: "Budget & Vendor Management",
       approvalNeeded: "Contract & payment approvals"
     },
     {
       role: "End User Representative",
       whyInvolved: "Validates workflow accuracy and user experience",
       includeOnCalls: true,
-      callTypes: "User Acceptance Testing (UAT)",
       approvalNeeded: "Process sign-off"
     },
     {
       role: "Department Head (IT, HR, Procurement)",
       whyInvolved: "Champions adoption and ensures team readiness",
       includeOnCalls: false,
-      callTypes: "Executive Sponsor Check-ins",
       approvalNeeded: "Change management approval"
     },
     {
       role: "CIO / CISO",
       whyInvolved: "Executive sponsor ensuring strategic alignment",
       includeOnCalls: true,
-      callTypes: "Kickoff & Final Sign-off",
       approvalNeeded: "Strategic & security approval"
     }
   ];
