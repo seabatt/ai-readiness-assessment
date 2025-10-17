@@ -177,14 +177,6 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
-        {/* Your AI Worker Deployment Plan */}
-        <BestFitUseCases
-          matchedUseCases={matchedUseCases}
-          feasibilityResults={feasibilityResults}
-        />
-
-        <div className="border-t border-bg-card-alt/20 mb-20"></div>
-
         {/* ROI Breakdown */}
         {roiResult && (
           <>
