@@ -11,18 +11,6 @@ export default function RequiredAssets() {
     {
       category: "Data",
       description: "Historical requests, tickets, or logs that show how your team currently operates."
-    },
-    {
-      category: "Connections",
-      description: "API tokens, OAuth permissions, and integration credentials needed to access your systems."
-    },
-    {
-      category: "Budget",
-      description: "Approved allocation for licensing, implementation, and ongoing support costs."
-    },
-    {
-      category: "Documentation",
-      description: "SOPs, runbooks, and compliance requirements that govern how work gets done today."
     }
   ];
 
