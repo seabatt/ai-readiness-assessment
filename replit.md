@@ -46,7 +46,11 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **Report Header Update**: Changed subtitle from "Your assessment and get-started plan" to dynamic text: "Based on your X selected tools and X,XXX monthly tickets" - displays actual count of selected tools and formatted monthly ticket volume. H1 heading uses font-weight 400.
 -   **Removed Redundant Executive Summary Heading**: Eliminated duplicate "Your IT Automation Readiness" heading and subtitle from Executive Summary section to avoid redundancy with main page header.
 -   **Readiness Badge Repositioned**: Moved readiness level badge (High Readiness/Moderate Readiness/etc.) above the percentage number in Executive Summary. Reduced size to text-sm and updated styling to match other badges on page (bg-highlight/20 text-highlight rounded-full px-3 py-1).
--   **V4 Report Created**: Cloned V3 report to V4 for future modifications. All V3 components copied to `src/components/assessment/report/v4/` and page route created at `src/app/report/v4/[id]/page.tsx`. Report version displays "V4.0".
+-   **V4 Report Created & Reorganized**: 
+    - Cloned V3 report to V4 for future modifications. All V3 components copied to `src/components/assessment/report/v4/` and page route created at `src/app/report/v4/[id]/page.tsx`. Report version displays "V4.0".
+    - **Section Order**: Reorganized V4 report with new section order: Executive Summary (Hero) → What You Can Automate Right Now → Your AI Worker Deployment Plan → More Available Capabilities → ROI Breakdown → How to Get Started → What To Expect → Call to Action.
+    - **Removed Section**: Eliminated "Your AI Worker Capabilities" section (StackAnalysis component removed from imports).
+    - **Updated Components**: Enhanced GapAnalysis component to show "More Available Capabilities" with tool-by-tool breakdown of available APIs and AI Worker actions.
 
 ### Recent Changes (October 16, 2025)
 -   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences. Styled to match subtitle text (text-lg text-text-secondary). Removed "Key Insights" heading to streamline presentation. Includes "Schedule a Complete Deep Dive" CTA button below insights (white background with green dot indicator).
