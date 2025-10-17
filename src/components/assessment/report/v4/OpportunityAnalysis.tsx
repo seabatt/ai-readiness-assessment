@@ -320,21 +320,9 @@ export default function OpportunityAnalysis({
                 </h3>
               </div>
               
-              {/* Category Badge and Tool Logos */}
-              <div className="flex items-center gap-4">
-                {/* Category Badge */}
-                <div className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getCategoryColor(useCase.category)}`}>
-                  {useCase.category}
-                </div>
-                
-                {/* Tool Logos */}
-                {useCase.required_tools && useCase.required_tools.length > 0 && (
-                  <ConnectedAppLogos 
-                    apps={useCase.required_tools.map(convertToolName)}
-                    maxVisible={5}
-                    size={24}
-                  />
-                )}
+              {/* Category Badge */}
+              <div className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getCategoryColor(useCase.category)}`}>
+                {useCase.category}
               </div>
             </div>
 
@@ -381,8 +369,16 @@ export default function OpportunityAnalysis({
                 className="flex items-center gap-2 text-sm font-semibold text-text-primary mb-2 hover:text-highlight transition-colors duration-200 w-full text-left"
               >
                 <span>How it works:</span>
+                {/* Tool Logos */}
+                {useCase.required_tools && useCase.required_tools.length > 0 && (
+                  <ConnectedAppLogos 
+                    apps={useCase.required_tools.map(convertToolName)}
+                    maxVisible={5}
+                    size={32}
+                  />
+                )}
                 <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 transition-transform duration-200 ml-auto ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
