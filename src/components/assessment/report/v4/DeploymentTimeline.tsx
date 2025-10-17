@@ -5,37 +5,37 @@ import ResponsiveTable from '@/components/ui/ResponsiveTable';
 export default function DeploymentTimeline() {
   const timeline = [
     {
-      phase: "Week 1 — Integration Setup",
+      phase: "Phase One — Integration Setup",
       activity: "Connect systems and validate API access",
       participants: "IT Admin, Security Lead, Implementation Engineer, CIO",
       collectionsNeeded: ["🔹 Connections (API tokens, permissions)", "🔹 Data (sample tickets)", "🔹 Budget (initial allocation)"]
     },
     {
-      phase: "Week 2 — Rule & Policy Configuration",
+      phase: "Phase Two — Rule & Policy Configuration",
       activity: "Input approval workflows, exception rules, escalation paths",
       participants: "Process Owner, Legal, End User Rep",
       collectionsNeeded: ["🔹 Rules (policy docs, decision trees)", "🔹 Documentation (SOPs, compliance requirements)"]
     },
     {
-      phase: "Week 3 — AI Worker Training",
+      phase: "Phase Three — AI Worker Training",
       activity: "Fine-tune AI Worker on historical tickets and validate accuracy",
       participants: "Implementation Engineer, IT Admin, End User Rep",
       collectionsNeeded: ["🔹 Data (historical requests for training)", "🔹 Connections (read/write access validated)"]
     },
     {
-      phase: "Week 4 — User Acceptance Testing (UAT)",
+      phase: "Phase Four — User Acceptance Testing (UAT)",
       activity: "Test AI Worker with real scenarios; gather feedback",
       participants: "End User Rep, Department Head, Security Lead",
       collectionsNeeded: ["🔹 Rules (validated edge cases)", "🔹 Documentation (updated runbook)"]
     },
     {
-      phase: "Week 5 — Security & Compliance Review",
+      phase: "Phase Five — Security & Compliance Review",
       activity: "Final audit of data access, logging, and governance controls",
       participants: "Security Lead, Legal, CIO/CISO",
       collectionsNeeded: ["🔹 Documentation (audit trail, compliance checklist)", "🔹 Budget (final sign-off for production)"]
     },
     {
-      phase: "Week 6 — Production Pilot Launch",
+      phase: "Phase Six — Production Pilot Launch",
       activity: "Deploy AI Worker to production with limited scope; monitor performance",
       participants: "All Stakeholders (monitoring & support)",
       collectionsNeeded: ["🔹 All assets validated and operational"]
