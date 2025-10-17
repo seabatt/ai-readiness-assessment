@@ -282,12 +282,9 @@ export default function OpportunityAnalysis({
             {/* Header with Priority */}
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-xl font-bold text-text-primary mb-1">
+                <h3 className="text-xl font-bold text-text-primary">
                   {useCase.name}
                 </h3>
-                <span className="text-sm text-text-tertiary">
-                  {useCase.category}
-                </span>
               </div>
               
               {/* Category Badge, Tool Logos and Fit Score */}
