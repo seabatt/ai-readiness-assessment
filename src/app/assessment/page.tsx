@@ -35,10 +35,10 @@ export default function AssessmentPage() {
     } else if (step === 3) {
       // Show loading screen
       setStep(4);
-      // Save to sessionStorage and redirect to V3 report after brief delay
+      // Save to sessionStorage and redirect to V4 report after brief delay
       setTimeout(() => {
         sessionStorage.setItem('assessmentData', JSON.stringify(data));
-        router.push('/report/v3/new');
+        router.push('/report/v4/new');
       }, 3000);
     }
   };
