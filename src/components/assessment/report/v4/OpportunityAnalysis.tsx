@@ -149,9 +149,6 @@ export default function OpportunityAnalysis({
         <h2 className="text-3xl font-bold text-text-primary mb-2">
           What You Can Automate Right Now
         </h2>
-        <h3 className="text-xl font-semibold text-text-secondary mb-4">
-          Where AI Workers Can Deliver Impact First
-        </h3>
         <p className="text-text-secondary">
           Not all IT tasks are good candidates for AI automation. Here's what works best—and what doesn't.
         </p>
@@ -266,6 +263,9 @@ export default function OpportunityAnalysis({
 
       {/* Introduction to Use Cases */}
       <div className="mb-8">
+        <h3 className="text-2xl font-bold text-text-primary mb-4">
+          How to Identify Valuable Use Cases
+        </h3>
         <p className="text-lg text-text-secondary leading-relaxed">
           Based on your stack, here are <span className="font-semibold text-text-primary">examples of use cases where AI Workers can deliver immediate value</span>. We've identified the <span className="font-semibold text-text-primary">easiest wins first</span>—high-confidence automations that can be deployed quickly using your existing tools and APIs.
         </p>

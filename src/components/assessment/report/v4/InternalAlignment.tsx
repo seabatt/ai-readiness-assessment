@@ -87,10 +87,10 @@ export default function InternalAlignment() {
       <h3 className="text-2xl font-bold text-text-primary mb-4">
         Secure Internal Alignment
       </h3>
-      <p className="text-text-secondary mb-2">
+      <p className="text-lg text-text-secondary mb-2">
         AI Workers cross multiple systems — and therefore multiple teams.
       </p>
-      <p className="text-text-secondary mb-8">
+      <p className="text-lg text-text-secondary mb-8">
         To deploy effectively, you'll need participation and approval from these roles:
       </p>
       

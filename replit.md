@@ -20,11 +20,11 @@ The application uses the official Ai.Work brand system with a custom dark theme.
     -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers, calculating fit scores, estimating deflection, and prioritizing use cases.
     -   **ROICalculator**: Calculates precise ROI from matched use cases, including FTE equivalents and category-level breakdowns with confidence scores.
 -   **Report Generation**: Generates V4 reports with high accuracy, including:
-    -   **Executive Summary**: AI-generated strategic insights, readiness percentage, and dynamic headings.
-    -   **Opportunity Analysis**: "What You Can Automate Right Now" section identifies where AI Workers can deliver impact first, categorizing good vs. poor candidates, and ranking use cases with required tools and deployment badges.
-    -   **Deployment Plan**: Provides a comprehensive "Get Started Plan" with a `ResponsiveTable` component for a 6-week implementation timeline, required assets, and internal alignment details for 7 stakeholder roles. All messaging is vendor-agnostic.
+    -   **Executive Summary**: AI-generated strategic insights, readiness percentage, and dynamic headings. No CTA button in this section.
+    -   **Opportunity Analysis**: "What You Can Automate Right Now" section categorizes good vs. poor candidates. "How to Identify Valuable Use Cases" subheading introduces the use case list with 2-column grid layout. Use case cards show category badges (green accent), required tools, and impact metrics. No fit scores or deployment timing badges displayed.
+    -   **Deployment Plan**: Provides a comprehensive "Get Started Plan" with standard HTML tables (replaced ResponsiveTable) for 6-phase timeline, required assets, and internal alignment for 7 stakeholder roles. All messaging is vendor-agnostic. Text sizing uses text-lg for consistency.
     -   **Expected Outcomes**: Details pilot metrics, before/after scenarios, and team capacity gains.
-    -   **Call to Action**: CustomReportCTA with external glow effect.
+    -   **Call to Action**: CustomReportCTA with text-based section "Run the Full Discovery Assessment →" and description text, replacing the previous button. All text uses consistent sizing (text-lg text-text-secondary).
 -   **LLM Integration**: Uses OpenAI GPT-4o for generating strategic "Key Insights" in the Executive Summary, analyzing ROI metrics, tech stack, and user context.
 -   **Data Handling**: Fixed critical ROI calculation bug by implementing capacity tracking to prevent ticket double-counting. Standardized number formatting and filtered irrelevant categories.
 
