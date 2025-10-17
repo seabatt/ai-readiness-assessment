@@ -290,7 +290,7 @@ export default function OpportunityAnalysis({
               {/* Category Badge and Tool Logos */}
               <div className="flex items-center gap-4">
                 {/* Category Badge */}
-                <div className="px-3 py-1 rounded-full bg-accent-blue/20 text-accent-blue text-sm font-medium whitespace-nowrap">
+                <div className="px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-sm font-medium whitespace-nowrap">
                   {useCase.category}
                 </div>
                 
