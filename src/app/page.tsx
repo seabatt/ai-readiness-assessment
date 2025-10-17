@@ -21,13 +21,13 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 py-20">
         {/* Hero Section */}
         <section className="text-center mb-20">
-          <h1 className="text-6xl font-bold mb-6 leading-tight text-text-primary">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-text-primary">
             Find out if your IT stack can support a digital team mate.
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Every Enterprise is putting pressure on IT Teams to do more with AI. The disconnect between Executives reading headlines about AI and frontline IT is: legacy tools, policies and procedures.
           </p>
-          <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
             <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Start Assessment →
             </Link>
@@ -54,79 +54,95 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {/* Card 1 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="w-12 h-12 bg-bg-card-alt rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-text-tertiary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="10" strokeWidth="2" />
-                <path strokeWidth="2" d="M12 6v6l4 2" />
-              </svg>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-bg-card-alt rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-text-tertiary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                  <path strokeWidth="2" d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">Readiness Score</h3>
+                <p className="text-sm text-text-tertiary">
+                  0-100 score across 5 key pillars
+                </p>
+              </div>
             </div>
-            <h3 className="font-bold text-lg mb-2 text-text-primary">Readiness Score</h3>
-            <p className="text-sm text-text-tertiary">
-              0-100 score across 5 key pillars
-            </p>
           </div>
 
           {/* Card 2 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="w-12 h-12 bg-highlight/20 rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-highlight"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-highlight/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-highlight"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">Opportunity Map</h3>
+                <p className="text-sm text-text-tertiary">
+                  AI workers matched to your stack
+                </p>
+              </div>
             </div>
-            <h3 className="font-bold text-lg mb-2 text-text-primary">Opportunity Map</h3>
-            <p className="text-sm text-text-tertiary">
-              AI workers matched to your stack
-            </p>
           </div>
 
           {/* Card 3 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="w-12 h-12 bg-status-active/20 rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-blue-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeWidth="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                />
-              </svg>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-status-active/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeWidth="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">ROI Simulation</h3>
+                <p className="text-sm text-text-tertiary">Hours saved & FTE impact</p>
+              </div>
             </div>
-            <h3 className="font-bold text-lg mb-2 text-text-primary">ROI Simulation</h3>
-            <p className="text-sm text-text-tertiary">Hours saved & FTE impact</p>
           </div>
 
           {/* Card 4 */}
           <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 hover:border-bg-card-alt/40 transition-colors">
-            <div className="w-12 h-12 bg-status-warning/20 rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-status-warning"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeWidth="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-status-warning/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-status-warning"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">Enterprise-Ready</h3>
+                <p className="text-sm text-text-tertiary">
+                  Governance & compliance built-in
+                </p>
+              </div>
             </div>
-            <h3 className="font-bold text-lg mb-2 text-text-primary">Enterprise-Ready</h3>
-            <p className="text-sm text-text-tertiary">
-              Governance & compliance built-in
-            </p>
           </div>
         </div>
 
