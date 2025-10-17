@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import { AssessmentData, ReadinessScore } from "@/types";
 import { calculateReadinessScore } from "@/lib/scoringAlgorithm";
 import { FeasibilityEngine, FeasibilityResult } from "@/lib/engines/feasibility-engine";
@@ -121,25 +123,41 @@ export default function ReportV3Page() {
   if (!score || !assessmentData) return null;
 
   return (
-    <main className="min-h-screen bg-bg-primary py-12">
-      <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
-        <div className="mb-20">
-          <div className="flex items-start justify-between">
-            <div>
-              <h1 className="text-5xl font-bold text-text-primary mb-3">
-                AI Worker Readiness Assessment
-              </h1>
-              <p className="text-xl text-text-tertiary">
-                Your assessment and get-started plan
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="text-sm text-text-tertiary">Report Version</div>
-              <div className="text-2xl font-bold text-text-primary">V3.0</div>
+    <div className="min-h-screen bg-bg-primary">
+      {/* Header */}
+      <header className="border-b border-bg-card-alt/20">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <Link href="/">
+            <Image 
+              src="/images/aiwork-logo.png" 
+              alt="ai.work" 
+              width={120} 
+              height={30}
+              className="h-7 w-auto"
+            />
+          </Link>
+        </div>
+      </header>
+
+      <main className="py-12">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Report Header */}
+          <div className="mb-20">
+            <div className="flex items-start justify-between">
+              <div>
+                <h1 className="text-5xl font-bold text-text-primary mb-3">
+                  AI Worker Readiness Assessment
+                </h1>
+                <p className="text-xl text-text-tertiary">
+                  Your assessment and get-started plan
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-sm text-text-tertiary">Report Version</div>
+                <div className="text-2xl font-bold text-text-primary">V3.0</div>
+              </div>
             </div>
           </div>
-        </div>
 
         {/* Executive Summary */}
         {roiResult && (
@@ -213,7 +231,8 @@ export default function ReportV3Page() {
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
         <CustomReportCTA onRequestDiscovery={() => setShowModal(true)} />
-      </div>
+        </div>
+      </main>
 
       {/* Modal */}
       {showModal && (
@@ -222,6 +241,6 @@ export default function ReportV3Page() {
           onClose={() => setShowModal(false)}
         />
       )}
-    </main>
+    </div>
   );
 }

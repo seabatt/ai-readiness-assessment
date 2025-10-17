@@ -52,6 +52,8 @@ The application uses the official Ai.Work brand system with a custom dark theme:
     - Hero heading responsive: text-4xl on mobile, text-6xl on desktop
     - Feature cards responsive layout: horizontal (icon left, text right) on mobile, vertical (icon top, text below) on desktop
     - Bottom CTA button includes green dot indicator
+    - Added ai.work logo to all page headers (home, assessment, report)
+    - Moved "Assessment tool based on real IT automation data" to preheader section above main header
 -   **Report Section Styling Updates**:
     - Removed borders from "High-Impact Opportunities" boxes in Stack Analysis
     - Added green outer glow effect to "Cumulative Impact (First 2 Months)" section (matching "Get 100% Accurate Results" styling)

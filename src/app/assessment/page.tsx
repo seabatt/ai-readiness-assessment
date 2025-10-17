@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 import ProgressBar from '@/components/ui/ProgressBar';
 import Button from '@/components/ui/Button';
 import TechStackSelector from '@/components/assessment/TechStackSelector';
@@ -72,6 +74,21 @@ export default function AssessmentPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
+      {/* Header */}
+      <header className="border-b border-bg-card-alt/20">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <Link href="/">
+            <Image 
+              src="/images/aiwork-logo.png" 
+              alt="ai.work" 
+              width={120} 
+              height={30}
+              className="h-7 w-auto"
+            />
+          </Link>
+        </div>
+      </header>
+
       {/* Progress Bar */}
       {step <= 3 && (
         <div className="border-b border-bg-card-alt/20">

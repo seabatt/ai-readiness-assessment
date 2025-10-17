@@ -1,19 +1,33 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary">
+      {/* Preheader */}
+      <div className="bg-bg-card border-b border-bg-card-alt/20">
+        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-center gap-2">
+          <svg className="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-xs text-text-tertiary">
+            Assessment tool based on real IT automation data
+          </span>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="border-b border-bg-card-alt/20">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="text-sm text-text-tertiary">
-              Assessment tool based on real IT automation data
-            </span>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <Link href="/">
+            <Image 
+              src="/images/aiwork-logo.png" 
+              alt="ai.work" 
+              width={120} 
+              height={30}
+              className="h-7 w-auto"
+            />
+          </Link>
         </div>
       </header>
 
