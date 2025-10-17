@@ -87,15 +87,6 @@ export default function ExecutiveSummary({
 
   return (
     <div className="max-w-5xl mx-auto mb-16">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-text-primary mb-2">
-          Your IT Automation Readiness
-        </h2>
-        <p className="text-lg text-text-secondary">
-          Based on your {assessmentData.techStack.length} selected tools and {totalMonthlyTickets.toLocaleString()} monthly tickets
-        </p>
-      </div>
-
       {/* Main Readiness Card */}
       <Card className="mb-8">
         <div className="text-center mb-8">
