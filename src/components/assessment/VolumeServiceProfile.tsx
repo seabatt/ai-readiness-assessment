@@ -28,49 +28,7 @@ export default function VolumeServiceProfile({
   }, [ticketDistribution]);
 
   const handleSliderChange = (category: keyof typeof ticketDistribution, newValue: number) => {
-    const oldValue = localDistribution[category];
-    const diff = newValue - oldValue;
-    
-    // Calculate total of other categories
-    const otherCategories = Object.entries(localDistribution)
-      .filter(([key]) => key !== category)
-      .map(([key, val]) => ({ key, val }));
-    
-    const otherTotal = otherCategories.reduce((sum, { val }) => sum + val, 0);
-    
-    // Start with the user's exact selection locked in
     const updated = { ...localDistribution, [category]: newValue };
-    
-    if (otherTotal > 0) {
-      // Proportionally distribute the delta across other categories
-      otherCategories.forEach(({ key }) => {
-        const proportion = localDistribution[key as keyof typeof ticketDistribution] / otherTotal;
-        const adjustment = -diff * proportion;
-        const adjustedValue = localDistribution[key as keyof typeof ticketDistribution] + adjustment;
-        updated[key as keyof typeof ticketDistribution] = Math.round(adjustedValue);
-      });
-    } else if (diff !== 0) {
-      // When all others are 0, distribute remaining evenly
-      const remaining = 100 - newValue;
-      const perCategory = Math.floor(remaining / otherCategories.length);
-      const remainder = remaining - (perCategory * otherCategories.length);
-      
-      otherCategories.forEach(({ key }, index) => {
-        updated[key as keyof typeof ticketDistribution] = perCategory + (index === 0 ? remainder : 0);
-      });
-    }
-    
-    // Fix rounding errors WITHOUT changing the user's selected category
-    const currentTotal = Object.values(updated).reduce((sum, val) => sum + val, 0);
-    if (currentTotal !== 100) {
-      const diff = 100 - currentTotal;
-      // Find the largest OTHER category to absorb the rounding error
-      const largestOtherKey = otherCategories
-        .map(({ key }) => ({ key, val: updated[key as keyof typeof ticketDistribution] }))
-        .reduce((a, b) => b.val > a.val ? b : a).key as keyof typeof ticketDistribution;
-      
-      updated[largestOtherKey] = updated[largestOtherKey] + diff;
-    }
     
     setLocalDistribution(updated);
     onChange('ticketDistribution', updated);
