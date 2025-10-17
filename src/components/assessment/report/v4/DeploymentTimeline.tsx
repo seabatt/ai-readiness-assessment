@@ -1,7 +1,5 @@
 'use client';
 
-import ResponsiveTable from '@/components/ui/ResponsiveTable';
-
 export default function DeploymentTimeline() {
   const timeline = [
     {
@@ -33,24 +31,6 @@ export default function DeploymentTimeline() {
       phase: "Phase Six — Production Pilot Launch",
       activity: "Deploy AI Worker to production with limited scope; monitor performance",
       participants: "All Stakeholders (monitoring & support)"
-    }
-  ];
-
-  const columns = [
-    {
-      key: 'phase',
-      label: 'Phase',
-      className: 'font-semibold text-text-primary w-1/4'
-    },
-    {
-      key: 'activity',
-      label: 'Activity',
-      className: 'w-1/2'
-    },
-    {
-      key: 'participants',
-      label: 'Key Participants',
-      className: 'w-1/4'
     }
   ];
 
