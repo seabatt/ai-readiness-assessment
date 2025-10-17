@@ -53,6 +53,7 @@ export default function ExecutiveSummary({
             automatableTickets: roiResult.automatable_tickets,
             totalHoursSaved: roiResult.total_hours_saved,
             fteEquivalent: roiResult.fte_equivalent,
+            readinessScore: roiResult.automatable_pct,
             topCategories,
             topUseCases,
             techStack: assessmentData.techStack
@@ -99,7 +100,7 @@ export default function ExecutiveSummary({
             {roiResult.automatable_pct.toFixed(1)}%
           </div>
           <div className="text-xl text-text-secondary">
-            of tickets can be automated immediately
+            Your IT Stack is {roiResult.automatable_pct.toFixed(0)}% Ready for AI Workers — Here's What That Means for Your Organization
           </div>
         </div>
 

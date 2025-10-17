@@ -43,6 +43,14 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
 
 ### Recent Changes (October 17, 2025)
+-   **Executive Summary V4 Updates**:
+    - **Dynamic Subheading**: Changed from "of tickets can be automated immediately" to "Your IT Stack is {score}% Ready for AI Workers — Here's What That Means for Your Organization" (uses actual readiness percentage)
+    - **Enhanced AI Content Generation**: Rewrote AI prompt to generate 2-3 paragraphs (instead of sentences) with:
+      - Mandatory opening: "Based on your inputs, your environment has the core systems and data maturity needed to operationalize AI Workers across IT, HR, and Procurement."
+      - Specific quantifiable outcomes: 45-65% resolution time reduction, 30-50% overhead decrease, <90 day ROI
+      - Personalized tech stack references and highest-impact automation opportunities
+      - Strategic consulting-level guidance using Ai.Work tone of voice (confident, operationally fluent, empowering)
+    - **API Enhancement**: Added readinessScore to API payload, increased max_tokens to 600 for longer content
 -   **Report Header Update**: Changed subtitle from "Your assessment and get-started plan" to dynamic text: "Based on your X selected tools and X,XXX monthly tickets" - displays actual count of selected tools and formatted monthly ticket volume. H1 heading uses font-weight 400.
 -   **Removed Redundant Executive Summary Heading**: Eliminated duplicate "Your IT Automation Readiness" heading and subtitle from Executive Summary section to avoid redundancy with main page header.
 -   **Readiness Badge Repositioned**: Moved readiness level badge (High Readiness/Moderate Readiness/etc.) above the percentage number in Executive Summary. Reduced size to text-sm and updated styling to match other badges on page (bg-highlight/20 text-highlight rounded-full px-3 py-1).
