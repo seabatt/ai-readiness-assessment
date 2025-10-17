@@ -46,37 +46,49 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
               <h4 className="font-semibold text-text-primary mb-4 text-center">What You'll Get</h4>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Exact ticket categories to automate (down to subcategory level)
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Precise ROI projections for your specific team
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Segmentation: fully automatable vs. human-in-loop
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Custom 90-day roadmap with phased deployment
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Baseline metrics: volume by category, current median TTR
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-highlight mt-1">✓</span>
+                  <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   <span className="text-sm text-text-tertiary leading-relaxed">
                     Confidence intervals for deflection (typically 95%+)
                   </span>
