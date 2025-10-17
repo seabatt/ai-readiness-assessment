@@ -42,6 +42,9 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 -   **V3 Report**: The primary report experience, offering API-grounded analysis and specific recommendations.
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
 
+### Recent Changes (October 17, 2025)
+-   **Report Header Update**: Changed subtitle from "Your assessment and get-started plan" to dynamic text: "Based on your X selected tools and X,XXX monthly tickets" - displays actual count of selected tools and formatted monthly ticket volume.
+
 ### Recent Changes (October 16, 2025)
 -   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences. Styled to match subtitle text (text-lg text-text-secondary). Removed "Key Insights" heading to streamline presentation. Includes "Schedule a Complete Deep Dive" CTA button below insights (white background with green dot indicator).
 -   **Fixed Critical ROI Calculation Bug**: Resolved ticket double-counting issue where use cases were inflating totals beyond 100%. Implemented capacity tracking in UseCaseMatcher to ensure each ticket is only counted once, plus safety clamp in ROICalculator.

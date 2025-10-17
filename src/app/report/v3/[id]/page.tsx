@@ -149,7 +149,7 @@ export default function ReportV3Page() {
                   AI Worker Readiness Assessment
                 </h1>
                 <p className="text-xl text-text-tertiary">
-                  Your assessment and get-started plan
+                  Based on your {assessmentData.techStack?.length || 0} selected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
                 </p>
               </div>
               <div className="text-right">
