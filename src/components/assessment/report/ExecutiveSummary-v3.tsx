@@ -90,14 +90,16 @@ export default function ExecutiveSummary({
       {/* Main Readiness Card */}
       <Card className="mb-8">
         <div className="text-center mb-8">
+          <div className="mb-4">
+            <span className="px-3 py-1 rounded-full bg-highlight/20 text-highlight text-sm font-medium">
+              {rating.label}
+            </span>
+          </div>
           <div className={`text-6xl font-bold ${rating.color} mb-2`}>
             {roiResult.automatable_pct.toFixed(1)}%
           </div>
-          <div className="text-xl text-text-secondary mb-4">
+          <div className="text-xl text-text-secondary">
             of tickets can be automated immediately
-          </div>
-          <div className={`inline-block px-6 py-2 rounded-pill ${rating.color} bg-opacity-10 border border-current`}>
-            {rating.label}
           </div>
         </div>
 

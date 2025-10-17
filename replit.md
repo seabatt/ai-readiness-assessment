@@ -45,6 +45,7 @@ The application uses the official Ai.Work brand system with a custom dark theme:
 ### Recent Changes (October 17, 2025)
 -   **Report Header Update**: Changed subtitle from "Your assessment and get-started plan" to dynamic text: "Based on your X selected tools and X,XXX monthly tickets" - displays actual count of selected tools and formatted monthly ticket volume. H1 heading uses font-weight 400.
 -   **Removed Redundant Executive Summary Heading**: Eliminated duplicate "Your IT Automation Readiness" heading and subtitle from Executive Summary section to avoid redundancy with main page header.
+-   **Readiness Badge Repositioned**: Moved readiness level badge (High Readiness/Moderate Readiness/etc.) above the percentage number in Executive Summary. Reduced size to text-sm and updated styling to match other badges on page (bg-highlight/20 text-highlight rounded-full px-3 py-1).
 
 ### Recent Changes (October 16, 2025)
 -   **LLM-Generated Executive Insights**: Integrated OpenAI GPT-4o to generate strategic "Key Insights" for every report (appears in Executive Summary). Uses corporate API key, analyzes ROI metrics + tech stack + user context to produce 2-3 executive-level sentences. Styled to match subtitle text (text-lg text-text-secondary). Removed "Key Insights" heading to streamline presentation. Includes "Schedule a Complete Deep Dive" CTA button below insights (white background with green dot indicator).
