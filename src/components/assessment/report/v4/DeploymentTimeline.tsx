@@ -7,38 +7,32 @@ export default function DeploymentTimeline() {
     {
       phase: "Phase One — Integration Setup",
       activity: "Connect systems and validate API access",
-      participants: "IT Admin, Security Lead, Implementation Engineer, CIO",
-      collectionsNeeded: ["🔹 Connections (API tokens, permissions)", "🔹 Data (sample tickets)", "🔹 Budget (initial allocation)"]
+      participants: "IT Admin, Security Lead, Implementation Engineer, CIO"
     },
     {
       phase: "Phase Two — Rule & Policy Configuration",
       activity: "Input approval workflows, exception rules, escalation paths",
-      participants: "Process Owner, Legal, End User Rep",
-      collectionsNeeded: ["🔹 Rules (policy docs, decision trees)", "🔹 Documentation (SOPs, compliance requirements)"]
+      participants: "Process Owner, Legal, End User Rep"
     },
     {
       phase: "Phase Three — AI Worker Training",
       activity: "Fine-tune AI Worker on historical tickets and validate accuracy",
-      participants: "Implementation Engineer, IT Admin, End User Rep",
-      collectionsNeeded: ["🔹 Data (historical requests for training)", "🔹 Connections (read/write access validated)"]
+      participants: "Implementation Engineer, IT Admin, End User Rep"
     },
     {
       phase: "Phase Four — User Acceptance Testing (UAT)",
       activity: "Test AI Worker with real scenarios; gather feedback",
-      participants: "End User Rep, Department Head, Security Lead",
-      collectionsNeeded: ["🔹 Rules (validated edge cases)", "🔹 Documentation (updated runbook)"]
+      participants: "End User Rep, Department Head, Security Lead"
     },
     {
       phase: "Phase Five — Security & Compliance Review",
       activity: "Final audit of data access, logging, and governance controls",
-      participants: "Security Lead, Legal, CIO/CISO",
-      collectionsNeeded: ["🔹 Documentation (audit trail, compliance checklist)", "🔹 Budget (final sign-off for production)"]
+      participants: "Security Lead, Legal, CIO/CISO"
     },
     {
       phase: "Phase Six — Production Pilot Launch",
       activity: "Deploy AI Worker to production with limited scope; monitor performance",
-      participants: "All Stakeholders (monitoring & support)",
-      collectionsNeeded: ["🔹 All assets validated and operational"]
+      participants: "All Stakeholders (monitoring & support)"
     }
   ];
 
@@ -46,29 +40,17 @@ export default function DeploymentTimeline() {
     {
       key: 'phase',
       label: 'Phase',
-      className: 'font-semibold text-text-primary w-1/6'
+      className: 'font-semibold text-text-primary w-1/4'
     },
     {
       key: 'activity',
       label: 'Activity',
-      className: 'w-2/6'
+      className: 'w-1/2'
     },
     {
       key: 'participants',
       label: 'Key Participants',
       className: 'w-1/4'
-    },
-    {
-      key: 'collectionsNeeded',
-      label: 'What We Need to Collect',
-      className: 'w-1/3',
-      render: (value: string[]) => (
-        <ul className="space-y-1">
-          {value.map((item, index) => (
-            <li key={index} className="text-sm">{item}</li>
-          ))}
-        </ul>
-      )
     }
   ];
 
@@ -85,10 +67,9 @@ export default function DeploymentTimeline() {
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-bg-card-alt/20">
-              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/6">Phase</th>
-              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-2/6">Activity</th>
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/4">Phase</th>
+              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/2">Activity</th>
               <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/4">Key Participants</th>
-              <th className="text-left py-4 px-4 text-sm font-semibold text-text-primary w-1/3">What We Need to Collect</th>
             </tr>
           </thead>
           <tbody>
@@ -97,13 +78,6 @@ export default function DeploymentTimeline() {
                 <td className="py-4 px-4 text-sm font-semibold text-text-primary">{row.phase}</td>
                 <td className="py-4 px-4 text-sm text-text-secondary">{row.activity}</td>
                 <td className="py-4 px-4 text-sm text-text-secondary">{row.participants}</td>
-                <td className="py-4 px-4 text-sm text-text-secondary">
-                  <ul className="space-y-1">
-                    {row.collectionsNeeded.map((item, idx) => (
-                      <li key={idx} className="text-sm">{item}</li>
-                    ))}
-                  </ul>
-                </td>
               </tr>
             ))}
           </tbody>
