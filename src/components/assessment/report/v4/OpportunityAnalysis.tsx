@@ -280,7 +280,7 @@ export default function OpportunityAnalysis({
             </div>
 
             {/* Header with Priority */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="text-xl font-bold text-text-primary">
                   {useCase.name}
