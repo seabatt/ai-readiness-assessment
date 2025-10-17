@@ -287,7 +287,7 @@ export default function OpportunityAnalysis({
                 </h3>
               </div>
               
-              {/* Category Badge, Tool Logos and Fit Score */}
+              {/* Category Badge and Tool Logos */}
               <div className="flex items-center gap-4">
                 {/* Category Badge */}
                 <div className="px-3 py-1 rounded-full bg-accent-blue/20 text-accent-blue text-sm font-medium whitespace-nowrap">
@@ -302,16 +302,6 @@ export default function OpportunityAnalysis({
                     size={24}
                   />
                 )}
-                
-                {/* Fit Score */}
-                <div className="text-right">
-                  <div className={`text-3xl font-bold ${getFitScoreColor(useCase.fit_score)}`}>
-                    {useCase.fit_score}
-                  </div>
-                  <div className="text-xs text-text-tertiary">
-                    {getFitScoreLabel(useCase.fit_score)}
-                  </div>
-                </div>
               </div>
             </div>
 
