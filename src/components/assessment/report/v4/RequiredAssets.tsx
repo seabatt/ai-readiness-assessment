@@ -11,6 +11,10 @@ export default function RequiredAssets() {
     {
       category: "Data",
       description: "Historical requests, tickets, or logs that show how your team currently operates."
+    },
+    {
+      category: "Connections",
+      description: "API tokens, OAuth permissions, and integration credentials needed to access your systems."
     }
   ];
 
