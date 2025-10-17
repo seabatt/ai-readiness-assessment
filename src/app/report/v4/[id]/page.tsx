@@ -177,17 +177,6 @@ export default function ReportV4Page() {
 
         <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
-        {/* ROI Breakdown */}
-        {roiResult && (
-          <>
-            <ROIBreakdown 
-              roiResult={roiResult}
-              feasibilityResults={feasibilityResults}
-            />
-            <div className="border-t border-bg-card-alt/20 mb-20"></div>
-          </>
-        )}
-
         {/* How to Get Started */}
         <GetStartedPlan
           matchedUseCases={matchedUseCases}

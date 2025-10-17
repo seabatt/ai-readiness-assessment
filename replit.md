@@ -21,9 +21,8 @@ The application uses the official Ai.Work brand system with a custom dark theme.
     -   **ROICalculator**: Calculates precise ROI from matched use cases, including FTE equivalents and category-level breakdowns with confidence scores.
 -   **Report Generation**: Generates V4 reports with high accuracy, including:
     -   **Executive Summary**: AI-generated strategic insights, readiness percentage, and dynamic headings.
-    -   **Opportunity Analysis**: Identifies where AI Workers can deliver impact first, categorizing good vs. poor candidates, and ranking use cases with required tools and deployment badges.
+    -   **Opportunity Analysis**: "What You Can Automate Right Now" section identifies where AI Workers can deliver impact first, categorizing good vs. poor candidates, and ranking use cases with required tools and deployment badges.
     -   **Deployment Plan**: Provides a comprehensive "Get Started Plan" with a `ResponsiveTable` component for a 6-week implementation timeline, required assets, and internal alignment details for 7 stakeholder roles. All messaging is vendor-agnostic.
-    -   **ROI Breakdown**: Category-level impact analysis with confidence scores and FTE calculations.
     -   **Expected Outcomes**: Details pilot metrics, before/after scenarios, and team capacity gains.
     -   **Call to Action**: CustomReportCTA with external glow effect.
 -   **LLM Integration**: Uses OpenAI GPT-4o for generating strategic "Key Insights" in the Executive Summary, analyzing ROI metrics, tech stack, and user context.
