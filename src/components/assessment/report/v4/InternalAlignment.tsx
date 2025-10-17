@@ -95,7 +95,7 @@ export default function InternalAlignment() {
       </p>
       
       <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6">
-        <ResponsiveTable columns={columns} data={stakeholders} mobileStackBreakpoint="lg" />
+        <ResponsiveTable columns={columns} data={stakeholders} mobileStackBreakpoint="sm" />
       </div>
     </section>
   );

@@ -41,7 +41,7 @@ export default function RequiredAssets() {
       </p>
       
       <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6 mb-8">
-        <ResponsiveTable columns={columns} data={categories} mobileStackBreakpoint="lg" />
+        <ResponsiveTable columns={columns} data={categories} mobileStackBreakpoint="sm" />
       </div>
 
       <div className="bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-6">

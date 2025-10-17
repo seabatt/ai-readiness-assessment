@@ -82,7 +82,7 @@ export default function DeploymentTimeline() {
       </p>
       
       <div className="bg-bg-card border border-brand-secondary/10 rounded-card p-6 mb-6">
-        <ResponsiveTable columns={columns} data={timeline} mobileStackBreakpoint="lg" />
+        <ResponsiveTable columns={columns} data={timeline} mobileStackBreakpoint="sm" />
       </div>
 
       <div className="flex items-center gap-3 p-4 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-lg">
