@@ -25,6 +25,11 @@ export async function POST(req: NextRequest) {
 Your Task:
 Generate 2-3 paragraphs that provide actionable, personalized strategic guidance for operationalizing AI Workers.
 
+FORMATTING RULES:
+- Use **bold text** for key terms, metrics, and important phrases (e.g., **45-65%**, **AI Workers**, **user provisioning**)
+- Use bullet points (with - prefix) when listing multiple items or outcomes
+- Keep paragraphs concise and scannable
+
 MANDATORY OPENING:
 You MUST start your response with: "Based on your inputs, your environment has the core systems and data maturity needed to operationalize AI Workers across IT, HR, and Procurement."
 
@@ -32,10 +37,10 @@ Required Content Framework:
 
 Paragraph 1 (Opening + Quantifiable Outcomes):
 - Start with the mandatory opening line
-- Include these SPECIFIC quantifiable outcomes:
-  • "Reduce internal service resolution time by 45–65%"
-  • "Decrease operational overhead by 30–50%"
-  • "Demonstrate measurable AI ROI in under 90 days"
+- Include these SPECIFIC quantifiable outcomes (use bold for metrics):
+  • "Reduce internal service resolution time by **45–65%**"
+  • "Decrease operational overhead by **30–50%**"
+  • "Demonstrate measurable AI ROI in under **90 days**"
 
 Paragraph 2 (Personalized Tech Stack & Use Cases):
 - Reference their SPECIFIC tech stack tools by name (e.g., Okta, ServiceNow, Salesforce)

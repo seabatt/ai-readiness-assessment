@@ -24,6 +24,70 @@ export default function ExecutiveSummary({
   const [generatedInsight, setGeneratedInsight] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
+  // Helper function to render text with bold formatting and bullets
+  const renderFormattedText = (text: string) => {
+    const lines = text.split('\n');
+    const elements: React.ReactNode[] = [];
+    let bulletItems: string[] = [];
+
+    lines.forEach((line, index) => {
+      // Check if line is a bullet point
+      if (line.trim().startsWith('-') || line.trim().startsWith('•')) {
+        bulletItems.push(line.replace(/^[-•]\s*/, '').trim());
+      } else {
+        // If we have accumulated bullet items, render them first
+        if (bulletItems.length > 0) {
+          elements.push(
+            <ul key={`bullets-${index}`} className="space-y-2 ml-6 my-4">
+              {bulletItems.map((item, i) => (
+                <li key={i} className="text-lg text-text-secondary list-disc">
+                  {renderBoldText(item)}
+                </li>
+              ))}
+            </ul>
+          );
+          bulletItems = [];
+        }
+        
+        // Render regular text if not empty
+        if (line.trim()) {
+          elements.push(
+            <span key={`line-${index}`}>
+              {renderBoldText(line)}
+              {index < lines.length - 1 && ' '}
+            </span>
+          );
+        }
+      }
+    });
+
+    // Render any remaining bullet items
+    if (bulletItems.length > 0) {
+      elements.push(
+        <ul key="bullets-final" className="space-y-2 ml-6 my-4">
+          {bulletItems.map((item, i) => (
+            <li key={i} className="text-lg text-text-secondary list-disc">
+              {renderBoldText(item)}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    return elements;
+  };
+
+  // Helper function to render bold text
+  const renderBoldText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index} className="font-semibold text-text-primary">{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   useEffect(() => {
     async function generateInsight() {
       setIsGenerating(true);
@@ -157,8 +221,8 @@ export default function ExecutiveSummary({
             </h2>
             <div className="space-y-4 mb-6">
               {generatedInsight.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="text-lg text-text-secondary">
-                  {paragraph}
+                <p key={index} className="text-lg text-text-secondary leading-relaxed">
+                  {renderFormattedText(paragraph)}
                 </p>
               ))}
             </div>
