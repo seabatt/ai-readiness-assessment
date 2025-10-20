@@ -50,7 +50,7 @@ export default function Home() {
             <strong>Start with a blueprint.</strong>
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Get a personalized <strong>AI Readiness Report</strong> that
+            Get a personalized <strong>AI Blueprint</strong> that
             identifies your top automation use cases, outlines a clear plan to
             implement AI Workers, and sets realistic expectations for outcomes —{" "}
             <strong>all based on your actual tech stack</strong>
@@ -58,10 +58,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
             <Link
               href="/assessment"
-              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              <span className="w-2 h-2 rounded-full bg-highlight"></span>
-              Start Assessment &gt;
+              Start Assessment →
             </Link>
             <span className="text-text-tertiary">
               5 minutes • Instant results
