@@ -61,7 +61,7 @@ export default function Home() {
           </p>
 
           {/* HubSpot Form */}
-          <div id="hubspot-form-section" className="max-w-md mx-auto mb-8">
+          <div id="hubspot-form-section" className="max-w-md mx-auto">
             <HubSpotForm 
               portalId="145411173" 
               formId="1055fe57-828a-4ad4-af19-64260274956f"
