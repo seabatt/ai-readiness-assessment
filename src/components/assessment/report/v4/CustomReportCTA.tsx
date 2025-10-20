@@ -7,9 +7,9 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
     <div className="mb-20">
       <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200" style={{ boxShadow: '0 0 20px rgba(130, 216, 149, 0.3)' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-text-primary mb-6">Validate Your Blueprint with Real Data</h2>
+          <h2 className="text-4xl font-bold text-text-primary mb-6">Move from Blueprint to Proof.</h2>
           <p className="text-xl text-text-tertiary mb-10 leading-relaxed">
-            Your personalized AI Blueprint shows where automation can create value. The next step is to validate those opportunities with your live ticket data — so you know exactly what results to expect before deploying.
+            This Blueprint gives you direction — now it's time to prove it. The Data Science Assessment validates each recommendation against your real ticket data to deliver a verified automation roadmap.
           </p>
 
           <div className="bg-bg-primary border border-bg-card-alt/20 rounded-lg py-8 px-6 mb-8 text-left">
@@ -102,10 +102,10 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               <span className="w-2 h-2 rounded-full bg-highlight"></span>
-              <span className="flex-1 text-center">Run My Data Science Assessment</span>
+              <span className="flex-1 text-center">Run Your Data Science Assessment</span>
               <span>&gt;</span>
             </a>
-            <p className="text-sm text-text-tertiary mt-4">7-day validation using your real environment data</p>
+            <p className="text-sm text-text-tertiary mt-4">Validate impact, refine scope, and model ROI using your real data</p>
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
