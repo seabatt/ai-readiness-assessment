@@ -82,100 +82,29 @@ export default function UnlockReportModal({
           </svg>
         </button>
 
-        {submitted ? (
-          // Success state
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-accent-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-accent-green"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold text-text-primary mb-2">
-              Report Unlocked!
-            </h3>
-            <p className="text-text-secondary">
-              Check your email for the full PDF report.
-            </p>
-          </div>
-        ) : (
-          // Form
-          <>
-            <h2 className="text-2xl font-bold text-text-primary mb-2">
-              Unlock Your Full Report
-            </h2>
-            <p className="text-text-secondary mb-6">
-              Get the downloadable PDF and email summary with your complete
-              readiness assessment and next steps.
-            </p>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-text-primary mb-4">
+            Move from Blueprint to Proof.
+          </h2>
+          <p className="text-lg text-text-secondary mb-6">
+            Your Blueprint shows what's possible — now validate it with your real data.
+          </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                label="Name"
-                required
-                value={formData.name}
-                onChange={(e) => updateField("name", e.target.value)}
-                placeholder="John Doe"
-              />
+          <a 
+            href="https://www.ai.work/book-a-demo" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4"
+          >
+            <span className="w-2 h-2 rounded-full bg-highlight"></span>
+            <span className="flex-1 text-center">Run Your Data Science Assessment</span>
+            <span>&gt;</span>
+          </a>
 
-              <Input
-                label="Work Email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={(e) => updateField("email", e.target.value)}
-                placeholder="john@company.com"
-              />
-
-              <Input
-                label="Company"
-                required
-                value={formData.company}
-                onChange={(e) => updateField("company", e.target.value)}
-                placeholder="Acme Corp"
-              />
-
-              <Select
-                label="Role"
-                required
-                value={formData.role}
-                onChange={(e) => updateField("role", e.target.value)}
-                options={ROLE_OPTIONS}
-              />
-
-              <Button type="submit" className="w-full justify-center">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-                Unlock Report
-              </Button>
-
-              <p className="text-xs text-text-tertiary text-center">
-                Your information is secure and will only be used to send your
-                report.
-              </p>
-            </form>
-          </>
-        )}
+          <p className="text-sm text-text-tertiary">
+            Quantify impact. Verify accuracy. Build your deployment plan.
+          </p>
+        </div>
       </div>
     </div>
   );
