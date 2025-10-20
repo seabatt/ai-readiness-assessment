@@ -70,6 +70,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  text-align: center;
 }
 
 .hubspot-form-wrapper .hs-button:hover {
