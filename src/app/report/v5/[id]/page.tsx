@@ -16,7 +16,6 @@ import ExecutiveSummary from "@/components/assessment/report/v5/ExecutiveSummary
 import OpportunityAnalysis from "@/components/assessment/report/v5/OpportunityAnalysis";
 import ExpectedOutcomes from "@/components/assessment/report/v5/ExpectedOutcomes";
 import CustomReportCTA from "@/components/assessment/report/v5/CustomReportCTA";
-import UnlockReportModal from "@/components/cta/UnlockReportModal";
 
 export default function ReportV5Page() {
   const router = useRouter();
@@ -25,7 +24,6 @@ export default function ReportV5Page() {
   const [assessmentData, setAssessmentData] = useState<AssessmentData | null>(
     null,
   );
-  const [showModal, setShowModal] = useState(false);
 
   const [feasibilityResults, setFeasibilityResults] = useState<
     FeasibilityResult[]
@@ -96,12 +94,6 @@ export default function ReportV5Page() {
       setRoiResult(roi);
       setLoading(false);
     }, 3000);
-
-    const modalTimer = setTimeout(() => {
-      setShowModal(true);
-    }, 45000);
-
-    return () => clearTimeout(modalTimer);
   }, [router]);
 
   if (loading) {
@@ -189,17 +181,9 @@ export default function ReportV5Page() {
           <div className="border-t border-bg-card-alt/20 mb-20"></div>
 
           {/* Call to Action */}
-          <CustomReportCTA onRequestDiscovery={() => setShowModal(true)} />
+          <CustomReportCTA />
         </div>
       </main>
-
-      {/* Modal */}
-      {showModal && (
-        <UnlockReportModal
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-        />
-      )}
     </div>
   );
 }
