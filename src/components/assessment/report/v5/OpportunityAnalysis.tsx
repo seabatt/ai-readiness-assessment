@@ -176,7 +176,7 @@ export default function OpportunityAnalysis({
             className="relative bg-bg-card rounded-lg p-6 border border-brand-secondary/10 hover:border-highlight/50 transition-all duration-200 overflow-hidden"
           >
             {/* Top Section: Rank, Title, and Tool Logos */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 {/* Rank Number */}
                 <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
