@@ -1,5 +1,8 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
+import HubSpotForm from "@/components/HubSpotForm";
 
 export default function Home() {
   return (
@@ -55,6 +58,16 @@ export default function Home() {
             implement AI Workers, and sets realistic expectations for outcomes —{" "}
             <strong>all based on your actual tech stack</strong>
           </p>
+
+          {/* HubSpot Form */}
+          <div className="max-w-md mx-auto mb-8">
+            <HubSpotForm 
+              portalId="YOUR_PORTAL_ID" 
+              formId="YOUR_FORM_ID"
+              targetId="hero-hubspot-form"
+            />
+          </div>
+
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
             <Link
               href="/assessment"
