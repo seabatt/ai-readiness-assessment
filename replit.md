@@ -1,7 +1,7 @@
 # IT Readiness Assessment App
 
 ## Overview
-This Next.js AI Work IT Automation Readiness Assessment tool helps IT teams evaluate their readiness for AI worker integration. It provides a comprehensive assessment covering tech stack evaluation and workflow analysis, generating detailed reports with specific, API-grounded recommendations and ROI calculations. The project aims to provide data-driven insights for IT leaders facing pressure to innovate and to provide a complete deployment blueprint. Multiple report versions are available (V3, V4, V5) with V4 as the default experience.
+This Next.js AI Work IT Automation Readiness Assessment tool helps IT teams evaluate their readiness for AI worker integration. It provides a comprehensive assessment covering tech stack evaluation and workflow analysis, generating detailed reports with specific, API-grounded recommendations and ROI calculations. The project aims to provide data-driven insights for IT leaders facing pressure to innovate and to provide a complete deployment blueprint. Multiple report versions are available (V3, V4, V5) with V5 as the default experience.
 
 ## User Preferences
 No specific user preferences documented yet.
@@ -32,8 +32,8 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 ### Feature Specifications
 -   **HubSpot Form Integration**: Uses developer embed version with custom dark theme CSS styling. Submit button targeting includes .hs-submit, .hs_submit, input[type="submit"], and .hs-button selectors with !important overrides to maximize width alignment with email field. Form appears on landing page before the "5 minutes • Instant results" timing text.
 -   **ConnectedAppLogos component**: Displays 24px logos with hover tooltips and green glow effects.
--   **V4 Report**: The primary/default report experience, offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow.
--   **V5 Report**: Latest report version (duplicate of V4), available at `/report/v5/new` route. Currently identical to V4 for future iteration.
+-   **V5 Report**: The primary/default report experience (as of October 2025), offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow. Available at `/report/v5/new` route.
+-   **V4 Report**: Previous report version, still available at `/report/v4/new` route. Currently identical to V5.
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
 -   **Workflow Steps Styling**: Collapsible "How it Works" section with updated number styling and toggle arrow positioned left of text.
 
