@@ -1,9 +1,12 @@
 'use client';
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary">
       {/* Preheader */}
@@ -58,13 +61,33 @@ export default function Home() {
             <strong>all based on your actual tech stack</strong>
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+          {/* Email Input Form */}
+          <div className="max-w-md mx-auto mb-6">
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
+                Work email<span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
+                required
+              />
+            </div>
             <Link
               href="/assessment"
-              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="w-full bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2"
             >
-              Start Assessment →
+              <span className="w-2 h-2 rounded-full bg-highlight"></span>
+              Get Your Blueprint
+              <span>→</span>
             </Link>
+          </div>
+
+          <div className="flex items-center justify-center gap-2 mb-6">
             <span className="text-text-tertiary">
               5 minutes • Instant results
             </span>
