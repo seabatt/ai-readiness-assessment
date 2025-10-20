@@ -187,6 +187,11 @@ export default function OpportunityAnalysis({
                 <h3 className="text-2xl font-bold text-text-primary mb-2">
                   {useCase.name}
                 </h3>
+
+                {/* Category Badge */}
+                <div className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(useCase.category)}`}>
+                  {useCase.category}
+                </div>
               </div>
 
               {/* Tool Logos - Prominent Top Right */}
@@ -235,46 +240,36 @@ export default function OpportunityAnalysis({
               </div>
             </div>
 
-            {/* Bottom Section: How it works and Category Badge */}
-            <div className="flex items-end justify-between gap-4 mt-4">
-              {/* How It Works - Collapsible */}
-              <div className="flex-1">
-                <button
-                  onClick={() => setExpandedWorkflows(prev => ({
-                    ...prev,
-                    [useCase.use_case_id]: !prev[useCase.use_case_id]
-                  }))}
-                  className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200 w-full text-left"
+            {/* How It Works - Collapsible */}
+            <div>
+              <button
+                onClick={() => setExpandedWorkflows(prev => ({
+                  ...prev,
+                  [useCase.use_case_id]: !prev[useCase.use_case_id]
+                }))}
+                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200 w-full text-left"
+              >
+                <span>How it works</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <span>How it works</span>
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {expandedWorkflows[useCase.use_case_id] && (
-                  <ul className="space-y-2 mt-4 pl-1">
-                    {useCase.workflow_steps.map((step, i) => (
-                      <li key={i} className="text-sm text-text-secondary flex items-start gap-3">
-                        <span className="text-highlight mt-0.5 flex-shrink-0 font-bold">→</span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              {/* Category Badge - Bottom Right */}
-              <div className="flex-shrink-0">
-                <div className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(useCase.category)}`}>
-                  {useCase.category}
-                </div>
-              </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {expandedWorkflows[useCase.use_case_id] && (
+                <ul className="space-y-2 mt-4 pl-1">
+                  {useCase.workflow_steps.map((step, i) => (
+                    <li key={i} className="text-sm text-text-secondary flex items-start gap-3">
+                      <span className="text-highlight mt-0.5 flex-shrink-0 font-bold">→</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         ))}
