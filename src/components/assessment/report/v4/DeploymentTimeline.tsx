@@ -3,32 +3,38 @@
 export default function DeploymentTimeline() {
   const timeline = [
     {
-      phase: "Phase One — Integration Setup",
+      phaseNumber: "Phase One",
+      phaseName: "Integration Setup",
       activity: "Connect systems and validate API access",
       participants: "IT Admin, Security Lead, Implementation Engineer, CIO"
     },
     {
-      phase: "Phase Two — Rule & Policy Configuration",
+      phaseNumber: "Phase Two",
+      phaseName: "Rule & Policy Configuration",
       activity: "Input approval workflows, exception rules, escalation paths",
       participants: "Process Owner, Legal, End User Rep"
     },
     {
-      phase: "Phase Three — AI Worker Training",
+      phaseNumber: "Phase Three",
+      phaseName: "AI Worker Training",
       activity: "Fine-tune AI Worker on historical tickets and validate accuracy",
       participants: "Implementation Engineer, IT Admin, End User Rep"
     },
     {
-      phase: "Phase Four — User Acceptance Testing (UAT)",
+      phaseNumber: "Phase Four",
+      phaseName: "User Acceptance Testing (UAT)",
       activity: "Test AI Worker with real scenarios; gather feedback",
       participants: "End User Rep, Department Head, Security Lead"
     },
     {
-      phase: "Phase Five — Security & Compliance Review",
+      phaseNumber: "Phase Five",
+      phaseName: "Security & Compliance Review",
       activity: "Final audit of data access, logging, and governance controls",
       participants: "Security Lead, Legal, CIO/CISO"
     },
     {
-      phase: "Phase Six — Production Pilot Launch",
+      phaseNumber: "Phase Six",
+      phaseName: "Production Pilot Launch",
       activity: "Deploy AI Worker to production with limited scope; monitor performance",
       participants: "All Stakeholders (monitoring & support)"
     }
@@ -39,7 +45,7 @@ export default function DeploymentTimeline() {
       <h3 className="text-2xl font-bold text-text-primary mb-4">
         Timeline to Deploy
       </h3>
-      <p className="text-text-secondary mb-8">
+      <p className="text-lg text-text-secondary mb-8">
         A realistic view of what to expect from kickoff to production, typically completed within <strong className="text-text-primary">4–6 weeks</strong>.
       </p>
       
@@ -55,9 +61,12 @@ export default function DeploymentTimeline() {
           <tbody>
             {timeline.map((row, index) => (
               <tr key={index} className="border-b border-bg-card-alt/10 hover:bg-bg-card-alt/5 transition-colors duration-200">
-                <td className="py-4 px-4 text-sm font-semibold text-text-primary">{row.phase}</td>
-                <td className="py-4 px-4 text-sm text-text-secondary">{row.activity}</td>
-                <td className="py-4 px-4 text-sm text-text-secondary">{row.participants}</td>
+                <td className="py-4 px-4 text-sm text-text-primary">
+                  <div>{row.phaseNumber}</div>
+                  <div className="font-bold">{row.phaseName}</div>
+                </td>
+                <td className="py-4 px-4 text-lg text-text-secondary">{row.activity}</td>
+                <td className="py-4 px-4 text-lg text-text-secondary">{row.participants}</td>
               </tr>
             ))}
           </tbody>

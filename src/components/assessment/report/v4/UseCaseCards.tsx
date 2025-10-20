@@ -171,23 +171,34 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
 
           {/* How It Works - Collapsible */}
           <div className="mb-4">
-            <button
-              onClick={() => setExpandedWorkflows(prev => ({
-                ...prev,
-                [useCase.use_case_id]: !prev[useCase.use_case_id]
-              }))}
-              className="flex items-center gap-2 text-sm font-semibold text-text-primary mb-2 hover:text-highlight transition-colors duration-200 w-full text-left"
-            >
-              <span>How it works:</span>
-              <svg
-                className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <div className="flex items-center justify-between mb-2">
+              <button
+                onClick={() => setExpandedWorkflows(prev => ({
+                  ...prev,
+                  [useCase.use_case_id]: !prev[useCase.use_case_id]
+                }))}
+                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+                <span>How it works:</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {/* Tool Logos on the right */}
+              {useCase.required_tools && useCase.required_tools.length > 0 && (
+                <ConnectedAppLogos 
+                  apps={useCase.required_tools.map(convertToolName)}
+                  maxVisible={5}
+                  size={32}
+                />
+              )}
+            </div>
             
             {expandedWorkflows[useCase.use_case_id] && (
               <ul className="space-y-1 mt-4">

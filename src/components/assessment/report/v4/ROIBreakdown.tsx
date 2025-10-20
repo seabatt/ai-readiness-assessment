@@ -4,6 +4,7 @@ import { ROIResult } from '@/lib/engines/roi-calculator';
 import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
 import Card from '@/components/ui/Card';
 import useCaseMappings from '@/data/use-case-mappings.json';
+import { formatLargeNumber } from '@/lib/utils/formatNumber';
 
 interface ROIBreakdownProps {
   roiResult: ROIResult;
@@ -90,7 +91,7 @@ export default function ROIBreakdown({ roiResult, feasibilityResults }: ROIBreak
         <Card className="!bg-bg-card !border !border-bg-card-alt/20">
           <div className="text-sm text-text-tertiary mb-2">Annual Value</div>
           <div className="text-3xl font-bold text-highlight">
-            ${Math.round(roiResult.annual_value_usd / 1000).toLocaleString()}K
+            {formatLargeNumber(roiResult.annual_value_usd, '$')}
           </div>
         </Card>
       </div>

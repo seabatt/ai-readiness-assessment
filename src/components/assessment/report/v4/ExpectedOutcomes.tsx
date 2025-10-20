@@ -1,5 +1,6 @@
 import Card from '@/components/ui/Card';
 import { ROIResult } from '@/types/types-v3';
+import { formatLargeNumber } from '@/lib/utils/formatNumber';
 
 interface ExpectedOutcomesProps {
   roiResult: ROIResult;
@@ -133,12 +134,12 @@ export default function ExpectedOutcomes({
       title: 'Cost Savings',
       baseline: {
         label: 'Monthly',
-        value: `$${(monthlyValue / 1000).toFixed(1)}K`,
+        value: formatLargeNumber(monthlyValue, '$'),
         subtitle: 'Labor cost savings'
       },
       improved: {
         label: 'Annual',
-        value: `$${Math.round(month6Value / 1000).toLocaleString()}K`,
+        value: formatLargeNumber(month6Value, '$'),
         subtitle: 'With learning curve'
       },
       description: 'Fully-loaded labor cost at $100K per FTE'

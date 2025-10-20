@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Card from '@/components/ui/Card';
 import { ROIResult } from '@/types/types-v3';
 import { MatchedUseCase } from '@/lib/engines/use-case-matcher';
+import { formatLargeNumber } from '@/lib/utils/formatNumber';
 
 interface ExecutiveSummaryProps {
   roiResult: ROIResult;
@@ -142,10 +143,10 @@ export default function ExecutiveSummary({
   }, [assessmentData, roiResult, matchedUseCases]);
   
   const getReadinessRating = (automatablePct: number) => {
-    if (automatablePct >= 40) return { label: 'High Readiness', color: 'text-accent-green' };
-    if (automatablePct >= 25) return { label: 'Moderate Readiness', color: 'text-accent-blue' };
-    if (automatablePct >= 15) return { label: 'Early Opportunity', color: 'text-accent-orange' };
-    return { label: 'Foundation Building', color: 'text-text-secondary' };
+    if (automatablePct >= 40) return { label: 'High Readiness', color: 'text-accent-green', bgColor: 'bg-accent-green/20' };
+    if (automatablePct >= 25) return { label: 'Moderate Readiness', color: 'text-accent-blue', bgColor: 'bg-accent-blue/20' };
+    if (automatablePct >= 15) return { label: 'Early Opportunity', color: 'text-accent-orange', bgColor: 'bg-accent-orange/20' };
+    return { label: 'Foundation Building', color: 'text-text-secondary', bgColor: 'bg-text-secondary/20' };
   };
 
   const rating = getReadinessRating(roiResult.automatable_pct);
@@ -156,7 +157,7 @@ export default function ExecutiveSummary({
       <Card className="mb-8">
         <div className="text-center mb-8">
           <div className="mb-4">
-            <span className="px-3 py-1 rounded-full bg-highlight/20 text-highlight text-sm font-medium">
+            <span className={`px-3 py-1 rounded-full ${rating.bgColor} ${rating.color} text-sm font-medium`}>
               {rating.label}
             </span>
           </div>
@@ -198,7 +199,7 @@ export default function ExecutiveSummary({
           
           <div className="text-center">
             <div className="text-3xl font-bold text-accent-orange">
-              ${Math.round(roiResult.annual_value_usd / 1000).toLocaleString()}K
+              {formatLargeNumber(roiResult.annual_value_usd, '$')}
             </div>
             <div className="text-sm text-text-tertiary mt-1">
               Annual Value
