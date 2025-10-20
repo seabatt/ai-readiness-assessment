@@ -287,7 +287,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Downloadable report
+                    Shareable report
                   </h3>
                   <p className="text-sm text-text-tertiary">
                     Share insights with leadership and stakeholders.
