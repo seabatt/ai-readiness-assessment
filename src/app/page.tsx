@@ -56,8 +56,8 @@ export default function Home() {
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Get a personalized <strong>Blueprint</strong> that
-            identifies your top automation use cases, outlines a clear plan to
-            implement AI Workers, and sets realistic expectations for outcomes —{" "}
+            identifies your top automation use cases and outlines a clear plan to
+            implement AI Workers —{" "}
             <strong>all based on your actual tech stack</strong>
           </p>
 
