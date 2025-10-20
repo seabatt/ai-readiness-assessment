@@ -64,15 +64,12 @@ export default function Home() {
           {/* Email Input Form */}
           <div className="max-w-md mx-auto mb-6">
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
-                Work email<span className="text-red-500">*</span>
-              </label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
+                placeholder="Work email*"
                 className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
                 required
               />
