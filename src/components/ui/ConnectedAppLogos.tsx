@@ -39,7 +39,7 @@ export default function ConnectedAppLogos({
   const visibleApps = apps.slice(0, maxVisible);
   const hasOverflow = apps.length > maxVisible;
   
-  const gapClass = spacing === 12 ? 'gap-3' : spacing === 8 ? 'gap-2' : spacing === 16 ? 'gap-4' : 'gap-4';
+  const gapClass = spacing === 12 ? 'gap-3' : spacing === 8 ? 'gap-2' : 'gap-4';
   
   return (
     <div className={`flex items-center flex-wrap ${gapClass}`}>

@@ -176,8 +176,8 @@ export default function OpportunityAnalysis({
     <div className="max-w-5xl mx-auto mb-16">
       {/* Introduction to Use Cases */}
       <div className="mb-8">
-        <h2 className="text-4xl font-bold text-text-primary mb-4 tracking-tight">
-          What You Can Automate <span className="text-highlight">RightNow</span>
+        <h2 className="text-3xl font-bold text-text-primary mb-4">
+          What You Can Automate Right Now
         </h2>
         <p className="text-lg text-text-secondary leading-relaxed">
           Based on your stack, here are <span className="font-semibold text-text-primary">examples of use cases where AI Workers can deliver immediate value</span>. We've identified the <span className="font-semibold text-text-primary">easiest wins first</span>—high-confidence automations that can be deployed quickly using your existing tools and APIs.
@@ -188,7 +188,7 @@ export default function OpportunityAnalysis({
         {topUseCases.map((useCase, index) => (
           <div 
             key={useCase.use_case_id}
-            className="relative bg-bg-secondary rounded-lg p-6 border border-border hover:border-highlight/50 transition-all duration-200 overflow-hidden shadow-lg hover:shadow-xl"
+            className="relative bg-bg-secondary rounded-lg p-6 border border-border hover:border-highlight/50 transition-all duration-200 overflow-hidden"
             style={{
               borderLeft: `4px solid ${getAccentColor(useCase.category)}`
             }}
@@ -215,21 +215,12 @@ export default function OpportunityAnalysis({
               {/* Tool Logos - Prominent Top Right */}
               {useCase.required_tools && useCase.required_tools.length > 0 && (
                 <div className="ml-6 flex-shrink-0">
-                  <div className="flex flex-col items-end gap-2">
-                    {/* Active Status Badge */}
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-accent-green/10 border border-accent-green/30 rounded-full">
-                      <div className="w-2 h-2 bg-accent-green rounded-full animate-pulse"></div>
-                      <span className="text-xs font-semibold text-accent-green uppercase tracking-wide">Active</span>
-                    </div>
-                    {/* Tool Logos */}
-                    <ConnectedAppLogos 
-                      apps={useCase.required_tools.map(convertToolName)}
-                      maxVisible={3}
-                      size={52}
-                      prominent={true}
-                      spacing={16}
-                    />
-                  </div>
+                  <ConnectedAppLogos 
+                    apps={useCase.required_tools.map(convertToolName)}
+                    maxVisible={3}
+                    size={48}
+                    prominent={true}
+                  />
                 </div>
               )}
             </div>
@@ -240,30 +231,30 @@ export default function OpportunityAnalysis({
             </p>
 
             {/* Impact Metrics - Enhanced */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 bg-bg-primary/50 rounded-lg border border-border/50 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-5 bg-bg-primary/50 rounded-lg border border-border/50 mb-6">
               <div>
-                <div className="text-5xl font-bold text-accent-green mb-2 tracking-tight leading-none">
+                <div className="text-3xl font-bold text-accent-green mb-1">
                   {useCase.estimated_monthly_deflection.toLocaleString()}
                 </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wider font-semibold">TICKETS/MONTH</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Tickets/Month</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-accent-blue mb-2 tracking-tight leading-none">
-                  {Math.round(useCase.estimated_hours_saved).toLocaleString()}<span className="text-2xl ml-1">hrs</span>
+                <div className="text-3xl font-bold text-accent-blue mb-1">
+                  {Math.round(useCase.estimated_hours_saved).toLocaleString()} <span className="text-xl">hrs</span>
                 </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wider font-semibold">TIME SAVED/MONTH</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time Saved/Month</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-text-primary mb-2 tracking-tight leading-none">
-                  {useCase.time_to_value_days}<span className="text-2xl ml-1">days</span>
+                <div className="text-3xl font-bold text-text-primary mb-1">
+                  {useCase.time_to_value_days} <span className="text-xl">days</span>
                 </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wider font-semibold">TIME TO VALUE</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time to Value</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-accent-orange mb-2 tracking-tight leading-none">
-                  {Math.round(useCase.confidence * 100)}<span className="text-3xl">%</span>
+                <div className="text-3xl font-bold text-accent-orange mb-1">
+                  {Math.round(useCase.confidence * 100)}%
                 </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wider font-semibold">CONFIDENCE</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Confidence</div>
               </div>
             </div>
 
