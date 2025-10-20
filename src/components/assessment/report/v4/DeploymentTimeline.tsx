@@ -61,12 +61,12 @@ export default function DeploymentTimeline() {
           <tbody>
             {timeline.map((row, index) => (
               <tr key={index} className="border-b border-bg-card-alt/10 hover:bg-bg-card-alt/5 transition-colors duration-200">
-                <td className="py-4 px-4 text-lg text-text-primary">
+                <td className="py-4 px-4 text-sm text-text-primary">
                   <div>{row.phaseNumber}</div>
                   <div className="font-bold">{row.phaseName}</div>
                 </td>
-                <td className="py-4 px-4 text-lg text-text-secondary">{row.activity}</td>
-                <td className="py-4 px-4 text-lg text-text-secondary">{row.participants}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary">{row.activity}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary">{row.participants}</td>
               </tr>
             ))}
           </tbody>

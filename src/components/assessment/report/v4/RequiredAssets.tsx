@@ -55,8 +55,8 @@ export default function RequiredAssets() {
           <tbody>
             {categories.map((row, index) => (
               <tr key={index} className="border-b border-bg-card-alt/10 hover:bg-bg-card-alt/5 transition-colors duration-200">
-                <td className="py-4 px-4 text-lg font-semibold text-text-primary">{row.category}</td>
-                <td className="py-4 px-4 text-lg text-text-secondary leading-relaxed">{row.description}</td>
+                <td className="py-4 px-4 text-sm font-semibold text-text-primary">{row.category}</td>
+                <td className="py-4 px-4 text-sm text-text-secondary leading-relaxed">{row.description}</td>
               </tr>
             ))}
           </tbody>
