@@ -19,14 +19,16 @@ The application uses the official Ai.Work brand system with a custom dark theme.
     -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify available APIs and use cases, normalizing tool names.
     -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers, calculating fit scores, estimating deflection, and prioritizing use cases.
     -   **ROICalculator**: Calculates precise ROI from matched use cases, including FTE equivalents and category-level breakdowns with confidence scores.
--   **Report Generation**: Generates V4 reports with high accuracy, including:
-    -   **Report Header**: Displays "AI Worker Readiness Blueprint" as the main title with a dynamic subheader that shows the number of connected tools and monthly tickets analyzed, explaining that the blueprint maps automation opportunities, readiness insights, and next steps.
-    -   **Executive Summary**: AI-generated strategic insights, readiness percentage badge (color dynamically matches percentage color), and dynamic headings. No CTA button in this section.
-    -   **Opportunity Analysis**: Begins with white button CTA ("Run My Data Science Assessment >" with green dot, linking to book-a-demo), preceded by horizontal rule divider, followed by "What You Can Automate Right Now" heading with 2-column use case grid. Use case cards show category badges (color-coded by type), impact metrics, and "How it works" section with collapse arrow next to text and tool logos aligned right (32px). No fit scores or deployment timing badges displayed.
+-   **Report Generation**: 
+    -   **V4 Reports**: Includes AI-generated strategic insights in Executive Summary, "How to Identify Valuable Use Cases" section, and CTA sections.
+    -   **V5 Reports** (default): Streamlined data-focused version without LLM-generated insights. Includes:
+        -   **Report Header**: Displays "AI Worker Readiness Blueprint" as the main title with a dynamic subheader that shows the number of connected tools and monthly tickets analyzed.
+        -   **Executive Summary**: Clean metrics display with readiness percentage badge (color dynamically matches percentage color) and key statistics. No LLM-generated insights or CTA in this section.
+        -   **Opportunity Analysis**: Begins directly with "What You Can Automate Right Now" heading and 2-column use case grid. Use case cards show category badges (color-coded by type), impact metrics, and "How it works" section with collapse arrow next to text and tool logos aligned right (32px). No fit scores, deployment timing badges, or CTA sections displayed.
     -   **Deployment Plan**: Provides a comprehensive "Get Started Plan" with standard HTML tables including 3-column timeline with phases formatted as two lines (e.g., "Phase One" / bold "Integration Setup"), required assets section renamed to "What You Will Need to Collect" with 4 detailed categories (Rules, Data, Connections, Stakeholder Alignment), and internal alignment for 7 stakeholder roles. All messaging is vendor-agnostic. Text sizing uses text-lg for consistency.
     -   **Expected Outcomes**: Details pilot metrics, before/after scenarios, and team capacity gains.
     -   **Call to Action**: CustomReportCTA with white button "Run the Full Discovery Assessment >" with green dot, linking to book-a-demo, preceded by description text. Button matches app-wide styling (bg-white text-black px-8 py-4 rounded-lg, centered text with green highlight dot on left and ">" on right).
--   **LLM Integration**: Uses OpenAI GPT-4o for generating strategic "Key Insights" in the Executive Summary, analyzing ROI metrics, tech stack, and user context.
+-   **LLM Integration**: V4 reports use OpenAI GPT-4o for generating strategic "Key Insights" in the Executive Summary, analyzing ROI metrics, tech stack, and user context. V5 reports (default) do not use LLM-generated content.
 -   **Data Handling**: Fixed critical ROI calculation bug by implementing capacity tracking to prevent ticket double-counting. Standardized number formatting and filtered irrelevant categories.
 
 ### Feature Specifications
