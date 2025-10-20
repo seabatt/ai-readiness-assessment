@@ -36,10 +36,10 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center mb-20">
           <h1 className="text-4xl md:text-6xl font-normal mb-6 leading-tight text-text-primary">
-            Find out if your IT stack can support a digital team mate.
+            Stop guessing how AI fits into your systems. <strong>Start with a blueprint.</strong>
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Every Enterprise is putting pressure on IT Teams to do more with AI. The disconnect between Executives reading headlines about AI and frontline IT is: legacy tools, policies and procedures.
+            Get a personalized <strong>AI Readiness Report</strong> that identifies your top automation use cases, outlines a clear plan to implement AI Workers, and sets realistic expectations for outcomes — <strong>all based on your actual tech stack</strong>
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
             <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
@@ -56,8 +56,11 @@ export default function Home() {
 
         {/* Problem Statement */}
         <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 mb-20">
+          <p className="font-semibold text-center text-lg text-text-primary">
+            AI isn’t an easy button.
+          </p>
           <p className="text-text-secondary mb-4 text-center">
-            AI isn't an easy button. <br />Use this tool to get a data-driven, reality-based assessment of what your organization could reasonably do with AI in the next year.
+            Use this tool to get a data-driven, reality-based assessment of what your organization could responsibly automate with AI in the next year.
           </p>
           <p className="font-semibold text-center text-lg text-text-primary">
             Assess your readiness for autonomous work.
@@ -105,7 +108,7 @@ export default function Home() {
               <div>
                 <h3 className="font-bold text-lg mb-2 text-text-primary">Opportunity Map</h3>
                 <p className="text-sm text-text-tertiary">
-                  AI workers matched to your stack
+                  AI Workers matched to your systems and workflows.
                 </p>
               </div>
             </div>
@@ -128,8 +131,8 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">ROI Simulation</h3>
-                <p className="text-sm text-text-tertiary">Hours saved & FTE impact</p>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">Implementation Roadmap</h3>
+                <p className="text-sm text-text-tertiary">Step-by-step actions to deploy safely and efficiently.</p>
               </div>
             </div>
           </div>
@@ -151,9 +154,9 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">Enterprise-Ready</h3>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">Realistic Expectations</h3>
                 <p className="text-sm text-text-tertiary">
-                  Governance & compliance built-in
+                  What AI can automate today — and what comes next.
                 </p>
               </div>
             </div>
@@ -161,10 +164,12 @@ export default function Home() {
         </div>
 
         {/* What You'll Discover Section */}
-        <section className="mb-20">
-          <h2 className="text-4xl font-bold text-center mb-16 text-text-primary">
-            What You'll Discover
-          </h2>
+        <section className="py-12">
+          <div className="max-w-5xl mx-auto text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
+              What You'll Discover
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-5xl mx-auto">
             {/* Left Column */}
@@ -178,7 +183,7 @@ export default function Home() {
                     Top automation opportunities
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    Matched to your actual tech stack
+                    Workflows AI Workers can handle first.
                   </p>
                 </div>
               </div>
@@ -189,10 +194,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Time & cost savings
+                    Implementation steps
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    ~70% accuracy based on your inputs
+                    Clear actions to move from pilot to production.
                   </p>
                 </div>
               </div>
@@ -203,10 +208,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Action recommendations
+                    Impact forecast
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    Only actions we support today
+                    Expected time, cost, and efficiency gains.
                   </p>
                 </div>
               </div>
@@ -223,7 +228,7 @@ export default function Home() {
                     Readiness breakdown
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    By Data, Process, Governance & more
+                    Data, process, and governance insights.
                   </p>
                 </div>
               </div>
@@ -237,7 +242,7 @@ export default function Home() {
                     Downloadable report
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    Share with stakeholders
+                    Share insights with leadership and stakeholders.
                   </p>
                 </div>
               </div>
@@ -248,10 +253,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    100% accuracy option
+                    Realistic expectations
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    Analyze your actual ticket data
+                    See what AI can automate today — and what's next.
                   </p>
                 </div>
               </div>
