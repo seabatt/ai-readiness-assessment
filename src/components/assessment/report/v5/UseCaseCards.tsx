@@ -103,18 +103,17 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
               <h3 className="text-xl font-bold text-text-primary mb-1">
                 {useCase.name}
               </h3>
-              <span className="text-sm text-text-tertiary">
+              <span className="text-sm text-text-tertiary block mb-2">
                 {useCase.category}
               </span>
-            </div>
-            
-            {/* Badge, Tool Logos and Fit Score */}
-            <div className="flex items-center gap-4">
               {/* Deploy Badge */}
               <StatusPill status={getPriorityStatus(useCase.priority)}>
                 {getPriorityLabel(useCase.priority)}
               </StatusPill>
-              
+            </div>
+            
+            {/* Tool Logos and Fit Score */}
+            <div className="flex items-center gap-4">
               {/* Tool Logos */}
               {useCase.required_tools && useCase.required_tools.length > 0 && (
                 <ConnectedAppLogos 
