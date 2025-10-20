@@ -173,7 +173,7 @@ export default function OpportunityAnalysis({
         {topUseCases.map((useCase, index) => (
           <div 
             key={useCase.use_case_id}
-            className="relative bg-bg-primary/50 rounded-lg p-6 border border-border/50 hover:border-highlight/50 transition-all duration-200 overflow-hidden"
+            className="relative bg-bg-card rounded-lg p-6 border border-brand-secondary/10 hover:border-highlight/50 transition-all duration-200 overflow-hidden"
           >
             {/* Top Section: Rank, Title, and Tool Logos */}
             <div className="flex items-start justify-between mb-4">
