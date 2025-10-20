@@ -163,8 +163,9 @@ export default function OpportunityAnalysis({
     <div className="max-w-5xl mx-auto mb-16">
       {/* Call to Action Section */}
       <section className="mb-12 bg-bg-card-alt/10 border border-bg-card-alt/20 rounded-card p-8 text-center">
+        <h2 className="text-3xl font-bold text-text-primary mb-4">Validate Your Blueprint with Real Data</h2>
         <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-          Let our AI listen to your real system data and receive a customized deployment blueprint, including your top automation opportunities and readiness score.
+          Your personalized AI Blueprint shows where automation can create value. The next step is to validate those opportunities with your live ticket data — so you know exactly what results to expect before deploying.
         </p>
         <a 
           href="https://www.ai.work/book-a-demo" 
@@ -173,9 +174,10 @@ export default function OpportunityAnalysis({
           className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
         >
           <span className="w-2 h-2 rounded-full bg-highlight"></span>
-          <span className="flex-1 text-center">Run the Full Discovery Assessment</span>
+          <span className="flex-1 text-center">Run My Data Science Assessment</span>
           <span>&gt;</span>
         </a>
+        <p className="text-sm text-text-tertiary mt-4">7-day validation using your real environment data</p>
       </section>
 
       <div className="mb-8">
