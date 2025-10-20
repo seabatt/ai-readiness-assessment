@@ -1,0 +1,102 @@
+/* HubSpot Form Styles for Dark Theme */
+.hubspot-form-wrapper {
+  width: 100%;
+}
+
+.hubspot-form-wrapper .hs-form {
+  font-family: inherit;
+}
+
+.hubspot-form-wrapper .hs-form-field {
+  margin-bottom: 1rem;
+}
+
+.hubspot-form-wrapper .hs-form-field label {
+  color: #FBFAF9;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.hubspot-form-wrapper .hs-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(130, 216, 149, 0.2);
+  border-radius: 0.5rem;
+  color: #FBFAF9;
+  font-size: 1rem;
+  transition: all 200ms;
+}
+
+.hubspot-form-wrapper .hs-input:focus {
+  outline: none;
+  border-color: #82D895;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.hubspot-form-wrapper .hs-input::placeholder {
+  color: #8A8784;
+}
+
+.hubspot-form-wrapper .hs-error-msgs {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+.hubspot-form-wrapper .hs-error-msg {
+  color: #ff6b6b;
+  font-size: 0.75rem;
+}
+
+.hubspot-form-wrapper .hs-submit {
+  width: 100%;
+}
+
+.hubspot-form-wrapper .hs-button {
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms;
+  font-size: 1rem;
+}
+
+.hubspot-form-wrapper .hs-button:hover {
+  background-color: #f3f4f6;
+}
+
+.hubspot-form-wrapper .hs-richtext {
+  color: #8A8784;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.hubspot-form-wrapper .hs-richtext a {
+  color: #82D895;
+  text-decoration: underline;
+}
+
+.hubspot-form-wrapper .hs-form-required {
+  color: #82D895;
+}
+
+.hubspot-form-wrapper select.hs-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%238A8784' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.hubspot-form-wrapper textarea.hs-input {
+  min-height: 100px;
+  resize: vertical;
+}

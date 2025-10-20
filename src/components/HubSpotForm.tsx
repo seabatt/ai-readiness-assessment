@@ -5,21 +5,26 @@ import { useEffect } from 'react';
 interface HubSpotFormProps {
   portalId: string;
   formId: string;
+  region?: string;
   targetId?: string;
 }
 
-export default function HubSpotForm({ portalId, formId, targetId = 'hubspot-form' }: HubSpotFormProps) {
+export default function HubSpotForm({ 
+  portalId, 
+  formId, 
+  region = 'na1',
+  targetId = 'hubspot-form' 
+}: HubSpotFormProps) {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '//js.hsforms.net/forms/embed/v2.js';
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
+    script.src = `https://js-${region}.hsforms.net/forms/embed/${portalId}.js`;
+    script.defer = true;
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
-          region: "na1",
+          region: region,
           portalId: portalId,
           formId: formId,
           target: `#${targetId}`
@@ -28,9 +33,11 @@ export default function HubSpotForm({ portalId, formId, targetId = 'hubspot-form
     });
 
     return () => {
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
-  }, [portalId, formId, targetId]);
+  }, [portalId, formId, region, targetId]);
 
   return <div id={targetId} className="hubspot-form-wrapper" />;
 }

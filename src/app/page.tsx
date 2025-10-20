@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import HubSpotForm from "@/components/HubSpotForm";
+import "@/styles/hubspot-form.css";
 
 export default function Home() {
   return (
@@ -62,8 +63,9 @@ export default function Home() {
           {/* HubSpot Form */}
           <div className="max-w-md mx-auto mb-8">
             <HubSpotForm 
-              portalId="YOUR_PORTAL_ID" 
-              formId="YOUR_FORM_ID"
+              portalId="145411173" 
+              formId="1055fe57-828a-4ad4-af19-64260274956f"
+              region="eu1"
               targetId="hero-hubspot-form"
             />
           </div>
