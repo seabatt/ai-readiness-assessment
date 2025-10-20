@@ -69,9 +69,17 @@ export default function Home() {
             />
           </div>
 
-          <p className="text-text-tertiary text-center mb-4">
-            5 minutes • Instant results
-          </p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+            <Link
+              href="/assessment"
+              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Start Assessment →
+            </Link>
+            <span className="text-text-tertiary">
+              5 minutes • Instant results
+            </span>
+          </div>
           <p className="text-xs text-text-tertiary mt-6 text-center">
             No sensitive data stored or shared. Responses anonymized for
             benchmarking.
