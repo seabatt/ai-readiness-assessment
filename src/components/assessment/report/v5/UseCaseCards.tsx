@@ -103,13 +103,9 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
               <h3 className="text-xl font-bold text-text-primary mb-1">
                 {useCase.name}
               </h3>
-              <span className="text-sm text-text-tertiary block mb-2">
+              <span className="text-sm text-text-tertiary">
                 {useCase.category}
               </span>
-              {/* Deploy Badge */}
-              <StatusPill status={getPriorityStatus(useCase.priority)}>
-                {getPriorityLabel(useCase.priority)}
-              </StatusPill>
             </div>
             
             {/* Tool Logos and Fit Score */}
@@ -136,9 +132,16 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
           </div>
 
           {/* Description */}
-          <p className="text-text-secondary mb-6 leading-relaxed">
+          <p className="text-text-secondary mb-4 leading-relaxed">
             {useCase.value_proposition}
           </p>
+
+          {/* Deploy Badge */}
+          <div className="mb-6">
+            <StatusPill status={getPriorityStatus(useCase.priority)}>
+              {getPriorityLabel(useCase.priority)}
+            </StatusPill>
+          </div>
 
           {/* Impact Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-bg-primary rounded-lg mb-6">
