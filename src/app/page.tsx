@@ -66,7 +66,6 @@ export default function Home() {
               portalId="145411173" 
               formId="1055fe57-828a-4ad4-af19-64260274956f"
               region="eu1"
-              targetId="hero-hubspot-form"
             />
           </div>
 
