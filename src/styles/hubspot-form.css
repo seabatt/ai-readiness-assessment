@@ -52,11 +52,12 @@
 }
 
 .hubspot-form-wrapper .hs-submit {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
 .hubspot-form-wrapper .hs-button {
-  width: 100%;
   background-color: #ffffff;
   color: #000000;
   padding: 1rem 2rem;
@@ -64,12 +65,20 @@
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 200ms;
+  transition: colors 200ms;
   font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hubspot-form-wrapper .hs-button:hover {
   background-color: #f3f4f6;
+}
+
+.hubspot-form-wrapper .hs-button::after {
+  content: '→';
+  margin-left: 0.25rem;
 }
 
 .hubspot-form-wrapper .hs-richtext {
