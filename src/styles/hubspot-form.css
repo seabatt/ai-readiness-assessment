@@ -52,12 +52,11 @@
 }
 
 .hubspot-form-wrapper .hs-submit {
-  display: flex;
-  justify-content: center;
   margin-top: 1.5rem;
 }
 
 .hubspot-form-wrapper .hs-button {
+  width: 100%;
   background-color: #ffffff;
   color: #000000;
   padding: 1rem 2rem;
@@ -67,8 +66,9 @@
   cursor: pointer;
   transition: colors 200ms;
   font-size: 1rem;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
