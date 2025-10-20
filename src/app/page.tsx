@@ -61,7 +61,7 @@ export default function Home() {
           </p>
 
           {/* HubSpot Form */}
-          <div className="max-w-md mx-auto mb-8">
+          <div id="hubspot-form-section" className="max-w-md mx-auto mb-8">
             <HubSpotForm 
               portalId="145411173" 
               formId="1055fe57-828a-4ad4-af19-64260274956f"
@@ -305,13 +305,18 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <Link
-            href="/assessment"
+          <button
+            onClick={() => {
+              document.getElementById('hubspot-form-section')?.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+              });
+            }}
             className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-highlight"></span>
             Start Your Assessment →
-          </Link>
+          </button>
           <p className="text-text-tertiary text-sm">
             Join IT leaders discovering their automation opportunities
           </p>
