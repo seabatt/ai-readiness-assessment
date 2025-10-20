@@ -180,6 +180,9 @@ export default function OpportunityAnalysis({
         <p className="text-sm text-text-tertiary mt-4">7-day validation using your real environment data</p>
       </section>
 
+      {/* Section Divider */}
+      <div className="border-t border-bg-card-alt/20 mb-12"></div>
+
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-text-primary mb-2">
           How to Identify Valuable Use Cases
