@@ -179,7 +179,6 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
                 }))}
                 className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200"
               >
-                <span>How it works:</span>
                 <svg
                   className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
                   fill="none"
@@ -188,6 +187,7 @@ export default function UseCaseCards({ useCases, showRank = true }: UseCaseCards
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
+                <span>How it works:</span>
               </button>
               
               {/* Tool Logos on the right */}
