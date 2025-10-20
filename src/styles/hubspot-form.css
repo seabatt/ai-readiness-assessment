@@ -79,7 +79,6 @@
 
 .hubspot-form-wrapper .hs-button::after {
   content: '→';
-  margin-left: 0.25rem;
 }
 
 .hubspot-form-wrapper .hs-richtext {
