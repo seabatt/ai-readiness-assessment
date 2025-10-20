@@ -166,11 +166,6 @@ export default function ReportV5Page() {
             <ExecutiveSummary
               roiResult={roiResult}
               totalMonthlyTickets={assessmentData.monthlyTickets || 1000}
-              assessmentData={{
-                techStack: assessmentData.techStack || [],
-                additionalContext: assessmentData.additionalContext,
-              }}
-              matchedUseCases={matchedUseCases}
             />
           )}
 
