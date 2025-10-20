@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -7,8 +7,18 @@ export default function Home() {
       {/* Preheader */}
       <div className="bg-bg-card border-b border-bg-card-alt/20">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-center gap-2">
-          <svg className="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            className="w-4 h-4 text-highlight"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
           <span className="text-xs text-text-tertiary">
             Assessment tool based on real IT automation data
@@ -20,10 +30,10 @@ export default function Home() {
       <header className="border-b border-bg-card-alt/20">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link href="/">
-            <Image 
-              src="/images/aiwork-logo.png" 
-              alt="ai.work" 
-              width={120} 
+            <Image
+              src="/images/aiwork-logo.png"
+              alt="ai.work"
+              width={120}
               height={30}
               className="h-7 w-auto"
             />
@@ -36,34 +46,42 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center mb-20">
           <h1 className="text-4xl md:text-6xl font-normal mb-6 leading-tight text-text-primary">
-            Stop guessing how AI fits into your systems. <strong>Start with a blueprint.</strong>
+            Stop guessing how AI fits into your systems.{" "}
+            <strong>Start with a blueprint.</strong>
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Get a personalized <strong>AI Readiness Report</strong> that identifies your top automation use cases, outlines a clear plan to implement AI Workers, and sets realistic expectations for outcomes — <strong>all based on your actual tech stack</strong>
+            Get a personalized <strong>AI Readiness Report</strong> that
+            identifies your top automation use cases, outlines a clear plan to
+            implement AI Workers, and sets realistic expectations for outcomes —{" "}
+            <strong>all based on your actual tech stack</strong>
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
-            <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Start Assessment →
+            <Link
+              href="/assessment"
+              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-highlight"></span>
+              Start Assessment &gt;
             </Link>
             <span className="text-text-tertiary">
               5 minutes • Instant results
             </span>
           </div>
           <p className="text-xs text-text-tertiary mt-6">
-            No sensitive data stored or shared. Responses anonymized for benchmarking.
+            No sensitive data stored or shared. Responses anonymized for
+            benchmarking.
           </p>
         </section>
 
         {/* Problem Statement */}
         <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-8 mb-20">
-          <p className="font-semibold text-center text-lg text-text-primary">
-            AI isn’t an easy button.
-          </p>
           <p className="text-text-secondary mb-4 text-center">
-            Use this tool to get a data-driven, reality-based assessment of what your organization could responsibly automate with AI in the next year.
+            Use this tool to get a data-driven, reality-based assessment of what
+            your organization could responsibly automate with AI in the next
+            year.
           </p>
           <p className="font-semibold text-center text-lg text-text-primary">
-            Assess your readiness for autonomous work.
+            Assess your readiness for autonomous work today.
           </p>
         </div>
 
@@ -84,7 +102,9 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">Readiness Score</h3>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">
+                  Readiness Score
+                </h3>
                 <p className="text-sm text-text-tertiary">
                   0-100 score across 5 key pillars
                 </p>
@@ -106,7 +126,9 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">Opportunity Map</h3>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">
+                  Opportunity Map
+                </h3>
                 <p className="text-sm text-text-tertiary">
                   AI Workers matched to your systems and workflows.
                 </p>
@@ -131,8 +153,12 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">Implementation Roadmap</h3>
-                <p className="text-sm text-text-tertiary">Step-by-step actions to deploy safely and efficiently.</p>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">
+                  Implementation Roadmap
+                </h3>
+                <p className="text-sm text-text-tertiary">
+                  Step-by-step actions to deploy safely and efficiently.
+                </p>
               </div>
             </div>
           </div>
@@ -154,7 +180,9 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2 text-text-primary">Realistic Expectations</h3>
+                <h3 className="font-bold text-lg mb-2 text-text-primary">
+                  Realistic Expectations
+                </h3>
                 <p className="text-sm text-text-tertiary">
                   What AI can automate today — and what comes next.
                 </p>
@@ -164,12 +192,10 @@ export default function Home() {
         </div>
 
         {/* What You'll Discover Section */}
-        <section className="py-12">
-          <div className="max-w-5xl mx-auto text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
-              What You'll Discover
-            </h2>
-          </div>
+        <section className="mb-20">
+          <h2 className="text-4xl font-bold text-center mb-16 text-text-primary">
+            What You'll Discover
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-5xl mx-auto">
             {/* Left Column */}
@@ -239,10 +265,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Downloadable report
+                    Practical outcomes{" "}
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    Share insights with leadership and stakeholders.
+                    See what AI can automate today, and what to expect next.
                   </p>
                 </div>
               </div>
@@ -253,10 +279,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Realistic expectations
+                    Downloadable report
                   </h3>
                   <p className="text-sm text-text-tertiary">
-                    See what AI can automate today — and what's next.
+                    Share insights with leadership and stakeholders.
                   </p>
                 </div>
               </div>
@@ -266,7 +292,10 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <Link href="/assessment" className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-flex items-center gap-2">
+          <Link
+            href="/assessment"
+            className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-flex items-center gap-2"
+          >
             <span className="w-2 h-2 rounded-full bg-highlight"></span>
             Start Your Assessment →
           </Link>
