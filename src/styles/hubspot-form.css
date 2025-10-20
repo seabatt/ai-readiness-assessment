@@ -51,12 +51,23 @@
   font-size: 0.75rem;
 }
 
-.hubspot-form-wrapper .hs-submit {
+.hubspot-form-wrapper .hs-submit,
+.hubspot-form-wrapper .hs_submit {
   margin-top: 0;
+  width: 100% !important;
+  display: block;
 }
 
-.hubspot-form-wrapper .hs-button {
+.hubspot-form-wrapper .hs-submit .actions {
   width: 100%;
+}
+
+.hubspot-form-wrapper .hs-button,
+.hubspot-form-wrapper input[type="submit"],
+.hubspot-form-wrapper .hs-button.primary {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
   background-color: #ffffff;
   color: #000000;
   padding: 1rem 2rem;
@@ -66,10 +77,6 @@
   cursor: pointer;
   transition: colors 200ms;
   font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   text-align: center;
 }
 

@@ -61,7 +61,7 @@ export default function Home() {
           </p>
 
           {/* HubSpot Form */}
-          <div id="hubspot-form-section" className="max-w-md mx-auto">
+          <div id="hubspot-form-section" className="max-w-md mx-auto mb-4">
             <HubSpotForm 
               portalId="145411173" 
               formId="1055fe57-828a-4ad4-af19-64260274956f"
@@ -69,18 +69,10 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
-            <Link
-              href="/assessment"
-              className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Start Assessment →
-            </Link>
-            <span className="text-text-tertiary">
-              5 minutes • Instant results
-            </span>
-          </div>
-          <p className="text-xs text-text-tertiary mt-6">
+          <p className="text-text-tertiary text-center mb-4">
+            5 minutes • Instant results
+          </p>
+          <p className="text-xs text-text-tertiary mt-6 text-center">
             No sensitive data stored or shared. Responses anonymized for
             benchmarking.
           </p>
