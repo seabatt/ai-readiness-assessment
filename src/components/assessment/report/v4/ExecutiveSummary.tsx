@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Card from '@/components/ui/Card';
 import { ROIResult } from '@/types/types-v3';
 import { MatchedUseCase } from '@/lib/engines/use-case-matcher';
@@ -24,6 +24,7 @@ export default function ExecutiveSummary({
 }: ExecutiveSummaryProps) {
   const [generatedInsight, setGeneratedInsight] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const hasGenerated = useRef(false);
 
   // Helper function to render text with bold formatting and bullets
   const renderFormattedText = (text: string) => {
@@ -90,7 +91,13 @@ export default function ExecutiveSummary({
   };
 
   useEffect(() => {
+    // Only generate once - prevent re-running on every render
+    if (hasGenerated.current || generatedInsight) {
+      return;
+    }
+
     async function generateInsight() {
+      hasGenerated.current = true;
       setIsGenerating(true);
 
       try {
@@ -140,7 +147,8 @@ export default function ExecutiveSummary({
     }
 
     generateInsight();
-  }, [assessmentData, roiResult, matchedUseCases]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   const getReadinessRating = (automatablePct: number) => {
     if (automatablePct >= 40) return { label: 'High Readiness', color: 'text-accent-green', bgColor: 'bg-accent-green/20' };
