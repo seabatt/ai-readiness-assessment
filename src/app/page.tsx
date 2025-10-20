@@ -62,7 +62,7 @@ export default function Home() {
           </p>
 
           {/* Email Input Form */}
-          <div className="max-w-md mx-auto mb-6">
+          <div id="email-form-section" className="max-w-md mx-auto mb-6">
             <div className="mb-4">
               <input
                 type="email"
@@ -314,13 +314,18 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <Link
-            href="/assessment"
+          <button
+            onClick={() => {
+              document.getElementById('email-form-section')?.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+              });
+            }}
             className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-highlight"></span>
-            Start Your Assessment →
-          </Link>
+            Get Your Blueprint →
+          </button>
           <p className="text-text-tertiary text-sm">
             Join IT leaders discovering their automation opportunities
           </p>
