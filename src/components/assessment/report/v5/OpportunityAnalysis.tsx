@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Card from '@/components/ui/Card';
-import StatusPill from '@/components/ui/StatusPill';
 import ConnectedAppLogos from '@/components/ui/ConnectedAppLogos';
 import { MatchedUseCase } from '@/types/types-v3';
 import { FeasibilityResult } from '@/lib/engines/feasibility-engine';
@@ -159,6 +157,21 @@ export default function OpportunityAnalysis({
     return 'Deploy Month 3+';
   };
 
+  // Get accent color for left border based on category
+  const getAccentColor = (category: string): string => {
+    const accentColors: Record<string, string> = {
+      'Identity Access & Compliance': '#82D895',
+      'CRM Integration': '#3B82F6',
+      'Knowledge Management': '#A855F7',
+      'IT Service Management': '#F97316',
+      'HR & Onboarding': '#EC4899',
+      'Procurement': '#EAB308',
+      'Project Management': '#6366F1',
+      'Communication & Collaboration': '#14B8A6'
+    };
+    return accentColors[category] || '#82D895';
+  };
+
   return (
     <div className="max-w-5xl mx-auto mb-16">
       {/* Introduction to Use Cases */}
@@ -173,79 +186,90 @@ export default function OpportunityAnalysis({
 
       <div className="grid grid-cols-1 gap-6">
         {topUseCases.map((useCase, index) => (
-          <Card key={useCase.use_case_id} hover>
-            {/* Rank Number */}
-            <div className="text-sm font-medium mb-1" style={{ color: '#8a8784' }}>
-              {String(index + 1).padStart(2, '0')}
-            </div>
-
-            {/* Header with Priority */}
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <h3 className="text-xl font-bold text-text-primary">
+          <div 
+            key={useCase.use_case_id}
+            className="relative bg-bg-secondary rounded-lg p-6 border border-border hover:border-highlight/50 transition-all duration-200 overflow-hidden"
+            style={{
+              borderLeft: `4px solid ${getAccentColor(useCase.category)}`
+            }}
+          >
+            {/* Top Section: Rank, Title, and Tool Logos */}
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex-1">
+                {/* Rank Number */}
+                <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-2xl font-bold text-text-primary mb-2">
                   {useCase.name}
                 </h3>
+
+                {/* Category Badge */}
+                <div className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(useCase.category)}`}>
+                  {useCase.category}
+                </div>
               </div>
-              
-              {/* Category Badge */}
-              <div className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getCategoryColor(useCase.category)}`}>
-                {useCase.category}
-              </div>
+
+              {/* Tool Logos - Prominent Top Right */}
+              {useCase.required_tools && useCase.required_tools.length > 0 && (
+                <div className="ml-6 flex-shrink-0">
+                  <ConnectedAppLogos 
+                    apps={useCase.required_tools.map(convertToolName)}
+                    maxVisible={3}
+                    size={48}
+                    prominent={true}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Description */}
-            <p className="text-text-secondary mb-6 leading-relaxed">
+            <p className="text-lg text-text-secondary mb-6 leading-relaxed">
               {useCase.value_proposition}
             </p>
 
-            {/* Impact Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-bg-primary rounded-lg mb-6">
+            {/* Impact Metrics - Enhanced */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-5 bg-bg-primary/50 rounded-lg border border-border/50 mb-6">
               <div>
-                <div className="text-2xl font-bold text-accent-green">
+                <div className="text-3xl font-bold text-accent-green mb-1">
                   {useCase.estimated_monthly_deflection.toLocaleString()}
                 </div>
-                <div className="text-xs text-text-tertiary">Tickets/Month</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Tickets/Month</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-accent-blue">
-                  {Math.round(useCase.estimated_hours_saved).toLocaleString()} hrs
+                <div className="text-3xl font-bold text-accent-blue mb-1">
+                  {Math.round(useCase.estimated_hours_saved).toLocaleString()} <span className="text-xl">hrs</span>
                 </div>
-                <div className="text-xs text-text-tertiary">Time Saved/Month</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time Saved/Month</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-text-primary">
-                  {useCase.time_to_value_days} days
+                <div className="text-3xl font-bold text-text-primary mb-1">
+                  {useCase.time_to_value_days} <span className="text-xl">days</span>
                 </div>
-                <div className="text-xs text-text-tertiary">Time to Value</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time to Value</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-accent-orange">
+                <div className="text-3xl font-bold text-accent-orange mb-1">
                   {Math.round(useCase.confidence * 100)}%
                 </div>
-                <div className="text-xs text-text-tertiary">Confidence</div>
+                <div className="text-xs text-text-tertiary uppercase tracking-wide">Confidence</div>
               </div>
             </div>
 
             {/* How It Works - Collapsible */}
-            <div className="mb-4">
+            <div>
               <button
                 onClick={() => setExpandedWorkflows(prev => ({
                   ...prev,
                   [useCase.use_case_id]: !prev[useCase.use_case_id]
                 }))}
-                className="flex items-center gap-2 text-sm font-semibold text-text-primary mb-2 hover:text-highlight transition-colors duration-200 w-full text-left"
+                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200 w-full text-left"
               >
-                <span>How it works:</span>
-                {/* Tool Logos */}
-                {useCase.required_tools && useCase.required_tools.length > 0 && (
-                  <ConnectedAppLogos 
-                    apps={useCase.required_tools.map(convertToolName)}
-                    maxVisible={5}
-                    size={32}
-                  />
-                )}
+                <span>How it works</span>
                 <svg
-                  className={`w-4 h-4 transition-transform duration-200 ml-auto ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -255,17 +279,17 @@ export default function OpportunityAnalysis({
               </button>
               
               {expandedWorkflows[useCase.use_case_id] && (
-                <ul className="space-y-1 mt-4">
+                <ul className="space-y-2 mt-4 pl-1">
                   {useCase.workflow_steps.map((step, i) => (
-                    <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
-                      <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
+                    <li key={i} className="text-sm text-text-secondary flex items-start gap-3">
+                      <span className="text-highlight mt-0.5 flex-shrink-0 font-bold">→</span>
                       <span>{step}</span>
                     </li>
                   ))}
                 </ul>
               )}
             </div>
-          </Card>
+          </div>
         ))}
       </div>
 
