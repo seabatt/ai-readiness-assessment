@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import HubSpotForm from "@/components/HubSpotForm";
-import "@/styles/hubspot-form.css";
 
 export default function Home() {
   return (
@@ -59,15 +57,6 @@ export default function Home() {
             implement AI Workers, and sets realistic expectations for outcomes —{" "}
             <strong>all based on your actual tech stack</strong>
           </p>
-
-          {/* HubSpot Form */}
-          <div id="hubspot-form-section" className="max-w-md mx-auto mb-4">
-            <HubSpotForm 
-              portalId="145411173" 
-              formId="1055fe57-828a-4ad4-af19-64260274956f"
-              region="eu1"
-            />
-          </div>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
             <Link
@@ -305,18 +294,13 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <button
-            onClick={() => {
-              document.getElementById('hubspot-form-section')?.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'center'
-              });
-            }}
+          <Link
+            href="/assessment"
             className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors mb-4 inline-flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-highlight"></span>
             Start Your Assessment →
-          </button>
+          </Link>
           <p className="text-text-tertiary text-sm">
             Join IT leaders discovering their automation opportunities
           </p>
