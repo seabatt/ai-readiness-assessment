@@ -157,21 +157,6 @@ export default function OpportunityAnalysis({
     return 'Deploy Month 3+';
   };
 
-  // Get accent color for left border based on category
-  const getAccentColor = (category: string): string => {
-    const accentColors: Record<string, string> = {
-      'Identity Access & Compliance': '#82D895',
-      'CRM Integration': '#3B82F6',
-      'Knowledge Management': '#A855F7',
-      'IT Service Management': '#F97316',
-      'HR & Onboarding': '#EC4899',
-      'Procurement': '#EAB308',
-      'Project Management': '#6366F1',
-      'Communication & Collaboration': '#14B8A6'
-    };
-    return accentColors[category] || '#82D895';
-  };
-
   return (
     <div className="max-w-5xl mx-auto mb-16">
       {/* Introduction to Use Cases */}
@@ -189,9 +174,6 @@ export default function OpportunityAnalysis({
           <div 
             key={useCase.use_case_id}
             className="relative bg-bg-secondary rounded-lg p-6 border border-border hover:border-highlight/50 transition-all duration-200 overflow-hidden"
-            style={{
-              borderLeft: `4px solid ${getAccentColor(useCase.category)}`
-            }}
           >
             {/* Top Section: Rank, Title, and Tool Logos */}
             <div className="flex items-start justify-between mb-4">
