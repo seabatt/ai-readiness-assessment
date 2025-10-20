@@ -259,20 +259,6 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-text-primary">
-                    Readiness breakdown
-                  </h3>
-                  <p className="text-sm text-text-tertiary">
-                    Data, process, and governance insights.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-6 h-6 rounded-full bg-highlight/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-highlight text-sm">✓</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg mb-1 text-text-primary">
                     Practical outcomes{" "}
                   </h3>
                   <p className="text-sm text-text-tertiary">
