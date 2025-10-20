@@ -146,10 +146,10 @@ export default function ReportV4Page() {
           {/* Report Header */}
           <div className="mb-20">
             <h1 className="text-5xl font-normal text-text-primary mb-3">
-              AI Worker Readiness Assessment
+              AI Worker Readiness Blueprint
             </h1>
             <p className="text-xl text-text-tertiary">
-              Based on your {assessmentData.techStack?.length || 0} selected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
+              Derived from your {assessmentData.techStack?.length || 0} connected tools and {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets, this blueprint maps automation opportunities, readiness insights, and next steps for deploying AI Workers across your enterprise stack.
             </p>
           </div>
 
