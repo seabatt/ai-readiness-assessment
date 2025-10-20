@@ -21,7 +21,7 @@ const APP_LOGO_MAP: Record<string, string> = {
   'Confluence': 'https://logo.clearbit.com/atlassian.com',
   'Asana': 'https://logo.clearbit.com/asana.com',
   'Monday.com': 'https://logo.clearbit.com/monday.com',
-  'Zoom': 'https://logo.clearbit.com/zoom.us',
+  'Zoom': 'https://logo.clearbit.com/zoom.com',
   'Teams': 'https://logo.clearbit.com/microsoft.com',
   'Workday': 'https://logo.clearbit.com/workday.com',
   'BambooHR': 'https://logo.clearbit.com/bamboohr.com',
