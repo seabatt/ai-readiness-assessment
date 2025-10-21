@@ -13,6 +13,7 @@ export default function EmailGatePage() {
   const [hasAssessment, setHasAssessment] = useState(false);
   const [assessmentData, setAssessmentData] = useState<any>(null);
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
+  const [opportunityCount, setOpportunityCount] = useState(0);
 
   useEffect(() => {
     // Check if there's an assessment ID in URL params
@@ -27,6 +28,9 @@ export default function EmailGatePage() {
           if (data.assessment) {
             setHasAssessment(true);
             setAssessmentData(data.assessment);
+            // Calculate opportunity count from matched use cases
+            const count = data.assessment.reportData?.matchedUseCases?.length || 0;
+            setOpportunityCount(count);
           } else {
             // Fallback to sessionStorage
             const storedData = sessionStorage.getItem('assessmentData');
@@ -52,8 +56,12 @@ export default function EmailGatePage() {
       // Check sessionStorage as fallback
       const data = sessionStorage.getItem('assessmentData');
       if (data) {
+        const parsedData = JSON.parse(data);
         setHasAssessment(true);
-        setAssessmentData(JSON.parse(data));
+        setAssessmentData(parsedData);
+        // Calculate opportunity count from matched use cases
+        const count = parsedData.matchedUseCases?.length || 0;
+        setOpportunityCount(count);
       } else {
         router.push('/');
       }
@@ -152,10 +160,10 @@ export default function EmailGatePage() {
         {/* Email Gate Form */}
         <div className="bg-bg-card border border-border rounded-xl p-8 mb-12 max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-4 text-center">
-            Get Your Complete Blueprint
+            We've identified {opportunityCount} {opportunityCount === 1 ? 'way' : 'ways'} you can employ an AI Worker to deflect tickets immediately
           </h2>
           <p className="text-text-secondary mb-6 text-center">
-            Enter your work email to unlock your full AI Worker readiness assessment with personalized recommendations and ROI calculations.
+            Enter your work email to unlock the complete list with personalized recommendations and ROI calculations.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -176,7 +184,7 @@ export default function EmailGatePage() {
               className="w-full bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="w-2 h-2 rounded-full bg-highlight"></span>
-              {isSubmitting ? 'Unlocking...' : 'Unlock Full Blueprint'}
+              {isSubmitting ? 'Unlocking...' : 'Unlock Full Assessment'}
               <span>→</span>
             </button>
           </form>
