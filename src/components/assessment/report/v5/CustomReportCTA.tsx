@@ -1,3 +1,5 @@
+import HubSpotForm from '@/components/HubSpotForm';
+
 interface CustomReportCTAProps {
   onRequestDiscovery?: () => void;
 }
@@ -86,7 +88,7 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
                   <svg className="w-5 h-5 text-highlight mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-sm text-text-tertiary leading-relaxed">
+                  <span className="text-sm text-text-text-tertiary leading-relaxed">
                     Confidence intervals for deflection (typically 95%+)
                   </span>
                 </div>
@@ -94,18 +96,13 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
             </div>
           </div>
 
-          <div className="text-center">
-            <a 
-              href="https://www.ai.work/book-a-demo" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              <span className="w-2 h-2 rounded-full bg-highlight"></span>
-              <span className="flex-1 text-center">Run Your Data Science Assessment</span>
-              <span>&gt;</span>
-            </a>
-            <p className="text-sm text-text-tertiary mt-4">Validate impact, refine scope, and model ROI using your real data</p>
+          {/* HubSpot Form */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <HubSpotForm 
+              portalId="145411173"
+              formId="336ea270-b317-44e7-b3a8-132aae822d08"
+              region="eu1"
+            />
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
