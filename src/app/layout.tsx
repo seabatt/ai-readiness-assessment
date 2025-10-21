@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import './globals.css'
 
 const nbInternational = localFont({
@@ -73,6 +74,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nbInternational.className} bg-bg-primary text-text-primary antialiased`}>
         {children}
+        
+        {/* HubSpot Tracking Code */}
+        <Script
+          id="hs-script-loader"
+          src="//js-eu1.hs-scripts.com/145411173.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
