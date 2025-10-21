@@ -257,28 +257,6 @@ export default function VariantLandingPage() {
           </div>
         </section>
 
-        {/* From Deflection to Full Automation */}
-        <section className="mb-20">
-          <div className="border border-bg-card-alt/20 bg-bg-card rounded-xl p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-text-primary">
-              From deflection to full automation
-            </h2>
-            <p className="text-lg text-text-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
-              Ticket deflection is only the start.
-              With the AI Blueprint, ai.work connects to your live systems to validate real ticket data, confirm deflection potential, and map how AI Workers can scale across departments—safely and within enterprise guardrails.
-            </p>
-            <Link
-              href="https://ai.work/book-a-demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              <span className="w-2 h-2 rounded-full bg-highlight"></span>
-              See How the AI Blueprint Works
-              <span>→</span>
-            </Link>
-          </div>
-        </section>
       </main>
 
       {/* Footer */}
