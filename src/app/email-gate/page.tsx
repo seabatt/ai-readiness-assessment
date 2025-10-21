@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 function EmailGateContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
