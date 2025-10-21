@@ -1,7 +1,7 @@
 run = "npm run dev"
 language = "nodejs"
 entrypoint = "src/app/page.tsx"
-modules = ["nodejs-20"]
+modules = ["nodejs-20", "postgresql-16"]
 
 [nix]
 channel = "stable-23_11"
@@ -26,6 +26,10 @@ externalPort = 3000
 [[ports]]
 localPort = 45221
 externalPort = 3001
+
+[[ports]]
+localPort = 46767
+externalPort = 3003
 
 [agent]
 expertMode = true
