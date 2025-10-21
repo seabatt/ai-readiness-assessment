@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function EmailGatePage() {
+function EmailGateContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
@@ -230,5 +230,20 @@ export default function EmailGatePage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function EmailGatePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-bg-primary flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-highlight border-t-transparent mb-4" />
+          <p className="text-text-secondary">Loading...</p>
+        </div>
+      </div>
+    }>
+      <EmailGateContent />
+    </Suspense>
   );
 }
