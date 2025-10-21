@@ -51,7 +51,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center mb-20">
           <h1 className="text-4xl md:text-6xl font-normal mb-6 leading-tight text-text-primary">
-            Stop guessing how AI fits into your systems.{" "}
+            Stop guessing how an AI Worker fits into your systems.{" "}
             <strong>Start with a blueprint.</strong>
           </h1>
           <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
