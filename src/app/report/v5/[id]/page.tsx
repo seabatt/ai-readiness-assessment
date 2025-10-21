@@ -202,7 +202,7 @@ export default function ReportV5Page() {
           {/* Heading */}
           <div className="mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
-              AI Worker Readiness Blueprint
+              AI Worker Readiness Assessment
             </h1>
             <p className="text-xl text-text-secondary">
               Analysis complete for {assessmentData.techStack?.length || 0} connected tools and{' '}
