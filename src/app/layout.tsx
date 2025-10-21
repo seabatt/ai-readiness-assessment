@@ -61,8 +61,8 @@ const nbInternational = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'IT Automation Readiness Assessment | AI.work',
-  description: 'Assess your IT team\'s readiness for AI Workers and autonomous operations',
+  title: 'AI Worker Readiness Blueprint | AI.work',
+  description: 'Get your personalized AI Worker readiness blueprint with automation opportunities and implementation roadmap',
 }
 
 export default function RootLayout({
