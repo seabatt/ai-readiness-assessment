@@ -28,7 +28,7 @@ export default function VariantLandingPage() {
           <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-text-primary">
             Find out how much ticket volume your team can deflect with AI Workers.
           </h1>
-          <p className="text-text-tertiary text-lg mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-text-tertiary text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             In five minutes, you'll receive a personalized report showing which workflows can be automated, how many tickets can be deflected, and what that means for your team's time, cost, and SLAs.
           </p>
 
