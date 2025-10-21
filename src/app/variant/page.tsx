@@ -25,14 +25,11 @@ export default function VariantLandingPage() {
       <main className="max-w-6xl mx-auto px-6 py-20">
         {/* Hero Section */}
         <section className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-text-primary">
-            AI Readiness Report
-          </h1>
-          <p className="text-text-secondary text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-text-primary">
             Find out how much ticket volume your team can deflect with AI Workers.
-          </p>
+          </h1>
           <p className="text-text-tertiary text-lg mb-10 max-w-3xl mx-auto leading-relaxed">
-            In five minutes, you'll receive a personalized AI Readiness Report showing which workflows can be automated, how many tickets can be deflected, and what that means for your team's time, cost, and SLAs.
+            In five minutes, you'll receive a personalized report showing which workflows can be automated, how many tickets can be deflected, and what that means for your team's time, cost, and SLAs.
           </p>
 
           {/* CTA Button */}
