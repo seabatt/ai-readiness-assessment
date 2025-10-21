@@ -1,12 +1,9 @@
 'use client';
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary">
       {/* Preheader */}
@@ -61,19 +58,8 @@ export default function Home() {
             <strong>all based on your actual tech stack</strong>
           </p>
 
-          {/* Email Input Form */}
-          <div id="email-form-section" className="max-w-md mx-auto mb-6">
-            <div className="mb-4">
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Work email*"
-                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
-                required
-              />
-            </div>
+          {/* CTA Button */}
+          <div className="max-w-md mx-auto mb-6">
             <Link
               href="/assessment"
               className="w-full bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2"
