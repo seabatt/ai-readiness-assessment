@@ -29,17 +29,50 @@ export default function AssessmentPage() {
     additionalContext: '',
   });
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < 3) {
       setStep(step + 1);
     } else if (step === 3) {
       // Show loading screen
       setStep(4);
-      // Save to sessionStorage and redirect to V5 report after brief delay
-      setTimeout(() => {
-        sessionStorage.setItem('assessmentData', JSON.stringify(data));
-        router.push('/report/v5/new');
-      }, 3000);
+      
+      // Save to sessionStorage as fallback
+      sessionStorage.setItem('assessmentData', JSON.stringify(data));
+      
+      // Save to database and redirect with ID
+      try {
+        const response = await fetch('/api/assessments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            techStack: data.techStack,
+            monthlyTickets: data.monthlyTickets,
+            ticketDistribution: data.ticketDistribution,
+            additionalContext: data.additionalContext,
+            reportData: data,
+          }),
+        });
+        
+        const result = await response.json();
+        
+        if (result.success && result.id) {
+          // Redirect to report with database ID
+          setTimeout(() => {
+            router.push(`/report/v5/${result.id}`);
+          }, 3000);
+        } else {
+          // Fallback to /new route if database save failed
+          setTimeout(() => {
+            router.push('/report/v5/new');
+          }, 3000);
+        }
+      } catch (error) {
+        console.error('Error saving assessment:', error);
+        // Fallback to /new route on error
+        setTimeout(() => {
+          router.push('/report/v5/new');
+        }, 3000);
+      }
     }
   };
 
