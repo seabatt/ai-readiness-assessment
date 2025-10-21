@@ -14,6 +14,7 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 ### Technical Implementations
 -   **Framework & Styling**: Next.js 14.2 with TypeScript and Tailwind CSS.
 -   **UI Libraries**: Framer Motion (animations), Recharts (data visualization), React Hook Form + Zod (form validation), @dnd-kit (drag and drop), Lucide React (icons).
+-   **HubSpot Integration**: Site-wide tracking script loaded in root layout (Portal ID: 145411173, region: eu1). HubSpot form (ID: 336ea270-b317-44e7-b3a8-132aae822d08) integrated into CustomReportCTA component within the "7-Day Ticket Listening Process" section. Custom dark theme styling applied to forms via src/styles/hubspot-form.css.
 -   **Assessment Flow**: A 3-step process including Tech Stack Selection, Volume & Service Profile (with categorized ticket distribution sliders), and optional Additional Context.
 -   **Analysis Engines** (`src/lib/engines/`):
     -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify available APIs and use cases, normalizing tool names.
