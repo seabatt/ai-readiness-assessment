@@ -36,43 +36,13 @@ export default function AssessmentPage() {
       // Show loading screen
       setStep(4);
       
-      // Save to sessionStorage as fallback
+      // Save to sessionStorage for email gate
       sessionStorage.setItem('assessmentData', JSON.stringify(data));
       
-      // Save to database and redirect with ID
-      try {
-        const response = await fetch('/api/assessments', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            techStack: data.techStack,
-            monthlyTickets: data.monthlyTickets,
-            ticketDistribution: data.ticketDistribution,
-            additionalContext: data.additionalContext,
-            reportData: data,
-          }),
-        });
-        
-        const result = await response.json();
-        
-        if (result.success && result.id) {
-          // Redirect to report with database ID
-          setTimeout(() => {
-            router.push(`/report/v5/${result.id}`);
-          }, 3000);
-        } else {
-          // Fallback to /new route if database save failed
-          setTimeout(() => {
-            router.push('/report/v5/new');
-          }, 3000);
-        }
-      } catch (error) {
-        console.error('Error saving assessment:', error);
-        // Fallback to /new route on error
-        setTimeout(() => {
-          router.push('/report/v5/new');
-        }, 3000);
-      }
+      // Redirect to email gate after brief loading
+      setTimeout(() => {
+        router.push('/email-gate');
+      }, 3000);
     }
   };
 
