@@ -14,8 +14,9 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 ### Technical Implementations
 -   **Framework & Styling**: Next.js 14.2 with TypeScript and Tailwind CSS.
 -   **UI Libraries**: Framer Motion (animations), Recharts (data visualization), React Hook Form + Zod (form validation), @dnd-kit (drag and drop), Lucide React (icons).
+-   **Database & Persistence**: PostgreSQL database (Neon-backed) with Drizzle ORM for storing assessment reports. Schema includes assessments table with UUID primary key, JSONB fields for tech stack/ticket distribution/report data, integer for monthly tickets, optional text context, and timestamps. Service layer in `src/lib/services/assessmentService.ts` provides CRUD operations. API routes at `/api/assessments` (POST to create) and `/api/assessments/[id]` (GET by ID) handle database interactions with proper error handling and fallbacks.
 -   **HubSpot Integration**: Site-wide tracking script loaded in root layout (Portal ID: 145411173, region: eu1). HubSpot form (ID: 336ea270-b317-44e7-b3a8-132aae822d08) integrated into CustomReportCTA component within the "7-Day Ticket Listening Process" section. Custom dark theme styling applied to forms via src/styles/hubspot-form.css.
--   **Assessment Flow**: A 3-step process including Tech Stack Selection, Volume & Service Profile (with categorized ticket distribution sliders), and optional Additional Context.
+-   **Assessment Flow**: A 3-step process including Tech Stack Selection, Volume & Service Profile (with categorized ticket distribution sliders), and optional Additional Context. Upon completion, assessment data is saved to both sessionStorage (fallback) and PostgreSQL database, then user is redirected to report page with unique database ID.
 -   **Analysis Engines** (`src/lib/engines/`):
     -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify available APIs and use cases, normalizing tool names.
     -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers, calculating fit scores, estimating deflection, and prioritizing use cases.
@@ -34,9 +35,9 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 
 ### Feature Specifications
 -   **ConnectedAppLogos component**: Displays logos with hover tooltips. Supports "prominent" mode with circular backgrounds, borders, and hover scale effects for emphasizing key integrations.
--   **V5 Report**: The primary/default report experience (as of October 2025), offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow. Available at `/report/v5/new` route.
+-   **V5 Report**: The primary/default report experience (as of October 2025), offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow. Available at `/report/v5/[id]` route where `[id]` can be "new" (loads from sessionStorage) or a database UUID (loads from database). Share button copies current URL to clipboard for easy sharing of persisted reports.
 -   **V4 Report**: Previous report version, still available at `/report/v4/new` route. Currently identical to V5.
--   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context.
+-   **Assessment Data**: Captures monthly tickets, ticket distribution, and additional context. Each completed assessment is persisted to PostgreSQL with a unique UUID for future retrieval and sharing with sales reps.
 -   **Workflow Steps Styling**: Collapsible "How it Works" section with updated number styling and toggle arrow positioned left of text.
 
 ## External Dependencies
