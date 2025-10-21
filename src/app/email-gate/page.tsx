@@ -1,58 +1,113 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function EmailGatePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasAssessment, setHasAssessment] = useState(false);
   const [assessmentData, setAssessmentData] = useState<any>(null);
+  const [assessmentId, setAssessmentId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if there's assessment data in sessionStorage
-    const data = sessionStorage.getItem('assessmentData');
-    if (data) {
-      setHasAssessment(true);
-      setAssessmentData(JSON.parse(data));
+    // Check if there's an assessment ID in URL params
+    const id = searchParams.get('id');
+    
+    if (id) {
+      // Load assessment from database
+      setAssessmentId(id);
+      fetch(`/api/assessments/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.assessment) {
+            setHasAssessment(true);
+            setAssessmentData(data.assessment);
+          } else {
+            // Fallback to sessionStorage
+            const storedData = sessionStorage.getItem('assessmentData');
+            if (storedData) {
+              setHasAssessment(true);
+              setAssessmentData(JSON.parse(storedData));
+            } else {
+              router.push('/');
+            }
+          }
+        })
+        .catch(() => {
+          // Fallback to sessionStorage on error
+          const storedData = sessionStorage.getItem('assessmentData');
+          if (storedData) {
+            setHasAssessment(true);
+            setAssessmentData(JSON.parse(storedData));
+          } else {
+            router.push('/');
+          }
+        });
     } else {
-      // Redirect to homepage if no assessment data
-      router.push('/');
+      // Check sessionStorage as fallback
+      const data = sessionStorage.getItem('assessmentData');
+      if (data) {
+        setHasAssessment(true);
+        setAssessmentData(JSON.parse(data));
+      } else {
+        router.push('/');
+      }
     }
-  }, [router]);
+  }, [router, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !assessmentData) return;
+    if (!email) return;
 
     setIsSubmitting(true);
 
     try {
-      // Save assessment with email
-      const response = await fetch('/api/assessments/submit-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          ...assessmentData,
-        }),
-      });
+      if (assessmentId) {
+        // Update existing assessment with email
+        const response = await fetch(`/api/assessments/${assessmentId}/update-email`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit email');
+        if (!response.ok) {
+          throw new Error('Failed to submit email');
+        }
+
+        // Clear sessionStorage
+        sessionStorage.removeItem('assessmentData');
+
+        // Redirect to full report
+        router.push(`/report/v5/${assessmentId}`);
+      } else if (assessmentData) {
+        // Fallback: create new assessment with email
+        const response = await fetch('/api/assessments/submit-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            ...assessmentData,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to submit email');
+        }
+
+        const { id } = await response.json();
+
+        // Clear sessionStorage
+        sessionStorage.removeItem('assessmentData');
+
+        // Redirect to full report
+        router.push(`/report/v5/${id}`);
       }
-
-      const { id } = await response.json();
-
-      // Clear sessionStorage
-      sessionStorage.removeItem('assessmentData');
-
-      // Redirect to full report
-      router.push(`/report/v5/${id}`);
     } catch (error) {
       console.error('Error submitting email:', error);
       alert('Failed to submit email. Please try again.');
