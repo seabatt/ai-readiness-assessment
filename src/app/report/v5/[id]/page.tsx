@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { AssessmentData, ReadinessScore } from "@/types";
@@ -19,6 +19,7 @@ import CustomReportCTA from "@/components/assessment/report/v5/CustomReportCTA";
 
 export default function ReportV5Page() {
   const router = useRouter();
+  const params = useParams();
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState<ReadinessScore | null>(null);
   const [assessmentData, setAssessmentData] = useState<AssessmentData | null>(
@@ -39,15 +40,60 @@ export default function ReportV5Page() {
   };
 
   useEffect(() => {
-    const dataStr = sessionStorage.getItem("assessmentData");
-    if (!dataStr) {
-      router.push("/");
-      return;
+    async function loadAssessmentData() {
+      const id = params.id as string;
+      
+      // If ID is "new", load from sessionStorage
+      if (id === "new") {
+        const dataStr = sessionStorage.getItem("assessmentData");
+        if (!dataStr) {
+          router.push("/");
+          return;
+        }
+        const data: AssessmentData = JSON.parse(dataStr);
+        setAssessmentData(data);
+        processAssessmentData(data);
+        return;
+      }
+      
+      // Otherwise, load from database
+      try {
+        const response = await fetch(`/api/assessments/${id}`);
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          const data = result.data.reportData as AssessmentData;
+          setAssessmentData(data);
+          processAssessmentData(data);
+        } else {
+          // Fallback to sessionStorage
+          const dataStr = sessionStorage.getItem("assessmentData");
+          if (dataStr) {
+            const data: AssessmentData = JSON.parse(dataStr);
+            setAssessmentData(data);
+            processAssessmentData(data);
+          } else {
+            router.push("/");
+          }
+        }
+      } catch (error) {
+        console.error("Error loading assessment:", error);
+        // Fallback to sessionStorage
+        const dataStr = sessionStorage.getItem("assessmentData");
+        if (dataStr) {
+          const data: AssessmentData = JSON.parse(dataStr);
+          setAssessmentData(data);
+          processAssessmentData(data);
+        } else {
+          router.push("/");
+        }
+      }
     }
-
-    const data: AssessmentData = JSON.parse(dataStr);
-    setAssessmentData(data);
-
+    
+    loadAssessmentData();
+  }, [params.id, router]);
+  
+  function processAssessmentData(data: AssessmentData) {
     setTimeout(() => {
       const calcScore = calculateReadinessScore(data);
       setScore(calcScore);
@@ -101,7 +147,7 @@ export default function ReportV5Page() {
       setRoiResult(roi);
       setLoading(false);
     }, 3000);
-  }, [router]);
+  }
 
   if (loading) {
     return (
