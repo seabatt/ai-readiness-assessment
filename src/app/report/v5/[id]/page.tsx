@@ -200,17 +200,13 @@ export default function ReportV5Page() {
       <main className="py-12">
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Heading */}
-          <div className="mb-20">
-            <h1 className="text-5xl font-normal text-text-primary mb-3">
+          <div className="mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
               AI Worker Readiness Blueprint
             </h1>
-            <p className="text-xl text-text-tertiary">
-              Derived from your {assessmentData.techStack?.length || 0}{" "}
-              connected tools and{" "}
-              {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly
-              tickets, this blueprint maps automation opportunities, readiness
-              insights, and next steps for deploying AI Workers across your
-              enterprise stack.
+            <p className="text-xl text-text-secondary">
+              Analysis complete for {assessmentData.techStack?.length || 0} connected tools and{' '}
+              {(assessmentData.monthlyTickets || 0).toLocaleString()} monthly tickets
             </p>
           </div>
 
