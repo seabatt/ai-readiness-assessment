@@ -94,15 +94,15 @@ export default function CustomReportCTA({ onRequestDiscovery }: CustomReportCTAP
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* HubSpot Form */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <HubSpotForm 
-              portalId="145411173"
-              formId="336ea270-b317-44e7-b3a8-132aae822d08"
-              region="eu1"
-            />
+            {/* HubSpot Form */}
+            <div className="border-t border-bg-card-alt/20 pt-6 mt-6">
+              <HubSpotForm 
+                portalId="145411173"
+                formId="336ea270-b317-44e7-b3a8-132aae822d08"
+                region="eu1"
+              />
+            </div>
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-text-tertiary">
