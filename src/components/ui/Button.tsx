@@ -15,6 +15,7 @@ export default function Button({ variant = 'primary', children, className = '', 
 
   return (
     <button
+      type="button"
       className={`${baseStyles} ${variants[variant]} ${className}`}
       {...props}
     >
