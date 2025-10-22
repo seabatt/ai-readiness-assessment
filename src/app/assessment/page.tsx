@@ -37,15 +37,12 @@ export default function AssessmentPage() {
     if (step < 3) {
       setStep(step + 1);
     } else if (step === 3) {
-      console.log('Starting report generation...');
-      
       // Show loading screen
       setStep(4);
       
       try {
         // Generate full report data using analysis engines
         const generateReportData = () => {
-          console.log('Generating report data...');
           // Initialize engines
           const feasibilityEngine = new FeasibilityEngine();
           const useCaseMatcher = new UseCaseMatcher();
@@ -99,10 +96,8 @@ export default function AssessmentPage() {
 
         // Generate report data
         const fullReportData = generateReportData();
-        console.log('Report data generated successfully');
         
         // Save to database (without email) with full report data
-        console.log('Saving assessment to database...');
         const response = await fetch('/api/assessments', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -120,17 +115,14 @@ export default function AssessmentPage() {
         }
         
         const result = await response.json();
-        console.log('Database response:', result);
         
         if (result.success && result.id) {
           // Redirect to email gate with assessment ID
-          console.log('Redirecting to email gate with ID:', result.id);
           setTimeout(() => {
             router.push(`/email-gate?id=${result.id}`);
           }, 3000);
         } else {
           // Fallback: save to sessionStorage and redirect
-          console.log('No ID returned, using sessionStorage fallback');
           sessionStorage.setItem('assessmentData', JSON.stringify(fullReportData));
           setTimeout(() => {
             router.push('/email-gate');
