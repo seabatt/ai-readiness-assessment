@@ -6,12 +6,14 @@
         "app_access": {
           "typical_pct_of_parent": 0.29,
           "median_ttr_hours": 1.71,
-          "automation_potential": 0.85
+          "automation_potential": 0.85,
+          "post_auto_ttr_hours": 0.083
         },
         "within_app_actions": {
           "typical_pct_of_parent": 0.034,
           "median_ttr_hours": 1.97,
-          "automation_potential": 0.75
+          "automation_potential": 0.75,
+          "post_auto_ttr_hours": 0.083
         }
       }
     },
@@ -28,7 +30,8 @@
     "distribution_lists": {
       "typical_pct": 0.027,
       "median_ttr_hours": 0.75,
-      "automation_potential": 0.9
+      "automation_potential": 0.9,
+      "post_auto_ttr_hours": 0.083
     },
     "network": {
       "typical_pct": 0.023,
