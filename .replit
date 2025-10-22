@@ -7,7 +7,7 @@ modules = ["nodejs-20", "postgresql-16"]
 channel = "stable-23_11"
 
 [deployment]
-run = ["npm"]
+run = ["npm", "start"]
 deploymentTarget = "autoscale"
 build = ["npm", "run", "build"]
 
