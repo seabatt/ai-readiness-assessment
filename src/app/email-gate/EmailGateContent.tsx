@@ -25,11 +25,11 @@ export default function EmailGateContent() {
       fetch(`/api/assessments/${id}`)
         .then(res => res.json())
         .then(data => {
-          if (data.assessment) {
+          if (data.success && data.data) {
             setHasAssessment(true);
-            setAssessmentData(data.assessment);
+            setAssessmentData(data.data);
             // Calculate opportunity count from matched use cases
-            const count = data.assessment.reportData?.matchedUseCases?.length || 0;
+            const count = data.data.reportData?.matchedUseCases?.length || 0;
             setOpportunityCount(count);
           } else {
             // Fallback to sessionStorage
