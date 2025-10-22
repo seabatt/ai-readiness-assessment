@@ -45,25 +45,42 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
   useEffect(() => {
     if (!isOpen || !modalRef.current) return;
 
-    // Move focus to modal
-    closeButtonRef.current?.focus();
+    // Move focus to close button or modal container
+    const initialFocus = closeButtonRef.current || modalRef.current;
+    initialFocus?.focus();
 
     // Focus trap
-    const focusableElements = modalRef.current.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    const firstFocusable = focusableElements[0] as HTMLElement;
-    const lastFocusable = focusableElements[focusableElements.length - 1] as HTMLElement;
-
     const handleTab = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
+      if (e.key !== 'Tab' || !modalRef.current) return;
 
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      // Guard against empty or single-element lists
+      if (focusableElements.length === 0) {
+        e.preventDefault();
+        return;
+      }
+
+      const firstFocusable = focusableElements[0] as HTMLElement;
+      const lastFocusable = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      // Single focusable element - prevent tabbing away
+      if (focusableElements.length === 1) {
+        e.preventDefault();
+        firstFocusable?.focus();
+        return;
+      }
+
+      // Handle backward tab
       if (e.shiftKey) {
         if (document.activeElement === firstFocusable) {
           e.preventDefault();
           lastFocusable?.focus();
         }
       } else {
+        // Handle forward tab
         if (document.activeElement === lastFocusable) {
           e.preventDefault();
           firstFocusable?.focus();
@@ -71,9 +88,9 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
       }
     };
 
-    modalRef.current.addEventListener('keydown', handleTab);
-    const currentModal = modalRef.current;
-    return () => currentModal?.removeEventListener('keydown', handleTab);
+    // Use document listener to catch all tabs
+    document.addEventListener('keydown', handleTab);
+    return () => document.removeEventListener('keydown', handleTab);
   }, [isOpen]);
 
   const defaultTrigger = (
@@ -107,6 +124,7 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
         className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
         onClick={handleClose}
         aria-hidden="true"
+        role="presentation"
       />
 
       {/* Modal */}
@@ -114,11 +132,12 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
         <div className="flex min-h-full items-center justify-center p-4">
           <div
             ref={modalRef}
-            className="relative bg-bg-secondary border border-brand-secondary/20 rounded-lg shadow-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto"
+            tabIndex={-1}
+            className="relative bg-[#1a1a1a] border border-brand-secondary/20 rounded-lg shadow-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto focus:outline-none"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-bg-secondary border-b border-brand-secondary/20 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-[#1a1a1a] border-b border-brand-secondary/20 px-6 py-4 flex items-center justify-between">
               <h2 id="modal-title" className="text-2xl font-bold text-text-primary">How We Calculate Your ROI</h2>
               <button
                 ref={closeButtonRef}
@@ -231,16 +250,12 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
                     <h4 className="font-semibold text-text-primary mb-1">Where do the worker confidence scores come from?</h4>
                     <p className="text-lg">From real-world maturity of the automation and how well it fits your stack. We weight savings by those scores.</p>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-text-primary mb-1">Can we make it more conservative?</h4>
-                    <p className="text-lg">Yes. Increase the micro-touch time, raise the share needing approval, lower the capture rate, or use the P70/P90 ranges in reporting.</p>
-                  </div>
                 </div>
               </section>
             </div>
 
             {/* Footer */}
-            <div className="sticky bottom-0 bg-bg-secondary border-t border-brand-secondary/20 px-6 py-4">
+            <div className="sticky bottom-0 bg-[#1a1a1a] border-t border-brand-secondary/20 px-6 py-4">
               <button
                 onClick={handleClose}
                 className="w-full bg-accent-green text-black font-medium py-3 px-6 rounded-lg hover:bg-accent-green/90 transition-colors"
