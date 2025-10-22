@@ -37,67 +37,72 @@ export default function AssessmentPage() {
     if (step < 3) {
       setStep(step + 1);
     } else if (step === 3) {
+      console.log('Starting report generation...');
+      
       // Show loading screen
       setStep(4);
       
-      // Generate full report data using analysis engines
-      const generateReportData = () => {
-        // Initialize engines
-        const feasibilityEngine = new FeasibilityEngine();
-        const useCaseMatcher = new UseCaseMatcher();
-        const roiCalculator = new ROICalculator();
+      try {
+        // Generate full report data using analysis engines
+        const generateReportData = () => {
+          console.log('Generating report data...');
+          // Initialize engines
+          const feasibilityEngine = new FeasibilityEngine();
+          const useCaseMatcher = new UseCaseMatcher();
+          const roiCalculator = new ROICalculator();
 
-        // Convert tech stack to tools format
-        const tools = (data.techStack || []).map(toolName => ({
-          name: toolName,
-          license_tier: 'standard'
-        }));
+          // Convert tech stack to tools format
+          const tools = (data.techStack || []).map(toolName => ({
+            name: toolName,
+            license_tier: 'standard'
+          }));
 
-        // Convert ticket distribution to activities format
-        const activities = [];
-        if (data.ticketDistribution && data.monthlyTickets) {
-          const categoryMapping: Record<string, {key: string, ttr: number}> = {
-            applications: {key: 'app_access', ttr: 1.7},
-            hardware: {key: 'hardware', ttr: 2.5},
-            onboarding: {key: 'onboarding', ttr: 4.0},
-            distributionLists: {key: 'distribution_lists', ttr: 0.75},
-            network: {key: 'network', ttr: 1.5},
-            security: {key: 'security', ttr: 3.0}
-          };
+          // Convert ticket distribution to activities format
+          const activities = [];
+          if (data.ticketDistribution && data.monthlyTickets) {
+            const categoryMapping: Record<string, {key: string, ttr: number}> = {
+              applications: {key: 'app_access', ttr: 1.7},
+              hardware: {key: 'hardware', ttr: 2.5},
+              onboarding: {key: 'onboarding', ttr: 4.0},
+              distributionLists: {key: 'distribution_lists', ttr: 0.75},
+              network: {key: 'network', ttr: 1.5},
+              security: {key: 'security', ttr: 3.0}
+            };
 
-          for (const [key, percentage] of Object.entries(data.ticketDistribution)) {
-            const mapping = categoryMapping[key];
-            if (mapping && percentage > 0) {
-              activities.push({
-                category: mapping.key,
-                monthly_volume: Math.round((data.monthlyTickets * percentage) / 100),
-                avg_ttr_hours: mapping.ttr
-              });
+            for (const [key, percentage] of Object.entries(data.ticketDistribution)) {
+              const mapping = categoryMapping[key];
+              if (mapping && percentage > 0) {
+                activities.push({
+                  category: mapping.key,
+                  monthly_volume: Math.round((data.monthlyTickets * percentage) / 100),
+                  avg_ttr_hours: mapping.ttr
+                });
+              }
             }
           }
-        }
 
-        // Run analysis engines
-        const feasibility = feasibilityEngine.analyzeStack(tools);
-        const matches = useCaseMatcher.matchUseCases(activities, feasibility);
-        const roi = roiCalculator.calculateROI(data.monthlyTickets || 1000, matches);
-        const score = calculateReadinessScore(data as AssessmentData);
+          // Run analysis engines
+          const feasibility = feasibilityEngine.analyzeStack(tools);
+          const matches = useCaseMatcher.matchUseCases(activities, feasibility);
+          const roi = roiCalculator.calculateROI(data.monthlyTickets || 1000, matches);
+          const score = calculateReadinessScore(data as AssessmentData);
 
-        // Return complete report data
-        return {
-          ...data,
-          score,
-          feasibilityResults: feasibility,
-          matchedUseCases: matches,
-          roiResult: roi
+          // Return complete report data
+          return {
+            ...data,
+            score,
+            feasibilityResults: feasibility,
+            matchedUseCases: matches,
+            roiResult: roi
+          };
         };
-      };
 
-      // Generate report data
-      const fullReportData = generateReportData();
-      
-      // Save to database (without email) with full report data
-      try {
+        // Generate report data
+        const fullReportData = generateReportData();
+        console.log('Report data generated successfully');
+        
+        // Save to database (without email) with full report data
+        console.log('Saving assessment to database...');
         const response = await fetch('/api/assessments', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -110,27 +115,44 @@ export default function AssessmentPage() {
           }),
         });
         
+        if (!response.ok) {
+          throw new Error(`API responded with status: ${response.status}`);
+        }
+        
         const result = await response.json();
+        console.log('Database response:', result);
         
         if (result.success && result.id) {
           // Redirect to email gate with assessment ID
+          console.log('Redirecting to email gate with ID:', result.id);
           setTimeout(() => {
             router.push(`/email-gate?id=${result.id}`);
           }, 3000);
         } else {
           // Fallback: save to sessionStorage and redirect
+          console.log('No ID returned, using sessionStorage fallback');
           sessionStorage.setItem('assessmentData', JSON.stringify(fullReportData));
           setTimeout(() => {
             router.push('/email-gate');
           }, 3000);
         }
       } catch (error) {
-        console.error('Error saving assessment:', error);
-        // Fallback: save to sessionStorage
-        sessionStorage.setItem('assessmentData', JSON.stringify(fullReportData));
-        setTimeout(() => {
-          router.push('/email-gate');
-        }, 3000);
+        console.error('Error in handleNext:', error);
+        // On error, still try to show results via sessionStorage
+        try {
+          const fullReportData = {
+            ...data,
+            score: calculateReadinessScore(data as AssessmentData),
+          };
+          sessionStorage.setItem('assessmentData', JSON.stringify(fullReportData));
+          setTimeout(() => {
+            router.push('/email-gate');
+          }, 3000);
+        } catch (fallbackError) {
+          console.error('Fallback also failed:', fallbackError);
+          alert('An error occurred. Please try again.');
+          setStep(3); // Go back to step 3
+        }
       }
     }
   };
