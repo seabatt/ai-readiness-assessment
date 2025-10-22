@@ -1,4 +1,6 @@
-import HubSpotForm from "@/components/HubSpotForm";
+'use client';
+
+import { useEffect } from 'react';
 
 interface CustomReportCTAProps {
   onRequestDiscovery?: () => void;
@@ -7,6 +9,21 @@ interface CustomReportCTAProps {
 export default function CustomReportCTA({
   onRequestDiscovery,
 }: CustomReportCTAProps) {
+  useEffect(() => {
+    // Load HubSpot Meetings Embed script
+    const script = document.createElement('script');
+    script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup: remove script when component unmounts
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
   return (
     <div className="mb-20">
       <div className="bg-bg-card border border-bg-card-alt/20 rounded-xl py-8 px-6 transition-all duration-200">
@@ -64,12 +81,11 @@ export default function CustomReportCTA({
               </h2>
             </div>
 
-            {/* HubSpot Form */}
+            {/* HubSpot Meeting Scheduler */}
             <div className="border-bg-card-alt/20 pt-6 mt-6">
-              <HubSpotForm
-                portalId="145411173"
-                formId="336ea270-b317-44e7-b3a8-132aae822d08"
-                region="eu1"
+              <div 
+                className="meetings-iframe-container" 
+                data-src="https://meetings-eu1.hubspot.com/maor-ezer/schedule-an-onboarding-session?embed=true"
               />
             </div>
           </div>
