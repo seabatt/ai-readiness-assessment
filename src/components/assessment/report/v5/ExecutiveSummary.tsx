@@ -3,6 +3,7 @@
 import Card from '@/components/ui/Card';
 import { ROIResult } from '@/types/types-v3';
 import { formatLargeNumber } from '@/lib/utils/formatNumber';
+import ROICalculationModal from '../ROICalculationModal';
 
 interface ExecutiveSummaryProps {
   roiResult: ROIResult;
@@ -63,8 +64,9 @@ export default function ExecutiveSummary({
             <div className="text-3xl font-bold text-text-primary">
               {roiResult.budget_fte.toFixed(1)} FTEs
             </div>
-            <div className="text-sm text-text-tertiary mt-1">
+            <div className="text-sm text-text-tertiary mt-1 flex items-center justify-center gap-1">
               Budget FTE (Conservative)
+              <ROICalculationModal />
             </div>
             <div className="text-xs text-text-tertiary/60 mt-1">
               Capacity: {roiResult.capacity_fte.toFixed(1)} FTEs
@@ -85,7 +87,16 @@ export default function ExecutiveSummary({
       {/* Confidence Bands */}
       <Card>
         <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-2">Confidence Bands</h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-xl font-semibold">Confidence Bands</h3>
+            <ROICalculationModal 
+              trigger={
+                <button className="text-sm text-accent-green hover:text-accent-green/80 transition-colors underline">
+                  How is this calculated?
+                </button>
+              }
+            />
+          </div>
           <p className="text-sm text-text-tertiary">
             Monthly time savings across different confidence scenarios based on implementation quality and adoption.
           </p>
