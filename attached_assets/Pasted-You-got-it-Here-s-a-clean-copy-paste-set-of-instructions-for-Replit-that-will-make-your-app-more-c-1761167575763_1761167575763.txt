@@ -1,0 +1,530 @@
+You got it. Here’s a clean, copy-paste set of instructions for Replit that will make your app more conservative and realistic (partial automation, capture rate, budget FTE), without breaking your existing behavior.
+
+---
+
+# 0) Summary of what we’re changing
+
+* **Add realism knobs** at the use-case level: `post_auto_ttr_hours`, `approval_leakage_pct`.
+* **Stop rounding early** in the matcher (prevents inflated totals).
+* **Allocate capacity to higher-impact use cases first** (simple sort).
+* **Weight confidence by hours** (category + overall).
+* **Add capture rate and effective hours/FTE** to ROI, and output both **Capacity FTE** and **Budget FTE**, plus **Expected/P70/P90 hours** bands.
+
+---
+
+# 1) Update JSON: `use-case-mappings.json`
+
+Add the optional realism fields to the use cases you want modeled as “partial automation” (micro-touch remains). Example for your Phase 1 items:
+
+```json
+{
+  "use_cases": [
+    {
+      "id": "password-reset",
+      "name": "Password Reset Worker",
+      "category": "Application Access",
+      "automation_rate": 0.85,
+      "confidence": 0.9,
+      "implementation_effort": "low",
+      "time_to_value_days": 7,
+      "ticket_categories": ["app_access"],
+      "prerequisites": [],
+      "workflow_steps": [],
+      "required_tools": ["Okta", "ServiceNow", "Slack"],
+      "post_auto_ttr_hours": 0.083,
+      "approval_leakage_pct": 0.10
+    },
+    {
+      "id": "in-app-actions",
+      "name": "Within-App Actions Worker",
+      "category": "Application Access",
+      "automation_rate": 0.75,
+      "confidence": 0.85,
+      "implementation_effort": "medium",
+      "time_to_value_days": 14,
+      "ticket_categories": ["within_app_actions", "in_app_actions"],
+      "prerequisites": [],
+      "workflow_steps": [],
+      "required_tools": ["Okta", "ServiceNow", "Slack"],
+      "post_auto_ttr_hours": 0.083,
+      "approval_leakage_pct": 0.10
+    },
+    {
+      "id": "dl-changes",
+      "name": "Distribution List Changes",
+      "category": "Communication",
+      "automation_rate": 0.9,
+      "confidence": 0.85,
+      "implementation_effort": "low",
+      "time_to_value_days": 7,
+      "ticket_categories": ["distribution_lists", "dl_changes"],
+      "prerequisites": [],
+      "workflow_steps": [],
+      "required_tools": ["Microsoft 365", "Google Workspace", "Slack"],
+      "post_auto_ttr_hours": 0.083,
+      "approval_leakage_pct": 0.05
+    }
+  ]
+}
+```
+
+> Use the exact category keys your activities emit (e.g., `app_access`, `within_app_actions`, `distribution_lists`).
+> If a use case is truly full deflection, omit `post_auto_ttr_hours` and `approval_leakage_pct`.
+
+---
+
+# 2) (Optional) Update `benchmarks.json`
+
+If you want to carry the same realism in the estimator (not required), add `post_auto_ttr_hours` to the relevant categories/sub-categories:
+
+```json
+{
+  "ticket_categories": {
+    "applications": {
+      "typical_pct": 0.58,
+      "sub_categories": {
+        "app_access": {
+          "typical_pct_of_parent": 0.29,
+          "median_ttr_hours": 1.71,
+          "automation_potential": 0.85,
+          "post_auto_ttr_hours": 0.083
+        },
+        "within_app_actions": {
+          "typical_pct_of_parent": 0.034,
+          "median_ttr_hours": 1.97,
+          "automation_potential": 0.75,
+          "post_auto_ttr_hours": 0.083
+        }
+      }
+    },
+    "distribution_lists": {
+      "typical_pct": 0.027,
+      "median_ttr_hours": 0.75,
+      "automation_potential": 0.9,
+      "post_auto_ttr_hours": 0.083
+    },
+    "hardware": {
+      "typical_pct": 0.268,
+      "median_ttr_hours": 2.5,
+      "automation_potential": 0.2
+    },
+    "onboarding_offboarding": {
+      "typical_pct": 0.09,
+      "median_ttr_hours": 4.0,
+      "automation_potential": 0.7
+    },
+    "network": {
+      "typical_pct": 0.023,
+      "median_ttr_hours": 1.5,
+      "automation_potential": 0.3
+    },
+    "security": {
+      "typical_pct": 0.002,
+      "median_ttr_hours": 3.0,
+      "automation_potential": 0.5
+    }
+  },
+  "assumptions": {
+    "hours_per_fte_year": 2000,
+    "approval_latency_hours": 4,
+    "automated_execution_minutes": 5
+  }
+}
+```
+
+---
+
+# 3) Patch `use-case-matcher.ts`
+
+**Goal:** no early rounding, partial automation support, approval leakage, and simple “best-first” allocation.
+
+Replace your file with this version (keeps your external API):
+
+```ts
+import useCaseMappings from '@/data/use-case-mappings.json';
+import { FeasibilityResult } from './feasibility-engine';
+
+interface UserActivity {
+  category: string;
+  monthly_volume: number;
+  avg_ttr_hours: number;
+  requires_approval?: boolean;
+}
+
+export interface MatchedUseCase {
+  use_case_id: string;
+  name: string;
+  category: string;
+  description: string;
+  value_proposition: string;
+  fit_score: number;
+  estimated_monthly_deflection: number; // float, no rounding here
+  estimated_hours_saved: number;        // float, no rounding here
+  confidence: number;
+  implementation_effort: 'low' | 'medium' | 'high';
+  time_to_value_days: number;
+  prerequisites: string[];
+  workflow_steps: string[];
+  priority: 'immediate' | 'quick_win' | 'future';
+  required_tools: string[];
+
+  // Realism knobs (optional)
+  post_auto_ttr_hours?: number;   // remaining human touch time per ticket
+  approval_leakage_pct?: number;  // 0..1 portion that still needs manual handling
+}
+
+export class UseCaseMatcher {
+  matchUseCases(
+    activities: UserActivity[],
+    feasibilityResults: FeasibilityResult[]
+  ): MatchedUseCase[] {
+    const enabledUseCaseIds = new Set(
+      feasibilityResults.flatMap(r => r.enabled_use_cases)
+    );
+
+    const remainingCapacity = new Map<string, number>();
+    activities.forEach(a => remainingCapacity.set(a.category, a.monthly_volume));
+
+    // Allocate capacity to higher-impact candidates first
+    const sortedUseCases = (useCaseMappings as any).use_cases
+      .slice()
+      .sort((a: any, b: any) => {
+        const score = (uc: any) =>
+          (uc.automation_rate ?? 0) * (uc.confidence ?? 0.7);
+        return score(b) - score(a);
+      });
+
+    const matches: MatchedUseCase[] = [];
+
+    for (const useCase of sortedUseCases) {
+      if (!enabledUseCaseIds.has(useCase.id)) continue;
+
+      const matchingActivities = activities.filter(a =>
+        useCase.ticket_categories?.some((cat: string) =>
+          a.category.toLowerCase().includes(cat.toLowerCase()) ||
+          cat.toLowerCase().includes(a.category.toLowerCase())
+        )
+      );
+      if (matchingActivities.length === 0) continue;
+
+      // Fit score (uses ORIGINAL volumes)
+      let fitScore = 40; // stack support baseline
+      const totalVol = matchingActivities.reduce((s, a) => s + a.monthly_volume, 0);
+      fitScore += Math.min(30, (totalVol / 50) * 30); // 50+ monthly = max
+      const avgTtr =
+        matchingActivities.reduce((s, a) => s + a.avg_ttr_hours, 0) /
+        matchingActivities.length;
+      fitScore += Math.min(20, (avgTtr / 2) * 20); // 2+ hours = max
+      fitScore += useCase.implementation_effort === 'low' ? 10 :
+                  useCase.implementation_effort === 'medium' ? 6 : 3;
+
+      let estimatedDeflection = 0;
+      let estimatedHoursSaved = 0;
+
+      for (const activity of matchingActivities) {
+        const remaining = remainingCapacity.get(activity.category) ?? 0;
+        if (remaining <= 0) continue;
+
+        const rate = Math.max(0, Math.min(1, useCase.automation_rate ?? 0));
+        const possible = activity.monthly_volume * rate;
+        const deflectable = Math.min(remaining, possible);
+
+        // Partial automation (time delta) vs full deflection
+        const baseline = activity.avg_ttr_hours;
+        const postAuto = Math.max(useCase.post_auto_ttr_hours ?? 0, 0);
+        const hasPost = useCase.post_auto_ttr_hours != null;
+        const delta = Math.max(baseline - postAuto, 0);
+        const hoursPerTicket = hasPost ? delta : baseline;
+
+        // Approval leakage: conservative (leaked items yield 0 savings)
+        const leakage = Math.min(Math.max(useCase.approval_leakage_pct ?? 0, 0), 1);
+        const effectiveHoursPerTicket = hoursPerTicket * (1 - leakage);
+
+        estimatedDeflection += deflectable;
+        estimatedHoursSaved += deflectable * effectiveHoursPerTicket;
+
+        remainingCapacity.set(activity.category, remaining - deflectable);
+      }
+
+      if (estimatedDeflection <= 0) continue;
+
+      const priority: 'immediate' | 'quick_win' | 'future' =
+        useCase.implementation_effort === 'low' && useCase.time_to_value_days <= 7
+          ? 'immediate'
+          : useCase.time_to_value_days <= 21
+            ? 'quick_win'
+            : 'future';
+
+      matches.push({
+        use_case_id: useCase.id,
+        name: useCase.name,
+        category: useCase.category,
+        description: useCase.description,
+        value_proposition: useCase.value_proposition,
+        fit_score: Math.round(fitScore),
+        estimated_monthly_deflection: estimatedDeflection,
+        estimated_hours_saved: estimatedHoursSaved,
+        confidence: useCase.confidence,
+        implementation_effort: useCase.implementation_effort,
+        time_to_value_days: useCase.time_to_value_days,
+        prerequisites: useCase.prerequisites,
+        workflow_steps: useCase.workflow_steps,
+        priority,
+        required_tools: useCase.required_tools,
+        post_auto_ttr_hours: useCase.post_auto_ttr_hours,
+        approval_leakage_pct: useCase.approval_leakage_pct
+      });
+    }
+
+    return matches.sort((a, b) => b.fit_score - a.fit_score);
+  }
+
+  groupByPriority(matches: MatchedUseCase[]) {
+    return {
+      immediate: matches.filter(m => m.priority === 'immediate'),
+      quick_wins: matches.filter(m => m.priority === 'quick_win'),
+      future: matches.filter(m => m.priority === 'future')
+    };
+  }
+
+  getTopUseCases(matches: MatchedUseCase[], n: number = 5): MatchedUseCase[] {
+    return matches.slice(0, n);
+  }
+}
+```
+
+---
+
+# 4) Patch `roi-calculator.ts`
+
+**Goal:** add capture rate + effective hours/FTE; output Capacity FTE and Budget FTE; add bands; weight confidence by hours; keep rounding only at the end.
+
+Replace your file with this:
+
+```ts
+import benchmarks from '@/data/benchmarks.json';
+import { MatchedUseCase } from './use-case-matcher';
+
+export interface ROIResult {
+  total_monthly_tickets: number;
+  automatable_tickets: number;
+  automatable_pct: number;
+
+  total_hours_saved: number;    // raw operational hours (pre-capture)
+  expected_hours_saved: number; // hours × confidence (EV)
+  p70_hours_saved: number;      // conservative band
+  p90_hours_saved: number;      // more conservative band
+
+  capacity_fte: number;         // hours/2000 (operational capacity)
+  budget_fte: number;           // captured hours / effectiveHoursPerFTE
+
+  // Back-compat
+  fte_equivalent: number;
+  annual_value_usd: number;     // budget_fte × fully_loaded_cost
+  confidence: number;           // 0-100
+
+  breakdown_by_category: {
+    category: string;
+    tickets: number;
+    hours_saved: number;
+    confidence: number;
+  }[];
+}
+
+export class ROICalculator {
+  private readonly HOURS_PER_FTE_CAPACITY = 2000;
+  private readonly DEFAULT_FULLY_LOADED_COST = 100000;
+  private readonly DEFAULT_CAPTURE_RATE = 0.5;
+  private readonly DEFAULT_EFFECTIVE_HOURS_PER_FTE = 1800;
+
+  calculateROI(
+    totalMonthlyTickets: number,
+    matchedUseCases: MatchedUseCase[],
+    fullyLoadedCost: number = this.DEFAULT_FULLY_LOADED_COST,
+    captureRate: number = this.DEFAULT_CAPTURE_RATE,
+    effectiveHoursPerFTE: number = this.DEFAULT_EFFECTIVE_HOURS_PER_FTE
+  ): ROIResult {
+    const rawAutomatableTickets = matchedUseCases.reduce(
+      (sum, uc) => sum + uc.estimated_monthly_deflection,
+      0
+    );
+    const rawTotalHoursSaved = matchedUseCases.reduce(
+      (sum, uc) => sum + uc.estimated_hours_saved,
+      0
+    );
+
+    const automatableTickets = Math.min(rawAutomatableTickets, totalMonthlyTickets);
+    const totalHoursSaved =
+      rawAutomatableTickets > 0 && automatableTickets < rawAutomatableTickets
+        ? rawTotalHoursSaved * (automatableTickets / rawAutomatableTickets)
+        : rawTotalHoursSaved;
+
+    const automatablePct =
+      totalMonthlyTickets > 0 ? (automatableTickets / totalMonthlyTickets) * 100 : 0;
+
+    // Confidence weighted by hours
+    const weightedConfidence =
+      matchedUseCases.length > 0 && totalHoursSaved > 0
+        ? matchedUseCases.reduce((s, uc) => s + uc.confidence * uc.estimated_hours_saved, 0) /
+          totalHoursSaved
+        : 0.7;
+
+    // Bands
+    const expectedHours = totalHoursSaved * weightedConfidence;
+    const p70Hours = totalHoursSaved * Math.max(weightedConfidence - 0.10, 0.4);
+    const p90Hours = totalHoursSaved * Math.max(weightedConfidence - 0.20, 0.3);
+
+    // Capacity vs Budget FTE
+    const capacityFTE = (totalHoursSaved * 12) / this.HOURS_PER_FTE_CAPACITY;
+    const capturedAnnualHours = expectedHours * 12 * Math.min(Math.max(captureRate, 0), 1);
+    const budgetFTE = capturedAnnualHours / Math.max(effectiveHoursPerFTE, 1);
+    const annualValueUsd = budgetFTE * fullyLoadedCost;
+
+    // Category breakdown with hours-weighted confidence
+    const categoryMap = new Map<string, { tickets: number; hours: number; confNum: number }>();
+    for (const uc of matchedUseCases) {
+      const slot = categoryMap.get(uc.category) || { tickets: 0, hours: 0, confNum: 0 };
+      slot.tickets += uc.estimated_monthly_deflection;
+      slot.hours += uc.estimated_hours_saved;
+      slot.confNum += uc.confidence * uc.estimated_hours_saved;
+      categoryMap.set(uc.category, slot);
+    }
+
+    const breakdownByCategory = Array.from(categoryMap.entries())
+      .map(([category, data]) => ({
+        category,
+        tickets: Math.round(data.tickets),
+        hours_saved: Math.round(data.hours * 10) / 10,
+        confidence: data.hours > 0 ? data.confNum / data.hours : 0.7
+      }))
+      .sort((a, b) => b.hours_saved - a.hours_saved);
+
+    return {
+      total_monthly_tickets: totalMonthlyTickets,
+      automatable_tickets: Math.round(automatableTickets),
+      automatable_pct: Math.round(automatablePct * 10) / 10,
+
+      total_hours_saved: Math.round(totalHoursSaved),
+      expected_hours_saved: Math.round(expectedHours),
+      p70_hours_saved: Math.round(p70Hours),
+      p90_hours_saved: Math.round(p90Hours),
+
+      capacity_fte: Math.round(capacityFTE * 10) / 10,
+      budget_fte: Math.round(budgetFTE * 10) / 10,
+
+      fte_equivalent: Math.round(capacityFTE * 10) / 10, // back-compat alias
+      annual_value_usd: Math.round(annualValueUsd),
+      confidence: Math.round(weightedConfidence * 100),
+
+      breakdown_by_category
+    };
+  }
+
+  // Estimator kept as-is (full deflection unless customTtr passes a post-automation TTR)
+  estimateCategoryImpact(
+    category: string,
+    monthlyVolume: number,
+    customTtr?: number
+  ) {
+    const categoryData = (benchmarks as any).ticket_categories[category];
+    if (!categoryData) return null;
+
+    const ttr = customTtr || categoryData.median_ttr_hours;
+    const automationPotential = categoryData.automation_potential;
+
+    const deflectableTickets = monthlyVolume * automationPotential;
+    const hoursSaved = deflectableTickets * ttr;
+
+    return {
+      category,
+      monthly_volume: monthlyVolume,
+      deflectable_tickets: Math.round(deflectableTickets),
+      hours_saved: Math.round(hoursSaved * 10) / 10,
+      automation_potential: automationPotential,
+      confidence: 0.70
+    };
+  }
+}
+```
+
+---
+
+# 5) UI wiring (minimal)
+
+Where you call `calculateROI(...)`, pass two new settings with conservative defaults:
+
+```ts
+const fullyLoadedCost = 100000;   // or from settings
+const captureRate = 0.5;          // 50% realizable capture
+const effectiveHoursPerFTE = 1800;
+
+const roi = roiCalculator.calculateROI(
+  totalMonthlyTickets,
+  matchedUseCases,
+  fullyLoadedCost,
+  captureRate,
+  effectiveHoursPerFTE
+);
+```
+
+Display both:
+
+* **Capacity FTE** (operational) → `roi.capacity_fte`
+* **Budget FTE** (realizable) → `roi.budget_fte`
+* Optional band: “Expected/P70/P90 hours saved”
+
+---
+
+# 6) Smoke test (quick script you can run)
+
+Create `scripts/smoke-roi.ts`:
+
+```ts
+import { UseCaseMatcher } from '../src/use-case-matcher';
+import { ROICalculator } from '../src/roi-calculator';
+
+const activities = [
+  { category: 'app_access', monthly_volume: 240, avg_ttr_hours: 1.71 },
+  { category: 'within_app_actions', monthly_volume: 20, avg_ttr_hours: 1.97 },
+  { category: 'distribution_lists', monthly_volume: 27, avg_ttr_hours: 0.75 }
+];
+
+const feasibility = [{ enabled_use_cases: ['password-reset', 'in-app-actions', 'dl-changes'] }];
+
+const matcher = new UseCaseMatcher();
+const matches = matcher.matchUseCases(activities as any, feasibility as any);
+
+const roiCalc = new ROICalculator();
+const roi = roiCalc.calculateROI(1000, matches, 100000, 0.5, 1800);
+
+console.log({
+  automatable_tickets: roi.automatable_tickets,
+  total_hours_saved: roi.total_hours_saved,
+  expected_hours_saved: roi.expected_hours_saved,
+  capacity_fte: roi.capacity_fte,
+  budget_fte: roi.budget_fte,
+  annual_value_usd: roi.annual_value_usd,
+  confidence: roi.confidence
+});
+```
+
+Run it (adjust paths if needed):
+
+```
+npx ts-node scripts/smoke-roi.ts
+```
+
+You should see **Capacity FTE** near your previous number (slightly lower if partials/leakage), and **Budget FTE** ≈ 40–60% of Capacity FTE with the defaults.
+
+---
+
+# 7) Post-change checklist
+
+* [ ] No early rounding in `MatchedUseCase` objects (confirmed in matcher).
+* [ ] Category and overall **confidence weighted by hours** (not simple averages).
+* [ ] **Capture rate** and **effective hours per FTE** are configurable.
+* [ ] UI shows **Capacity FTE** and **Budget FTE** distinctly (labels matter).
+* [ ] Your JSON category keys in activities ↔︎ use cases **match exactly** (e.g., `app_access`, `within_app_actions`, `distribution_lists`).
+* [ ] Optional: reconcile **hardware** assumptions (Phase 1 typically excludes; keep `automation_potential: 0.2` unless you activate it).
+
+That’s it. If you want me to add a tiny Jest test or wire a settings panel snippet (React) for the new controls, I can drop that in next.
