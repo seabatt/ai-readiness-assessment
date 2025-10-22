@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X, Info } from 'lucide-react';
 
 interface ROICalculationModalProps {
@@ -10,10 +10,75 @@ interface ROICalculationModalProps {
 
 export default function ROICalculationModal({ trigger, className = '' }: ROICalculationModalProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleOpen = (e: React.MouseEvent | React.KeyboardEvent) => {
+    triggerRef.current = e.currentTarget as HTMLElement;
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    // Restore focus to trigger element
+    setTimeout(() => {
+      triggerRef.current?.focus();
+    }, 0);
+  };
+
+  // Handle Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+
+  // Focus management and trap
+  useEffect(() => {
+    if (!isOpen || !modalRef.current) return;
+
+    // Move focus to modal
+    closeButtonRef.current?.focus();
+
+    // Focus trap
+    const focusableElements = modalRef.current.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements[0] as HTMLElement;
+    const lastFocusable = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable?.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
+    };
+
+    modalRef.current.addEventListener('keydown', handleTab);
+    const currentModal = modalRef.current;
+    return () => currentModal?.removeEventListener('keydown', handleTab);
+  }, [isOpen]);
 
   const defaultTrigger = (
     <button
-      onClick={() => setIsOpen(true)}
+      onClick={handleOpen}
       className="inline-flex items-center gap-1 text-accent-green hover:text-accent-green/80 transition-colors"
       aria-label="How is this calculated?"
     >
@@ -25,7 +90,9 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
     return (
       <span className={className}>
         {trigger ? (
-          <span onClick={() => setIsOpen(true)}>{trigger}</span>
+          <span onClick={handleOpen} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleOpen(e)}>
+            {trigger}
+          </span>
         ) : (
           defaultTrigger
         )}
@@ -38,23 +105,26 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-        onClick={() => setIsOpen(false)}
+        onClick={handleClose}
+        aria-hidden="true"
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div className="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div className="flex min-h-full items-center justify-center p-4">
           <div
+            ref={modalRef}
             className="relative bg-bg-secondary border border-brand-secondary/20 rounded-lg shadow-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="sticky top-0 bg-bg-secondary border-b border-brand-secondary/20 px-6 py-4 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-text-primary">How We Calculate Your ROI</h2>
+              <h2 id="modal-title" className="text-2xl font-bold text-text-primary">How We Calculate Your ROI</h2>
               <button
-                onClick={() => setIsOpen(false)}
+                ref={closeButtonRef}
+                onClick={handleClose}
                 className="text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="Close"
+                aria-label="Close modal"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -172,7 +242,7 @@ export default function ROICalculationModal({ trigger, className = '' }: ROICalc
             {/* Footer */}
             <div className="sticky bottom-0 bg-bg-secondary border-t border-brand-secondary/20 px-6 py-4">
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="w-full bg-accent-green text-black font-medium py-3 px-6 rounded-lg hover:bg-accent-green/90 transition-colors"
               >
                 Got it
