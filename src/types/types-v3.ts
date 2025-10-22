@@ -54,8 +54,13 @@ export interface ROIResult {
   total_monthly_tickets: number;
   automatable_tickets: number;
   automatable_pct: number; // Rounded to 1 decimal
-  total_hours_saved: number;
-  fte_equivalent: number; // Rounded to 1 decimal
+  total_hours_saved: number; // Raw operational hours (pre-capture)
+  expected_hours_saved: number; // Confidence-weighted expected value
+  p70_hours_saved: number; // Conservative band (70th percentile)
+  p90_hours_saved: number; // Very conservative band (90th percentile)
+  capacity_fte: number; // Theoretical capacity freed (hours/2000)
+  budget_fte: number; // Realistic budget impact (captured hours / effective hours per FTE)
+  fte_equivalent: number; // Backward-compat alias of capacity_fte
   annual_value_usd: number;
   confidence: number; // Percentage (0-100)
   breakdown_by_category: CategoryBreakdown[];

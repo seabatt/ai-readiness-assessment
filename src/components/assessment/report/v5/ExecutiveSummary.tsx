@@ -61,10 +61,13 @@ export default function ExecutiveSummary({
           
           <div className="text-center">
             <div className="text-3xl font-bold text-text-primary">
-              {roiResult.fte_equivalent.toFixed(1)} FTEs
+              {roiResult.budget_fte.toFixed(1)} FTEs
             </div>
             <div className="text-sm text-text-tertiary mt-1">
-              Capacity Freed
+              Budget FTE (Conservative)
+            </div>
+            <div className="text-xs text-text-tertiary/60 mt-1">
+              Capacity: {roiResult.capacity_fte.toFixed(1)} FTEs
             </div>
           </div>
           
@@ -79,6 +82,53 @@ export default function ExecutiveSummary({
         </div>
       </Card>
 
+      {/* Confidence Bands */}
+      <Card>
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold mb-2">Confidence Bands</h3>
+          <p className="text-sm text-text-tertiary">
+            Monthly time savings across different confidence scenarios based on implementation quality and adoption.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="text-center p-4 rounded-lg bg-accent-green/10 border border-accent-green/30">
+            <div className="text-sm font-medium text-accent-green mb-2">Expected Scenario</div>
+            <div className="text-3xl font-bold text-accent-green">
+              {Math.round(roiResult.expected_hours_saved).toLocaleString()} hrs
+            </div>
+            <div className="text-xs text-text-tertiary mt-2">
+              Confidence-weighted average
+            </div>
+          </div>
+
+          <div className="text-center p-4 rounded-lg bg-accent-blue/10 border border-accent-blue/30">
+            <div className="text-sm font-medium text-accent-blue mb-2">Conservative (P70)</div>
+            <div className="text-3xl font-bold text-accent-blue">
+              {Math.round(roiResult.p70_hours_saved).toLocaleString()} hrs
+            </div>
+            <div className="text-xs text-text-tertiary mt-2">
+              70% confidence floor
+            </div>
+          </div>
+
+          <div className="text-center p-4 rounded-lg bg-accent-orange/10 border border-accent-orange/30">
+            <div className="text-sm font-medium text-accent-orange mb-2">Very Conservative (P90)</div>
+            <div className="text-3xl font-bold text-accent-orange">
+              {Math.round(roiResult.p90_hours_saved).toLocaleString()} hrs
+            </div>
+            <div className="text-xs text-text-tertiary mt-2">
+              90% confidence floor
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg">
+          <p className="text-sm text-text-secondary">
+            <span className="font-semibold">Budget FTE Calculation:</span> Uses the Expected Scenario with a 50% capture rate and 1,800 effective hours per FTE to provide a realistic, finance-friendly forecast. This accounts for ramp-up time, edge cases, and real-world adoption challenges.
+          </p>
+        </div>
+      </Card>
     </div>
   );
 }

@@ -66,6 +66,8 @@
       "typical_ttr_hours": 1.7,
       "automation_rate": 0.85,
       "confidence": 0.9,
+      "post_auto_ttr_hours": 0.2,
+      "approval_leakage_pct": 0.15,
       "prerequisites": [
         "Okta API token with okta.users.read and okta.apps.manage scopes",
         "Apps configured in Okta with provisioning enabled",
@@ -187,6 +189,8 @@
       "typical_ttr_hours": 4.5,
       "automation_rate": 0.8,
       "confidence": 0.85,
+      "post_auto_ttr_hours": 0.5,
+      "approval_leakage_pct": 0.2,
       "prerequisites": [
         "API access to all connected identity systems",
         "Offboarding checklist defined",
