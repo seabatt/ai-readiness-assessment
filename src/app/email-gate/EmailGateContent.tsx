@@ -173,7 +173,7 @@ export default function EmailGateContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Work email*"
-                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
+                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-[#FBFAF9] placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
                 required
               />
             </div>
