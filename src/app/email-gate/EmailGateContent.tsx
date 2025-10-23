@@ -71,30 +71,44 @@ export default function EmailGateContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email) return;
+    console.log('Form submitted, email:', email);
+    console.log('Assessment ID:', assessmentId);
+    console.log('Assessment Data:', assessmentData);
+    
+    if (!email) {
+      console.log('No email provided');
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
       if (assessmentId) {
         // Update existing assessment with email
+        console.log('Updating assessment with ID:', assessmentId);
         const response = await fetch(`/api/assessments/${assessmentId}/update-email`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
 
+        console.log('Response status:', response.status);
+        const responseData = await response.json();
+        console.log('Response data:', responseData);
+
         if (!response.ok) {
-          throw new Error('Failed to submit email');
+          throw new Error(`Failed to submit email: ${response.status} - ${JSON.stringify(responseData)}`);
         }
 
         // Clear sessionStorage
         sessionStorage.removeItem('assessmentData');
 
         // Redirect to full report
+        console.log('Redirecting to:', `/report/v5/${assessmentId}`);
         router.push(`/report/v5/${assessmentId}`);
       } else if (assessmentData) {
         // Fallback: create new assessment with email
+        console.log('Creating new assessment with email');
         const response = await fetch('/api/assessments/submit-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -104,21 +118,29 @@ export default function EmailGateContent() {
           }),
         });
 
+        console.log('Response status:', response.status);
+        const responseData = await response.json();
+        console.log('Response data:', responseData);
+
         if (!response.ok) {
-          throw new Error('Failed to submit email');
+          throw new Error(`Failed to submit email: ${response.status} - ${JSON.stringify(responseData)}`);
         }
 
-        const { id } = await response.json();
+        const { id } = responseData;
 
         // Clear sessionStorage
         sessionStorage.removeItem('assessmentData');
 
         // Redirect to full report
+        console.log('Redirecting to:', `/report/v5/${id}`);
         router.push(`/report/v5/${id}`);
+      } else {
+        console.log('No assessment ID or data available');
+        throw new Error('No assessment data available');
       }
     } catch (error) {
       console.error('Error submitting email:', error);
-      alert('Failed to submit email. Please try again.');
+      alert(`Failed to submit email. Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setIsSubmitting(false);
     }
   };
@@ -173,7 +195,7 @@ export default function EmailGateContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Work email*"
-                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-[#FBFAF9] placeholder-text-tertiary focus:outline-none focus:border-highlight transition-colors"
+                className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-black placeholder-gray-500 focus:outline-none focus:border-highlight transition-colors"
                 required
               />
             </div>
