@@ -1,15 +1,29 @@
 # AI Worker Readiness Assessment
 
 ## Overview
-This Next.js tool provides a quick AI Worker Readiness Assessment helping IT teams identify immediate, low-hanging fruit automation opportunities. It analyzes tech stack and ticket distribution to surface specific AI Worker deployment opportunities with ROI projections. This assessment is designed to illustrate quick wins and immediate value—the next step for users is a deeper Data Discovery and Blueprint engagement. Multiple report versions are available (V3, V4, V5) with V5 as the default experience.
+This Next.js tool provides a quick AI Worker Readiness Assessment helping IT teams identify immediate, low-hanging fruit automation opportunities. It analyzes tech stack and ticket distribution to surface specific AI Worker deployment opportunities with ROI projections. This assessment is designed to illustrate quick wins and immediate value—the next step for users is a deeper Data Discovery and Blueprint engagement. Report V5 is the active version; previous versions (V2-V4) are archived for reference.
 
 ## User Preferences
-No specific user preferences documented yet.
+- Keep codebase clean and organized
+- Archive deprecated code rather than deleting it for future reference
+- Maintain clear documentation of changes and archive contents
+
+## Recent Changes
+**October 27, 2025 - Major Cleanup & Archive Organization**
+- Created `/archive` directory structure for deprecated code and assets
+- Moved report versions v1-v4 (pages and components) to `archive/reports/`
+- Archived 10+ legacy standalone components (ScoreCircle, AIWorkerCard, etc.)
+- Consolidated font files to `public/fonts/` (removed duplicate from `src/components/font/`)
+- Archived 180+ development artifacts (screenshots, planning docs) to `archive/documentation/`
+- Added comprehensive README files and VERSION_HISTORY.md throughout archive
+- Updated tsconfig.json to exclude archive directory from TypeScript compilation
+- Maintained clean separation: only v5 report components remain in active codebase
+- Build verified: application compiles successfully with no broken imports
 
 ## System Architecture
 
 ### UI/UX Decisions
-The application uses the official Ai.Work brand system with a custom dark theme. Key elements include a specific color palette (primary background #141414, highlight #82D895, text colors #FBFAF9, #8A8784), standardized spacing, 200ms transitions, and a simplified loading screen design. The landing page features a direct "Get Your Assessment" CTA button (no email input on homepage), followed by "5 minutes • Instant results" timing text. Email capture occurs post-assessment via an email gate strategy for improved conversion. The email gate shows the number of identified opportunities with compelling copy: "We've identified X ways you can employ an AI Worker to deflect tickets immediately. Unlock the complete list." The landing page uses conversational, user-focused messaging with a streamlined "What You'll Discover" section (py-12 spacing, text-2xl md:text-3xl heading, 6 items in 2 columns). All CTA buttons use consistent white styling (bg-white text-black px-8 py-4) with green highlight dot on left and ">" on right. Assessment results are structured to "hit harder" for IT leaders, focusing on algorithm analysis, concrete metrics, and immediate opportunities. Typography uses NB International Pro with multiple weights, with text-lg standardized for body paragraphs. All logos display with hover tooltips (green glow effects removed from CustomReportCTA). Numbers are formatted as X.XM or X.XK for readability (e.g., $2.9M instead of $2,909K).
+The application uses the official Ai.Work brand system with a custom dark theme. Key elements include a specific color palette (primary background #141414, highlight #82D895, text colors #FBFAF9, #8A8784), standardized spacing, 200ms transitions, and a simplified loading screen design. Typography uses NB International Pro font family (stored in `public/fonts/`) with multiple weights, with text-lg standardized for body paragraphs. The landing page features a direct "Get Your Assessment" CTA button (no email input on homepage), followed by "5 minutes • Instant results" timing text. Email capture occurs post-assessment via an email gate strategy for improved conversion. The email gate shows the number of identified opportunities with compelling copy: "We've identified X ways you can employ an AI Worker to deflect tickets immediately. Unlock the complete list." The landing page uses conversational, user-focused messaging with a streamlined "What You'll Discover" section (py-12 spacing, text-2xl md:text-3xl heading, 6 items in 2 columns). All CTA buttons use consistent white styling (bg-white text-black px-8 py-4) with green highlight dot on left and ">" on right. Assessment results are structured to "hit harder" for IT leaders, focusing on algorithm analysis, concrete metrics, and immediate opportunities. All logos display with hover tooltips (green glow effects removed from CustomReportCTA). Numbers are formatted as X.XM or X.XK for readability (e.g., $2.9M instead of $2,909K).
 
 ### Technical Implementations
 -   **Framework & Styling**: Next.js 14.2 with TypeScript and Tailwind CSS.
@@ -40,12 +54,28 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 
 ### Feature Specifications
 -   **ConnectedAppLogos component**: Displays logos with hover tooltips. Supports "prominent" mode with circular backgrounds, borders, and hover scale effects for emphasizing key integrations.
--   **V5 Assessment Results**: The primary/default assessment results experience (as of October 2025), offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow. Available at `/report/v5/[id]` route where `[id]` can be "new" (loads from sessionStorage) or a database UUID (loads from database). Share button copies current URL to clipboard for easy sharing of persisted assessments.
--   **V4 Assessment Results**: Previous version, still available at `/report/v4/new` route. Currently identical to V5.
+-   **V5 Assessment Results**: The active assessment results experience (as of October 2025), offering API-grounded analysis and specific recommendations with a reorganized section order for clearer user flow. Available at `/report/v5/[id]` route where `[id]` can be "new" (loads from sessionStorage) or a database UUID (loads from database). Share button copies current URL to clipboard for easy sharing of persisted assessments. **Previous versions (V2-V4) archived** in `/archive/reports/` for reference.
 -   **Email Gate Strategy**: After users complete the 3-step assessment, they are shown an email gate page with the message "We've identified X ways you can employ an AI Worker to deflect tickets immediately" and a button to "Unlock Full Assessment". The assessment is already saved to the database (with full analysis generated) but without email, making it durable across page refreshes. Users must enter their work email to unlock access, which updates the existing database record. This post-assessment email capture improves conversion by ensuring users are invested before requesting contact information.
 -   **Assessment Data**: Captures monthly tickets, ticket distribution, email, and additional context. Each completed assessment is persisted to PostgreSQL with a unique UUID for future retrieval and sharing with sales reps.
 -   **Workflow Steps Styling**: Collapsible "How it Works" section with updated number styling and toggle arrow positioned left of text.
 -   **Terminology**: This tool is called an "Assessment" (both the process and output). The deeper engagement that follows is the "Data Discovery and Blueprint" service.
+
+## Project Structure
+
+### Active Codebase
+-   `/src/app/` - Next.js app router pages (assessment flow, email gate, report v5)
+-   `/src/components/` - Reusable React components organized by feature area
+-   `/src/lib/` - Core business logic (engines, services, utilities)
+-   `/src/data/` - Static data files (AI workers, benchmarks, tools, use case mappings)
+-   `/public/` - Static assets (fonts, images) served directly
+
+### Archive
+The `/archive` directory contains deprecated code and assets preserved for reference:
+-   `/archive/reports/` - Previous report versions (v2, v3, v4) and legacy components
+-   `/archive/fonts/` - Duplicate font files removed from `src/components/font/`
+-   `/archive/documentation/` - Development artifacts, screenshots, planning documents (180+ files from October 2025 development)
+
+See `/archive/README.md` and subdirectory READMEs for detailed documentation of archived content and restoration instructions.
 
 ## External Dependencies
 -   **Image Domains**:
