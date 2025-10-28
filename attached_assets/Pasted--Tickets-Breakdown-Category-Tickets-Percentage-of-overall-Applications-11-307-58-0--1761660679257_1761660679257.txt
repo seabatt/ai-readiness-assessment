@@ -1,0 +1,172 @@
+
+
+## Tickets Breakdown
+Category    Tickets #  Percentage of overall 
+Applications    11,307  58.0% 
+Hardware    5,224  26.8% 
+Onboarding/ Offboarding  1,761  9.0% 
+Distribution Lists  527  2.7% 
+Network    445  2.3% 
+Other    114  0.6% 
+Security    44  0.2%
+
+
+
+
+
+Applications category
+Applications are 58% of all tickets. Application access - Median TTR = 1.71 hours
+In the tables below please find a breakdown of sub-categories within Applications and of ticket
+distribution within the category, filtered by top tickets based on volume.
+Applications sub-category breakdown
+Sub category Tickets % of total
+tickets
+% of Applications
+category
+App issue 5,019 25.7% 44.2%
+App access 4,369 22.4% 38.5%
+Within-app access 1,068 5.5% 9.4%
+Within-app action 850 4.4% 7.5%
+Guidance 54 0.3% 0.5%
+
+
+
+Example tickets:
+●
+App issue
+○
+Salesforce - User unable to open Salesforce due to repeated error
+○
+Okta - User unable to sign in to laptop due to fingerprint recognition failure
+○
+Adobe - Error when trying to open a document
+○
+Slack - User not receiving notifications as expected
+●
+App access
+○
+Requests to get access to Fellow
+○
+Requests to get access to Demostack
+●
+Within app access
+○
+Requests to upgrade a Zoom account to paid/full access
+○
+Requests to be added to a specific team in GitHub
+●
+Within app action
+○
+Seismic - Assign a training course to a user
+○
+Keeper - Approve admin access request after device change
+○
+Slack – Provide webhook URL for a specific channel
+
+
+
+
+
+
+
+
+Applications category top items
+Rank Sub-Category Item Count % of total
+tickets
+% of Apps
+category
+Median
+Resolution
+(hours)
+1 app issue Okta 1823 9.3% 15.4% 0.7
+2 app issue Salesforce 518 2.7% 4.4% 3.9
+3 app access Fellow 281 1.4% 2.4% 1.34
+4 app access Jira 266 1.4% 2.3% 5.25
+5 app access Tableau 247 1.3% 2.1% 2.06
+6 within-app
+access
+Jira 213 1.1% 1.8% 6.48
+7 app access Salesforce 200 1.0% 1.7% 0.5
+8 app issue Slack 193 1.0% 1.6% 2.59
+9 app issue Salesloft 181 0.9% 1.5% 3.48
+10 within-app
+action
+Slack 178 0.9% 1.5% 1.40
+Hardware category
+Hardware tickets are 26.8% of all tickets.
+Sub category Tickets Percentage
+Hardware Issue 2,039 39.03%
+Hardware Replacement 1,835 35.13%
+New Hardware Request 1,293 24.75%
+Hardware Setup 57 1.09%
+Network & Security category
+Network & security are 2.5% of all tickets.
+Example Tickets:
+●
+VPN Access: “I need to get VPN access to connect to certain AWS resources from outside the
+office?”
+○
+Resolution: User assigned to VPN, credentials and setup instructions provided.
+●
+Security Monitoring Software: “A software named ‘logger’ is recording my screen. Even if I terminate
+it, it restarts. Is this spyware or IT-configured?”
+○
+Resolution: Confirmed logger is part of InfoSec policy; behavior due to OS update. Passwords
+and sensitive data remain protected.
+●
+Internet Connectivity (Hotspot Device): “The signals icon is flashing, internet not working despite ISP
+confirming service is fine. Device refresh didn’t help.
+”
+○
+Resolution: Tested SIM, reassigned new SIM, and replaced hotspot device with new IMEI/IMSI
+details provided.
+ai.work conclusions
+Phase 1: Immediate impact → expected 21.5% ticket deflection - 4 weeks
+1. App access through Okta → 16.8% of tickets (3,277 tickets)*
+2. Distribution List Changes → 2. 7% of tickets (527 tickets)
+3. In-app actions → 2.0% of tickets (391 tickets)
+a. Jira - 1.1% of tickets (213 tickets)
+b. Slack - 0.9% of tickets (178 tickets)**
+Assumptions
+* We assume that 75% of app access tickets can be resolved through Okta, so we calculated: 0.75 * 4,369
+app access tickets = 3,277.
+** Slack admin API requires Enterprise license
+Impact
+●
+App access - Current median time to resolution = 1:30 hour → “real time” (+Team approval time if
+enabled)
+●
+In-app actions - Current median time to resolution = 1:58 hour → “real time” (+Team approval time
+if enabled)
+●
+~ 3 FTEs saved
+
+
+
+
+
+Assumptions
+*Full automation assumptions
+●
+80% of App access = 17.9%
+●
+50% of Within-app access = 2.75%
+●
+50% of Within-app action = 2.2%
+●
+50% of Onboarding / Offboarding = 4.5%
+●
+100% of Distribution Lists = 2.7%
+**Assistance assumptions
+●
+50% of Hardware issues = 19.5%
+●
+30% of App issue = 7.7%
+●
+30% New Hardware Requests = 7.4%
+●
+20% of Hardware Replacement = 7%
+●
+30% of Network, Security and Other = 1%
+●
+80% of Guidance = 0.24%
