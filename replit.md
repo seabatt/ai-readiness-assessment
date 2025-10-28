@@ -8,6 +8,24 @@ This Next.js tool provides a quick AI Worker Readiness Assessment for IT teams, 
 - Archive deprecated code rather than deleting it for future reference
 - Maintain clear documentation of changes and archive contents
 
+## Recent Changes
+**October 28, 2025 - ROI Calculation Fix (Corrected Methodology)**
+- Fixed TTR values to match real customer data: Okta app issues 0.2hrs, app access 0.43hrs, most tickets 0.2-1.0hr range (previously 2-6 hours)
+- Corrected cherry-picking factors to 0.85-1.0 range (from 0.4-0.7) since automation_rate already handles ticket selection
+- Key insight: automation_rate (60-75%) selects WHICH tickets to automate; cherry_picking_factor (0.85-1.0) applies minor TTR discount
+- Added automation_type classification: "full_automation" vs "assisted" for accurate projections
+- Updated volume percentages: Okta issues 28% (was 9.3%), hardware 3.6% (was 10.5%) to match real distribution
+- Validated against real report: 32% deflection (3,023 tickets) → 2.8 FTEs ✓ (target: 3 FTEs)
+- Calculation: 843 hrs/mo × 12 = 10,116 hrs/yr, 50% capture = 5,058 hrs ÷ 1,800 hrs/FTE = 2.8 FTEs
+
+**October 27, 2025 - Major Cleanup & Archive Organization**
+- Created `/archive` directory structure for deprecated code and assets
+- Moved report versions v1-v4 (pages and components) to `archive/reports/`
+- Archived 10+ legacy standalone components (ScoreCircle, AIWorkerCard, etc.)
+- Consolidated font files to `public/fonts/`
+- Archived 180+ development artifacts (screenshots, planning docs)
+- Updated tsconfig.json to exclude archive directory from TypeScript compilation
+
 ## System Architecture
 
 ### UI/UX Decisions
@@ -21,8 +39,16 @@ The application uses the official Ai.Work brand system with a custom dark theme,
 -   **Assessment Flow**: A 3-step process (Tech Stack, Volume & Service Profile, Additional Context). Assessment data is saved to the database, then an email gate prompts for email to unlock the full report.
 -   **Analysis Engines** (`src/lib/engines/`):
     -   **FeasibilityEngine**: Matches user tech stack against available APIs and use cases.
-    -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers, incorporating a cherry-picking factor, distinguishing full automation vs. assisted, using conservative automation rates (60-75%), and tracking capacity.
-    -   **ROICalculator**: Calculates conservative, finance-friendly ROI, distinguishing Budget FTE vs. Capacity FTE, tracking full vs. assisted automation separately, and providing confidence bands (Expected, Conservative P70, Very Conservative P90) based on hours-weighted confidence. Default parameters include a 50% capture rate and 1,800 effective hours per FTE.
+    -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers with conservative, real-world assumptions:
+        - **Automation Rate (60-75%)**: Selects WHICH tickets can be automated (e.g., 60% of Okta issues = the automatable subset)
+        - **Cherry-Picking Factor (0.85-1.0)**: Minor TTR adjustment since automated tickets are slightly easier than category median
+        - **Automation Types**: Distinguishes "full_automation" (complete deflection) from "assisted" (reduces TTR but doesn't eliminate ticket)
+        - **Real TTR Values**: Based on actual customer data (Okta issues 0.2hrs, app access 0.43hrs, most 0.2-1.0hr range)
+    -   **ROICalculator**: Calculates conservative, finance-friendly ROI:
+        - **Budget FTE vs. Capacity FTE**: Distinguishes theoretical capacity (hours/2000) from realistic budget impact (captured hours / 1,800 effective hrs/FTE with 50% capture)
+        - **Full vs. Assisted Tracking**: Separately tracks tickets and hours for both automation types
+        - **Confidence Bands**: Expected, Conservative (P70), Very Conservative (P90) scenarios
+        - **Validated**: 32% deflection (3,023 tickets) → 2.8 FTEs matches real customer outcome
 -   **Assessment Results Generation**: V5 reports (default) provide a streamlined, data-focused version without LLM-generated insights. It includes a header, an Executive Summary with readiness percentage, key statistics, and confidence bands, and an Opportunity Analysis section with separate "Full Automation Opportunities" and "AI-Assisted Opportunities" using single-column use case cards. A "Deployment Plan" and "Expected Outcomes" section are included, followed by a Call to Action.
 -   **LLM Integration**: V4 reports used OpenAI GPT-4o for strategic insights; V5 reports do not.
 
