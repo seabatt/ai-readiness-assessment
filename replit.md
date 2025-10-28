@@ -9,6 +9,14 @@ This Next.js tool provides a quick AI Worker Readiness Assessment for IT teams, 
 - Maintain clear documentation of changes and archive contents
 
 ## Recent Changes
+**October 28, 2025 - CRITICAL FIX: Hardcoded TTR Values Causing 12x FTE Inflation**
+- Fixed hardcoded category TTR values in assessment/page.tsx that were 3-5x higher than real customer data
+- Before: applications=1.7hrs, hardware=2.5hrs, onboarding=4.0hrs, security=3.0hrs → Result: 36 FTEs
+- After: applications=0.43hrs, hardware=0.75hrs, onboarding=1.0hrs, security=0.8hrs → Result: 3-8 FTEs
+- Root cause: These inflated baseline TTRs were multiplied by cherry_picking_factor and thousands of tickets, causing hours/month to explode from ~900 to ~10,800
+- Validation: For 15,000-20,000 monthly tickets, projections now correctly show 3-8 FTEs, not 36 FTEs
+- Fixed Next.js 14.2+ API route bug: params must be awaited in /api/assessments/[id] routes to prevent 502 errors on email submission
+
 **October 28, 2025 - Added 35% Deflection Cap to Prevent Unrealistic Projections**
 - Added MAX_DEFLECTION_RATE = 0.35 (35%) to ROI calculator based on real customer ceiling
 - Implemented uniform proration across all metrics when cap is hit (tickets, hours, category breakdown, automation splits)

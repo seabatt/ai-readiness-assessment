@@ -58,12 +58,12 @@ export default function AssessmentPage() {
           const activities = [];
           if (data.ticketDistribution && data.monthlyTickets) {
             const categoryMapping: Record<string, {key: string, ttr: number}> = {
-              applications: {key: 'app_access', ttr: 1.7},
-              hardware: {key: 'hardware', ttr: 2.5},
-              onboarding: {key: 'onboarding', ttr: 4.0},
-              distributionLists: {key: 'distribution_lists', ttr: 0.75},
-              network: {key: 'network', ttr: 1.5},
-              security: {key: 'security', ttr: 3.0}
+              applications: {key: 'app_access', ttr: 0.43},
+              hardware: {key: 'hardware', ttr: 0.75},
+              onboarding: {key: 'onboarding', ttr: 1.0},
+              distributionLists: {key: 'distribution_lists', ttr: 0.5},
+              network: {key: 'network', ttr: 0.6},
+              security: {key: 'security', ttr: 0.8}
             };
 
             for (const [key, percentage] of Object.entries(data.ticketDistribution)) {
