@@ -117,7 +117,8 @@ export default function OpportunityAnalysis({
         workflow_steps: uc.workflow_steps,
         priority: uc.time_to_value_days <= 7 ? 'immediate' : 
                   uc.time_to_value_days <= 21 ? 'quick_win' : 'future',
-        required_tools: uc.required_tools
+        required_tools: uc.required_tools,
+        automation_type: uc.automation_type
       });
     }
   });
@@ -157,124 +158,147 @@ export default function OpportunityAnalysis({
     return 'Deploy Month 3+';
   };
 
+  // Separate full automation and assisted use cases
+  const fullAutomationCases = topUseCases.filter(uc => uc.automation_type === 'full_automation');
+  const assistedCases = topUseCases.filter(uc => uc.automation_type === 'assisted');
+
+  const renderUseCaseCard = (useCase: any, index: number) => (
+    <div 
+      key={useCase.use_case_id}
+      className="relative bg-bg-card rounded-lg p-6 border border-brand-secondary/10 hover:border-highlight/50 transition-all duration-200 overflow-hidden"
+    >
+      {/* Top Section: Rank, Title, and Tool Logos */}
+      <div className="flex items-start justify-between mb-2">
+        <div className="flex-1">
+          {/* Rank Number */}
+          <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
+            {String(index + 1).padStart(2, '0')}
+          </div>
+          
+          {/* Title */}
+          <h3 className="text-2xl font-bold text-text-primary mb-2">
+            {useCase.name}
+          </h3>
+
+          {/* Category Badge */}
+          <div className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(useCase.category)}`}>
+            {useCase.category}
+          </div>
+        </div>
+
+        {/* Tool Logos - Prominent Top Right */}
+        {useCase.required_tools && useCase.required_tools.length > 0 && (
+          <div className="ml-6 flex-shrink-0">
+            <ConnectedAppLogos 
+              apps={useCase.required_tools.map(convertToolName)}
+              maxVisible={3}
+              size={48}
+              prominent={true}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Description */}
+      <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+        {useCase.value_proposition}
+      </p>
+
+      {/* Impact Metrics - Enhanced */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-5 bg-bg-primary/50 rounded-lg border border-border/50 mb-6">
+        <div>
+          <div className="text-3xl font-bold text-accent-green mb-1">
+            {useCase.estimated_monthly_deflection.toLocaleString()}
+          </div>
+          <div className="text-xs text-text-tertiary uppercase tracking-wide">Tickets/Month</div>
+        </div>
+        <div>
+          <div className="text-3xl font-bold text-accent-blue mb-1">
+            {Math.round(useCase.estimated_hours_saved).toLocaleString()} <span className="text-xl">hrs</span>
+          </div>
+          <div className="text-xs text-text-tertiary uppercase tracking-wide">Time Saved/Month</div>
+        </div>
+        <div>
+          <div className="text-3xl font-bold text-text-primary mb-1">
+            {useCase.time_to_value_days} <span className="text-xl">days</span>
+          </div>
+          <div className="text-xs text-text-tertiary uppercase tracking-wide">Time to Value</div>
+        </div>
+        <div>
+          <div className="text-3xl font-bold text-accent-orange mb-1">
+            {Math.round(useCase.confidence * 100)}%
+          </div>
+          <div className="text-xs text-text-tertiary uppercase tracking-wide">Confidence</div>
+        </div>
+      </div>
+
+      {/* How It Works - Collapsible */}
+      <div>
+        <button
+          onClick={() => setExpandedWorkflows(prev => ({
+            ...prev,
+            [useCase.use_case_id]: !prev[useCase.use_case_id]
+          }))}
+          className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200 w-full text-left"
+        >
+          <span>How it works</span>
+          <svg
+            className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        
+        {expandedWorkflows[useCase.use_case_id] && (
+          <ul className="space-y-2 mt-4 pl-1">
+            {useCase.workflow_steps.map((step: string, i: number) => (
+              <li key={i} className="text-sm text-text-secondary flex items-start gap-3">
+                <span className="text-highlight mt-0.5 flex-shrink-0 font-bold">→</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <div className="max-w-5xl mx-auto mb-16">
-      {/* Introduction to Use Cases */}
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-text-primary mb-4">
-          What You Can Automate Right Now
-        </h2>
-        <p className="text-lg text-text-secondary leading-relaxed">
-          Based on your stack, here are <span className="font-semibold text-text-primary">examples of use cases where AI Workers can deliver immediate value</span>. We've identified the <span className="font-semibold text-text-primary">easiest wins first</span>—high-confidence automations that can be deployed quickly using your existing tools and APIs.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6">
-        {topUseCases.map((useCase, index) => (
-          <div 
-            key={useCase.use_case_id}
-            className="relative bg-bg-card rounded-lg p-6 border border-brand-secondary/10 hover:border-highlight/50 transition-all duration-200 overflow-hidden"
-          >
-            {/* Top Section: Rank, Title, and Tool Logos */}
-            <div className="flex items-start justify-between mb-2">
-              <div className="flex-1">
-                {/* Rank Number */}
-                <div className="text-sm font-medium mb-2" style={{ color: '#8a8784' }}>
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-2xl font-bold text-text-primary mb-2">
-                  {useCase.name}
-                </h3>
-
-                {/* Category Badge */}
-                <div className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(useCase.category)}`}>
-                  {useCase.category}
-                </div>
-              </div>
-
-              {/* Tool Logos - Prominent Top Right */}
-              {useCase.required_tools && useCase.required_tools.length > 0 && (
-                <div className="ml-6 flex-shrink-0">
-                  <ConnectedAppLogos 
-                    apps={useCase.required_tools.map(convertToolName)}
-                    maxVisible={3}
-                    size={48}
-                    prominent={true}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* Description */}
-            <p className="text-lg text-text-secondary mb-6 leading-relaxed">
-              {useCase.value_proposition}
+      {fullAutomationCases.length > 0 && (
+        <div className="mb-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-text-primary mb-3">
+              Full Automation Opportunities
+            </h2>
+            <p className="text-lg text-text-secondary">
+              These use cases can be completely automated end-to-end, requiring no human intervention. Deploy these first for maximum impact.
             </p>
-
-            {/* Impact Metrics - Enhanced */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-5 bg-bg-primary/50 rounded-lg border border-border/50 mb-6">
-              <div>
-                <div className="text-3xl font-bold text-accent-green mb-1">
-                  {useCase.estimated_monthly_deflection.toLocaleString()}
-                </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wide">Tickets/Month</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-accent-blue mb-1">
-                  {Math.round(useCase.estimated_hours_saved).toLocaleString()} <span className="text-xl">hrs</span>
-                </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time Saved/Month</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-text-primary mb-1">
-                  {useCase.time_to_value_days} <span className="text-xl">days</span>
-                </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wide">Time to Value</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-accent-orange mb-1">
-                  {Math.round(useCase.confidence * 100)}%
-                </div>
-                <div className="text-xs text-text-tertiary uppercase tracking-wide">Confidence</div>
-              </div>
-            </div>
-
-            {/* How It Works - Collapsible */}
-            <div>
-              <button
-                onClick={() => setExpandedWorkflows(prev => ({
-                  ...prev,
-                  [useCase.use_case_id]: !prev[useCase.use_case_id]
-                }))}
-                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-highlight transition-colors duration-200 w-full text-left"
-              >
-                <span>How it works</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${expandedWorkflows[useCase.use_case_id] ? 'rotate-180' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {expandedWorkflows[useCase.use_case_id] && (
-                <ul className="space-y-2 mt-4 pl-1">
-                  {useCase.workflow_steps.map((step, i) => (
-                    <li key={i} className="text-sm text-text-secondary flex items-start gap-3">
-                      <span className="text-highlight mt-0.5 flex-shrink-0 font-bold">→</span>
-                      <span>{step}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
           </div>
-        ))}
-      </div>
-
+          <div className="grid grid-cols-1 gap-6">
+            {fullAutomationCases.map((useCase, index) => renderUseCaseCard(useCase, index))}
+          </div>
+        </div>
+      )}
+      
+      {assistedCases.length > 0 && (
+        <div>
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-text-primary mb-3">
+              AI-Assisted Opportunities
+            </h2>
+            <p className="text-lg text-text-secondary">
+              These use cases benefit from AI assistance to augment human work, providing recommendations and automating parts of the workflow.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-6">
+            {assistedCases.map((useCase, index) => renderUseCaseCard(useCase, index))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

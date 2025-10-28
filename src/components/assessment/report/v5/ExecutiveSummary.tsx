@@ -49,6 +49,10 @@ export default function ExecutiveSummary({
             <div className="text-sm text-text-tertiary mt-1">
               Tickets Automatable/Month
             </div>
+            <div className="text-xs text-text-tertiary/60 mt-1 space-y-0.5">
+              <div>{roiResult.full_automation_tickets?.toLocaleString() || 0} Full</div>
+              <div>{roiResult.assisted_tickets?.toLocaleString() || 0} Assisted</div>
+            </div>
           </div>
           
           <div className="text-center">
@@ -57,6 +61,10 @@ export default function ExecutiveSummary({
             </div>
             <div className="text-sm text-text-tertiary mt-1">
               Time Saved/Month
+            </div>
+            <div className="text-xs text-text-tertiary/60 mt-1 space-y-0.5">
+              <div>{Math.round(roiResult.full_automation_hours || 0)} Full</div>
+              <div>{Math.round(roiResult.assisted_hours || 0)} Assisted</div>
             </div>
           </div>
           

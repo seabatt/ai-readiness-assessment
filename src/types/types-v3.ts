@@ -47,6 +47,7 @@ export interface MatchedUseCase {
   workflow_steps: string[];
   priority: "immediate" | "quick_win" | "future";
   required_tools: string[];
+  automation_type?: "full_automation" | "assisted";
 }
 
 // ROICalculator Output
@@ -63,6 +64,13 @@ export interface ROIResult {
   fte_equivalent: number; // Backward-compat alias of capacity_fte
   annual_value_usd: number;
   confidence: number; // Percentage (0-100)
+  
+  // NEW: Separate full automation vs assisted
+  full_automation_tickets: number;
+  full_automation_hours: number;
+  assisted_tickets: number;
+  assisted_hours: number;
+  
   breakdown_by_category: CategoryBreakdown[];
 }
 
@@ -135,6 +143,7 @@ export interface UseCaseDefinition {
     [toolKey: string]: string[]; // Tool key → array of API keys
   };
   ticket_categories: string[]; // Categories this use case handles
+  automation_type?: "full_automation" | "assisted";
   automation_rate: number; // 0.0 to 1.0
   implementation_effort: "low" | "medium" | "high";
   time_to_value_days: number;

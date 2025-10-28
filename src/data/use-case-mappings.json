@@ -27,7 +27,9 @@
       "ticket_categories": ["app_access", "onboarding"],
       "typical_volume_pct": 0.168,
       "typical_ttr_hours": 1.5,
-      "automation_rate": 0.9,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.5,
       "confidence": 0.95,
       "prerequisites": [
         "Okta API token with okta.users.read and okta.groups.manage scopes",
@@ -64,7 +66,9 @@
       "ticket_categories": ["app_access"],
       "typical_volume_pct": 0.123,
       "typical_ttr_hours": 1.7,
-      "automation_rate": 0.85,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.45,
       "confidence": 0.9,
       "post_auto_ttr_hours": 0.2,
       "approval_leakage_pct": 0.15,
@@ -102,7 +106,9 @@
       "ticket_categories": ["app_access", "group_management"],
       "typical_volume_pct": 0.035,
       "typical_ttr_hours": 3.5,
-      "automation_rate": 0.95,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.5,
       "confidence": 0.95,
       "prerequisites": [
         "Okta API token with appropriate scopes",
@@ -138,7 +144,9 @@
       "ticket_categories": ["distribution_lists", "group_management"],
       "typical_volume_pct": 0.027,
       "typical_ttr_hours": 0.75,
-      "automation_rate": 0.9,
+      "automation_type": "full_automation",
+      "automation_rate": 1.0,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.9,
       "prerequisites": [
         "Google Workspace service account with domain-wide delegation",
@@ -187,7 +195,9 @@
       "ticket_categories": ["offboarding"],
       "typical_volume_pct": 0.045,
       "typical_ttr_hours": 4.5,
-      "automation_rate": 0.8,
+      "automation_type": "full_automation",
+      "automation_rate": 0.65,
+      "cherry_picking_factor": 0.55,
       "confidence": 0.85,
       "post_auto_ttr_hours": 0.5,
       "approval_leakage_pct": 0.2,
@@ -221,7 +231,9 @@
       "ticket_categories": ["general_it_request"],
       "typical_volume_pct": 0.15,
       "typical_ttr_hours": 0.25,
-      "automation_rate": 0.95,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.65,
       "confidence": 0.95,
       "prerequisites": [
         "Jira API access",
@@ -256,8 +268,11 @@
       "ticket_categories": ["hardware", "software_requests"],
       "typical_volume_pct": 0.12,
       "typical_ttr_hours": 0.5,
-      "automation_rate": 0.9,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.5,
       "confidence": 0.9,
+      "post_auto_ttr_hours": 0.15,
       "prerequisites": [
         "ServiceNow API access",
         "Catalog items configured",
@@ -288,7 +303,9 @@
       "ticket_categories": ["license_management"],
       "typical_volume_pct": 0.035,
       "typical_ttr_hours": 0.5,
-      "automation_rate": 0.95,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.95,
       "prerequisites": [
         "Zoom Server-to-Server OAuth app",
@@ -322,8 +339,11 @@
       "ticket_categories": ["documentation", "knowledge_management"],
       "typical_volume_pct": 0.045,
       "typical_ttr_hours": 2.5,
-      "automation_rate": 0.85,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.5,
       "confidence": 0.9,
+      "post_auto_ttr_hours": 1.0,
       "prerequisites": [
         "Notion integration token",
         "Database structure configured",
@@ -355,8 +375,11 @@
       "ticket_categories": ["project_management", "tracking"],
       "typical_volume_pct": 0.025,
       "typical_ttr_hours": 1.5,
-      "automation_rate": 0.8,
+      "automation_type": "assisted",
+      "automation_rate": 0.65,
+      "cherry_picking_factor": 0.55,
       "confidence": 0.85,
+      "post_auto_ttr_hours": 0.6,
       "prerequisites": [
         "Notion integration configured",
         "Project database template",
@@ -389,7 +412,9 @@
       "ticket_categories": ["sales_support", "business_development"],
       "typical_volume_pct": 0.015,
       "typical_ttr_hours": 1.0,
-      "automation_rate": 0.9,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.9,
       "prerequisites": [
         "Salesforce Connected App",
@@ -423,8 +448,11 @@
       "ticket_categories": ["customer_support", "incident_management"],
       "typical_volume_pct": 0.035,
       "typical_ttr_hours": 1.5,
-      "automation_rate": 0.85,
+      "automation_type": "assisted",
+      "automation_rate": 0.65,
+      "cherry_picking_factor": 0.55,
       "confidence": 0.9,
+      "post_auto_ttr_hours": 0.5,
       "prerequisites": [
         "Salesforce API access",
         "Case routing rules",
@@ -457,7 +485,9 @@
       "ticket_categories": ["onboarding", "user_provisioning"],
       "typical_volume_pct": 0.028,
       "typical_ttr_hours": 0.75,
-      "automation_rate": 0.9,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.9,
       "prerequisites": [
         "HubSpot private app token",
@@ -490,7 +520,9 @@
       "ticket_categories": ["training", "user_engagement"],
       "typical_volume_pct": 0.022,
       "typical_ttr_hours": 0.5,
-      "automation_rate": 0.95,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.65,
       "confidence": 0.9,
       "prerequisites": [
         "HubSpot automation scope",
@@ -524,7 +556,9 @@
       "ticket_categories": ["email_management", "user_modifications"],
       "typical_volume_pct": 0.038,
       "typical_ttr_hours": 0.5,
-      "automation_rate": 0.95,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.95,
       "prerequisites": [
         "Google Workspace Admin SDK enabled",
@@ -559,7 +593,9 @@
       "ticket_categories": ["security", "compliance", "user_management"],
       "typical_volume_pct": 0.018,
       "typical_ttr_hours": 0.75,
-      "automation_rate": 0.9,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.6,
       "confidence": 0.95,
       "prerequisites": [
         "Google Workspace admin privileges",
@@ -568,6 +604,360 @@
       ],
       "implementation_effort": "medium",
       "time_to_value_days": 10
+    },
+    {
+      "id": "okta_app_issue_troubleshooting",
+      "name": "Okta App Issue Troubleshooting",
+      "category": "Identity Access & Compliance",
+      "description": "AI-assisted troubleshooting for common Okta login and authentication issues including password resets and MFA problems.",
+      "value_proposition": "Highest volume app issue category (9.3% of all tickets). AI handles simple cases autonomously while escalating complex issues to IT staff.",
+      "workflow_steps": [
+        "Identify issue type (password, MFA, app assignment)",
+        "For simple cases: Guide user through self-service resolution",
+        "For password resets: Use [Reset Password] API",
+        "For MFA issues: Use [Reset MFA] API",
+        "For complex issues: Gather diagnostics and escalate to IT",
+        "Log resolution in knowledge base"
+      ],
+      "required_tools": ["okta"],
+      "optional_tools": ["jira", "slack", "servicenow"],
+      "required_apis": {
+        "okta": ["user_lifecycle", "factors_api"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "okta.reset_password",
+        "okta.reset_mfa",
+        "okta.get_user_status"
+      ],
+      "ticket_categories": ["app_issue"],
+      "typical_volume_pct": 0.093,
+      "typical_ttr_hours": 0.7,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.43,
+      "confidence": 0.85,
+      "post_auto_ttr_hours": 0.3,
+      "prerequisites": [
+        "Okta API access with password and MFA reset permissions",
+        "Self-service troubleshooting guides",
+        "Escalation workflows defined"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "salesforce_app_issue_troubleshooting",
+      "name": "Salesforce App Issue Troubleshooting",
+      "category": "CRM Integration",
+      "description": "AI-assisted troubleshooting for common Salesforce errors and access issues with guided self-service and knowledge base access.",
+      "value_proposition": "Second highest app issue (2.7% of tickets). Reduces TTR from 3.9 hours to under 2 hours through guided troubleshooting.",
+      "workflow_steps": [
+        "Identify error type and error code if available",
+        "Search knowledge base for similar issues",
+        "Guide user through common resolution steps",
+        "Check user permissions and profile settings",
+        "For unresolved cases: Create detailed ticket with diagnostics",
+        "Update knowledge base with resolution"
+      ],
+      "required_tools": ["salesforce"],
+      "optional_tools": ["jira", "servicenow", "notion"],
+      "required_apis": {
+        "salesforce": ["sobjects_api", "query_api"],
+        "jira": ["issues_api"],
+        "notion": ["pages_api"]
+      },
+      "required_capabilities": [
+        "salesforce.query_records",
+        "salesforce.check_permissions"
+      ],
+      "ticket_categories": ["app_issue"],
+      "typical_volume_pct": 0.027,
+      "typical_ttr_hours": 3.9,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.45,
+      "confidence": 0.8,
+      "post_auto_ttr_hours": 1.8,
+      "prerequisites": [
+        "Salesforce API access",
+        "Knowledge base of common issues",
+        "Permission checking capabilities"
+      ],
+      "implementation_effort": "high",
+      "time_to_value_days": 21
+    },
+    {
+      "id": "slack_app_issue_troubleshooting",
+      "name": "Slack App Issue Troubleshooting",
+      "category": "Meetings & Collaboration",
+      "description": "AI-assisted troubleshooting for Slack notification issues, channel access problems, and app integration errors.",
+      "value_proposition": "Common collaboration tool issue (1% of tickets). Provides immediate guided support reducing IT escalations.",
+      "workflow_steps": [
+        "Identify issue type (notifications, channels, integrations)",
+        "For notification issues: Guide through settings check",
+        "For channel access: Verify permissions and workspace settings",
+        "For integrations: Check app installation and permissions",
+        "Provide step-by-step resolution guidance",
+        "Escalate persistent issues with full diagnostics"
+      ],
+      "required_tools": ["slack"],
+      "optional_tools": ["jira", "servicenow"],
+      "required_apis": {
+        "slack": ["web_api", "conversations_api", "users_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": [
+        "slack.check_user_settings",
+        "slack.check_channel_permissions"
+      ],
+      "ticket_categories": ["app_issue"],
+      "typical_volume_pct": 0.01,
+      "typical_ttr_hours": 2.59,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.5,
+      "confidence": 0.8,
+      "post_auto_ttr_hours": 1.2,
+      "prerequisites": [
+        "Slack workspace admin access",
+        "Troubleshooting guides",
+        "Integration monitoring"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "hardware_issue_troubleshooting",
+      "name": "Hardware Issue Troubleshooting",
+      "category": "Hardware Support",
+      "description": "AI-assisted diagnostics and troubleshooting for common hardware issues including laptop problems, peripheral issues, and performance degradation.",
+      "value_proposition": "Largest hardware category (39% of hardware tickets). AI provides step-by-step diagnostics reducing escalations by 50%.",
+      "workflow_steps": [
+        "Collect symptoms and device information",
+        "Guide through standard diagnostic steps",
+        "Check for known issues and recent updates",
+        "Provide troubleshooting steps based on issue type",
+        "For unresolved issues: Create detailed ticket with diagnostics",
+        "Escalate to hardware team if replacement needed"
+      ],
+      "required_tools": [],
+      "optional_tools": ["jira", "servicenow", "notion"],
+      "required_apis": {
+        "jira": ["issues_api"],
+        "servicenow": ["table_api"],
+        "notion": ["pages_api"]
+      },
+      "required_capabilities": [],
+      "ticket_categories": ["hardware_issue"],
+      "typical_volume_pct": 0.105,
+      "typical_ttr_hours": 4.0,
+      "automation_type": "assisted",
+      "automation_rate": 0.5,
+      "cherry_picking_factor": 0.4,
+      "confidence": 0.75,
+      "post_auto_ttr_hours": 2.5,
+      "prerequisites": [
+        "Hardware diagnostic guides",
+        "Known issues database",
+        "Escalation workflows"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "new_hardware_request_processing",
+      "name": "New Hardware Request Processing",
+      "category": "Hardware Support",
+      "description": "AI-assisted processing of new hardware requests including requirements gathering, approval routing, and procurement coordination.",
+      "value_proposition": "Streamlines hardware request intake (24.75% of hardware tickets) with intelligent form completion and approval routing.",
+      "workflow_steps": [
+        "Gather hardware requirements through conversational interface",
+        "Verify user eligibility and department budget",
+        "Route to appropriate approver based on cost/type",
+        "Create procurement request in ServiceNow or Jira",
+        "Track approval status and notify requester",
+        "Update user on procurement timeline"
+      ],
+      "required_tools": [],
+      "optional_tools": ["servicenow", "jira", "slack"],
+      "required_apis": {
+        "servicenow": ["table_api"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [],
+      "ticket_categories": ["hardware_request"],
+      "typical_volume_pct": 0.066,
+      "typical_ttr_hours": 3.5,
+      "automation_type": "assisted",
+      "automation_rate": 0.6,
+      "cherry_picking_factor": 0.5,
+      "confidence": 0.85,
+      "post_auto_ttr_hours": 1.5,
+      "prerequisites": [
+        "Hardware catalog with specs and pricing",
+        "Approval workflow configuration",
+        "Budget checking integration"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "hardware_replacement_coordination",
+      "name": "Hardware Replacement Coordination",
+      "category": "Hardware Support",
+      "description": "AI-assisted coordination of hardware replacements including warranty checks, logistics scheduling, and data migration planning.",
+      "value_proposition": "Manages hardware replacement logistics (35% of hardware tickets) reducing coordination overhead and user downtime.",
+      "workflow_steps": [
+        "Assess issue and determine replacement necessity",
+        "Check warranty status and coverage",
+        "Coordinate with procurement for replacement device",
+        "Schedule device swap minimizing user downtime",
+        "Provide data migration checklist and support",
+        "Track old device return and disposal"
+      ],
+      "required_tools": [],
+      "optional_tools": ["servicenow", "jira", "slack"],
+      "required_apis": {
+        "servicenow": ["table_api"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [],
+      "ticket_categories": ["hardware_replacement"],
+      "typical_volume_pct": 0.094,
+      "typical_ttr_hours": 6.0,
+      "automation_type": "assisted",
+      "automation_rate": 0.5,
+      "cherry_picking_factor": 0.45,
+      "confidence": 0.75,
+      "post_auto_ttr_hours": 3.5,
+      "prerequisites": [
+        "Asset management system integration",
+        "Warranty database access",
+        "Logistics coordination workflows"
+      ],
+      "implementation_effort": "high",
+      "time_to_value_days": 21
+    },
+    {
+      "id": "vpn_access_provisioning",
+      "name": "VPN Access Provisioning",
+      "category": "Network & Security",
+      "description": "Automated VPN access provisioning with security verification and credential management.",
+      "value_proposition": "Common security request that can be fully automated with proper approval workflows, eliminating manual credential generation.",
+      "workflow_steps": [
+        "Verify user identity and employment status",
+        "Check for existing VPN access",
+        "Route through security approval if required",
+        "Generate VPN credentials via API",
+        "Send setup instructions to user",
+        "Create audit trail in security system"
+      ],
+      "required_tools": [],
+      "optional_tools": ["okta", "jira", "servicenow", "slack"],
+      "required_apis": {
+        "okta": ["user_lifecycle"],
+        "jira": ["issues_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [],
+      "ticket_categories": ["vpn_access", "network"],
+      "typical_volume_pct": 0.015,
+      "typical_ttr_hours": 2.0,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.55,
+      "confidence": 0.9,
+      "prerequisites": [
+        "VPN API integration",
+        "Security approval workflows",
+        "Credential delivery system"
+      ],
+      "implementation_effort": "high",
+      "time_to_value_days": 21
+    },
+    {
+      "id": "within_app_action_jira",
+      "name": "Within-App Actions for Jira",
+      "category": "ITSM Incidents & Ticket Hygiene",
+      "description": "Automated Jira administrative actions like adding users to projects, changing permissions, and configuring workflows.",
+      "value_proposition": "High-volume within-app actions (1.1% of tickets) that can be fully automated through Jira APIs.",
+      "workflow_steps": [
+        "Identify requested action type",
+        "Verify user has authority to request change",
+        "Execute action via Jira API (add to project, change permissions, etc)",
+        "Verify action completed successfully",
+        "Notify requester and relevant stakeholders",
+        "Create audit log entry"
+      ],
+      "required_tools": ["jira"],
+      "optional_tools": ["slack"],
+      "required_apis": {
+        "jira": ["issues_api", "permissions_api", "projects_api"],
+        "slack": ["web_api"]
+      },
+      "required_capabilities": [
+        "jira.add_user_to_project",
+        "jira.update_permissions",
+        "jira.manage_project_roles"
+      ],
+      "ticket_categories": ["within_app_action"],
+      "typical_volume_pct": 0.011,
+      "typical_ttr_hours": 6.48,
+      "automation_type": "full_automation",
+      "automation_rate": 0.7,
+      "cherry_picking_factor": 0.5,
+      "confidence": 0.9,
+      "prerequisites": [
+        "Jira admin API access",
+        "Permission management policies",
+        "Approval workflows"
+      ],
+      "implementation_effort": "medium",
+      "time_to_value_days": 14
+    },
+    {
+      "id": "within_app_action_slack",
+      "name": "Within-App Actions for Slack",
+      "category": "Meetings & Collaboration",
+      "description": "Automated Slack administrative actions like creating channels, managing permissions, and configuring webhooks.",
+      "value_proposition": "Common collaboration admin tasks (0.9% of tickets) fully automated through Slack APIs.",
+      "workflow_steps": [
+        "Identify requested Slack action",
+        "Verify requestor authority",
+        "Execute via Slack API (create channel, add members, setup webhook)",
+        "Configure channel settings as requested",
+        "Notify relevant parties",
+        "Document configuration for future reference"
+      ],
+      "required_tools": ["slack"],
+      "optional_tools": ["jira", "notion"],
+      "required_apis": {
+        "slack": ["web_api", "conversations_api", "users_api"],
+        "jira": ["issues_api"]
+      },
+      "required_capabilities": [
+        "slack.create_channel",
+        "slack.manage_channel_permissions",
+        "slack.create_webhook"
+      ],
+      "ticket_categories": ["within_app_action"],
+      "typical_volume_pct": 0.009,
+      "typical_ttr_hours": 1.4,
+      "automation_type": "full_automation",
+      "automation_rate": 0.75,
+      "cherry_picking_factor": 0.6,
+      "confidence": 0.95,
+      "prerequisites": [
+        "Slack workspace admin token",
+        "Channel naming conventions",
+        "Permission policies"
+      ],
+      "implementation_effort": "low",
+      "time_to_value_days": 7
     }
   ]
 }

@@ -17,6 +17,12 @@ export interface ROIResult {
   annual_value_usd: number;           // budget value using budget_fte
   confidence: number;                 // 0-100
 
+  // NEW: Separate full automation vs assisted
+  full_automation_tickets: number;
+  full_automation_hours: number;
+  assisted_tickets: number;
+  assisted_hours: number;
+
   breakdown_by_category: {
     category: string;
     tickets: number;
@@ -41,6 +47,10 @@ export class ROICalculator {
     captureRate: number = this.DEFAULT_CAPTURE_RATE,
     effectiveHoursPerFTE: number = this.DEFAULT_EFFECTIVE_HOURS_PER_FTE
   ): ROIResult {
+    // Separate full automation vs assisted use cases
+    const fullAutomationCases = matchedUseCases.filter(uc => uc.automation_type === 'full_automation');
+    const assistedCases = matchedUseCases.filter(uc => uc.automation_type === 'assisted');
+
     // Raw totals (no rounding yet)
     const rawAutomatableTickets = matchedUseCases.reduce(
       (sum, uc) => sum + uc.estimated_monthly_deflection,
@@ -48,6 +58,27 @@ export class ROICalculator {
     );
 
     const rawTotalHoursSaved = matchedUseCases.reduce(
+      (sum, uc) => sum + uc.estimated_hours_saved,
+      0
+    );
+
+    // Calculate full automation vs assisted separately
+    const fullAutomationTickets = fullAutomationCases.reduce(
+      (sum, uc) => sum + uc.estimated_monthly_deflection,
+      0
+    );
+
+    const fullAutomationHours = fullAutomationCases.reduce(
+      (sum, uc) => sum + uc.estimated_hours_saved,
+      0
+    );
+
+    const assistedTickets = assistedCases.reduce(
+      (sum, uc) => sum + uc.estimated_monthly_deflection,
+      0
+    );
+
+    const assistedHours = assistedCases.reduce(
       (sum, uc) => sum + uc.estimated_hours_saved,
       0
     );
@@ -122,6 +153,12 @@ export class ROICalculator {
 
       annual_value_usd: Math.round(annualValueUsd),
       confidence: Math.round(weightedConfidence * 100),
+
+      // NEW: Full automation vs assisted breakdown
+      full_automation_tickets: Math.round(fullAutomationTickets),
+      full_automation_hours: Math.round(fullAutomationHours),
+      assisted_tickets: Math.round(assistedTickets),
+      assisted_hours: Math.round(assistedHours),
 
       breakdown_by_category: breakdownByCategory
     };

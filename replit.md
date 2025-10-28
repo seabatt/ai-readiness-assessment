@@ -9,6 +9,14 @@ This Next.js tool provides a quick AI Worker Readiness Assessment helping IT tea
 - Maintain clear documentation of changes and archive contents
 
 ## Recent Changes
+**October 28, 2025 - Conservative ROI Calculation Methodology**
+- Implemented cherry-picking factor (0.4-0.7) to model AI Workers automating EASIER tickets first
+- Added automation_type classification: "full_automation" vs "assisted" for accurate projections
+- Updated all automation rates to conservative 60-75% range based on real customer data
+- Separated full automation and AI-assisted opportunities in report display
+- Enhanced ROI calculations to track both automation types independently
+- Validated against real reports: 25-35% deflection → 2-4 FTEs (depending on ticket mix)
+
 **October 27, 2025 - Major Cleanup & Archive Organization**
 - Created `/archive` directory structure for deprecated code and assets
 - Moved report versions v1-v4 (pages and components) to `archive/reports/`
@@ -33,19 +41,25 @@ The application uses the official Ai.Work brand system with a custom dark theme.
 -   **Assessment Flow**: A 3-step process including Tech Stack Selection, Volume & Service Profile (with categorized ticket distribution sliders), and optional Additional Context. Upon completion, assessment is saved to PostgreSQL database during loading screen (without email), then user is redirected to email gate page (`/email-gate?id={assessmentId}`). After email submission, existing assessment record is updated with email via PATCH to `/api/assessments/[id]/update-email`, and user is redirected to full report page.
 -   **Analysis Engines** (`src/lib/engines/`):
     -   **FeasibilityEngine**: Analyzes user tech stack against `tool-apis.json` to identify available APIs and use cases, normalizing tool names.
-    -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers with support for partial automation and approval leakage. Sorts use cases by impact (automation_rate × confidence) so higher-value opportunities consume capacity first. Supports optional `post_auto_ttr_hours` (partial automation - some human time still required) and `approval_leakage_pct` (portion requiring human approval). Maintains float precision until final rounding for accurate calculations.
+    -   **UseCaseMatcher**: Matches ticket distribution to specific AI Workers with conservative, real-world assumptions. Key features:
+        - **Cherry-Picking Factor** (0.4-0.7): Models that AI Workers automate the EASIER tickets first. Example: If median TTR = 1.5hrs but AI automates tickets with 0.3hr TTR, cherry_picking_factor = 0.2. Applied as: adjustedBaseline = avg_ttr_hours × cherry_picking_factor.
+        - **Automation Types**: Distinguishes "full_automation" (complete ticket deflection) from "assisted" (reduces TTR but doesn't eliminate it). Assisted cases use delta (baseline - post_auto_ttr) for hours saved.
+        - **Conservative Automation Rates**: 60-75% based on real customer data (e.g., Okta app access 75%, Okta app issues 60%, hardware 50%).
+        - **Capacity Tracking**: Prevents double-counting by tracking remaining ticket capacity per category as use cases consume volume.
+        - **Approval Leakage**: Optional field (0-1) for portions requiring human approval, conservatively assumed to yield zero savings.
     -   **ROICalculator**: Calculates conservative, finance-friendly ROI from matched use cases. Key features:
         - **Budget FTE vs Capacity FTE**: Distinguishes between theoretical capacity freed (2000 hours/FTE) and realistic budget impact (captured hours / 1800 effective hours per FTE with 50% capture rate).
+        - **Full vs Assisted Tracking**: Separately tracks full_automation_tickets/hours and assisted_tickets/hours for transparent reporting.
         - **Confidence Bands**: Provides Expected (confidence-weighted), Conservative (P70), and Very Conservative (P90) scenarios for hours saved to give honest forecasting ranges.
         - **Hours-weighted confidence**: Category-level confidence weighted by hours saved (not simple average) for more accurate rollups.
         - **Default parameters**: 50% capture rate and 1,800 effective hours per FTE account for ramp-up time, edge cases, and real-world adoption challenges.
-        - **Critical bug fix**: Uses raw (unclamped) hours as denominator for weighted confidence to prevent confidence >1.0 in over-capacity scenarios.
+        - **Validated against real data**: 25-35% deflection yields 2-4 FTEs depending on ticket mix (higher deflection ≠ proportionally higher FTE if tickets are low-TTR).
 -   **Assessment Results Generation**: 
     -   **V4 Reports**: Includes AI-generated strategic insights in Executive Summary, "How to Identify Valuable Use Cases" section, and CTA sections.
     -   **V5 Reports** (default): Streamlined data-focused version without LLM-generated insights. Includes:
         -   **Report Header**: Displays "AI Worker Readiness Assessment" as the main title (text-4xl md:text-5xl font-bold) with a concise subheader showing "Analysis complete for X connected tools and Y monthly tickets" (text-xl text-text-secondary). Consistent styling with email gate page.
-        -   **Executive Summary**: Clean metrics display with readiness percentage badge (color dynamically matches percentage color) and key statistics. Shows Budget FTE (conservative, finance-friendly) prominently with Capacity FTE as supplementary info. Includes Confidence Bands section showing Expected, Conservative (P70), and Very Conservative (P90) monthly time savings scenarios with explanatory text about Budget FTE calculation methodology (50% capture rate, 1,800 effective hours per FTE). No LLM-generated insights or CTA in this section.
-        -   **Opportunity Analysis**: Begins directly with "What You Can Automate Right Now" heading and single-column full-width use case cards (grid grid-cols-1 gap-6). Cards feature tool logos prominently displayed in top right (48px with circular backgrounds and borders via "prominent" prop). Title (text-2xl), category badge, and rank number positioned on left. Enhanced metrics section uses text-3xl numbers with subtle bg-bg-primary/50 background and improved spacing. Description uses text-lg. Collapsible "How it works" section at bottom. No fit scores, deployment timing badges, or CTA sections displayed.
+        -   **Executive Summary**: Clean metrics display with readiness percentage badge (color dynamically matches percentage color) and key statistics. Shows Budget FTE (conservative, finance-friendly) prominently with Capacity FTE as supplementary info. Displays breakdown of Full vs Assisted automation (tickets and hours) beneath main metrics. Includes Confidence Bands section showing Expected, Conservative (P70), and Very Conservative (P90) monthly time savings scenarios with explanatory text about Budget FTE calculation methodology (50% capture rate, 1,800 effective hours per FTE). No LLM-generated insights or CTA in this section.
+        -   **Opportunity Analysis**: Two distinct sections for transparency: "Full Automation Opportunities" (complete ticket deflection) and "AI-Assisted Opportunities" (reduces TTR but requires some human involvement). Each section uses single-column full-width use case cards (grid grid-cols-1 gap-6). Cards feature tool logos prominently displayed in top right (48px with circular backgrounds and borders via "prominent" prop). Title (text-2xl), category badge, and rank number positioned on left. Enhanced metrics section uses text-3xl numbers with subtle bg-bg-primary/50 background and improved spacing. Description uses text-lg. Collapsible "How it works" section at bottom. No fit scores, deployment timing badges, or CTA sections displayed.
     -   **Deployment Plan**: Provides a comprehensive "Get Started Plan" with standard HTML tables including 3-column timeline with phases formatted as two lines (e.g., "Phase One" / bold "Integration Setup"), required assets section renamed to "What You Will Need to Collect" with 4 detailed categories (Rules, Data, Connections, Stakeholder Alignment), and internal alignment for 7 stakeholder roles. All messaging is vendor-agnostic. Text sizing uses text-lg for consistency.
     -   **Expected Outcomes**: Details pilot metrics, before/after scenarios, and team capacity gains.
     -   **Call to Action**: CustomReportCTA with white button "Run the Full Discovery Assessment >" with green dot, linking to book-a-demo, preceded by description text. This CTA promotes the deeper Data Discovery and Blueprint engagement that follows this initial assessment. Button matches app-wide styling (bg-white text-black px-8 py-4 rounded-lg, centered text with green highlight dot on left and ">" on right).

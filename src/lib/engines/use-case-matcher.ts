@@ -24,10 +24,12 @@ export interface MatchedUseCase {
   workflow_steps: string[];
   priority: 'immediate' | 'quick_win' | 'future';
   required_tools: string[];
+  automation_type: 'full_automation' | 'assisted'; // NEW: distinguish full vs assisted automation
 
   // NEW (optional realism knobs)
   post_auto_ttr_hours?: number;   // if present, use time delta vs. full deflection
   approval_leakage_pct?: number;  // 0..1 portion needing human approval
+  cherry_picking_factor?: number; // 0-1: TTR ratio of automated vs all tickets (AI gets easier ones)
 }
 
 export class UseCaseMatcher {
@@ -113,16 +115,22 @@ export class UseCaseMatcher {
         const possible = activity.monthly_volume * deflectRate;
         const deflectable = Math.min(remaining, possible);
 
-        // Partial automation support
-        const baseline = activity.avg_ttr_hours;
+        // CRITICAL INSIGHT: AI Workers cherry-pick the EASIER tickets first
+        // Cherry-picking factor represents the TTR ratio of automated vs all tickets
+        // Example: If median TTR = 1.5hrs but AI automates tickets with 0.3hr TTR,
+        // cherry_picking_factor = 0.3 / 1.5 = 0.2
+        const cherryPickingFactor = Math.max(Math.min(useCase.cherry_picking_factor ?? 1.0, 1), 0);
+        const adjustedBaseline = activity.avg_ttr_hours * cherryPickingFactor;
+
+        // Partial automation support (for "assisted" type)
         const postAuto = Math.max(useCase.post_auto_ttr_hours ?? 0, 0);
         const hasPost = useCase.post_auto_ttr_hours != null;
 
         // Hours saved logic:
-        // - If postAuto provided: use delta (baseline - postAuto)
-        // - Else: assume full deflection (baseline)
-        const delta = Math.max(baseline - postAuto, 0);
-        const hoursPerTicket = hasPost ? delta : baseline;
+        // - If postAuto provided (assisted): use delta with cherry-picked baseline
+        // - Else (full automation): use cherry-picked baseline
+        const delta = Math.max(adjustedBaseline - postAuto, 0);
+        const hoursPerTicket = hasPost ? delta : adjustedBaseline;
 
         // Optional approval leakage (portion not fully automated)
         const leakage = Math.min(Math.max(useCase.approval_leakage_pct ?? 0, 0), 1);
@@ -164,9 +172,11 @@ export class UseCaseMatcher {
         workflow_steps: useCase.workflow_steps,
         priority,
         required_tools: useCase.required_tools,
+        automation_type: useCase.automation_type ?? 'full_automation', // default to full if missing
         // pass through for inspection (optional)
         post_auto_ttr_hours: useCase.post_auto_ttr_hours,
-        approval_leakage_pct: useCase.approval_leakage_pct
+        approval_leakage_pct: useCase.approval_leakage_pct,
+        cherry_picking_factor: useCase.cherry_picking_factor
       });
     }
 
