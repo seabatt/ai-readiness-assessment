@@ -37,6 +37,8 @@ export class ROICalculator {
   private readonly DEFAULT_CAPTURE_RATE = 0.5;      // 50% realizable/budget capture
   private readonly DEFAULT_EFFECTIVE_HOURS_PER_FTE = 1800;
 
+  private readonly MAX_DEFLECTION_RATE = 0.35; // 35% maximum based on real customer data
+
   /**
    * Calculates comprehensive ROI from matched use cases
    */
@@ -56,6 +58,9 @@ export class ROICalculator {
       (sum, uc) => sum + uc.estimated_monthly_deflection,
       0
     );
+
+    // CRITICAL: Apply maximum deflection cap (35%) based on real customer outcomes
+    const maxDeflectableTickets = totalMonthlyTickets * this.MAX_DEFLECTION_RATE;
 
     const rawTotalHoursSaved = matchedUseCases.reduce(
       (sum, uc) => sum + uc.estimated_hours_saved,
@@ -83,14 +88,22 @@ export class ROICalculator {
       0
     );
 
-    // Safety clamp: never exceed total monthly tickets
-    const automatableTickets = Math.min(rawAutomatableTickets, totalMonthlyTickets);
+    // Safety clamp: never exceed total monthly tickets OR maximum deflection rate
+    const automatableTickets = Math.min(rawAutomatableTickets, totalMonthlyTickets, maxDeflectableTickets);
+
+    // Calculate proration factor if we hit the cap
+    const prorationFactor = rawAutomatableTickets > 0 && automatableTickets < rawAutomatableTickets
+      ? (automatableTickets / rawAutomatableTickets)
+      : 1.0;
 
     // Prorate hours if clamped
-    const totalHoursSaved =
-      rawAutomatableTickets > 0 && automatableTickets < rawAutomatableTickets
-        ? rawTotalHoursSaved * (automatableTickets / rawAutomatableTickets)
-        : rawTotalHoursSaved;
+    const totalHoursSaved = rawTotalHoursSaved * prorationFactor;
+
+    // Also prorate full automation vs assisted breakdowns
+    const proratedFullAutomationTickets = fullAutomationTickets * prorationFactor;
+    const proratedFullAutomationHours = fullAutomationHours * prorationFactor;
+    const proratedAssistedTickets = assistedTickets * prorationFactor;
+    const proratedAssistedHours = assistedHours * prorationFactor;
 
     const automatablePct =
       totalMonthlyTickets > 0 ? (automatableTickets / totalMonthlyTickets) * 100 : 0;
@@ -118,13 +131,14 @@ export class ROICalculator {
 
     const annualValueUsd = budgetFTE * fullyLoadedCost;
 
-    // Category breakdown with hours-weighted confidence
+    // Category breakdown with hours-weighted confidence (prorated if clamped)
     const categoryMap = new Map<string, { tickets: number; hours: number; confNum: number }>();
     for (const uc of matchedUseCases) {
       const slot = categoryMap.get(uc.category) || { tickets: 0, hours: 0, confNum: 0 };
-      slot.tickets += uc.estimated_monthly_deflection;
-      slot.hours += uc.estimated_hours_saved;
-      slot.confNum += uc.confidence * uc.estimated_hours_saved;
+      // Apply proration factor to category breakdown to maintain consistency
+      slot.tickets += uc.estimated_monthly_deflection * prorationFactor;
+      slot.hours += uc.estimated_hours_saved * prorationFactor;
+      slot.confNum += uc.confidence * uc.estimated_hours_saved * prorationFactor;
       categoryMap.set(uc.category, slot);
     }
 
@@ -154,11 +168,11 @@ export class ROICalculator {
       annual_value_usd: Math.round(annualValueUsd),
       confidence: Math.round(weightedConfidence * 100),
 
-      // NEW: Full automation vs assisted breakdown
-      full_automation_tickets: Math.round(fullAutomationTickets),
-      full_automation_hours: Math.round(fullAutomationHours),
-      assisted_tickets: Math.round(assistedTickets),
-      assisted_hours: Math.round(assistedHours),
+      // NEW: Full automation vs assisted breakdown (prorated if clamped)
+      full_automation_tickets: Math.round(proratedFullAutomationTickets),
+      full_automation_hours: Math.round(proratedFullAutomationHours),
+      assisted_tickets: Math.round(proratedAssistedTickets),
+      assisted_hours: Math.round(proratedAssistedHours),
 
       breakdown_by_category: breakdownByCategory
     };
