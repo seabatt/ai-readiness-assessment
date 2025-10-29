@@ -1,0 +1,455 @@
+ITSM Agentic Discovery
+Prepared solely and confidentially for Fox
+
+
+
+
+
+
+Sample data used
+Date range:
+15.8-15.10
+*Tickets that their status is “Closed” and were opened in this time range 
+Ticket volume:
+Total: 9444
+Incidents: 6327
+Tasks: 3117
+
+
+
+
+
+Data Preprocessing Assumptions
+
+Categorization
+
+ai.work’s discovery agent added a layer of categorization as tickets in ServiceNow were already categorized, but not in a sufficient way to reach accurate conclusions on whether they can be automated with agentic AI and to what extent.
+
+This includes:
+Tickets with a generic category (“Service Request”)
+Tickets with wrong category used
+Too broad categories
+
+The discovery agent re-classified the tickets into a 3-level hierarchy:
+Category - For example: Applications, Hardware
+Sub-category - For example: Applications->App access, Applications->App issue
+Entity - For example: Github, Asana
+
+* The discovery agent relied solely on its categorization labels
+
+
+
+AI Automation readiness
+
+The tickets data does not include information about how tickets were resolved. We used our experience to estimate the potential AI automation opportunities.
+
+
+Tickets Breakdown
+Overall: 9444 tickets
+
+
+
+
+Category
+
+
+Tickets #
+Percentage of overall
+Applications
+
+
+7506
+79.47%
+Onboarding/
+Offboarding 
+
+
+863
+9.13%
+Hardware
+
+
+495
+5.24%
+Other
+
+
+383
+4%
+Security
+
+
+78
+0.8%
+Distribution Lists
+s
+59
+0.6%
+Network
+
+
+60
+0.6%
+
+
+
+
+
+
+
+
+
+The “Other” category includes IT tickets that do not fit neatly into the standard classifications. This includes general service desk requests, status updates, follow-ups on incidents, inquiries about corporate cards or purchasing, badge requests, password resets, access or account verifications, and miscellaneous administrative tasks. It also covers notifications about system releases, environment upgrades, patch deployments, and approvals or validations required for various internal processes. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Applications category
+Applications are 79.47% of all tickets. Application access - Median TTR = 0.43 hours
+
+In the tables below please find a breakdown of sub-categories within Applications and of ticket distribution within the category, filtered by top tickets based on volume.
+
+
+
+
+Applications sub-category breakdown
+
+Sub category
+Tickets
+% of total tickets
+% of Applications category
+App issue
+3943
+41.75%
+52.53%
+App access
+1680
+17.78%
+22.38%
+Within-app action
+816
+8.65%
+10.87%
+Within-app access
+543
+5.74%
+7.23%
+Password reset
+470
+4.97%
+6.26%
+Guidance
+49
+0.51%
+0.65%
+
+
+
+Example tickets:
+
+
+App issue
+Okta - User unable to log in due to time-sync issue causing repeated verification loop, resolved by adjusting system time and re-enrolling Okta Verify.
+Pagerduty - PagerDuty triggered an automated startup sequence for MCL. incident acknowledged and resolved via Moogsoft integration with no further action required.
+AWS - User unable to open AWS Client due to shortcut and launch errors; technician remoted in, performed repair and update, after which the application opened and login succeeded.
+Wide orbit traffic - User unable to verify login due to unresponsive mouse click. Issue resolved after remote session and user successfully accessed the application.
+App access
+Fox MediaCloud - Requests to get access to Fox MediaCloud.
+Adobe Creative Cloud - Requests to get access to Adobe Creative Cloud.
+Within app access
+Outlook - User requested access to a shared or resource mailbox in Outlook. 
+Within app action
+Servicenow - Populate the "Assignment Group" field with the team responsible for fulfilling the request.
+Slack - Requested Slack channel was renamed and archived.
+Jira - "Assignment Group" field was populated with the team responsible for fulfilling the request
+
+
+
+
+
+
+Applications category top items
+
+Rank
+Sub-Category
+Item
+Count
+% of total tickets
+% of Apps category
+Median Resolution (hours)
+1
+app issue
+Okta
+2648
+28.02%
+35.51%
+0.20
+2
+within-app action
+Servicenow
+319
+3.37%
+4.27%
+0.19
+3
+app issue
+Pagerduty
+193
+2.04%
+2.58%
+0.20
+4
+app issue
+AWS
+157
+1.66%
+2.10%
+0.31
+5
+app issue
+Fox mediacloud
+111
+1.17%
+1.48%
+6.68
+6
+app access
+Okta
+98
+1.03%
+1.31%
+2.09
+7
+app issue
+Wide orbit traffic
+95
+1.00%
+1.27%
+0.56
+8
+app access
+Adobe creative cloud
+78
+0.82%
+1.04%
+1.13
+9
+app issue
+Outlook
+71
+0.75%
+0.95%
+0.58
+10
+app issue
+Box
+53
+0.56%
+0.70%
+0.68
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hardware category
+
+Hardware tickets are 5.24% of all tickets.
+Sub category
+Tickets
+Percentage
+Hardware Issue
+345
+69.69%
+Hardware Request
+75
+15.15%
+Hardware Setup
+49
+9.89%
+Hardware Replacement
+26
+5.25%
+
+
+
+
+
+
+Network & Security category
+Network & security are 1.46% of all tickets.
+Example Tickets:
+
+MacBook - User experiencing severe Wi-Fi lag on Fox Guest network in office (Zoom, Slack, Chrome affected).
+Resolution: password reset, network switch attempt, and OS updates.
+Website Access - User requested to whitelist newly created external sites for research purposes.
+Resolution - approval and exception handled by InfoSec and Network Operations.
+Unauthorized Software - InfoSec identified unsupported remote-access software on users' devices. 
+Resolution - technician remoted in, terminated background processes, and uninstalled the application per security policy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ai.work conclusions
+Phase 1: Immediate impact → expected 32% ticket deflection - 4 weeks
+
+Okta app issues → 16.81% of tickets (1588 tickets)*
+
+App access through Okta → 13.34% of tickets (1260 tickets)**
+
+Distribution List Changes → 0.6% of tickets (50 tickets) 
+
+Slack In-app access and actions → 1.32% of tickets (125 tickets)***
+
+Assumptions
+
+* An analysis of the Okta-related app issues indicates that around 60% could be addressed via Okta’s API by the AI worker. Accordingly, 0.6 × 2,648 tickets = 1,588 tickets were considered automatable.
+
+** We assume that 75% of app access tickets can be resolved through Okta, so we calculated: 0.75 * 1680 app access tickets = 1260
+
+** Slack admin API requires Enterprise license
+
+Expected Impact
+Data on ticket resolution per employee exists, and ai.work’s discovery agent used it to estimate the potential impact on ROI (headcount). A conservative approach was taken, assuming that tickets suitable for automation are generally the easier ones, typically handled by the employees who resolve the highest number of tickets over time.
+During the analyzed period, the AI worker could potentially handle ~3,000 tickets (32% of total tickets). As shown in the employee graph below:
+Top performer: 1,000 tickets
+
+
+Second: 900 tickets (currently handled by existing automation)
+
+
+Third & fourth performers: 600 tickets each
+By automating tickets beyond the current automation, we estimate that the workload handled by the top performers could be reduced, freeing up the equivalent of 3 full-time employees (FTEs).
+
+
+* This graph excludes workers who solved fewer than 20 tickets during this period.
+
+
+
+Phase 2: Long term potential - 3-6 months
+Goal of 47% fully automated ticket requests (assuming ai.work has necessary API connections)*
+Additional 5% partially assisted by ai.work (does 20-80% of the work and shortens human handle time)**
+48% of tickets will remain full human agent handling (specific app actions without API, hardware/network troubleshooting, hardware logistics)
+
+Assumptions
+
+*Full automation assumptions
+80% of App access = 14.24%
+50% of App issues = 20.87%     
+50% of Within-app access = 2.87%
+50% of Within-app action = 4.32%
+50% of Onboarding / Offboarding = 4.56%
+100% of Distribution Lists = 0.6%
+
+**Assistance assumptions
+50% of Hardware issues = 1.82%
+50% of Hardware Requests = 0.39%
+50% of Hardware Replacement = 0.13%
+40% of Network, Security and Other = 2.2%
+80% of Guidance = 0.41%
+
+Open Questions
+Is the access to all apps managed through Okta ? If not, what are the other access management methods?
+Are there apps that require direct in-app actions to grant initial access to? Which?
+What does the full IT onboarding process look like?
+What does the full IT offboarding process look like?
+Where is the asset inventory managed?
+What is the policy for new hardware requests?
+Are there knowledge base articles in place to answer repetitive questions and provide initial support?
+What are the approval flows? How are they managed?
+
+
+
+Thank you,
+
+Alina Steinberg
+Product Manager 
+ai.work inc.
