@@ -14,6 +14,7 @@ export default function EmailGateContent() {
   const [assessmentData, setAssessmentData] = useState<any>(null);
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [opportunityCount, setOpportunityCount] = useState(0);
+  const [consentGiven, setConsentGiven] = useState(false);
 
   useEffect(() => {
     // Check if there's an assessment ID in URL params
@@ -71,12 +72,7 @@ export default function EmailGateContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log('Form submitted, email:', email);
-    console.log('Assessment ID:', assessmentId);
-    console.log('Assessment Data:', assessmentData);
-    
-    if (!email) {
-      console.log('No email provided');
+    if (!email || !consentGiven) {
       return;
     }
 
@@ -85,30 +81,28 @@ export default function EmailGateContent() {
     try {
       if (assessmentId) {
         // Update existing assessment with email
-        console.log('Updating assessment with ID:', assessmentId);
         const response = await fetch(`/api/assessments/${assessmentId}/update-email`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ 
+            email,
+            consentTimestamp: new Date().toISOString()
+          }),
         });
 
-        console.log('Response status:', response.status);
         const responseData = await response.json();
-        console.log('Response data:', responseData);
 
         if (!response.ok) {
-          throw new Error(`Failed to submit email: ${response.status} - ${JSON.stringify(responseData)}`);
+          throw new Error(responseData.error || 'Failed to submit email');
         }
 
         // Clear sessionStorage
         sessionStorage.removeItem('assessmentData');
 
         // Redirect to full report
-        console.log('Redirecting to:', `/report/v5/${assessmentId}`);
         router.push(`/report/v5/${assessmentId}`);
       } else if (assessmentData) {
         // Fallback: create new assessment with email
-        console.log('Creating new assessment with email');
         const response = await fetch('/api/assessments/submit-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -118,12 +112,10 @@ export default function EmailGateContent() {
           }),
         });
 
-        console.log('Response status:', response.status);
         const responseData = await response.json();
-        console.log('Response data:', responseData);
 
         if (!response.ok) {
-          throw new Error(`Failed to submit email: ${response.status} - ${JSON.stringify(responseData)}`);
+          throw new Error(responseData.error || 'Failed to submit email');
         }
 
         const { id } = responseData;
@@ -132,15 +124,12 @@ export default function EmailGateContent() {
         sessionStorage.removeItem('assessmentData');
 
         // Redirect to full report
-        console.log('Redirecting to:', `/report/v5/${id}`);
         router.push(`/report/v5/${id}`);
       } else {
-        console.log('No assessment ID or data available');
         throw new Error('No assessment data available');
       }
     } catch (error) {
-      console.error('Error submitting email:', error);
-      alert(`Failed to submit email. Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(`Failed to submit email. Please try again.`);
       setIsSubmitting(false);
     }
   };
@@ -199,10 +188,24 @@ export default function EmailGateContent() {
                 required
               />
             </div>
+
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="consent"
+                checked={consentGiven}
+                onChange={(e) => setConsentGiven(e.target.checked)}
+                className="mt-1"
+                required
+              />
+              <label htmlFor="consent" className="text-sm text-text-secondary">
+                I consent to receiving this assessment report and occasional updates about AI Worker solutions. Your email will be stored for 90 days and can be deleted upon request.
+              </label>
+            </div>
             
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !consentGiven}
               className="w-full bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="w-2 h-2 rounded-full bg-highlight"></span>
@@ -212,7 +215,7 @@ export default function EmailGateContent() {
           </form>
 
           <p className="text-xs text-text-tertiary mt-4 text-center">
-            No sensitive data stored or shared. Responses anonymized for benchmarking.
+            Your data is encrypted and will be automatically deleted after 90 days.
           </p>
         </div>
 

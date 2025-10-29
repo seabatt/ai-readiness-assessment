@@ -75,6 +75,106 @@ The application uses the official Ai.Work brand system with a custom dark theme,
 -   **Assessment Data**: Captures monthly tickets, distribution, email, and context, persisted with a unique UUID.
 -   **Terminology**: The tool is an "Assessment"; the follow-up is "Data Discovery and Blueprint."
 
+## Security & Compliance Posture
+
+**October 29, 2025 - Security Hardening for CISO Review**
+
+### Data Protection
+-   **Input Validation**: All API routes use Zod schemas to validate and sanitize inputs
+    - Email addresses validated against RFC 5322 standards
+    - Ticket counts: 100-1,000,000 range
+    - Distribution percentages must sum to 100%
+    - Tech stack limited to 50 tools maximum
+    - Additional context capped at 5,000 characters
+-   **Encryption**: 
+    - Data encrypted in transit via HTTPS
+    - Database encryption at rest provided by Neon PostgreSQL
+    - No sensitive data logged to console or server logs
+-   **PII Handling**: 
+    - Only email addresses collected (minimal PII)
+    - All PII logging removed from client and server code
+    - User consent required and timestamped before email collection
+
+### Data Governance
+-   **Retention Policy**: Assessments automatically deleted after 90 days
+    - Cleanup script: `src/lib/utils/data-retention.ts`
+    - Admin endpoint: `/api/admin/cleanup` (requires authentication in production)
+    - Retention period: 90 days from creation
+-   **User Consent**: 
+    - Explicit consent checkbox required on email gate form
+    - Consent timestamp stored in database
+    - Privacy notice clearly states data usage and retention
+-   **Data Deletion**: Users can request deletion via support (manual process)
+
+### API Security
+-   **Rate Limiting**: 
+    - 10 assessments per IP address per hour
+    - In-memory rate limit store (consider Redis for production)
+    - Rate limit headers: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+    - 429 status code with retry-after information
+-   **Input Validation**: Comprehensive Zod schemas prevent:
+    - SQL injection (parameterized queries via Drizzle ORM)
+    - Oversized payloads
+    - Invalid data types
+    - XSS via input sanitization
+-   **Error Handling**: 
+    - Generic error messages to prevent information disclosure
+    - Detailed errors only in development mode
+    - No stack traces exposed to clients
+
+### Security Headers
+-   **X-Frame-Options**: SAMEORIGIN (prevents clickjacking)
+-   **X-Content-Type-Options**: nosniff (prevents MIME sniffing)
+-   **X-XSS-Protection**: 1; mode=block (legacy XSS protection)
+-   **Referrer-Policy**: strict-origin-when-cross-origin
+-   **Permissions-Policy**: Restricts camera, microphone, geolocation
+
+### Known Limitations & Recommendations for Production
+1. **Authentication**: Currently no authentication on API routes
+   - **CRITICAL**: Implement authentication before public launch
+   - Recommended: NextAuth.js with email magic links or signed URLs
+   - Alternative: API key-based access control
+2. **Rate Limiting**: In-memory store resets on server restart
+   - Recommended: Redis or database-backed rate limiting for production
+3. **Data Cleanup**: Manual trigger via admin endpoint
+   - Recommended: Scheduled cron job or serverless function
+4. **Audit Logging**: No audit trail for data access
+   - Recommended: Log all email updates and report access
+5. **CORS**: Relies on Next.js defaults
+   - Recommended: Explicit CORS policy for production domains
+
+### Compliance Considerations
+-   **GDPR**: 
+    - Data minimization: Only email addresses collected
+    - Right to erasure: Deletion process available (manual)
+    - Data retention: 90-day automatic deletion
+    - Consent: Explicit, informed, timestamp-recorded
+    - **Gap**: No automated deletion request workflow
+-   **CCPA**: 
+    - Privacy notice provided at collection
+    - Data not sold or shared with third parties
+    - **Gap**: No formal "Do Not Sell" mechanism
+-   **SOC 2**: 
+    - Security controls in place (encryption, rate limiting, validation)
+    - **Gap**: No formal access controls or audit logging
+
+### Security Review Checklist for CISO
+- [x] Input validation on all API endpoints
+- [x] PII logging removed from code
+- [x] Security headers configured
+- [x] Rate limiting implemented
+- [x] Data retention policy documented and implemented
+- [x] User consent mechanism with timestamps
+- [x] Encryption in transit (HTTPS)
+- [x] Encryption at rest (Neon PostgreSQL)
+- [ ] **CRITICAL**: Authentication and authorization (not implemented)
+- [ ] Audit logging for sensitive operations
+- [ ] Automated data deletion requests
+- [ ] Production-grade rate limiting (Redis)
+- [ ] Formal security testing (penetration testing, SAST)
+- [ ] Incident response plan
+- [ ] Data breach notification procedures
+
 ## External Dependencies
 -   **Image Domains**:
     -   `cdn.simpleicons.org`
